@@ -702,9 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b4ddc8b5cccf946ae9151c7a5f2171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 873216481}
-  Pet_Speed: 10
-  Distance: 2
+  player: {fileID: 873216481}
+  moveSpeed: 5
 --- !u!50 &911123059
 Rigidbody2D:
   serializedVersion: 4

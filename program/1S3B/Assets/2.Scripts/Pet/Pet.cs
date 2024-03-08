@@ -4,64 +4,34 @@ using UnityEngine;
 
 public class Pet : MonoBehaviour
 {
-    public GameObject Player;
-    public float Pet_Speed; // 펫의 이동 속도
-    public float Distance = 2f; // 거리
-    //public Transform Target_Player; // 플레이어의 위치
-
-    private Rigidbody2D Pet_rigidbody;
+    public GameObject player;
+    public float moveSpeed; // 펫의 이동 속도
+    private Vector3 direction; // 거리
+    private Rigidbody2D rigid; 
 
     private void Awake()
     {
-        Pet_rigidbody = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Pet_Move();
+        Move();
     }
 
-    public void Pet_Move()
-    {
-
-        if (Mathf.Abs(this.transform.position.x - Player.transform.position.x) > Distance)
+    public void Move()
+    { 
+        // 1. 플레이어를 바라보는 벡터 구하기
+        direction = (player.transform.position - this.transform.position);
+        // 플레이어가 일정거리 밖에 있으면?
+        if(direction.magnitude > 2)
         {
-            this.transform.Translate(new Vector2(-1, 0) * Time.deltaTime * Pet_Speed);
-            Pet_Direction_X();
+            // 2. 노멀벡터로 변환하기
+            direction.Normalize(); 
+            //normalized는 방향벡터가 안바뀜
+            //normalize는 방향벡터로 바뀜
+            this.transform.position += direction * moveSpeed * Time.deltaTime; // 속도는 마지막에 곱해라
         }
-
-        if (Mathf.Abs(this.transform.position.y - Player.transform.position.y) > Distance)
-        {
-            this.transform.Translate(new Vector2(0, -1) * Time.deltaTime * Pet_Speed);
-            Pet_Direction_Y();
-        }
- 
-    }
-
-    private void Pet_Direction_X()
-    {
-        if(this.transform.position.x - Player.transform.position.x < 0)
-        {
-            this.transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        else
-        {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-
-    }
-
-    private void Pet_Direction_Y()
-    {
-        if (this.transform.position.y - Player.transform.position.y < 0)
-        {
-            this.transform.eulerAngles = new Vector3(180, 0, 0);
-        }
-        else
-        {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-
     }
 }
