@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 338625930}
   - component: {fileID: 338625932}
   - component: {fileID: 338625931}
+  - component: {fileID: 338625934}
   - component: {fileID: 338625933}
   m_Layer: 0
   m_Name: Player
@@ -596,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 20e7832852891514fa09a009eb301916, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -743,7 +744,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c1ab7063a0e734f865f97d1d70477f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 10
+--- !u!114 &338625934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338625926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a09076cabdff1c438c362d760837703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969356830
 GameObject:
   m_ObjectHideFlags: 0
