@@ -75,7 +75,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -149,7 +149,7 @@
                     "name": "",
                     "id": "aea6883d-a646-44fb-9fd7-a65cb57a4b1b",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "PC",
                     "action": "Interaction",
@@ -347,7 +347,7 @@
                     "name": "",
                     "id": "f9c569ce-8cdb-464e-8986-b9dd49c6651b",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "PC",
                     "action": "Click",
