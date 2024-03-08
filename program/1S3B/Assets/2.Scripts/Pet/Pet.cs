@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Pet : MonoBehaviour
 {
+    public GameObject Player;
     public float Pet_Speed; // 펫의 이동 속도
-    public Transform Target_Player; // 플레이어의 위치
-    //public float Distance; // 거리
+    public float Distance = 2f; // 거리
+    //public Transform Target_Player; // 플레이어의 위치
+
+    private Rigidbody2D Pet_rigidbody;
 
     private void Awake()
     {
-        Target_Player = GetComponent<Transform>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        Pet_rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -27,14 +24,44 @@ public class Pet : MonoBehaviour
 
     public void Pet_Move()
     {
-        transform.LookAt(Target_Player); // 플레이어를 바라보게 함
 
-        // 1.플레이어를 어떻게 따라갈건지
-        // -플레이어와 일정 거리 이상 멀어지면 따라오도록 함
+        if (Mathf.Abs(this.transform.position.x - Player.transform.position.x) > Distance)
+        {
+            this.transform.Translate(new Vector2(-1, 0) * Time.deltaTime * Pet_Speed);
+            Pet_Direction_X();
+        }
 
-        // 2.플레이어의 어디에 위치하게 둘 것인가
-        // -플레이어의 뒤에 위치 하도록 하고 싶음
+        if (Mathf.Abs(this.transform.position.y - Player.transform.position.y) > Distance)
+        {
+            this.transform.Translate(new Vector2(0, -1) * Time.deltaTime * Pet_Speed);
+            Pet_Direction_Y();
+        }
+ 
+    }
 
-        
+    private void Pet_Direction_X()
+    {
+        if(this.transform.position.x - Player.transform.position.x < 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+    }
+
+    private void Pet_Direction_Y()
+    {
+        if (this.transform.position.y - Player.transform.position.y < 0)
+        {
+            this.transform.eulerAngles = new Vector3(180, 0, 0);
+        }
+        else
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
     }
 }
