@@ -7,51 +7,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 300f;
-    private Vector2 _movement;
+    private PlayerController _controller;
 
-    private Rigidbody2D _rigidbody;
+    private Rigidbody2D _rigidbody2D;
+    private Vector2 _movementDirection = Vector2.zero;
+
+    public float speed = 5f;
+
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _controller = GetComponent<PlayerController>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        _controller.OnMoveEvent += Move;
     }
 
     private void FixedUpdate()
     {
-        if (_movement != null)
-        {
-            _rigidbody.velocity = _movement * speed * Time.deltaTime;
-            Debug.Log(_movement * speed * Time.deltaTime);
-        }
+        ApplyMovement(_movementDirection);
     }
 
-    public void OnMovement(InputAction.CallbackContext context)
+    private void Move(Vector2 dirction)
     {
-        if (_movement != null)
-        {
-            _movement = context.ReadValue<Vector2>();
-        }
+        _movementDirection = dirction;
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    private void ApplyMovement(Vector2 dirction)
     {
-        switch (context.phase)
-        {
-            case InputActionPhase.Performed:
-                if (_movement.x == 0f || _movement.y == 0f)
-                    this.transform.position += (Vector3)_movement * 1f;
-                Debug.Log("탭성공");
-                break;
-            case InputActionPhase.Started:
-                Debug.Log("눌림");
-                break;
-            case InputActionPhase.Canceled:
-                Debug.Log("탭실패");
-                break;
-        }
-        //슬로우탭은 0.5초이상눌러야 성공
-        //탭은 0.2초이하로 눌러야 성공
-        //현재 스페이스바에 탭만 걸어둠
+        dirction *= speed;
+
+        _rigidbody2D.velocity = dirction; 
+        //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
     }
 }
