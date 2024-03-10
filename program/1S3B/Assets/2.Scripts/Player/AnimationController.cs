@@ -7,11 +7,15 @@ public class AnimationController : Animation
 {
     void Start()
     {
-        //controller.OnMoveEvent += Animation;
+        controller.OnMoveEvent += Animation;
     }
 
     public void Animation(Vector2 direction)
     {
+        animator.SetBool("isWalking", direction.magnitude > 0f);
+
+
+
         //if (direction.x > 0f)
         //{
         //    animator.SetBool("isRight", true);            
