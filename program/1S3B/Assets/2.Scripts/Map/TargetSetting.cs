@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UIElements;
+using System.Linq;
+using System.Reflection.Emit;
 
 public class TargetSetting : MonoBehaviour
 {
@@ -23,10 +25,12 @@ public class TargetSetting : MonoBehaviour
     private Vector3Int selectCellPosition;
 
     public GameObject Temp;
-    private SpriteLibrary sprite;
+    public SpriteLibraryAsset sprite;
     private SpriteRenderer plants;
 
     private SpriteResolver resolve;
+
+    private bool isWater = false;
 
     private void Update()
     {
@@ -102,9 +106,8 @@ public class TargetSetting : MonoBehaviour
 
             GameObject go = Instantiate(Temp);
             go.transform.position = selectCellPosition + new Vector3(0.5f,0.5f);
-            sprite = go.GetComponent<SpriteLibrary>();
             plants = go.GetComponentInChildren<SpriteRenderer>();
-            plants.sprite = sprite.GetSprite("temp", "0");
+            plants.sprite = sprite.GetSprite("IDN", "1");
 
             seedMap.SetTile(selectCellPosition, seedTile);
 
@@ -117,17 +120,64 @@ public class TargetSetting : MonoBehaviour
             //씨앗들고있는지 체크
             //무슨씨앗인지체크
             //오브젝트 인스탄티에트?
+
+            //카테고리 이름 체크
+            //string[] labels;
+            //
+            //IEnumerable<string> str = sprite.GetCategoryLabelNames("IDN");
+            //labels = new string[str.Count()];
+            //int index = 0;
+            //foreach (string name in str)
+            //{
+            //    Debug.Log(name);
+            //    labels[index] = name;
+            //    index++;
+            //}
+            //카테고리 이름체크
+
         }
         else if (seedMap.GetTile(selectCellPosition) == seedTile)
         {
-            Debug.Log("씨앗뿌려진 땅");
+            //대충 물뿌리개들었으면
+
+            
+
+            isWater = true;
+
+            Debug.Log("씨앗뿌려진 땅 물주기");
         }
 
     }
 
     public void OneDay()
     {
-        string current = (int.Parse(resolve.GetLabel())+1).ToString();
-        resolve.SetCategoryAndLabel("temp", current);
+        if (isWater == false)
+            return;
+
+        IEnumerable<string> str = sprite.GetCategoryLabelNames("IDN");
+        string[] labels = new string[str.Count()];
+        int index = 0;
+        string label;
+        int ind = 0;
+        foreach (string name in str)
+        {
+            Debug.Log(name);
+            labels[index] = name;
+        
+            if (name == resolve.GetLabel())
+                ind = index + 1;
+        
+            index++;
+        }
+
+        if (ind >= str.Count())
+            return;
+
+        label = labels[ind];
+
+        resolve.SetCategoryAndLabel("IDN", label);
+
+        isWater = false;
+
     }
 }
