@@ -20,6 +20,7 @@ public class TargetSetting : MonoBehaviour
     public Tilemap seedMap;//갈수있는땅
     public Tile interactableTile;
     public Tile seedTile;
+    //public Tile waterTile;
 
     private Vector3Int playerCellPosition;
     private Vector3Int selectCellPosition;
@@ -114,6 +115,9 @@ public class TargetSetting : MonoBehaviour
             resolve = go.GetComponentInChildren<SpriteResolver>();
 
 
+            //씨앗심은땅의 spriteLibrary, resolver, spriterenderer, position을 관리해야함
+            
+
             //Instantiate(sprite.GetSprite("temp", "0"));
 
             //resolve -> sprite.SetCategoryAndLabel("temp", 1);
@@ -140,7 +144,8 @@ public class TargetSetting : MonoBehaviour
         {
             //대충 물뿌리개들었으면
 
-            
+            //seedMap.SetTile(selectCellPosition, waterTile);
+
 
             isWater = true;
 
