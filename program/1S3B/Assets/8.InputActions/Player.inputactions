@@ -15,18 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Mouse",
+                    "type": "Value",
+                    "id": "dde6789e-b8e1-4df2-99d0-18967d2a94ea",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Interaction",
                     "type": "Button",
-                    "id": "95b3025e-effe-4c56-a72c-3b37a5944511",
+                    "id": "269a464f-956a-4006-ba5c-3dae81b21288",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interaction",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "269a464f-956a-4006-ba5c-3dae81b21288",
+                    "id": "95b3025e-effe-4c56-a72c-3b37a5944511",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -60,22 +69,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Mouse",
-                    "type": "Value",
-                    "id": "dde6789e-b8e1-4df2-99d0-18967d2a94ea",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Click",
                     "type": "Button",
                     "id": "6c2f77d6-3833-4f83-9649-6ab8c4d7b5ea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -136,22 +136,22 @@
                 },
                 {
                     "name": "",
-                    "id": "f5fc3694-2686-4229-a0d3-599a4d384f69",
-                    "path": "<Keyboard>/space",
+                    "id": "aea6883d-a646-44fb-9fd7-a65cb57a4b1b",
+                    "path": "<Keyboard>/f",
                     "interactions": "Tap",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Jump",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "aea6883d-a646-44fb-9fd7-a65cb57a4b1b",
-                    "path": "<Keyboard>/f",
+                    "id": "d555ecb8-c436-4222-8b62-3b63ee920c53",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
+                    "groups": "",
                     "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -323,31 +323,9 @@
                 },
                 {
                     "name": "",
-                    "id": "f60efe5c-6d13-4033-9e48-dcc327e89030",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c5d44ab5-554c-44b9-a623-cd5ce9c73f2d",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f9c569ce-8cdb-464e-8986-b9dd49c6651b",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "PC",
                     "action": "Click",
@@ -373,6 +351,28 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f60efe5c-6d13-4033-9e48-dcc327e89030",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5fc3694-2686-4229-a0d3-599a4d384f69",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
