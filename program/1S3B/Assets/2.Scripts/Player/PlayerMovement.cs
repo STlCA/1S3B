@@ -36,11 +36,11 @@ public class PlayerMovement : MonoBehaviour
         _movementDirection = dirction;
     }
 
-    private void ApplyMovement(Vector2 dirction)
+    private void ApplyMovement(Vector2 direction)
     {
-        dirction *= speed;
+        direction *= speed;
 
-        _rigidbody2D.velocity = dirction; 
+        _rigidbody2D.velocity = direction; 
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
     }
 }
