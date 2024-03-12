@@ -15,6 +15,7 @@ public class Plants
     public GameObject go;
     public SpriteRenderer spriteRenderer;
     public SpriteResolver spriteResolver;
+    public bool isWaterling;
 }
 
 public class TargetSetting : MonoBehaviour
@@ -125,14 +126,13 @@ public class TargetSetting : MonoBehaviour
             //seeds.Add(plant);
 
             GameObject go = Instantiate(Temp);
-
             go.transform.position = selectCellPosition + new Vector3(0.5f,0.5f);
             plants = go.GetComponentInChildren<SpriteRenderer>();
             plants.sprite = sprite.GetSprite("IDN", "1");
+            resolve = go.GetComponentInChildren<SpriteResolver>();
 
             seedMap.SetTile(selectCellPosition, seedTile);
 
-            resolve = go.GetComponentInChildren<SpriteResolver>();
 
 
             //씨앗심은땅의 spriteLibrary, resolver, spriterenderer, position을 관리해야함
@@ -162,7 +162,13 @@ public class TargetSetting : MonoBehaviour
         }
         else if (seedMap.GetTile(selectCellPosition) == seedTile)
         {
-            //대충 물뿌리개들었으면
+            //대충 물뿌리개들었으면           
+
+            //foreach(var temp in seeds)
+            //{
+            //    if ((temp.go.transform.position - new Vector3(0.5f, 0.5f)) == selectCellPosition)
+            //        temp.isWaterling = true;
+            //}
 
             //seedMap.SetTile(selectCellPosition, waterTile);
             waterMap.SetTile(selectCellPosition, waterTile);
@@ -188,11 +194,13 @@ public class TargetSetting : MonoBehaviour
         {
             Debug.Log(name);
             labels[index] = name;
-        
-            //if(name == seeds.All<)
+
+            //if (seeds.All(x => x.spriteResolver.GetLabel() == name))
             if (name == resolve.GetLabel())
                 ind = index + 1;
-        
+
+            
+
             index++;
         }
 
