@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class AnimationController : Animation
+public class AnimationController : AnimationBase
 {
     void Start()
     {

@@ -58,6 +58,9 @@ public class SceneChangeManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
+        //StartCoroutine("FadeIn");
+        //yield return new AsyncOperation();
+
         ChangePosition();
 
         StartCoroutine("FadeOut");

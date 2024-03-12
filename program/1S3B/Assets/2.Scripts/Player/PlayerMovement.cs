@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController _controller;
+    private CharacterEventController _controller;
 
     private Rigidbody2D _rigidbody2D;
     private Vector2 _movementDirection = Vector2.zero;
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterEventController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 

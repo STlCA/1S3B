@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterEventController : MonoBehaviour
 {
     public delegate void OnMoveDel(Vector2 direction);
     public event OnMoveDel OnMoveEvent;
