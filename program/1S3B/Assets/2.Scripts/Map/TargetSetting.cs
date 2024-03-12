@@ -9,6 +9,14 @@ using UnityEngine.UIElements;
 using System.Linq;
 using System.Reflection.Emit;
 
+[System.Serializable]
+public class Plants
+{
+    public GameObject go;
+    public SpriteRenderer spriteRenderer;
+    public SpriteResolver spriteResolver;
+}
+
 public class TargetSetting : MonoBehaviour
 {
     [Header("PlayerObject")]
@@ -18,9 +26,10 @@ public class TargetSetting : MonoBehaviour
     [Header("TileMap")]
     public Tilemap interactableMap;//범위확인땅
     public Tilemap seedMap;//갈수있는땅
+    public Tilemap waterMap;
     public Tile interactableTile;
     public Tile seedTile;
-    //public Tile waterTile;
+    public Tile waterTile;
 
     private Vector3Int playerCellPosition;
     private Vector3Int selectCellPosition;
@@ -32,6 +41,8 @@ public class TargetSetting : MonoBehaviour
     private SpriteResolver resolve;
 
     private bool isWater = false;
+
+    private List<Plants> seeds = new();
 
     private void Update()
     {
@@ -105,7 +116,16 @@ public class TargetSetting : MonoBehaviour
         {
             Debug.Log("씨앗심을수있는땅");
 
+            //Plants plant = new();
+            //plant.go = Instantiate(Temp);
+            //plant.go.transform.position = selectCellPosition + new Vector3(0.5f, 0.5f);
+            //plant.spriteRenderer = plant.go.GetComponentInChildren<SpriteRenderer>();
+            //plant.spriteResolver = plant.go.GetComponentInChildren<SpriteResolver>();
+            //plant.spriteRenderer.sprite = sprite.GetSprite("IDN", "1");
+            //seeds.Add(plant);
+
             GameObject go = Instantiate(Temp);
+
             go.transform.position = selectCellPosition + new Vector3(0.5f,0.5f);
             plants = go.GetComponentInChildren<SpriteRenderer>();
             plants.sprite = sprite.GetSprite("IDN", "1");
@@ -145,7 +165,7 @@ public class TargetSetting : MonoBehaviour
             //대충 물뿌리개들었으면
 
             //seedMap.SetTile(selectCellPosition, waterTile);
-
+            waterMap.SetTile(selectCellPosition, waterTile);
 
             isWater = true;
 
@@ -169,6 +189,7 @@ public class TargetSetting : MonoBehaviour
             Debug.Log(name);
             labels[index] = name;
         
+            //if(name == seeds.All<)
             if (name == resolve.GetLabel())
                 ind = index + 1;
         
@@ -181,6 +202,8 @@ public class TargetSetting : MonoBehaviour
         label = labels[ind];
 
         resolve.SetCategoryAndLabel("IDN", label);
+
+        waterMap.ClearAllTiles();
 
         isWater = false;
 
