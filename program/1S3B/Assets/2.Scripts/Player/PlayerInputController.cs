@@ -33,7 +33,7 @@ public class PlayerInputController : CharacterEventController
         Vector2 position = value.Get<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
 
-        //targetSetting.SetCellPosition(worldPos);
+        targetSetting.SetCellPosition(worldPos);
     }
 
     public void OnInteraction(InputValue value)
