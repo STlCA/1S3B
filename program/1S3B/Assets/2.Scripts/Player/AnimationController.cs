@@ -11,68 +11,16 @@ public class AnimationController : AnimationBase
     }
 
     public void Animation(Vector2 direction)
-    {
+    {  
         animator.SetBool("isWalking", direction.magnitude > 0f);
 
+        if (direction.magnitude <= 0f)
+        {
+            animator.SetFloat("saveX", animator.GetFloat("inputX"));
+            animator.SetFloat("saveY", animator.GetFloat("inputY"));
+        }
 
-
-        //if (direction.x > 0f)
-        //{
-        //    animator.SetBool("isRight", true);            
-        //    animator.SetBool("isLeft", false);
-        //    animator.SetBool("isUp", false);
-        //    animator.SetBool("isDown", false);
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else if (direction.x < 0f)
-        //{
-        //    animator.SetBool("isRight", false);
-        //    animator.SetBool("isLeft", true);
-        //    animator.SetBool("isUp", false);
-        //    animator.SetBool("isDown", false);
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else if (direction.y > 0f)
-        //{
-        //    animator.SetBool("isRight", false);
-        //    animator.SetBool("isLeft", false);
-        //    animator.SetBool("isUp", true);            
-        //    animator.SetBool("isDown", false);
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else if (direction.y < 0f && direction.magnitude > 0f)
-        //{
-        //    animator.SetBool("isRight", false);
-        //    animator.SetBool("isLeft", false);
-        //    animator.SetBool("isUp", false);
-        //    animator.SetBool("isDown", true);
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isWalking", false);
-        //}
-
-        
-
-        ////animator.SetBool("isWalking", direction.magnitude > 0f);
-        ////    animator.SetFloat("xValue", direction.x);
-        ////    animator.SetFloat("yValue", direction.y);
-        //
-       //if (animator.GetFloat("xValue") != direction.x)
-       //{
-       //    animator.SetBool("isWalking", true);
-       //    animator.SetFloat("xValue", direction.x);
-       //}
-       //else if (animator.GetFloat("yValue") != direction.y)
-       //{
-       //    animator.SetBool("isWalking", true);
-       //    animator.SetFloat("yValue", direction.y);
-       //}
-       //else
-       //   animator.SetBool("isWalking", false);
-        //
-        //if (animator.GetFloat("xValue") == direction.x && animator.GetFloat("yValue") == direction.y && animator.GetBool("isWalking") == true)
-        //    animator.SetBool("isWalking", false);
+        animator.SetFloat("inputX", direction.x);
+        animator.SetFloat("inputY", direction.y);
     }
 }

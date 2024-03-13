@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -19,17 +21,22 @@ public class PlayerInputController : CharacterEventController
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>();
-        Debug.Log(moveInput);
+        Debug.Log(moveInput);        
+
+        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
+            return;
+        if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
+            return;
 
         CallMoveEvent(moveInput);
 
-
         //움직이면 타겟안보임
-        if(moveInput == Vector2.zero)
+        if (moveInput == Vector2.zero)
             targetSetting.gameObject.SetActive(true);
         else
             targetSetting.gameObject.SetActive(false);
     }
+
     public void OnMouse(InputValue value)
     {
         Vector2 position = value.Get<Vector2>();
