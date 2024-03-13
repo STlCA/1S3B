@@ -18,7 +18,7 @@ public class TileManager : MonoBehaviour
     public Tilemap waterTilemap;//물뿌릴맵
 
     [Header("TileCheck")]
-    public Tilemap tilleableTileMap;//내가 만들어볼용
+    public Tilemap interactableTileMap;//내가 만들어볼용
     public TileBase tilleableTile;//갈수있는땅타일종류(체크용)rule타일이여도되려나//혹은 리스트all써서?
 
     [Header("TileType")]//tilebase가아니라 rule타일이여도되려나
@@ -31,15 +31,14 @@ public class TileManager : MonoBehaviour
 
     private void Awake()
     {
-        TempGameManager.instance.tileManager = this;
     }
     private void Start()
     {
-        
+        TempGameManager.instance.tileManager = this;
     }
     private void Update()
     {
-        
+
     }
 
     //샘플
@@ -49,9 +48,9 @@ public class TileManager : MonoBehaviour
     }
 
     //내가한거
-    public bool IsTillable(Vector3Int target)//갈수있는땅
+    public bool isInteractable(Vector3Int target)//상호작용할수있는땅
     {
-        return tilleableTileMap.GetTile(target) != null;
+        return interactableTileMap.GetTile(target) != null;
     }
     public bool IsTilled(Vector3Int target)//갈려있는 땅 확인
     {
@@ -60,7 +59,9 @@ public class TileManager : MonoBehaviour
 
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
-        //밭이 갈려있다면 체크
+        //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
+        if (TempGameManager.instance.targetSetting.TargetUI() == false)
+            return;
 
         backgroundTilemap.SetTile(target, tilledTile);
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
@@ -68,6 +69,9 @@ public class TileManager : MonoBehaviour
 
     public void WaterAt(Vector3Int target)
     {
+        if (TempGameManager.instance.targetSetting.TargetUI() == false)
+            return;
+
         var tempGroundData = groundData[target];
 
         tempGroundData.isWater = true;

@@ -11,41 +11,53 @@ using System.Reflection.Emit;
 
 public class TargetSetting : MonoBehaviour
 {
-    [Header("PlayerObject")]
+    [Header("Object")]
     public GameObject playerObj;
     public GameObject targetSprite;
 
-    [Header("TileMap")]
-    public Tilemap interactableMap;//범위확인땅
-    public Tilemap seedMap;//갈수있는땅
-    public Tilemap waterMap;
-    public Tile interactableTile;
-    public Tile seedTile;
-    public Tile waterTile;
+    private Grid baseGrid;
 
     private Vector3Int playerCellPosition;
-    private Vector3Int selectCellPosition;
+    [HideInInspector] public Vector3Int selectCellPosition;
+
+    private void Start()
+    {
+        TempGameManager.instance.targetSetting = this;
+        
+        baseGrid = TempGameManager.instance.tileManager.baseGrid;
+    }
 
     private void Update()
     {
-        if (interactableMap != null)
-            playerCellPosition = interactableMap.WorldToCell(playerObj.transform.position);
+        playerCellPosition = baseGrid.WorldToCell(playerObj.transform.position);
     }
 
     public void SetCellPosition(Vector3 value)
     {
-        selectCellPosition = interactableMap.WorldToCell(value);
+        selectCellPosition = baseGrid.WorldToCell(value);
 
-        if (interactableMap.GetTile(selectCellPosition) == null)
-            return;
+        TargetUI();
+    }
 
-        if (PlayerBoundCheck() == true)//움직이면 안보이는기능추가해야할듯
+    public bool TargetUI()
+    {
+        if (TempGameManager.instance.tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
+        {
+            targetSprite.SetActive(false);
+            return false;
+        }
+
+        if (PlayerBoundCheck() == true)
         {
             targetSprite.SetActive(true);
-            TargetUI();
+            TargetPosition();
+            return true;
         }
         else
+        {
             targetSprite.SetActive(false);
+            return false;
+        }
     }
 
     private bool PlayerBoundCheck()
@@ -58,8 +70,8 @@ public class TargetSetting : MonoBehaviour
             return false;
     }
 
-    private void TargetUI()
+    private void TargetPosition()
     {
-        gameObject.transform.position = selectCellPosition + new Vector3(0.5f, 0.5f);
+        gameObject.transform.position = baseGrid.GetCellCenterWorld(selectCellPosition);
     }
 }

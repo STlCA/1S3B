@@ -7,6 +7,7 @@ public class TempGameManager : MonoBehaviour
     public static TempGameManager instance;
 
     public TileManager tileManager { get; set; }//물어보기
+    public TargetSetting targetSetting { get; set; }
 
 
     private void Awake()
