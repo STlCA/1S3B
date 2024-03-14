@@ -11,6 +11,8 @@ public class GroundData
 
 public class CropData
 {
+    public GameObject cropObj;
+    public SpriteRenderer cropRenderer;
     public int cropID;
     public Crop plantCrop;
     public int currentStage;
@@ -31,6 +33,9 @@ public class TileManager : MonoBehaviour
     [Header("TileType")]//tilebase가아니라 rule타일이여도되려나
     public TileBase tilledTile;//간타일
     public TileBase wateredTile;//물뿌린타일
+
+    [Header("Object")]
+    public GameObject cropGoPrefabs;
 
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
     private Dictionary<Vector3Int, CropData> croptData = new();
@@ -78,13 +83,15 @@ public class TileManager : MonoBehaviour
             return;
 
         CropData cropData = new CropData();
-        cropData.plantCrop = DataManager.cropDatabase.GetItemByKey(cropData.cropID);
+        cropData.cropID = 1001;
+        cropData.plantCrop = GameManager.Instance.dataManager.cropDatabase.GetItemByKey(cropData.cropID);
         cropData.currentStage = 0;
-        croptData.Add(target, cropData);
+        cropData.cropObj = Instantiate(cropGoPrefabs);
+        cropData.cropObj.transform.position = baseGrid.GetCellCenterWorld(target);
+        cropData.cropRenderer = cropData.cropObj.GetComponent<SpriteRenderer>();
+        cropData.cropRenderer.sprite = cropData.plantCrop.SpriteList[0];
 
-        
-        //go.transform.position = 
-
+        croptData.Add(target, cropData); 
     }
 
     public void WaterAt(Vector3Int target)

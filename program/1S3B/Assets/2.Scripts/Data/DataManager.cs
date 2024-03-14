@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 
 public class DataManager : MonoBehaviour
 {
-    public static CropDatabase cropDatabase;
+    public CropDatabase cropDatabase;
 
     void Awake()
     {

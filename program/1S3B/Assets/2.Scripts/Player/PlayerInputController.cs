@@ -65,4 +65,10 @@ public class PlayerInputController : CharacterEventController
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
     }
+
+    public void OnCommunication(InputValue value)
+    {
+
+    }
+
 }
