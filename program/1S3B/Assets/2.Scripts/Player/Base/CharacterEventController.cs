@@ -11,4 +11,5 @@ public class CharacterEventController : MonoBehaviour
     {
         OnMoveEvent?.Invoke(direction);
     }
+
 }
