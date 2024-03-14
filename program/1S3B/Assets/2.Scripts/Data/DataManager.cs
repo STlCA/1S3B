@@ -5,32 +5,31 @@ using static UnityEditor.Progress;
 
 public class DataManager : MonoBehaviour
 {
-    public PlantsDatabase plantsDatabase;
+    public CropDatabase cropDatabase;
 
     void Awake()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Plants_Data");
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Crops_Data");
         if (jsonFile != null)
         {
             string json = jsonFile.text;
 
-            plantsDatabase = JsonUtility.FromJson<PlantsDatabase>(json);
-            plantsDatabase.Initialize();
+            cropDatabase = JsonUtility.FromJson<CropDatabase>(json);
+            cropDatabase.Initialize();
 
-            int itemKeyToFind = 3;
-            Plant foundPlant = plantsDatabase.GetItemByKey(itemKeyToFind);
+            int itemKeyToFind = 1;
+            Crop foundPlant = cropDatabase.GetItemByKey(itemKeyToFind);
 
             if (foundPlant != null)
             {
-                Debug.Log("Plant Name: " + foundPlant.Name);
-                Debug.Log("Plant ID: " + foundPlant.ID);
-                Debug.Log("Plant GrowthTime: " + foundPlant.GrowthTime);
-                Debug.Log("Plant GrowthStage: " + foundPlant.GrowthStage);
-                Debug.Log("Plant NumberOfHarvest: " + foundPlant.NumberOfHarvest);
-                Debug.Log("Plant ProductPerHarvest: " + foundPlant.ProductPerHarvest);
-                Debug.Log("Plant StageAfterHarvest: " + foundPlant.StageAfterHarvest);
-                Debug.Log("Plant DeathTimer: " + foundPlant.DeathTimer);
-                Debug.Log("Plant SpritePath: " + foundPlant.SpritePath);
+                Debug.Log("Crop Name: " + foundPlant.Name);
+                Debug.Log("Crop ID: " + foundPlant.ID);
+                Debug.Log("Crop GrowthTime: " + foundPlant.GrowthTime);
+                Debug.Log("Crop GrowthStage: " + foundPlant.AllGrowthStage);
+                Debug.Log("Crop NumberOfHarvest: " + foundPlant.NumberOfHarvest);
+                Debug.Log("Crop ProductPerHarvest: " + foundPlant.ProductPerHarvest);
+                Debug.Log("Crop StageAfterHarvest: " + foundPlant.StageAfterHarvest);
+                Debug.Log("Crop DeathTimer: " + foundPlant.DeathTimer);
             }
             else
             {

@@ -1,4 +1,33 @@
 
+Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx
+Parse sheet: Sheet1
+Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx.$$$\Sheet1.csv
+Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx
+------------------------------------------------------------------------------
+[Crops_Data.xlsx(Sheet1): ROW 1]
+Found object mark: '#CropsData[{}]'
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: ID at 1
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: Name at 2
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: GrowthTime at 3
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: AllGrowthStage at 4
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: NumberOfHarvest at 5
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: ProductPerHarvest at 6
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: StageAfterHarvest at 7
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: DeathTimer at 8
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: Path at 9
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: SpriteName[] at 10
+Parsing Array Object Table...
+
 Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx
 Parse sheet: Sheet1
 Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx.$$$\Sheet1.csv
@@ -23,32 +52,5 @@ Found object mark: '#ItemData[{}]'
 [Item_Data.xlsx(Sheet1): ROW 1]
  Key: Stack at 8
 [Item_Data.xlsx(Sheet1): ROW 1]
- Key: SpritePath at 9
-Parsing Array Object Table...
-
-Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Plants_Data.xlsx
-Parse sheet: Sheet1
-Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Plants_Data.xlsx.$$$\Sheet1.csv
-Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Plants_Data.xlsx
-------------------------------------------------------------------------------
-[Plants_Data.xlsx(Sheet1): ROW 1]
-Found object mark: '#PlantsData[{}]'
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: ID at 1
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: Name at 2
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: GrowthTime at 3
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: GrowthStage at 4
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: NumberOfHarvest at 5
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: ProductPerHarvest at 6
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: StageAfterHarvest at 7
-[Plants_Data.xlsx(Sheet1): ROW 1]
- Key: DeathTimer at 8
-[Plants_Data.xlsx(Sheet1): ROW 1]
  Key: SpritePath at 9
 Parsing Array Object Table...

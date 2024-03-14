@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public TargetSetting targetSetting { get; set; }
     public TileManager tileManager { get; set; }//물어보기
 
+    public DataManager dataManager;
+
 
     private float m_CurrentTimeOfTheDay;
 
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        dataManager = GetComponentInChildren<DataManager>();
 
         DontDestroyOnLoad(gameObject);
     }

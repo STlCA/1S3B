@@ -9,6 +9,15 @@ public class GroundData
     public bool isWater;
 }
 
+public class CropData
+{
+    public GameObject cropObj;
+    public SpriteRenderer cropRenderer;
+    public int cropID;
+    public Crop plantCrop;
+    public int currentStage;
+}
+
 public class TileManager : MonoBehaviour
 {
     [Header("TileMap")]
@@ -25,7 +34,11 @@ public class TileManager : MonoBehaviour
     public TileBase tilledTile;//간타일
     public TileBase wateredTile;//물뿌린타일
 
+    [Header("Object")]
+    public GameObject cropGoPrefabs;
+
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
+    private Dictionary<Vector3Int, CropData> croptData = new();
 
     private void Start()
     {
@@ -47,6 +60,12 @@ public class TileManager : MonoBehaviour
     {
         return groundData.ContainsKey(target);//키가있다면 갈려있는거
     }
+    public bool IsPlantable(Vector3Int target)//갈려있고 씨앗이 심어져있지 않다면
+    {
+        return IsTilled(target) && !croptData.ContainsKey(target);
+    }
+
+
 
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
@@ -56,6 +75,23 @@ public class TileManager : MonoBehaviour
 
         backgroundTilemap.SetTile(target, tilledTile);
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
+    }
+
+    public void PlantAt(Vector3Int target)
+    {
+        if (GameManager.Instance.targetSetting.TargetUI() == false)
+            return;
+
+        CropData cropData = new CropData();
+        cropData.cropID = 1001;
+        cropData.plantCrop = GameManager.Instance.dataManager.cropDatabase.GetItemByKey(cropData.cropID);
+        cropData.currentStage = 0;
+        cropData.cropObj = Instantiate(cropGoPrefabs);
+        cropData.cropObj.transform.position = baseGrid.GetCellCenterWorld(target);
+        cropData.cropRenderer = cropData.cropObj.GetComponent<SpriteRenderer>();
+        cropData.cropRenderer.sprite = cropData.plantCrop.SpriteList[0];
+
+        croptData.Add(target, cropData); 
     }
 
     public void WaterAt(Vector3Int target)
@@ -70,6 +106,8 @@ public class TileManager : MonoBehaviour
         waterTilemap.SetTile(target, wateredTile);
     }
 
+
+
     public void Sleep()
     {
         foreach (var (cell, TempgroundData) in groundData)
@@ -78,8 +116,10 @@ public class TileManager : MonoBehaviour
         }
 
         waterTilemap.ClearAllTiles();
+
+        foreach(var (cell, tempPlantData)in croptData)
+        {
+            tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
+        }
     }
-
-
-
 }
