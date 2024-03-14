@@ -25,16 +25,11 @@ public class TileManager : MonoBehaviour
     public TileBase tilledTile;//간타일
     public TileBase wateredTile;//물뿌린타일
 
-
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
 
     private void Start()
     {
-        TempGameManager.instance.tileManager = this;
-    }
-    private void Update()
-    {
-
+        GameManager.Instance.tileManager = this;
     }
 
     //샘플
@@ -56,7 +51,7 @@ public class TileManager : MonoBehaviour
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
-        if (TempGameManager.instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
 
         backgroundTilemap.SetTile(target, tilledTile);
@@ -65,7 +60,7 @@ public class TileManager : MonoBehaviour
 
     public void WaterAt(Vector3Int target)
     {
-        if (TempGameManager.instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
 
         var tempGroundData = groundData[target];
