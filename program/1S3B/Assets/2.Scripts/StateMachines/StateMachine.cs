@@ -6,7 +6,7 @@ public abstract class StateMachine
 {
     protected IState currentState;
 
-    public void ChanheState(IState newState)
+    public void ChangeState(IState newState)
     {
         currentState?.Exit();
 
@@ -25,8 +25,8 @@ public abstract class StateMachine
         currentState?.Update();
     }
 
-    public void PhysicsUpdate()
+    public void Physics2DUpdate()
     {
-        currentState.PhysicsUpdate();
+        currentState?.Physics2DUpdate();
     }
 }
