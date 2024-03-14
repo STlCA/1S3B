@@ -1,0 +1,62 @@
+{
+	"CropsData": [
+		{
+			"ID": 1001,
+			"Name": "파스닙",
+			"GrowthTime": 4,
+			"AllGrowthStage": 5,
+			"NumberOfHarvest": 1,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Parsnip/Parsnip",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4
+			]
+		},
+		{
+			"ID": 1002,
+			"Name": "콜리플라워",
+			"GrowthTime": 8,
+			"AllGrowthStage": 6,
+			"NumberOfHarvest": 1,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Cauliflower/Cauliflower",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 1003,
+			"Name": "콩",
+			"GrowthTime": 10,
+			"AllGrowthStage": 8,
+			"NumberOfHarvest": 100,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 7,
+			"DeathTimer": 28,
+			"Path": "Crops/Bean/Bean",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7
+			]
+		}
+	]
+}

@@ -25,7 +25,7 @@ public class TargetSetting : MonoBehaviour
 
     private void Update()
     {
-            playerCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(playerObj.transform.position);
+        playerCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(playerObj.transform.position);
     }
 
     public void SetCellPosition(Vector3 value)

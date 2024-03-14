@@ -51,12 +51,17 @@ public class PlayerInputController : CharacterEventController
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
         if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
         {
-            //애니메이션
+            
             GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
+        }
+        else if (GameManager.Instance.tileManager.IsPlantable(GameManager.Instance.targetSetting.selectCellPosition) == true)
+        {
+
+            GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            //애니메이션
+            
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
     }
