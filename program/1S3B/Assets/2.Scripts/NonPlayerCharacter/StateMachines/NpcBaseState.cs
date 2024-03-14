@@ -25,23 +25,13 @@ public class NpcBaseState : IState
 
     }
 
-    public virtual void HandleInput()
-    {
-
-    }
-
-    public virtual void Physics2DUpdate()
-    {
-
-    }
-
     public virtual void Update()
     {
-        Patrol();
+        //Patrol();
 
     }
 
-    private void Patrol()
+    /*private void Patrol()
     {
         Vector3 movementDirection = GetMovementDirection();
 
@@ -73,7 +63,7 @@ public class NpcBaseState : IState
     {
         float movementSpeed = _npcSateMachine.movementSpeed * _npcSateMachine.movementSpeedModifier;
         return movementSpeed;
-    }
+    }*/
 
     protected bool IsInChaseRange()
     {

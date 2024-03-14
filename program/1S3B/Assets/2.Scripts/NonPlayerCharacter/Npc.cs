@@ -13,6 +13,8 @@ public class Npc : MonoBehaviour
 
     private NpcStateMachine npcStateMachine;
 
+    [SerializeField] public Transform[] wayPoints;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -24,18 +26,39 @@ public class Npc : MonoBehaviour
 
     private void Start()
     {
-        npcStateMachine.ChangeState(npcStateMachine.npcIdleState);
+        int randomStartInt = Random.Range(1, 3);
+        //int randomStartInt = 2;
+        Debug.Log(randomStartInt);
+        RandomStart(randomStartInt);
+        
     }
 
 
     private void Update()
     {
-        npcStateMachine.HandleInput();
+        //npcStateMachine.HandleInput();
         npcStateMachine.Update();
     }
 
-    private void FixedUpdate()
+    private void RandomStart(int randomStartInt)
+    {
+        switch(randomStartInt)
+        {
+            case 1:
+                npcStateMachine.ChangeState(npcStateMachine.npcIdleState);
+                Debug.Log("아이들");
+                break;
+            case 2:
+                npcStateMachine.ChangeState(npcStateMachine.wayPoint);
+                break;
+            default:
+                Debug.Log("버그");
+                break;
+        }
+    }
+
+    /*private void FixedUpdate()
     {
         npcStateMachine.Physics2DUpdate();
-    }
+    }*/
 }

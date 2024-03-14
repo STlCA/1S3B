@@ -15,18 +15,18 @@ public abstract class StateMachine
         currentState.Enter();
     }
 
-    public void HandleInput()
+    /*public void HandleInput()
     {
         currentState?.HandleInput();
-    }
+    }*/
 
     public void Update()
     {
         currentState?.Update();
     }
 
-    public void Physics2DUpdate()
+    /*public void Physics2DUpdate()
     {
         currentState?.Physics2DUpdate();
-    }
+    }*/
 }
