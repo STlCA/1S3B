@@ -28,10 +28,6 @@ public class TileManager : MonoBehaviour
 
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
 
-
-    private void Awake()
-    {
-    }
     private void Start()
     {
         TempGameManager.instance.tileManager = this;

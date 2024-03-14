@@ -21,9 +21,8 @@ public class TargetSetting : MonoBehaviour
     [HideInInspector] public Vector3Int selectCellPosition;
 
     private void Start()
-    {
+    {        
         TempGameManager.instance.targetSetting = this;
-        
         baseGrid = TempGameManager.instance.tileManager.baseGrid;
     }
 
