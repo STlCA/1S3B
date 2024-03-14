@@ -8,14 +8,10 @@ using UnityEngine.InputSystem.Controls;
 public class PlayerInputController : CharacterEventController
 {
     private Camera mainCamera;
-    private TargetSetting targetSetting;
-    private TileManager tileManager;
 
     private void Start()
     {
         mainCamera = Camera.main;
-        targetSetting = TempGameManager.instance.targetSetting;
-        tileManager = TempGameManager.instance.tileManager;
     }
 
     public void OnMove(InputValue value)
@@ -32,17 +28,20 @@ public class PlayerInputController : CharacterEventController
 
         //움직이면 타겟안보임
         if (moveInput == Vector2.zero)
-            targetSetting.gameObject.SetActive(true);
+            GameManager.Instance.targetSetting.gameObject.SetActive(true);
         else
-            targetSetting.gameObject.SetActive(false);
+            GameManager.Instance.targetSetting.gameObject.SetActive(false);
     }
 
     public void OnMouse(InputValue value)
     {
+        if (mainCamera == null && GameManager.Instance.targetSetting == null)
+            return;
+
         Vector2 position = value.Get<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
 
-        targetSetting.SetCellPosition(worldPos);
+        GameManager.Instance.targetSetting.SetCellPosition(worldPos);
     }
 
     public void OnInteraction(InputValue value)
@@ -50,15 +49,26 @@ public class PlayerInputController : CharacterEventController
         //여기서 들고있는 장비를 부르고 장비에서 갈수있는땅인지 체크하고 장비에서 tillat가고
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
-        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
+        if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
         {
-            //애니메이션
-            tileManager.TillAt(targetSetting.selectCellPosition);
+            
+            GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
-        else if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
+        else if (GameManager.Instance.tileManager.IsPlantable(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            //애니메이션
-            tileManager.WaterAt(targetSetting.selectCellPosition);
+
+            GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
+        }
+        else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
+        {
+            
+            GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
     }
+
+    public void OnCommunication(InputValue value)
+    {
+
+    }
+
 }

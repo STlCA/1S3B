@@ -15,32 +15,29 @@ public class TargetSetting : MonoBehaviour
     public GameObject playerObj;
     public GameObject targetSprite;
 
-    private Grid baseGrid;
-
     private Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
 
     private void Start()
-    {        
-        TempGameManager.instance.targetSetting = this;
-        baseGrid = TempGameManager.instance.tileManager.baseGrid;
+    {
+        GameManager.Instance.targetSetting = this;
     }
 
     private void Update()
     {
-        playerCellPosition = baseGrid.WorldToCell(playerObj.transform.position);
+        playerCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(playerObj.transform.position);
     }
 
     public void SetCellPosition(Vector3 value)
     {
-        selectCellPosition = baseGrid.WorldToCell(value);
+        selectCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(value);
 
         TargetUI();
     }
 
     public bool TargetUI()
     {
-        if (TempGameManager.instance.tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
+        if (GameManager.Instance.tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
         {
             targetSprite.SetActive(false);
             return false;
@@ -71,6 +68,6 @@ public class TargetSetting : MonoBehaviour
 
     private void TargetPosition()
     {
-        gameObject.transform.position = baseGrid.GetCellCenterWorld(selectCellPosition);
+        gameObject.transform.position = GameManager.Instance.tileManager.baseGrid.GetCellCenterWorld(selectCellPosition);
     }
 }

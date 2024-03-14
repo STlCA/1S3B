@@ -7,6 +7,11 @@ using UnityEngine.Rendering.Universal;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public TargetSetting targetSetting { get; set; }
+    public TileManager tileManager { get; set; }//물어보기
+
+    public DataManager dataManager;
+
 
     private float m_CurrentTimeOfTheDay;
 
@@ -24,8 +29,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        dataManager = GetComponentInChildren<DataManager>();
+
+        DontDestroyOnLoad(gameObject);
     }
+
 
     private List<DayEventHandler> m_EventHandlers = new();
 
