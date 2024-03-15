@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -15,7 +17,9 @@ public class CropData
     public SpriteRenderer cropRenderer;
     public int cropID;
     public Crop plantCrop;
-    public int currentStage;
+    public decimal currentStage;
+    public decimal growRatio;
+    public int harvest;
 }
 
 public class TileManager : MonoBehaviour
@@ -64,6 +68,10 @@ public class TileManager : MonoBehaviour
     {
         return IsTilled(target) && !croptData.ContainsKey(target);
     }
+    public bool IsHarvest(Vector3Int target)
+    {
+        return croptData[target].cropRenderer.sprite == croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.AllGrowthStage];
+    }
 
 
 
@@ -83,21 +91,30 @@ public class TileManager : MonoBehaviour
             return;
 
         CropData cropData = new CropData();
-        cropData.cropID = 1001;
+        cropData.cropID = Random.Range(1001, 1004);//임시//임시로 랜덤할까
         cropData.plantCrop = GameManager.Instance.dataManager.cropDatabase.GetItemByKey(cropData.cropID);
         cropData.currentStage = 0;
+        cropData.growRatio = cropData.plantCrop.AllGrowthStage / (decimal)cropData.plantCrop.GrowthTime;
         cropData.cropObj = Instantiate(cropGoPrefabs);
         cropData.cropObj.transform.position = baseGrid.GetCellCenterWorld(target);
-        cropData.cropRenderer = cropData.cropObj.GetComponent<SpriteRenderer>();
+        cropData.cropRenderer = cropData.cropObj.GetComponentInChildren<SpriteRenderer>();
         cropData.cropRenderer.sprite = cropData.plantCrop.SpriteList[0];
+        //cropData.plantCrop.DeathTimer = 
 
-        croptData.Add(target, cropData); 
+
+        //+모지리세션
+
+        croptData.Add(target, cropData);
     }
 
     public void WaterAt(Vector3Int target)
     {
         if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
+
+        // 물주려고 봤더니? 플레이어 인풋에서 체크? 최대면 수확
+        // 수확 후 단계 체크하고 그쪽 스프라이트로 변경
+        // 최대 인덱스를 넘어가지않게
 
         var tempGroundData = groundData[target];
 
@@ -106,10 +123,53 @@ public class TileManager : MonoBehaviour
         waterTilemap.SetTile(target, wateredTile);
     }
 
+    public void Harvest(Vector3Int target)
+    {
+        if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
+        {
+            //인벤넣기
+            Destroy(croptData[target].cropObj);
+            croptData.Remove(target);
+        }
+        else//여러번수확
+        {
+            //인벤넣기
+            croptData[target].harvest++;
+            croptData[target].currentStage = croptData[target].plantCrop.StageAfterHarvest;
+            croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
+        }
+    }
 
 
     public void Sleep()
     {
+        foreach (var (cell, tempPlantData) in croptData)
+        {
+            tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
+
+            if (groundData[cell].isWater == true)
+            {
+                if (tempPlantData.harvest > 0)
+                    tempPlantData.growRatio = (tempPlantData.plantCrop.AllGrowthStage - tempPlantData.plantCrop.StageAfterHarvest) / (decimal)tempPlantData.plantCrop.ReGrowthTime;
+
+                tempPlantData.currentStage += tempPlantData.growRatio;
+
+                int temp = (int)(tempPlantData.currentStage);
+
+                if(temp >= tempPlantData.plantCrop.AllGrowthStage)
+                {
+                    tempPlantData.cropRenderer.sprite = tempPlantData.plantCrop.SpriteList[tempPlantData.plantCrop.AllGrowthStage];
+                    tempPlantData.cropObj.tag = "Harvest";
+                }
+                else
+                    tempPlantData.cropRenderer.sprite = tempPlantData.plantCrop.SpriteList[temp];
+
+                // 최대 인덱스를 넘어가지않게
+                //마지막인덱스때 콜리더생성 or 타일맵에 투명타일생성 or tag생성(두둥)
+                // 총 자라는 시간 % 단계 스프라이트 = 비율 맞춰서 비율 int로 변경한만큼 스프라이트변경
+            }
+        }
+
         foreach (var (cell, TempgroundData) in groundData)
         {
             TempgroundData.isWater = false;
@@ -117,9 +177,5 @@ public class TileManager : MonoBehaviour
 
         waterTilemap.ClearAllTiles();
 
-        foreach(var (cell, tempPlantData)in croptData)
-        {
-            tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
-        }
     }
 }

@@ -16,6 +16,7 @@ public class DayEventHandler : MonoBehaviour
         public bool IsInRange(float t)
         {
             return t >= StartTime && t <= EndTime;
+            //스타트시간과 끝나는시간의 조건을 만족할때 범위내의 시간을 리턴
         }
     }
 
