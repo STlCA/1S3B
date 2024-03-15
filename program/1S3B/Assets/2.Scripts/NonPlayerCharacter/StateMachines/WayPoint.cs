@@ -2,49 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPoint : NpcBaseState
+public class WayPoint : MonoBehaviour
 {
-    
-
+    private Npc npc;
+    private NpcStateMachine npcSateMachine;
     private int watPointIndex = 0;
-    
 
-    public WayPoint(NpcStateMachine npcStateMachine) : base(npcStateMachine)
+    private void Start()
     {
+        npc = GetComponent<Npc>();
+        npcSateMachine = GetComponent<NpcStateMachine>();
     }
 
-    private void Awake()
+    public void Update()
     {
-        
-    }
-
-    public override void Enter()
-    {
-        _npcSateMachine._npc.transform.position = _npcSateMachine._npc.wayPoints[watPointIndex].transform.position;
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void Update()
-    {
-        base.Update();
         PointsMove();
     }
 
     private void PointsMove()
     {
-        _npcSateMachine._npc.transform.position = Vector2.MoveTowards(_npcSateMachine._npc.transform.position, _npcSateMachine._npc.wayPoints[watPointIndex].transform.position, _npcSateMachine.movementSpeedModifier * Time.deltaTime);
+        npc.transform.position = Vector2.MoveTowards(npc.transform.position, npc.wayPoints[watPointIndex].transform.position, 3 * Time.deltaTime);
 
-        if(_npcSateMachine._npc.transform.position == _npcSateMachine._npc.wayPoints[watPointIndex].transform.position)
+        //npc.transform.position = Vector2.MoveTowards(npc.transform.position, npc.wayPoints[watPointIndex].transform.position, npcSateMachine.movementSpeedModifier * Time.deltaTime);
+
+        if(npc.transform.position == npc.wayPoints[watPointIndex].transform.position)
         {
             watPointIndex++;
         }
 
-        if(watPointIndex == _npcSateMachine._npc.wayPoints.Length)
+        if(watPointIndex == npc.wayPoints.Length)
         {
             watPointIndex = 0;
         }

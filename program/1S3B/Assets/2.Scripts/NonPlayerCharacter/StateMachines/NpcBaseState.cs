@@ -67,7 +67,7 @@ public class NpcBaseState : IState
 
     protected bool IsInChaseRange()
     {
-        float playerDistanceSqr = (_npcSateMachine.TargetPlayer.transform.position - _npcSateMachine._npc.transform.position).sqrMagnitude;
+        float playerDistanceSqr = (_npcSateMachine.targetPlayer.transform.position - _npcSateMachine._npc.transform.position).sqrMagnitude;
         return playerDistanceSqr <= _npcSateMachine._npc.npcData.PlayerChasingRange * _npcSateMachine._npc.npcData.PlayerChasingRange;
     }
 }

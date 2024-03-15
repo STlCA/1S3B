@@ -26,13 +26,24 @@ public class Npc : MonoBehaviour
 
     private void Start()
     {
-        int randomStartInt = Random.Range(1, 3);
-        //int randomStartInt = 2;
-        Debug.Log(randomStartInt);
-        RandomStart(randomStartInt);
-        
+        RandomStartState();
+        StartPosition();
     }
 
+    private void StartPosition()
+    {
+        int positionX = Random.Range(0, 12);
+        int positionY = Random.Range(0, 4);
+        this.transform.position = new Vector3(positionX, positionY);
+    }
+
+    private void RandomStartState()
+    {
+        //int randomStartInt = Random.Range(1, 3);
+        int randomStartInt = 2;
+        Debug.Log(randomStartInt);
+        RandomStart(randomStartInt);
+    }
 
     private void Update()
     {
@@ -49,7 +60,8 @@ public class Npc : MonoBehaviour
                 Debug.Log("아이들");
                 break;
             case 2:
-                npcStateMachine.ChangeState(npcStateMachine.wayPoint);
+                npcStateMachine.ChangeState(npcStateMachine.npcMoveState);
+                Debug.Log("이동");
                 break;
             default:
                 Debug.Log("버그");
