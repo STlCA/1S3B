@@ -20,6 +20,7 @@ public class WeatherSystem : MonoBehaviour
     //시작날씨(sun)
 
     private WeatherType m_CurrentWeatherType;
+    //현재 날씨 타입
     private List<WeatherSystemElement> m_Elements = new List<WeatherSystemElement>();
 
     private void Awake()
@@ -37,7 +38,9 @@ public class WeatherSystem : MonoBehaviour
     {
 #if UNITY_EDITOR
         //in the editor when not running, we find the instance manually. Less efficient but not a problem at edit time
-        //allow to be able to previz shadow in editor 
+        //allow to be able to previz shadow in editor
+        // 실행 중이 아닌 편집기에서는 인스턴스를 수동으로 찾습니다. 효율성은 떨어지지만 편집 시에는 문제가 되지 않습니다.
+        // 편집기에서 그림자 미리보기를 가능하게 합니다
         if (!Application.isPlaying)
         {
             var instance = GameObject.FindObjectOfType<WeatherSystem>();
@@ -57,14 +60,14 @@ public class WeatherSystem : MonoBehaviour
     public void ChangeWeather(WeatherType newType)
     {
         m_CurrentWeatherType = newType;
-        //현제날씨를 저장
+        //현재날씨를 저장
         SwitchAllElementsToCurrentWeather();
-        //날씨효과들 한태가서 이거 날씨 바뀌어야된다고 말해줌
+        //날씨효과들에게 가서 이거 날씨 바뀌어야된다고 말해줌
     }
 
     void FindAllElements()
     {
-        //날씨객체들을 전부 찾아오겠다
+        //시작할때 날씨객체들을 전부 찾아오겠다
         m_Elements = new(GameObject.FindObjectsOfType<WeatherSystemElement>(true));
     }
 
