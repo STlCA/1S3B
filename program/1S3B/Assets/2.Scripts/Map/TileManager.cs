@@ -20,6 +20,17 @@ public class CropData
     public decimal currentStage;
     public decimal growRatio;
     public int harvest;
+
+    
+    public void Init(int id, CropDatabase cropDatabase, GameObject go )
+    {
+        plantCrop = cropDatabase.GetItemByKey(id);
+        currentStage = 0;
+        growRatio = plantCrop.AllGrowthStage / (decimal)plantCrop.GrowthTime;
+        cropObj = go;
+        cropRenderer = cropObj.GetComponentInChildren<SpriteRenderer>();
+        cropRenderer.sprite = plantCrop.SpriteList[0];
+    }
 }
 
 public class TileManager : MonoBehaviour
@@ -44,9 +55,12 @@ public class TileManager : MonoBehaviour
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
     private Dictionary<Vector3Int, CropData> croptData = new();
 
+    private CropDatabase cropDatabase;
+
     private void Start()
     {
         GameManager.Instance.tileManager = this;
+        cropDatabase = GameManager.Instance.dataManager.cropDatabase;
     }
 
     //샘플
@@ -91,18 +105,14 @@ public class TileManager : MonoBehaviour
             return;
 
         CropData cropData = new CropData();
-        cropData.cropID = Random.Range(1001, 1004);//임시//임시로 랜덤할까
-        cropData.plantCrop = GameManager.Instance.dataManager.cropDatabase.GetItemByKey(cropData.cropID);
-        cropData.currentStage = 0;
-        cropData.growRatio = cropData.plantCrop.AllGrowthStage / (decimal)cropData.plantCrop.GrowthTime;
-        cropData.cropObj = Instantiate(cropGoPrefabs);
-        cropData.cropObj.transform.position = baseGrid.GetCellCenterWorld(target);
-        cropData.cropRenderer = cropData.cropObj.GetComponentInChildren<SpriteRenderer>();
-        cropData.cropRenderer.sprite = cropData.plantCrop.SpriteList[0];
-        //cropData.plantCrop.DeathTimer = 
+        int cropID = Random.Range(1001, 1004);//임시
 
+        GameObject go = Instantiate(cropGoPrefabs);
+        go.transform.position = baseGrid.GetCellCenterWorld(target);
 
-        //+모지리세션
+        cropData.Init(cropID, cropDatabase, go);
+
+        //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
         croptData.Add(target, cropData);
     }
