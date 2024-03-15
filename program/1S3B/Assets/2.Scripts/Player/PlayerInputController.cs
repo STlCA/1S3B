@@ -59,6 +59,12 @@ public class PlayerInputController : CharacterEventController
 
             GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
+        else if(GameManager.Instance.tileManager.IsHarvest(GameManager.Instance.targetSetting.selectCellPosition) == true)
+            //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
+        {
+
+            GameManager.Instance.tileManager.Harvest(GameManager.Instance.targetSetting.selectCellPosition);
+        }
         else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
             

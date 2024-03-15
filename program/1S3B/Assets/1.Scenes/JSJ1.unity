@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e92225edcc924bdfb35691dad7fada3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
+  dataManager: {fileID: 1799798084}
   DayDurationInSeconds: 0
   StartingTime: 0
 --- !u!4 &1620947934
@@ -11200,7 +11200,7 @@ MonoBehaviour:
   tilleableTile: {fileID: 11400000, guid: 02a197acf94911948b7be16b8c782d62, type: 2}
   tilledTile: {fileID: 11400000, guid: 5c7e49be21b9b744497e136baf358b30, type: 2}
   wateredTile: {fileID: 11400000, guid: 9b32319c1e7802f4e993d418d8948a88, type: 2}
-  cropGoPrefabs: {fileID: 0}
+  cropGoPrefabs: {fileID: 2385168843069019947, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
 --- !u!4 &5274579205830839968
 Transform:
   m_ObjectHideFlags: 0
@@ -11436,67 +11436,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8341725975338366143}
   m_Enabled: 1
---- !u!1001 &7774124638267326912
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2385168843069019947, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_Name
-      value: Crop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748944702563505548, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4a44664dca602c548a776a3b75c32ede, type: 3}
 --- !u!1839735485 &7860006261841935683
 Tilemap:
   m_ObjectHideFlags: 0
