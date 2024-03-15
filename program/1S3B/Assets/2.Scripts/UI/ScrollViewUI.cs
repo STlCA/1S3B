@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollViewUI : MonoBehaviour
 {
-    public GameObject originItemPrefab;
+    public GameObject itemSlotPrefab;
     private float _itemHeight;
     public List<int> dataList;
 
@@ -17,7 +17,7 @@ public class ScrollViewUI : MonoBehaviour
     private void Awake()
     {
         _scroll = GetComponent<ScrollRect>();
-        _itemHeight = originItemPrefab.GetComponent<RectTransform>().rect.height + 10;
+        _itemHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height + 10;
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class ScrollViewUI : MonoBehaviour
 
         for(int i = 0; i < itemCount; i++)
         {
-            GameObject item = Instantiate(originItemPrefab, _scroll.content);
+            GameObject item = Instantiate(itemSlotPrefab, _scroll.content);
             _itemList.Add(item);
 
             item.transform.localPosition = new Vector3(0, -i * _itemHeight);
