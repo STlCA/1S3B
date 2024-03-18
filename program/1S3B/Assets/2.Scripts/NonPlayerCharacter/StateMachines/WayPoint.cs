@@ -4,35 +4,53 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
-    private Npc npc;
-    private NpcStateMachine npcSateMachine;
-    private int watPointIndex = 0;
+    public static Transform[] wayPoints;
+    // 요일별 wayPoint를 만들 예정
+    public GameObject wayPoint1; 
+    public GameObject wayPoint2;
+    public GameObject wayPoint3;
+    //private int wayPointIndex = 0;
 
-    private void Start()
+    private void Awake()
     {
-        npc = GetComponent<Npc>();
-        npcSateMachine = GetComponent<NpcStateMachine>();
+        GetRandomWayPoint();
     }
 
-    public void Update()
+    private void GetRandomWayPoint()
     {
-        PointsMove();
-    }
-
-    private void PointsMove()
-    {
-        npc.transform.position = Vector2.MoveTowards(npc.transform.position, npc.wayPoints[watPointIndex].transform.position, 3 * Time.deltaTime);
-
-        //npc.transform.position = Vector2.MoveTowards(npc.transform.position, npc.wayPoints[watPointIndex].transform.position, npcSateMachine.movementSpeedModifier * Time.deltaTime);
-
-        if(npc.transform.position == npc.wayPoints[watPointIndex].transform.position)
+        // randomWayPoint를 지우고 요일? 을 넣을 예정
+        int randomWayPoint = Random.Range(1, 4);
+        Debug.Log(randomWayPoint);
+        switch (randomWayPoint)
         {
-            watPointIndex++;
-        }
+            case 1:
+                wayPoint1.SetActive(true);
+                wayPoints = new Transform[wayPoint1.transform.childCount];
+                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
+                {
+                    wayPoints[wayPointsChildCount] = wayPoint1.transform.GetChild(wayPointsChildCount);
+                }
+                break;
 
-        if(watPointIndex == npc.wayPoints.Length)
-        {
-            watPointIndex = 0;
+            case 2:
+                wayPoint2.SetActive(true);
+                wayPoints = new Transform[wayPoint2.transform.childCount];
+                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
+                {
+                    wayPoints[wayPointsChildCount] = wayPoint2.transform.GetChild(wayPointsChildCount);
+                }
+                break;
+
+            case 3:
+                wayPoint3.SetActive(true);
+                wayPoints = new Transform[wayPoint3.transform.childCount];
+                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
+                {
+                    wayPoints[wayPointsChildCount] = wayPoint3.transform.GetChild(wayPointsChildCount);
+                }
+                break;
+            default:
+                return;
         }
     }
 }

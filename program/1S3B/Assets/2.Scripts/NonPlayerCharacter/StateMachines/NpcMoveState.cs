@@ -5,7 +5,8 @@ using UnityEngine;
 public class NpcMoveState : NpcBaseState
 {
     //private WayPoint wayPoint;
-    private int watPointIndex = 0;
+    private Transform targetWayPoints;
+    private int wayPointIndex = 0;
 
     public NpcMoveState(NpcStateMachine npcStateMachine) : base(npcStateMachine)
     {
@@ -13,7 +14,7 @@ public class NpcMoveState : NpcBaseState
 
     public override void Enter()
     {
-        
+        targetWayPoints = WayPoint.wayPoints[wayPointIndex];
         base.Enter();
     }
 
@@ -39,17 +40,24 @@ public class NpcMoveState : NpcBaseState
     }
 
     private void PointsMove()
+    {       
+        Vector3 direction = targetWayPoints.position - _npcSateMachine._npc.transform.position;
+        _npcSateMachine._npc.transform.Translate(direction.normalized * _npcSateMachine.movementSpeedModifier * Time.deltaTime, Space.World); 
+
+        if(Vector3.Distance(_npcSateMachine._npc.transform.position, targetWayPoints.position) <= 0.4f)
+        {
+            NextWayPoint();
+        }
+    }
+
+    private void NextWayPoint()
     {
-        _npcSateMachine._npc.transform.position = Vector2.MoveTowards(_npcSateMachine._npc.transform.position, _npcSateMachine._npc.wayPoints[watPointIndex].transform.position, _npcSateMachine.movementSpeedModifier * Time.deltaTime);
-
-        if (_npcSateMachine._npc.transform.position == _npcSateMachine._npc.wayPoints[watPointIndex].transform.position)
+        if(wayPointIndex >= WayPoint.wayPoints.Length - 1)
         {
-            watPointIndex++;
+            wayPointIndex = -1;
+            return;
         }
-
-        if (watPointIndex == _npcSateMachine._npc.wayPoints.Length)
-        {
-            watPointIndex = 0;
-        }
+        wayPointIndex++;
+        targetWayPoints = WayPoint.wayPoints[wayPointIndex];
     }
 }

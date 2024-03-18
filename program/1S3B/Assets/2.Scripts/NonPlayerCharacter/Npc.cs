@@ -13,7 +13,7 @@ public class Npc : MonoBehaviour
 
     private NpcStateMachine npcStateMachine;
 
-    [SerializeField] public Transform[] wayPoints;
+    //[SerializeField] public Transform[] wayPoints;
 
     private void Awake()
     {
@@ -68,9 +68,4 @@ public class Npc : MonoBehaviour
                 break;
         }
     }
-
-    /*private void FixedUpdate()
-    {
-        npcStateMachine.Physics2DUpdate();
-    }*/
 }
