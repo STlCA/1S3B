@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 
     private float m_CurrentTimeOfTheDay;
-    //오늘의 현재 시간
+    //오늘의 현재 시간(누적되는시간)
 
     public DayCycleHandler DayCycleHandler { get; set; }
     public WeatherSystem WeatherSystem { get; set; }
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Time settings")]
     [Min(1.0f)]
-    //최솟값
+    //최솟값(인스펙터에서 조절할때)
 
     public float DayDurationInSeconds;
     public float StartingTime = 0.0f;
