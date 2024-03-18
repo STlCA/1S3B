@@ -52,7 +52,7 @@ public class NpcBaseState : IState
         return (randomVectorPosition - _npcSateMachine._npc.transform.position).normalized;
     }
 
-    private Vector3 RandomVector() //¸ñÀûÁö
+    private Vector3 RandomVector() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         Vector3 position = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-4.0f, 4.0f), 0);
 

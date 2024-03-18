@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
@@ -104,17 +105,17 @@ public class TileManager : MonoBehaviour
         if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
 
-        CropData cropData = new CropData();
-        int cropID = Random.Range(1001, 1004);//임시
+        CropData tempcropData = new CropData();
+        int cropID = Random.Range(2001, 2004);//임시
 
         GameObject go = Instantiate(cropGoPrefabs);
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
-        cropData.Init(cropID, cropDatabase, go);
+        tempcropData.Init(cropID, cropDatabase, go);
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
-        croptData.Add(target, cropData);
+        croptData.Add(target, tempcropData);
     }
 
     public void WaterAt(Vector3Int target)
@@ -135,6 +136,10 @@ public class TileManager : MonoBehaviour
 
     public void Harvest(Vector3Int target)
     {
+        if (GameManager.Instance.targetSetting.TargetUI() == false)
+            return;
+
+
         if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
             //인벤넣기
@@ -153,6 +158,8 @@ public class TileManager : MonoBehaviour
 
     public void Sleep()
     {
+        StartCoroutine(GameManager.Instance.sceneChangeManager.FadeInOut());
+
         foreach (var (cell, tempPlantData) in croptData)
         {
             tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
@@ -186,6 +193,14 @@ public class TileManager : MonoBehaviour
         }
 
         waterTilemap.ClearAllTiles();
+
+
+        bool status = PlayerStatus.player.isTired;
+
+        if (status == true)
+            PlayerStatus.player.EnergyReset(status);
+        else
+            PlayerStatus.player.EnergyReset();
 
     }
 }
