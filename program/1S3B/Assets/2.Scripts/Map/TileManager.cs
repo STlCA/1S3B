@@ -29,8 +29,13 @@ public class CropData
         currentStage = 0;
         growRatio = plantCrop.AllGrowthStage / (decimal)plantCrop.GrowthTime;
         cropObj = go;
-        cropRenderer = cropObj.GetComponentInChildren<SpriteRenderer>();
+        cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
+
+        if (id == 2003)//2070이상부턴 기둥
+            cropRenderer.sortingOrder = 5;
+        else
+            cropRenderer.sortingOrder = 4;
     }
 }
 
@@ -39,7 +44,7 @@ public class TileManager : MonoBehaviour
     [Header("TileMap")]
     public Grid baseGrid;
     public Tilemap backgroundTilemap;
-    public Tilemap plantsTilemap;//씨앗뿌릴맵
+    public Tilemap plantsTilemap;//씨앗뿌릴맵 // 나중에 씨앗만 물아래에 깔리게
     public Tilemap waterTilemap;//물뿌릴맵
 
     [Header("TileCheck")]
@@ -106,7 +111,7 @@ public class TileManager : MonoBehaviour
             return;
 
         CropData tempcropData = new CropData();
-        int cropID = Random.Range(2001, 2004);//임시
+        int cropID = Random.Range(2001, 2004);//임시 
 
         GameObject go = Instantiate(cropGoPrefabs);
         go.transform.position = baseGrid.GetCellCenterWorld(target);

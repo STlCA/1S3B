@@ -46,13 +46,13 @@ public class Npc : MonoBehaviour
         {
             case 1:
                 npcStateMachine.ChangeState(npcStateMachine.npcIdleState);
-                Debug.Log("¾ÆÀÌµé");
+                Debug.Log("ï¿½ï¿½ï¿½Ìµï¿½");
                 break;
             case 2:
                 npcStateMachine.ChangeState(npcStateMachine.wayPoint);
                 break;
             default:
-                Debug.Log("¹ö±×");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
                 break;
         }
     }
