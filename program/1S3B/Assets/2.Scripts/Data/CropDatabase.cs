@@ -29,7 +29,8 @@ public class Crop
     }
 }
 
-public class CropInstance//?뭐에쓰이는
+// 아이템에 대한 정보를 가져온다
+public class CropInstance
 {
     int no;
     public Crop plant;
