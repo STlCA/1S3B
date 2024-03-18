@@ -16,10 +16,17 @@ public class Item
 }
 
 // 아이템에 대한 정보를 가져온다
-public class ItemInstance
+public abstract class ItemInstance
 {
     int no;
     public Item item;
+
+    public abstract bool CanUse(Vector3Int target);
+    public abstract bool Use(Vector3Int target);
+    public virtual bool NeedTarget()
+    {
+        return true;
+    }
 }
 
 
