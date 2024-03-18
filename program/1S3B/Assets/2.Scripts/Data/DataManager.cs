@@ -6,8 +6,15 @@ using static UnityEditor.Progress;
 public class DataManager : MonoBehaviour
 {
     public CropDatabase cropDatabase;
+    public ItemDatabase itemDatabase;
 
     void Awake()
+    {
+        CropAwake();
+        ItemAwake();
+    }
+
+    private void CropAwake()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Crops_Data");
         if (jsonFile != null)
@@ -34,6 +41,43 @@ public class DataManager : MonoBehaviour
             {
                 Debug.Log("Item with key " + itemKeyToFind + " not found.");
             }
+        }
+        else
+        {
+            Debug.LogError("Failed to load cropDatabase.json");
+        }
+    }
+    
+    private void ItemAwake()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Item_Data");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+
+            itemDatabase = JsonUtility.FromJson<ItemDatabase>(json);
+            itemDatabase.Initialize();
+
+            // 특정 아이템에 접근은 우선 주석처리해 놓음
+            //int itemKeyToFind = 1;
+            //Item foundItem = itemDatabase.GetItemByKey(itemKeyToFind);
+
+            //if (foundItem != null)
+            //{
+            //    Debug.Log("Item Name: " + foundItem.Name);
+            //    Debug.Log("Item ID: " + foundItem.ID);
+            //    Debug.Log("Item Description: " + foundItem.Description);
+            //    Debug.Log("Item Type: " + foundItem.Type);
+            //    Debug.Log("Item Season: " + foundItem.Season);
+            //    Debug.Log("Item SellGold: " + foundItem.SellGold);
+            //    Debug.Log("Item BuyGold: " + foundItem.BuyGold);
+            //    Debug.Log("Item Stack: " + foundItem.Stack);
+            //    Debug.Log("Item SpritePath: " + foundItem.SpritePath);
+            //}
+            //else
+            //{
+            //    Debug.Log("Item with key " + itemKeyToFind + " not found.");
+            //}
         }
         else
         {
