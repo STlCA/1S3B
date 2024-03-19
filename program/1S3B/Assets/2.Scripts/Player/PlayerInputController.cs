@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UIElements;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -40,16 +41,25 @@ public class PlayerInputController : CharacterEventController
 
         Vector2 position = value.Get<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
-
+        
         GameManager.Instance.targetSetting.SetCellPosition(worldPos);
 
     }
 
     public void OnInteraction(InputValue value)
     {
+        Vector3 position = value.Get<Vector3>();
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
+
+        Debug.Log(worldPos);
+    }
+
+    public void OnUse(InputValue value)
+    {
         //여기서 들고있는 장비를 부르고 장비에서 갈수있는땅인지 체크하고 장비에서 tillat가고
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
+        //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
 
         if (true)
             PlayerStatus.player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만.
@@ -85,5 +95,7 @@ public class PlayerInputController : CharacterEventController
     {
 
     }
+
+
 
 }

@@ -81,6 +81,9 @@ public class PlayerStatus : MonoBehaviour
 
     private void EnergyUpdate(int playerEnergy)
     {
+        if (playerEnergy > playerMaxEnergy)
+            playerEnergy = playerMaxEnergy;
+
         this.playerEnergy = playerEnergy;
         energyBar.value = playerEnergy;
         energyText.text = playerEnergy + "/" + energyBar.maxValue;
@@ -96,6 +99,11 @@ public class PlayerStatus : MonoBehaviour
         value = Random.Range(temp1, temp2 + 1);
 
         return value;
+    }
+
+    public void EnergyRecovery()
+    {
+        EnergyUpdate(playerEnergy += 10);
     }
 
 }

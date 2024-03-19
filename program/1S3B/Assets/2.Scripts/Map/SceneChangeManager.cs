@@ -22,7 +22,7 @@ public class SceneChangeManager : MonoBehaviour
         {
             if (gameObject.tag.Contains("Town"))
             {
-                PlayerStatus.player.playerPosition = new Vector3(25f, 0f, 0f);
+                PlayerStatus.player.playerPosition = new Vector3(25f, 0f, 0f);                
                 StartCoroutine("MapChange");
                 Time.timeScale = 0.0f;
 
@@ -43,6 +43,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator FadeIn()//알파값높이기
     {
+        fadeImage.gameObject.SetActive(true);
 
         float fadeCount = 0;
         while(fadeCount < 1.0f)
@@ -64,11 +65,15 @@ public class SceneChangeManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
-        Time.timeScale = 1.0f;        
+        Time.timeScale = 1.0f;
+
+        fadeImage.gameObject.SetActive(false);
     }
 
     public IEnumerator MapChange()//캐릭터위치변경포함
     {
+        fadeImage.gameObject.SetActive(true);
+
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
@@ -87,6 +92,8 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator FadeInOut()
     {
+        fadeImage.gameObject.SetActive(true);
+
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
