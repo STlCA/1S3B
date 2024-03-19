@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject sleepInfoUI;
+
     private void Start()
     {
         GameManager.Instance.uIManager = this;

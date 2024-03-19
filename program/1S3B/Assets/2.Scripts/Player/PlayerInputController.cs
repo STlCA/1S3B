@@ -46,13 +46,6 @@ public class PlayerInputController : CharacterEventController
 
     }
 
-    public void OnInteraction(InputValue value)
-    {
-        Vector3 position = value.Get<Vector3>();
-        Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
-
-        Debug.Log(worldPos);
-    }
 
     public void OnUse(InputValue value)
     {
