@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
+    // WayPoint의 데이터 관리
+
     public static Transform[] wayPoints;
-    // 요일별 wayPoint를 만들 예정
-    public GameObject wayPoint1; 
-    public GameObject wayPoint2;
-    public GameObject wayPoint3;
+    //public GameObject wayPoint1; 
+    ///public GameObject wayPoint2;
+    //public GameObject wayPoint3;
     //private int wayPointIndex = 0;
 
     private void Awake()
     {
-        GetRandomWayPoint();
+        //GetRandomWayPoint();
     }
 
-    private void GetRandomWayPoint()
+    /*private void GetRandomWayPoint()
     {
         // randomWayPoint를 지우고 요일? 을 넣을 예정
         int randomWayPoint = Random.Range(1, 4);
@@ -52,5 +53,5 @@ public class WayPoint : MonoBehaviour
             default:
                 return;
         }
-    }
+    }*/
 }
