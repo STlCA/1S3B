@@ -9,6 +9,11 @@ public class SceneChangeManager : MonoBehaviour
 {
     public Image fadeImage;
 
+    private void Start()
+    {
+        GameManager.Instance.sceneChangeManager = this;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("여기");
@@ -48,6 +53,20 @@ public class SceneChangeManager : MonoBehaviour
         }
     }
 
+    public IEnumerator FadeOut()//알파값낮추기
+    {
+        float fadeCount = 1;
+
+        while (fadeCount >= 0f)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSecondsRealtime(0.005f);
+            fadeImage.color = new Color(0, 0, 0, fadeCount);
+        }
+
+        Time.timeScale = 1.0f;        
+    }
+
     public IEnumerator MapChange()//캐릭터위치변경포함
     {
         float fadeCount = 0;
@@ -66,18 +85,17 @@ public class SceneChangeManager : MonoBehaviour
         StartCoroutine("FadeOut");
     }
 
-    public IEnumerator FadeOut()//알파값낮추기
+    public IEnumerator FadeInOut()
     {
-        float fadeCount = 1;
-
-        while (fadeCount >= 0f)
+        float fadeCount = 0;
+        while (fadeCount < 1.0f)
         {
-            fadeCount -= 0.01f;
+            fadeCount += 0.01f;
             yield return new WaitForSecondsRealtime(0.005f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
-        Time.timeScale = 1.0f;
+        StartCoroutine("FadeOut");
     }
 
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
@@ -20,6 +21,22 @@ public class CropData
     public decimal currentStage;
     public decimal growRatio;
     public int harvest;
+
+    
+    public void Init(int id, CropDatabase cropDatabase, GameObject go )
+    {
+        plantCrop = cropDatabase.GetItemByKey(id);
+        currentStage = 0;
+        growRatio = plantCrop.AllGrowthStage / (decimal)plantCrop.GrowthTime;
+        cropObj = go;
+        cropRenderer = cropObj.GetComponent<SpriteRenderer>();
+        cropRenderer.sprite = plantCrop.SpriteList[0];
+
+        if (id == 2003)//2070이상부턴 기둥
+            cropRenderer.sortingOrder = 5;
+        else
+            cropRenderer.sortingOrder = 4;
+    }
 }
 
 public class TileManager : MonoBehaviour
@@ -27,7 +44,7 @@ public class TileManager : MonoBehaviour
     [Header("TileMap")]
     public Grid baseGrid;
     public Tilemap backgroundTilemap;
-    public Tilemap plantsTilemap;//씨앗뿌릴맵
+    public Tilemap plantsTilemap;//씨앗뿌릴맵 // 나중에 씨앗만 물아래에 깔리게
     public Tilemap waterTilemap;//물뿌릴맵
 
     [Header("TileCheck")]
@@ -44,9 +61,12 @@ public class TileManager : MonoBehaviour
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
     private Dictionary<Vector3Int, CropData> croptData = new();
 
+    private CropDatabase cropDatabase;
+
     private void Start()
     {
         GameManager.Instance.tileManager = this;
+        cropDatabase = GameManager.Instance.dataManager.cropDatabase;
     }
 
     //샘플
@@ -90,21 +110,17 @@ public class TileManager : MonoBehaviour
         if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
 
-        CropData cropData = new CropData();
-        cropData.cropID = Random.Range(1001, 1004);//임시//임시로 랜덤할까
-        cropData.plantCrop = GameManager.Instance.dataManager.cropDatabase.GetItemByKey(cropData.cropID);
-        cropData.currentStage = 0;
-        cropData.growRatio = cropData.plantCrop.AllGrowthStage / (decimal)cropData.plantCrop.GrowthTime;
-        cropData.cropObj = Instantiate(cropGoPrefabs);
-        cropData.cropObj.transform.position = baseGrid.GetCellCenterWorld(target);
-        cropData.cropRenderer = cropData.cropObj.GetComponentInChildren<SpriteRenderer>();
-        cropData.cropRenderer.sprite = cropData.plantCrop.SpriteList[0];
-        //cropData.plantCrop.DeathTimer = 
+        CropData tempcropData = new CropData();
+        int cropID = Random.Range(2001, 2004);//임시 
 
+        GameObject go = Instantiate(cropGoPrefabs);
+        go.transform.position = baseGrid.GetCellCenterWorld(target);
 
-        //+모지리세션
+        tempcropData.Init(cropID, cropDatabase, go);
 
-        croptData.Add(target, cropData);
+        //cropData.plantCrop.DeathTimer = 28 - 지금날짜
+
+        croptData.Add(target, tempcropData);
     }
 
     public void WaterAt(Vector3Int target)
@@ -125,6 +141,10 @@ public class TileManager : MonoBehaviour
 
     public void Harvest(Vector3Int target)
     {
+        if (GameManager.Instance.targetSetting.TargetUI() == false)
+            return;
+
+
         if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
             //인벤넣기
@@ -143,6 +163,8 @@ public class TileManager : MonoBehaviour
 
     public void Sleep()
     {
+        StartCoroutine(GameManager.Instance.sceneChangeManager.FadeInOut());
+
         foreach (var (cell, tempPlantData) in croptData)
         {
             tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
@@ -176,6 +198,14 @@ public class TileManager : MonoBehaviour
         }
 
         waterTilemap.ClearAllTiles();
+
+
+        bool status = PlayerStatus.player.isTired;
+
+        if (status == true)
+            PlayerStatus.player.EnergyReset(status);
+        else
+            PlayerStatus.player.EnergyReset();
 
     }
 }

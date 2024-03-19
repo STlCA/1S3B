@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public TargetSetting targetSetting { get; set; }
     public TileManager tileManager { get; set; }//물어보기
+    public SceneChangeManager sceneChangeManager { get; set; }
 
     public DataManager dataManager;
+
 
 
     private float m_CurrentTimeOfTheDay;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     현재 날짜의 시간 비율 => 오늘의 현재 시간 / 하루 지속 시간(초)
     */
     public float CurrentDayRatio => m_CurrentTimeOfTheDay / DayDurationInSeconds;
-    
+
 
     [Header("Time settings")]
     [Min(1.0f)]
