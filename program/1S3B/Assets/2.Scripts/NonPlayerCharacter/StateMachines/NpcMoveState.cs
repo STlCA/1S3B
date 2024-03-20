@@ -5,11 +5,6 @@ using UnityEngine;
 public class NpcMoveState : NpcBaseState
 {
 
-    private WayPointManager wayPointManager;
-
-    //private WayPoint wayPoint;
-    
-
     public NpcMoveState(NpcStateMachine npcStateMachine) : base(npcStateMachine)
     {   
     }  
@@ -35,7 +30,7 @@ public class NpcMoveState : NpcBaseState
         {
             Debug.Log("±Ÿ√≥¿”");
         }
-        wayPointManager.Update();
+
         base.Update();
     }
 

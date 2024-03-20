@@ -15,7 +15,12 @@ public class NpcStateMachine : StateMachine
     public float rotationDamping { get; private set; }
     public float movementSpeedModifier { get; set; } = 3f;
 
-    public NpcStateMachine(Npc npc)
+    private WayPointManager wayPointManager;
+    WayPoint wayPoint;
+    int wayPointIdx = 0;
+    Transform destnationWay;
+
+    public NpcStateMachine(Npc npc, WayPointManager wayPointManager)
     {
         _npc = npc;
         targetPlayer = GameObject.FindGameObjectWithTag("Player").transform;
@@ -25,5 +30,13 @@ public class NpcStateMachine : StateMachine
 
         movementSpeed = _npc.npcData.groundedData.baseSpeed;
         rotationDamping = _npc.npcData.groundedData.baseRotationDamping;
+
+        // way point manager
+        this.wayPointManager = wayPointManager;
+        wayPoint = wayPointManager.GetRandomWayPoint();
+
+        // way point
+        wayPointIdx = wayPoint.GetNearIndex(this.targetPlayer.transform);
+        destnationWay = wayPoint.GetPoint(wayPointIdx);
     }
 }

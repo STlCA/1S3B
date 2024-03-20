@@ -1,84 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
-    // WayPoint의 데이터 관리
+    int pointCount = 0;
+    List<Transform> points = new List<Transform>();
 
-    [HideInInspector] public Transform[] wayPoints;
-    public GameObject wayPoint1; 
-    public GameObject wayPoint2;
-    public GameObject wayPoint3;
 
-    public NpcStateMachine npcStateMachine;
-
-    [HideInInspector] public Transform targetWayPoints;
-    private int wayPointIndex = 0;
-    //private int wayPointIndex = 0;
-
-    public void GetRandomWayPoint(int randomWayPoint)
+    private void Awake()
     {
-        // randomWayPoint를 지우고 요일? 을 넣을 예정
-        //int randomWayPoint = Random.Range(1, 4);
-        Debug.Log(randomWayPoint);
-
-        switch (randomWayPoint)
+        pointCount = transform.childCount;
+        for (int i = 0; i < pointCount; i++)
         {
-            case 1:
-                wayPoint1.SetActive(true);
-                wayPoints = new Transform[wayPoint1.transform.childCount];
-                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
-                {
-                    wayPoints[wayPointsChildCount] = wayPoint1.transform.GetChild(wayPointsChildCount);   
-                }
-                break;
-
-            case 2:
-                wayPoint2.SetActive(true);
-                wayPoints = new Transform[wayPoint2.transform.childCount];
-                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
-                {
-                    wayPoints[wayPointsChildCount] = wayPoint2.transform.GetChild(wayPointsChildCount);
-                }
-                break;
-
-            case 3:
-                wayPoint3.SetActive(true);
-                wayPoints = new Transform[wayPoint3.transform.childCount];
-                for (int wayPointsChildCount = 0; wayPointsChildCount < wayPoints.Length; wayPointsChildCount++)
-                {
-                    wayPoints[wayPointsChildCount] = wayPoint3.transform.GetChild(wayPointsChildCount);
-                }
-                break;
-            default:
-                break;
+            points.Add(transform.GetChild(i));
         }
     }
 
-    public void PointsMove()
+    public Transform GetPoint(int i)
     {
-        targetWayPoints = wayPoints[wayPointIndex];
+        if (pointCount <= i)
+            i -= pointCount;
 
-        Vector3 direction = targetWayPoints.position - npcStateMachine._npc.transform.position;
-        npcStateMachine._npc.transform.Translate(direction.normalized * npcStateMachine.movementSpeedModifier * Time.deltaTime, Space.World);
-
-
-        //npc와 현재waypoint의 위치가 가까워 진다면
-        if (Vector3.Distance(npcStateMachine._npc.transform.position, targetWayPoints.position) <= 0.4f)
-        {
-            NextWayPoint();
-        }
+        return points[i];
     }
 
-    private void NextWayPoint()
+    public int GetNearIndex(Transform target)
     {
-        if (wayPointIndex >= wayPoints.Length - 1)
+        float minDist = Mathf.Infinity;
+        int minIdx = -1;
+        for (int i = 0;i < points.Count;i++) 
         {
-            wayPointIndex = -1;
-            return;
+            Transform t = points[i];
+            float d = Vector3.Distance(t.position, target.position);
+            if (d < minDist)
+            {
+                minDist = d;
+                minIdx = i;
+            }
         }
-        wayPointIndex++;
-        targetWayPoints = wayPoints[wayPointIndex];
+
+        return minIdx;
     }
 }

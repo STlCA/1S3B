@@ -22,9 +22,9 @@ public class Npc : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         //characterController = GetComponent<CharacterController>();
         forceReceiver = GetComponent<ForceReceiver>();
-        wayPointManager = GetComponent<WayPointManager>();
 
-        npcStateMachine = new NpcStateMachine(this);
+        wayPointManager = WayPointManager.instance;
+        npcStateMachine = new NpcStateMachine(this, wayPointManager);
 
     }
 
