@@ -165,6 +165,8 @@ public class TileManager : MonoBehaviour
     {
         StartCoroutine(GameManager.Instance.sceneChangeManager.FadeInOut());
 
+        Time.timeScale = 0.0f;
+
         foreach (var (cell, tempPlantData) in croptData)
         {
             tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기

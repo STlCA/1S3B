@@ -92,7 +92,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator FadeInOut()
     {
-        fadeImage.gameObject.SetActive(true);
+        fadeImage.gameObject.SetActive(true);      
 
         float fadeCount = 0;
         while (fadeCount < 1.0f)
