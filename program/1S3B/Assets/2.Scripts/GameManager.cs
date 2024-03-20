@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
         dataManager = GetComponentInChildren<DataManager>();
 
         DontDestroyOnLoad(gameObject);
+
+        if (DayDurationInSeconds <= 0.0f)
+            DayDurationInSeconds = 10.0f;
     }
 
 
