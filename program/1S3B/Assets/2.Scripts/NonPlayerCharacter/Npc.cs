@@ -9,9 +9,11 @@ public class Npc : MonoBehaviour
 
     public Rigidbody2D rigidbody2D { get; private set; }
     public ForceReceiver forceReceiver { get; private set; }
+    public WayPointManager wayPointManager { get; private set; }
     //public CharacterController characterController { get; private set; }
 
     private NpcStateMachine npcStateMachine;
+
 
     //[SerializeField] public Transform[] wayPoints;
 
@@ -20,8 +22,10 @@ public class Npc : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         //characterController = GetComponent<CharacterController>();
         forceReceiver = GetComponent<ForceReceiver>();
+        wayPointManager = GetComponent<WayPointManager>();
 
         npcStateMachine = new NpcStateMachine(this);
+
     }
 
     private void Start()
@@ -57,14 +61,14 @@ public class Npc : MonoBehaviour
         {
             case 1:
                 npcStateMachine.ChangeState(npcStateMachine.npcIdleState);
-                Debug.Log("ï¿½ï¿½ï¿½Ìµï¿½");
+                Debug.Log("Idle");
                 break;
             case 2:
                 npcStateMachine.ChangeState(npcStateMachine.npcMoveState);
-                Debug.Log("ÀÌµ¿");
+                Debug.Log("Move");
                 break;
             default:
-                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
+                Debug.Log("Exception");
                 break;
         }
     }

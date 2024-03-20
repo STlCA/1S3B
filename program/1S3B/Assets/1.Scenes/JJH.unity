@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef4fb1b48ee6224694a3f9c00ff59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
   wayPoint1: {fileID: 0}
   wayPoint2: {fileID: 0}
   wayPoint3: {fileID: 0}
@@ -994,7 +995,7 @@ GameObject:
   - component: {fileID: 781509090}
   m_Layer: 0
   m_Name: WayPoints
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1029,6 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef4fb1b48ee6224694a3f9c00ff59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
   wayPoint1: {fileID: 2002451496}
   wayPoint2: {fileID: 1733413337}
   wayPoint3: {fileID: 1359945811}
@@ -1644,7 +1646,7 @@ GameObject:
   - component: {fileID: 1235955125}
   m_Layer: 0
   m_Name: WayPointManager
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1676,6 +1678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd0ae5bf5e58774a8714bc59a76c8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoint: {fileID: 781509090}
+  targetWayPoints: {fileID: 0}
 --- !u!1 &1260148326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,6 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef4fb1b48ee6224694a3f9c00ff59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
   wayPoint1: {fileID: 0}
   wayPoint2: {fileID: 0}
   wayPoint3: {fileID: 0}
@@ -2317,6 +2322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef4fb1b48ee6224694a3f9c00ff59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
   wayPoint1: {fileID: 0}
   wayPoint2: {fileID: 0}
   wayPoint3: {fileID: 0}

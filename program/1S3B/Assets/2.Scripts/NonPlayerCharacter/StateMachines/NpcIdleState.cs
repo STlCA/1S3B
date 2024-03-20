@@ -11,7 +11,7 @@ public class NpcIdleState : NpcBaseState
 
     public override void Enter()
     {
-        _npcSateMachine.movementSpeedModifier = 0f;
+        _npcStateMachine.movementSpeedModifier = 0f;
         base.Enter();
     }
 

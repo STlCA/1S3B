@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class NpcBaseState : IState
 {
-    protected NpcStateMachine _npcSateMachine;
+    protected NpcStateMachine _npcStateMachine;
 
     protected readonly NpcGroundData npcGroundData;
 
 
     public NpcBaseState(NpcStateMachine npcStateMachine)
     {
-        _npcSateMachine = npcStateMachine;
-        npcGroundData = _npcSateMachine._npc.npcData.groundedData;
+        _npcStateMachine = npcStateMachine;
+        npcGroundData = _npcStateMachine._npc.npcData.groundedData;
     }
 
     public virtual void Enter()
@@ -33,7 +33,7 @@ public class NpcBaseState : IState
 
     protected bool IsInChaseRange()
     {
-        float playerDistanceSqr = (_npcSateMachine.targetPlayer.transform.position - _npcSateMachine._npc.transform.position).sqrMagnitude;
-        return playerDistanceSqr <= _npcSateMachine._npc.npcData.PlayerChasingRange * _npcSateMachine._npc.npcData.PlayerChasingRange;
+        float playerDistanceSqr = (_npcStateMachine.targetPlayer.transform.position - _npcStateMachine._npc.transform.position).sqrMagnitude;
+        return playerDistanceSqr <= _npcStateMachine._npc.npcData.PlayerChasingRange * _npcStateMachine._npc.npcData.PlayerChasingRange;
     }
 }

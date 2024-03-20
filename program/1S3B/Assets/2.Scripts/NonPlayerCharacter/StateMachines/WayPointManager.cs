@@ -5,7 +5,8 @@ using UnityEngine;
 public class WayPointManager : MonoBehaviour
 {
     //waypoint를 가져와야함
-    [SerializeField] private WayPoint wayPoint;
+    public WayPoint wayPoint;
+   
 
     // 하루 시작되고 npc가 이동을 하는 상태가 나오면
     // waypoint를 가져와서, npcmovestate로 보내줌
@@ -13,20 +14,23 @@ public class WayPointManager : MonoBehaviour
 
     private void Awake()
     {
-        wayPoint = GetComponent<WayPoint>();
+        wayPoint = GameObject.FindGameObjectWithTag("WayPoint").GetComponent<WayPoint>();       
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        // waypoint를 가져와야함...
+        int randomWayPoint = Random.Range(1, 4);
+        wayPoint.GetRandomWayPoint(randomWayPoint);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        wayPoint.PointsMove();
     }
+
+
 
     //Call It a Dat = 일과를 마치다
     private void CallItaDay()
@@ -34,5 +38,4 @@ public class WayPointManager : MonoBehaviour
         // 초기화를 시킴
     }
 
-    
 }
