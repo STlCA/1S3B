@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 
 public class DayCycleHandler : MonoBehaviour
 {
-    public Transform LightsRoot;
 
     [Header("Day Light")]
     public Light2D DayLight;
@@ -21,20 +20,6 @@ public class DayCycleHandler : MonoBehaviour
     [Header("Ambient Light")]
     public Light2D AmbientLight;
     public Gradient AmbientLightGradient;
-
-    [Header("RimLights")]
-    public Light2D SunRimLight;
-    public Gradient SunRimLightGradient;
-    public Light2D MoonRimLight;
-    public Gradient MoonRimLightGradient;
-
-    [Tooltip("The angle 0 = upward, going clockwise to 1 along the day")]
-    public AnimationCurve ShadowAngle;
-    [Tooltip("The scale of the normal shadow length (0 to 1) along the day")]
-    public AnimationCurve ShadowLength;
-
-    //private List<ShadowInstance> m_Shadows = new();
-    private List<LightInterpolator> m_LightBlenders = new();
 
     private void Awake()
     {
@@ -60,148 +45,13 @@ public class DayCycleHandler : MonoBehaviour
 #endif
             AmbientLight.color = AmbientLightGradient.Evaluate(ratio);
 
-#if UNITY_EDITOR
-        if (SunRimLight != null)
-#endif
-            SunRimLight.color = SunRimLightGradient.Evaluate(ratio);
-
-#if UNITY_EDITOR
-        if (MoonRimLight != null)
-#endif
-            MoonRimLight.color = MoonRimLightGradient.Evaluate(ratio);
-
-        LightsRoot.rotation = Quaternion.Euler(0, 0, 360.0f * ratio);
-
-        UpdateShadow(ratio);
     }
 
-    void UpdateShadow(float ratio)
-    {
-        var currentShadowAngle = ShadowAngle.Evaluate(ratio);
-        var currentShadowLength = ShadowLength.Evaluate(ratio);
+  
 
-        var opposedAngle = currentShadowAngle + 0.5f;
-        while (currentShadowAngle > 1.0f)
-            currentShadowAngle -= 1.0f;
-
-        /*foreach (var shadow in m_Shadows)
-        {
-            var t = shadow.transform;
-            //use 1.0-angle so that the angle goes clo
-            t.eulerAngles = new Vector3(0, 0, currentShadowAngle * 360.0f);
-            t.localScale = new Vector3(1, 1f * shadow.BaseLength * currentShadowLength, 1);
-        }
-        */
-        foreach (var handler in m_LightBlenders)
-        {
-            handler.SetRatio(ratio);
-        }
-    }
-
-   /* public static void RegisterShadow(ShadowInstance shadow)
-    {
-#if UNITY_EDITOR
-        //in the editor when not running, we find the instance manually. Less efficient but not a problem at edit time
-        //allow to be able to previz shadow in editor 
-        if (!Application.isPlaying)
-        {
-            var instance = GameObject.FindObjectOfType<DayCycleHandler>();
-            if (instance != null)
-            {
-                instance.m_Shadows.Add(shadow);
-            }
-        }
-        else
-        {
-#endif
-            GameManager.Instance.DayCycleHandler.m_Shadows.Add(shadow);
-#if UNITY_EDITOR
-        }
-#endif
-    }
-
-    public static void UnregisterShadow(ShadowInstance shadow)
-    {
-#if UNITY_EDITOR
-        //in the editor when not running, we find the instance manually. Less efficient but not a problem at edit time
-        //allow to be able to previz shadow in editor 
-        if (!Application.isPlaying)
-        {
-            var instance = GameObject.FindObjectOfType<DayCycleHandler>();
-            if (instance != null)
-            {
-                instance.m_Shadows.Remove(shadow);
-            }
-        }
-        else
-        {
-#endif
-            if (GameManager.Instance?.DayCycleHandler != null)
-                GameManager.Instance.DayCycleHandler.m_Shadows.Remove(shadow);
-#if UNITY_EDITOR
-        }
-#endif
-    }*/
-
-    public static void RegisterLightBlender(LightInterpolator interpolator)
-    {
-#if UNITY_EDITOR
-        //in the editor when not running, we find the instance manually. Less efficient but not a problem at edit time
-        //allow to be able to previz shadow in editor 
-        if (!Application.isPlaying)
-        {
-            var instance = FindObjectOfType<DayCycleHandler>();
-            if (instance != null)
-            {
-                instance.m_LightBlenders.Add(interpolator);
-            }
-        }
-        else
-        {
-#endif
-            GameManager.Instance.DayCycleHandler.m_LightBlenders.Add(interpolator);
-#if UNITY_EDITOR
-        }
-#endif
-    }
-
-    public static void UnregisterLightBlender(LightInterpolator interpolator)
-    {
-#if UNITY_EDITOR
-        //in the editor when not running, we find the instance manually. Less efficient but not a problem at edit time
-        //allow to be able to previz shadow in editor 
-        if (!Application.isPlaying)
-        {
-            var instance = FindObjectOfType<DayCycleHandler>();
-            if (instance != null)
-            {
-                instance.m_LightBlenders.Remove(interpolator);
-            }
-        }
-        else
-        {
-#endif
-            if (GameManager.Instance?.DayCycleHandler != null)
-                GameManager.Instance.DayCycleHandler.m_LightBlenders.Remove(interpolator);
-#if UNITY_EDITOR
-        }
-#endif
-    }
-
-
-    [System.Serializable]
-    public struct DayCycleHandlerSaveData
-    {
-        public float TimeOfTheDay;
-    }
 
 
 #if UNITY_EDITOR
-    // Wrapping a custom editor between UNITY_EDITOR define check allow to keep it in the same 
-    // file as this part will be stripped when building for standalone (where Editor class doesn't exist).
-    // Don't forget to also wrap the UnityEditor using at the top of the file between those define check too.
-
-    // Show a slider that allow to test a specific time to help define colors.
     [CustomEditor(typeof(DayCycleHandler))]
     class DayCycleEditor : Editor
     {
