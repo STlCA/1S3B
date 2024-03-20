@@ -7,10 +7,10 @@ public class AnimationController : AnimationBase
 {
     void Start()
     {
-        controller.OnMoveEvent += Animation;
+        controller.OnMoveEvent += MoveAnimation;
     }
 
-    public void Animation(Vector2 direction)
+    public void MoveAnimation(Vector2 direction)
     {  
         animator.SetBool("isWalking", direction.magnitude > 0f);
 
@@ -23,4 +23,6 @@ public class AnimationController : AnimationBase
         animator.SetFloat("inputX", direction.x);
         animator.SetFloat("inputY", direction.y);
     }
+
+
 }

@@ -24,13 +24,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interaction",
+                    "name": "Use",
                     "type": "Button",
                     "id": "269a464f-956a-4006-ba5c-3dae81b21288",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "6c2f77d6-3833-4f83-9649-6ab8c4d7b5ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -67,15 +76,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Click",
-                    "type": "Button",
-                    "id": "6c2f77d6-3833-4f83-9649-6ab8c4d7b5ea",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -138,10 +138,10 @@
                     "name": "",
                     "id": "aea6883d-a646-44fb-9fd7-a65cb57a4b1b",
                     "path": "<Keyboard>/f",
-                    "interactions": "Tap",
+                    "interactions": "Tap,Press(behavior=1)",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Interaction",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -149,10 +149,10 @@
                     "name": "",
                     "id": "d555ecb8-c436-4222-8b62-3b63ee920c53",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Tap,Press(behavior=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "Interaction",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -323,39 +323,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f9c569ce-8cdb-464e-8986-b9dd49c6651b",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9b8a7591-d7d2-4d03-8b64-e8aeca0b37cb",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4970c6ed-6245-435f-b678-9a916bbb5a10",
-                    "path": "<Mouse>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f60efe5c-6d13-4033-9e48-dcc327e89030",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -373,6 +340,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b8a7591-d7d2-4d03-8b64-e8aeca0b37cb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
