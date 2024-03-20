@@ -137,6 +137,9 @@ public class TileManager : MonoBehaviour
         tempGroundData.isWater = true;
 
         waterTilemap.SetTile(target, wateredTile);
+
+        //TODO :: spriteList바꾸는메서드만들기
+        croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
     public void Harvest(Vector3Int target)
@@ -164,6 +167,8 @@ public class TileManager : MonoBehaviour
     public void Sleep()
     {
         StartCoroutine(GameManager.Instance.sceneChangeManager.FadeInOut());
+
+        Time.timeScale = 0.0f;
 
         foreach (var (cell, tempPlantData) in croptData)
         {

@@ -54,9 +54,6 @@ public class PlayerInputController : CharacterEventController
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
 
-        if (true)
-            PlayerStatus.player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만.
-
         if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
         {
 
@@ -82,6 +79,9 @@ public class PlayerInputController : CharacterEventController
 
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
+
+        if (true)
+            PlayerStatus.player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
     public void OnCommunication(InputValue value)

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Vector2 _movementDirection = Vector2.zero;
 
-    public float speed = 5f;
+    [SerializeField] private float speed;
 
 
     private void Awake()
@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
+        speed = PlayerStatus.player.playerSpeed;
+
         direction *= speed;
 
         _rigidbody2D.velocity = direction; 
