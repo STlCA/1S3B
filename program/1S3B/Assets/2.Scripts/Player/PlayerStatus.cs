@@ -20,7 +20,7 @@ public class PlayerStatus : MonoBehaviour
 
     [HideInInspector] public int playerGold = 1500;
 
-    [HideInInspector] public float playerSpeed = 5f;
+    [HideInInspector] public float playerSpeed = 10f;
 
 
     private void Awake()
@@ -37,7 +37,9 @@ public class PlayerStatus : MonoBehaviour
     {
         energyText = energyBar.GetComponentInChildren<TMP_Text>();
 
-        Init();        
+        Init();
+
+        playerSpeed = 10f;
     }
 
     private void Init()
@@ -72,7 +74,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if(status == true)
         {
-            playerSpeed = 5f;
+            playerSpeed = 10f;
             EnergyUpdate(playerMaxEnergy / 2);
             isTired = false;
             tired.SetActive(false);
