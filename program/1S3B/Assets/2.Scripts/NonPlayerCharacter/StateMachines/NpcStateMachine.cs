@@ -13,12 +13,12 @@ public class NpcStateMachine : StateMachine
     public Vector2 movementInput { get; set; }
     public float movementSpeed { get; private set; }
     public float rotationDamping { get; private set; }
-    public float movementSpeedModifier { get; set; } = 3f;
+    public float movementSpeedModifier { get; set; } = 1f;
 
     private WayPointManager wayPointManager;
-    WayPoint wayPoint;
-    int wayPointIdx = 0;
-    Transform destnationWay;
+    public WayPoint wayPoint;
+    private int wayPointIdx = 0;
+    public Transform destinationWay;
 
     public NpcStateMachine(Npc npc, WayPointManager wayPointManager)
     {
@@ -33,10 +33,11 @@ public class NpcStateMachine : StateMachine
 
         // way point manager
         this.wayPointManager = wayPointManager;
-        wayPoint = wayPointManager.GetRandomWayPoint();
+        wayPoint = this.wayPointManager.GetRandomWayPoint();
 
         // way point
-        wayPointIdx = wayPoint.GetNearIndex(this.targetPlayer.transform);
-        destnationWay = wayPoint.GetPoint(wayPointIdx);
+        //wayPointIdx = wayPoint.GetNearIndex(this.targetPlayer.transform);
+        wayPointIdx = wayPoint.GetNearIndex(this._npc.transform);
+        destinationWay = wayPoint.GetPoint(wayPointIdx);
     }
 }

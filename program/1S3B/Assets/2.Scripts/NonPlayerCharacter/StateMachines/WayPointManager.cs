@@ -7,9 +7,18 @@ public class WayPointManager : MonoBehaviour
     public static WayPointManager instance;
 
     WayPoint[] wayPoints = null;
+
     private void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         wayPoints = GetComponentsInChildren<WayPoint>();
     }
 
@@ -21,6 +30,7 @@ public class WayPointManager : MonoBehaviour
         }
 
         int idx = Random.Range(0, wayPoints.Length);
+        Debug.Log("idx" + idx);
         return wayPoints[idx];
     }
 }

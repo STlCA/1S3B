@@ -32,15 +32,14 @@ public class WayPoint : MonoBehaviour
         int minIdx = -1;
         for (int i = 0;i < points.Count;i++) 
         {
-            Transform t = points[i];
-            float d = Vector3.Distance(t.position, target.position);
-            if (d < minDist)
+            Transform transformPoints = points[i];
+            float distance = Vector3.Distance(transformPoints.position, target.position);
+            if (distance < minDist)
             {
-                minDist = d;
+                minDist = distance;
                 minIdx = i;
             }
         }
-
         return minIdx;
     }
 }

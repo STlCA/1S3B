@@ -32,8 +32,27 @@ public class NpcMoveState : NpcBaseState
         }
 
         base.Update();
+        // 목적지로 이동
+        // 목적지 도착 검사
+        // 도착했으면 웨이포인트 타고 다음 목적지 받기
+        // destinationWay 방향으로 이동 -> 도착 검사 -> 다음 목적지받기
+        Move();
     }
 
-    
-
+    private void Move()
+    {
+        Vector3 destinationWay = _npcStateMachine.destinationWay.position - _npcStateMachine._npc.transform.position;
+       
+        if(destinationWay.magnitude >= 0)
+        {
+            destinationWay.Normalize();
+            _npcStateMachine._npc.transform.position += destinationWay * _npcStateMachine.movementSpeedModifier * Time.deltaTime;
+        }
+        else
+        {
+            
+        }
+       
+    }
+   
 }
