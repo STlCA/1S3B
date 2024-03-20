@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public TargetSetting targetSetting { get; set; }
     public TileManager tileManager { get; set; }//물어보기
     public SceneChangeManager sceneChangeManager { get; set; }
+    public UIManager uIManager { get; set; }
 
     public DataManager dataManager;
+
 
 
 

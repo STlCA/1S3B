@@ -43,4 +43,14 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody2D.velocity = direction; 
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bed")
+            GameManager.Instance.uIManager.UIOn(GameManager.Instance.uIManager.sleepInfoUI);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+            GameManager.Instance.uIManager.UIOff(GameManager.Instance.uIManager.sleepInfoUI);
+    }
 }
