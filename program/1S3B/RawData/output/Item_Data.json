@@ -3,90 +3,280 @@
 		{
 			"ID": 1,
 			"Name": "테스트",
-			"Description": "테스트임",
+			"Description": [
+				"테스트임"
+			],
 			"Type": "타입",
 			"Season": "계절",
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 0,
-			"SpritePath": "이게 뭐임"
+			"Path": "이게 뭐임",
+			"SpriteName": [
+				0
+			]
 		},
 		{
-			"ID": 1001,
+			"ID": 10001001,
 			"Name": "괭이",
-			"Description": "땅을 개간할때 사용한다.",
+			"Description": [
+				"땅을 개간할때 사용한다."
+			],
 			"Type": "Equip",
 			"Season": "None",
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"SpritePath": 0
+			"Path": 0,
+			"SpriteName": [
+				0
+			]
 		},
 		{
-			"ID": 1002,
+			"ID": 10001002,
 			"Name": "물뿌리개",
-			"Description": "작물에 물을 줄 때 사용한다.",
+			"Description": [
+				"작물에 물을 줄 때 사용한다."
+			],
 			"Type": "Equip",
 			"Season": "None",
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"SpritePath": 0
+			"Path": 0,
+			"SpriteName": [
+				0
+			]
 		},
 		{
-			"ID": 1003,
+			"ID": 10001003,
 			"Name": "곡괭이",
-			"Description": "돌을 깰 때 사용\ufffd\ufffd\ufffd다.",
+			"Description": [
+				"돌을 깰 때 사용한다."
+			],
 			"Type": "Equip",
 			"Season": "None",
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"SpritePath": 0
+			"Path": 0,
+			"SpriteName": [
+				0
+			]
 		},
 		{
-			"ID": 1004,
+			"ID": 10001004,
 			"Name": "도끼",
-			"Description": "나무를 벨 때 사용한다.",
+			"Description": [
+				"나무를 벨 때 사용한다."
+			],
 			"Type": "Equip",
 			"Season": "None",
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"SpritePath": 0
+			"Path": 0,
+			"SpriteName": [
+				0
+			]
 		},
 		{
-			"ID": 2001,
-			"Name": "파스닙",
-			"Description": 0,
+			"ID": 10002001,
+			"Name": "당근",
+			"Description": [
+				"가을 작물로 자라는데에 5일이 소요된다.",
+				"당근이다."
+			],
 			"Type": "Crop",
-			"Season": 0,
+			"Season": "Fall",
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 0,
-			"SpritePath": 0
+			"Stack": 100,
+			"Path": "Crops/Carrot/",
+			"SpriteName": [
+				"CarrotSeed",
+				"Carrot"
+			]
 		},
 		{
-			"ID": 2002,
-			"Name": "콜리플라워",
-			"Description": 0,
+			"ID": 10002002,
+			"Name": "호박",
+			"Description": [
+				"가을 작물로 자라는데에 12일이 소요된다.",
+				"호박이다."
+			],
 			"Type": "Crop",
-			"Season": 0,
+			"Season": "Fall",
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 0,
-			"SpritePath": 0
+			"Stack": 100,
+			"Path": "Crops/Pumpkin/",
+			"SpriteName": [
+				"PumpkinSeed",
+				"Pumpkin"
+			]
 		},
 		{
-			"ID": 2003,
-			"Name": "콩",
-			"Description": 0,
+			"ID": 10002003,
+			"Name": "감자",
+			"Description": [
+				"여름 작물로 자라는데에 8일이 소요된다.",
+				"감자다."
+			],
 			"Type": "Crop",
-			"Season": 0,
+			"Season": "Summer",
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 0,
-			"SpritePath": 0
+			"Stack": 100,
+			"Path": "Crops/Potato/",
+			"SpriteName": [
+				"PotatoSeed",
+				"Potato"
+			]
+		},
+		{
+			"ID": 10002004,
+			"Name": "수박",
+			"Description": [
+				"여름 작물로 자라는데에 10일이 소요된다.",
+				"수박이다."
+			],
+			"Type": "Crop",
+			"Season": "Summer",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Watermelon/",
+			"SpriteName": [
+				"WatermelonSeed",
+				"Watermelon"
+			]
+		},
+		{
+			"ID": 10002005,
+			"Name": "무",
+			"Description": [
+				"봄 작물로 자라는데에 5일이 소요된다.",
+				"무다."
+			],
+			"Type": "Crop",
+			"Season": "Spring",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Radish/",
+			"SpriteName": [
+				"RadishSeed",
+				"Radish"
+			]
+		},
+		{
+			"ID": 10002006,
+			"Name": "양배추",
+			"Description": [
+				"봄 작물로 자라는데에 8일이 소요된다.",
+				"무다."
+			],
+			"Type": "Crop",
+			"Season": "Spring",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Lettuce/",
+			"SpriteName": [
+				"LettuceSeed",
+				"Lettuce"
+			]
+		},
+		{
+			"ID": 10002007,
+			"Name": "밀",
+			"Description": [
+				"가을 작물로 자라는데에 7일이 소요된다. 수확시 건초를 얻을 수 있다.",
+				"밀이다."
+			],
+			"Type": "Crop",
+			"Season": "Fall",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Wheat/",
+			"SpriteName": [
+				"WheatSeed",
+				"Wheat"
+			]
+		},
+		{
+			"ID": 10003001,
+			"Name": "가지",
+			"Description": [
+				"여름 작물로 자라는데에 6일이 소요된다.여러번 수확할 수 있다.",
+				"가지다."
+			],
+			"Type": "Crop",
+			"Season": "Summer",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Eggplant/",
+			"SpriteName": [
+				"EggplantSeed",
+				"Eggplant"
+			]
+		},
+		{
+			"ID": 10003002,
+			"Name": "옥수수",
+			"Description": [
+				"여름 작물로 자라는데에 7일이 소요된다.여러번 수확할 수 있다.",
+				"옥수수다."
+			],
+			"Type": "Crop",
+			"Season": "Summer",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Corn/",
+			"SpriteName": [
+				"CornSeed",
+				"Corn"
+			]
+		},
+		{
+			"ID": 10003003,
+			"Name": "토마토",
+			"Description": [
+				"가을 작물로 자라는데에 7일이 소요된다.여러번 수확할 수 있다.",
+				"토마토다."
+			],
+			"Type": "Crop",
+			"Season": "Fall",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Tomato/",
+			"SpriteName": [
+				"TomatoSeed",
+				"Tomato"
+			]
+		},
+		{
+			"ID": 10003004,
+			"Name": "딸기",
+			"Description": [
+				"봄 작물로 자라는데에 8일이 소요된다.여러번 수확할 수 있다.",
+				"딸기다."
+			],
+			"Type": "Crop",
+			"Season": "Spring",
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Crops/Strawberry/",
+			"SpriteName": [
+				"StrawberrySeed",
+				"Strawberry"
+			]
 		}
 	]
 }
