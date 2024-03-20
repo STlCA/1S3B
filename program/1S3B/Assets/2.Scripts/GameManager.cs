@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public DayCycleHandler DayCycleHandler { get; set; }
     public WeatherSystem WeatherSystem { get; set; }
 
+
+
     /* 
     Will return the ratio of time for the current day between 0 (00:00) and 1 (23:59).
     현재 날짜의 시간 비율을 0(00:00)에서 1(23:59) 사이에 반환합니다.
@@ -29,13 +32,17 @@ public class GameManager : MonoBehaviour
     public float CurrentDayRatio => m_CurrentTimeOfTheDay / DayDurationInSeconds;
 
 
+
+    [Header("Time")]
+    public TMP_Text TimeText;
+
     [Header("Time settings")]
     [Min(1.0f)]
     //최솟값(인스펙터에서 조절할때)
-
     public float DayDurationInSeconds;
     public float StartingTime = 0.0f;
     //시작시간
+
 
 
     private void Awake()
@@ -110,5 +117,9 @@ public class GameManager : MonoBehaviour
 
         if (DayCycleHandler != null)
             DayCycleHandler.Tick();
+
+       TimeText.text = GetTimeAsString(CurrentDayRatio);
     }
+
+    
 }
