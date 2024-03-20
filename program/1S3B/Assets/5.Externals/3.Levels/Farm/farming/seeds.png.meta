@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: seeds_0
+      name: CarrotSeed
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -144,12 +144,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_1
+      name: TomatoSeed
       rect:
         serializedVersion: 2
-        x: 16
+        x: 18
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -165,12 +165,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_2
+      name: StrawberrySeed
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -186,12 +186,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_3
+      name: PumpkinSeed
       rect:
         serializedVersion: 2
-        x: 48
+        x: 50
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -207,12 +207,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_4
+      name: CornSeed
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -228,12 +228,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_5
+      name: PotatoSeed
       rect:
         serializedVersion: 2
-        x: 80
+        x: 82
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -249,12 +249,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_6
+      name: WatermelonSeed
       rect:
         serializedVersion: 2
-        x: 96
+        x: 98
         y: 80
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -273,10 +273,10 @@ TextureImporter:
       name: seeds_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
+        x: 2
+        y: 48
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: seeds_8
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
+        x: 18
+        y: 48
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: seeds_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
+        x: 34
+        y: 48
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,10 +336,10 @@ TextureImporter:
       name: seeds_10
       rect:
         serializedVersion: 2
-        x: 48
-        y: 64
-        width: 16
-        height: 16
+        x: 50
+        y: 48
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -357,10 +357,10 @@ TextureImporter:
       name: seeds_11
       rect:
         serializedVersion: 2
-        x: 0
+        x: 66
         y: 48
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,10 +378,10 @@ TextureImporter:
       name: seeds_12
       rect:
         serializedVersion: 2
-        x: 16
+        x: 82
         y: 48
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -399,10 +399,10 @@ TextureImporter:
       name: seeds_13
       rect:
         serializedVersion: 2
-        x: 32
+        x: 98
         y: 48
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -420,10 +420,10 @@ TextureImporter:
       name: seeds_14
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 16
+        x: 2
+        y: 32
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -441,10 +441,10 @@ TextureImporter:
       name: seeds_15
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
-        width: 16
-        height: 16
+        x: 18
+        y: 32
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +462,10 @@ TextureImporter:
       name: seeds_16
       rect:
         serializedVersion: 2
-        x: 80
-        y: 48
-        width: 16
-        height: 16
+        x: 34
+        y: 32
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -483,10 +483,10 @@ TextureImporter:
       name: seeds_17
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
-        width: 16
-        height: 16
+        x: 50
+        y: 32
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -504,10 +504,10 @@ TextureImporter:
       name: seeds_18
       rect:
         serializedVersion: 2
-        x: 0
+        x: 66
         y: 32
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,10 +525,10 @@ TextureImporter:
       name: seeds_19
       rect:
         serializedVersion: 2
-        x: 16
+        x: 82
         y: 32
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -546,10 +546,10 @@ TextureImporter:
       name: seeds_20
       rect:
         serializedVersion: 2
-        x: 32
+        x: 98
         y: 32
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -567,10 +567,10 @@ TextureImporter:
       name: seeds_21
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 16
+        x: 2
+        y: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,10 +588,10 @@ TextureImporter:
       name: seeds_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 16
+        x: 18
+        y: 0
+        width: 12
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,10 +609,10 @@ TextureImporter:
       name: seeds_23
       rect:
         serializedVersion: 2
-        x: 80
-        y: 32
-        width: 16
-        height: 16
+        x: 34
+        y: 0
+        width: 12
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -630,10 +630,10 @@ TextureImporter:
       name: seeds_24
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 16
-        height: 16
+        x: 50
+        y: 0
+        width: 12
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -651,10 +651,10 @@ TextureImporter:
       name: seeds_25
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
+        x: 66
+        y: 0
+        width: 12
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -672,10 +672,10 @@ TextureImporter:
       name: seeds_26
       rect:
         serializedVersion: 2
-        x: 16
+        x: 82
         y: 16
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -693,10 +693,10 @@ TextureImporter:
       name: seeds_27
       rect:
         serializedVersion: 2
-        x: 32
+        x: 98
         y: 16
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -714,10 +714,10 @@ TextureImporter:
       name: seeds_28
       rect:
         serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
+        x: 2
+        y: 0
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -732,169 +732,85 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_29
+      name: RadishSeed
       rect:
         serializedVersion: 2
-        x: 64
-        y: 16
-        width: 16
+        x: 2
+        y: 64
+        width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdcbe1847e5b291498954084731b4727
-      internalID: -553953607
+      spriteID: 1cf2d60c2c91bf644ac5e1c8cf435a94
+      internalID: 1307989831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_30
+      name: LettuceSeed
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
-        width: 16
+        x: 18
+        y: 64
+        width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 788f58c83dcb568449efd3a1be2efc3d
-      internalID: 249142183
+      spriteID: 0c941c0d8c6e3c14a9d4004425bb5f8d
+      internalID: 920893208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_31
+      name: WheatSeed
       rect:
         serializedVersion: 2
-        x: 96
-        y: 16
-        width: 16
+        x: 34
+        y: 64
+        width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 957f1f7b3286aea4daf0dba9a2578c1c
-      internalID: -161929523
+      spriteID: 1adc68040bf30d34ab80a8c8a6a72fb5
+      internalID: -232420723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seeds_32
+      name: EggplantSeed
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
+        x: 50
+        y: 64
+        width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d595719868285bc42a28d0acf5a51e5f
-      internalID: 1248995202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seeds_33
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd9f378ff9ad3e242bf2d82229084218
-      internalID: 1787700632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seeds_34
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: afeae6a2f9217904faa545d6888a365f
-      internalID: -1836991322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seeds_35
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b31a9ff45a5d204d807faf3fed47221
-      internalID: -1815783201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seeds_36
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4bd67ebaa0c0bb644802e70175720e7d
-      internalID: -301847555
+      spriteID: 4428d8292dd67a74ea67d802c9f4201f
+      internalID: -1210427044
       vertices: []
       indices: 
       edges: []
@@ -910,8 +826,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      seeds_0: -1627281914
-      seeds_1: -1272884040
+      CarrotSeed: -1627281914
+      CornSeed: -1188521407
+      EggplantSeed: -1210427044
+      LettuceSeed: 920893208
+      PotatoSeed: 221348638
+      PumpkinSeed: 574213033
+      RadishSeed: 1307989831
+      StrawberrySeed: 2117713898
+      TomatoSeed: -1272884040
+      WatermelonSeed: 1821933604
+      WheatSeed: -232420723
       seeds_10: -484357105
       seeds_11: 266093800
       seeds_12: 2120406811
@@ -922,7 +847,6 @@ TextureImporter:
       seeds_17: -1236914819
       seeds_18: -74354223
       seeds_19: -424532477
-      seeds_2: 2117713898
       seeds_20: 943115357
       seeds_21: -41607275
       seeds_22: 1076194029
@@ -932,18 +856,6 @@ TextureImporter:
       seeds_26: 754603275
       seeds_27: -1339860174
       seeds_28: -1340533739
-      seeds_29: -553953607
-      seeds_3: 574213033
-      seeds_30: 249142183
-      seeds_31: -161929523
-      seeds_32: 1248995202
-      seeds_33: 1787700632
-      seeds_34: -1836991322
-      seeds_35: -1815783201
-      seeds_36: -301847555
-      seeds_4: -1188521407
-      seeds_5: 221348638
-      seeds_6: 1821933604
       seeds_7: 493356821
       seeds_8: -1095679663
       seeds_9: -1830382693
