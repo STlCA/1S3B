@@ -123,7 +123,8 @@ public class GameManager : MonoBehaviour
         if (DayCycleHandler != null)
             DayCycleHandler.Tick();
 
-       TimeText.text = GetTimeAsString(CurrentDayRatio);
+        if(TimeText != null)
+            TimeText.text = GetTimeAsString(CurrentDayRatio);
     }
 
     

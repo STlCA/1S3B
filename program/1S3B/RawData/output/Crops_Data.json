@@ -1,33 +1,15 @@
 {
 	"CropsData": [
 		{
-			"ID": 2001,
-			"Name": "파스닙",
-			"GrowthTime": 4,
-			"ReGrowthTime": 0,
-			"AllGrowthStage": 4,
-			"ProductPerHarvest": 1,
-			"StageAfterHarvest": 0,
-			"DeathTimer": 28,
-			"Path": "Crops/Parsnip/Parsnip",
-			"SpriteName": [
-				0,
-				1,
-				2,
-				3,
-				4
-			]
-		},
-		{
-			"ID": 2002,
-			"Name": "콜리플라워",
-			"GrowthTime": 8,
+			"ID": 10002001,
+			"Name": "당근",
+			"GrowthTime": 5,
 			"ReGrowthTime": 0,
 			"AllGrowthStage": 5,
 			"ProductPerHarvest": 1,
 			"StageAfterHarvest": 0,
 			"DeathTimer": 28,
-			"Path": "Crops/Cauliflower/Cauliflower",
+			"Path": "Crops/Carrot/Carrot",
 			"SpriteName": [
 				0,
 				1,
@@ -38,24 +20,193 @@
 			]
 		},
 		{
-			"ID": 2003,
-			"Name": "콩",
-			"GrowthTime": 10,
-			"ReGrowthTime": 2,
-			"AllGrowthStage": 7,
+			"ID": 10002002,
+			"Name": "호박",
+			"GrowthTime": 12,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
 			"ProductPerHarvest": 1,
-			"StageAfterHarvest": 6,
+			"StageAfterHarvest": 0,
 			"DeathTimer": 28,
-			"Path": "Crops/Bean/Bean",
+			"Path": "Crops/Pumpkin/Pumpkin",
 			"SpriteName": [
 				0,
 				1,
 				2,
 				3,
 				4,
-				5,
-				6,
-				7
+				5
+			]
+		},
+		{
+			"ID": 10002003,
+			"Name": "감자",
+			"GrowthTime": 8,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 3,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Potato/Potato",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10002004,
+			"Name": "수박",
+			"GrowthTime": 10,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Watermelon/Watermelon",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10002005,
+			"Name": "무",
+			"GrowthTime": 5,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Radish/Radish",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10002006,
+			"Name": "양배추",
+			"GrowthTime": 8,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Lettuce/Lettuce",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10002007,
+			"Name": "밀",
+			"GrowthTime": 7,
+			"ReGrowthTime": 0,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 3,
+			"StageAfterHarvest": 0,
+			"DeathTimer": 28,
+			"Path": "Crops/Wheat/Wheat",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10003001,
+			"Name": "가지",
+			"GrowthTime": 6,
+			"ReGrowthTime": 2,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 4,
+			"DeathTimer": 28,
+			"Path": "Crops/Eggplant/Eggplant",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10003002,
+			"Name": "옥수수",
+			"GrowthTime": 7,
+			"ReGrowthTime": 2,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 4,
+			"DeathTimer": 28,
+			"Path": "Crops/Corn/Corn",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10003003,
+			"Name": "토마토",
+			"GrowthTime": 7,
+			"ReGrowthTime": 3,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 3,
+			"DeathTimer": 28,
+			"Path": "Crops/Tomato/Tomato",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"ID": 10003004,
+			"Name": "딸기",
+			"GrowthTime": 8,
+			"ReGrowthTime": 3,
+			"AllGrowthStage": 5,
+			"ProductPerHarvest": 1,
+			"StageAfterHarvest": 3,
+			"DeathTimer": 28,
+			"Path": "Crops/Strawberry/Strawberry",
+			"SpriteName": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
 			]
 		}
 	]

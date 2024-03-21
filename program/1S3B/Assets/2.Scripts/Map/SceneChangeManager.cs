@@ -11,7 +11,8 @@ public class SceneChangeManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.sceneChangeManager = this;
+        if (GameManager.Instance.sceneChangeManager == null)
+            GameManager.Instance.sceneChangeManager = this;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

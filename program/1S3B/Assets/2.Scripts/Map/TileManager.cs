@@ -32,7 +32,7 @@ public class CropData
         cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
 
-        if (id == 2003)//2070이상부턴 기둥
+        if (10003001<=id && id < 10004001)
             cropRenderer.sortingOrder = 5;
         else
             cropRenderer.sortingOrder = 4;
@@ -111,7 +111,11 @@ public class TileManager : MonoBehaviour
             return;
 
         CropData tempcropData = new CropData();
-        int cropID = Random.Range(2001, 2004);//임시 
+
+        //임시 
+        int[] arr = { 10002001, 10002002, 10002003, 10002004, 10002005, 10002006, 10002007, 10003001, 10003002, 10003003, 10003004 };
+        int index = Random.Range(0, 11);
+        int cropID = arr[index];
 
         GameObject go = Instantiate(cropGoPrefabs);
         go.transform.position = baseGrid.GetCellCenterWorld(target);
@@ -137,6 +141,9 @@ public class TileManager : MonoBehaviour
         tempGroundData.isWater = true;
 
         waterTilemap.SetTile(target, wateredTile);
+
+        //TODO :: spriteList바꾸는메서드만들기
+        //croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
     public void Harvest(Vector3Int target)
