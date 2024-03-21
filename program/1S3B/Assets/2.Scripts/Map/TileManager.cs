@@ -31,11 +31,16 @@ public class CropData
         cropObj = go;
         cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
+    }
 
-        if (10003001<=id && id < 10004001)
-            cropRenderer.sortingOrder = 5;
+    public void SortingOrderSetting(Vector3Int target)
+    {
+        if (target.y < 0)
+            cropRenderer.sortingOrder = (target.y * -1) + 100;
         else
-            cropRenderer.sortingOrder = 4;
+            cropRenderer.sortingOrder = 100 - target.y;
+
+
     }
 }
 
@@ -124,7 +129,10 @@ public class TileManager : MonoBehaviour
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
+        tempcropData.SortingOrderSetting(target);
+
         croptData.Add(target, tempcropData);
+
     }
 
     public void WaterAt(Vector3Int target)
