@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
     private Vector2 _movementDirection = Vector2.zero;
+    private Vector2 _saveDirection = Vector2.zero;
 
     [SerializeField] private float speed;
 
@@ -28,7 +29,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyMovement(_movementDirection);
+        if (GameManager.Instance.sceneChangeManager.isMapChange == true)
+            ApplyMovement(_saveDirection);
+        else
+            ApplyMovement(_movementDirection);
     }
 
     private void Move(Vector2 dirction)
@@ -38,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        speed = PlayerStatus.player.playerSpeed;
+        speed = PlayerStatus.instance.playerSpeed;
 
         direction *= speed;
 
-        _rigidbody2D.velocity = direction; 
+        _rigidbody2D.velocity = direction;
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
     }
 
@@ -53,6 +57,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-            GameManager.Instance.uIManager.UIOff(GameManager.Instance.uIManager.sleepInfoUI);
+        GameManager.Instance.uIManager.UIOff(GameManager.Instance.uIManager.sleepInfoUI);
     }
 }

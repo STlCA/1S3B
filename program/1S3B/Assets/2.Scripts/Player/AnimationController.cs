@@ -10,6 +10,14 @@ public class AnimationController : AnimationBase
         controller.OnMoveEvent += MoveAnimation;
     }
 
+    private void Update()
+    {
+        //if (GameManager.Instance.sceneChangeManager.isMapChange == true)
+        //    animator.speed = 0;
+        //else
+        //    animator.speed = 1;
+    }
+
     public void MoveAnimation(Vector2 direction)
     {  
         animator.SetBool("isWalking", direction.magnitude > 0f);
