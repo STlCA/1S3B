@@ -17,7 +17,7 @@ public class NpcStateMachine : StateMachine
 
     private WayPointManager wayPointManager;
     public WayPoint wayPoint;
-    private int wayPointIdx = 0;
+    public int wayPointIdx = 0;
     public Transform destinationWay;
 
     public NpcStateMachine(Npc npc, WayPointManager wayPointManager)

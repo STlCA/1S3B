@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NpcMoveState : NpcBaseState
@@ -42,17 +43,17 @@ public class NpcMoveState : NpcBaseState
     private void Move()
     {
         Vector3 destinationWay = _npcStateMachine.destinationWay.position - _npcStateMachine._npc.transform.position;
-       
-        if(destinationWay.magnitude >= 0)
+
+        if (destinationWay.magnitude <= 0.1f)
+        {
+            Debug.Log("µµÂø");
+           // _npcStateMachine.wayPoint.GetPoint();
+        }
+        else
         {
             destinationWay.Normalize();
             _npcStateMachine._npc.transform.position += destinationWay * _npcStateMachine.movementSpeedModifier * Time.deltaTime;
         }
-        else
-        {
-            
-        }
-       
     }
    
 }

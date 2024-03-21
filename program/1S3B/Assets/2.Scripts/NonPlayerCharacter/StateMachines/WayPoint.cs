@@ -21,14 +21,14 @@ public class WayPoint : MonoBehaviour
     public Transform GetPoint(int i)
     {
         if (pointCount <= i)
-            i -= pointCount;
+            i %= pointCount;
 
         return points[i];
     }
 
     public int GetNearIndex(Transform target)
     {
-        float minDist = Mathf.Infinity;
+        float minDist = Mathf.Infinity; // Mathf.Infinity = 양의 무한대
         int minIdx = -1;
         for (int i = 0;i < points.Count;i++) 
         {
