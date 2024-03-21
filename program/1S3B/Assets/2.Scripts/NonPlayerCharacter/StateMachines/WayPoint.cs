@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
-    int pointCount = 0;
-    List<Transform> points = new List<Transform>();
+    private int pointCount = 0;
+    private List<Transform> points = new List<Transform>();
 
 
     private void Awake()
@@ -30,7 +30,7 @@ public class WayPoint : MonoBehaviour
     {
         float minDist = Mathf.Infinity; // Mathf.Infinity = 양의 무한대
         int minIdx = -1;
-        for (int i = 0;i < points.Count;i++) 
+        for (int i = 0;i < points.Count;i++)
         {
             Transform transformPoints = points[i];
             float distance = Vector3.Distance(transformPoints.position, target.position);
