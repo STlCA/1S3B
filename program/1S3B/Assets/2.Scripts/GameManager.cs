@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         //시간
         var minute = GetMinuteFromRatio(ratio);
         //분
+        
         return $"{hour}:{minute:00}";
     }
 
