@@ -46,10 +46,9 @@ public class NpcMoveState : NpcBaseState
 
         if (destinationWay.magnitude <= 0.1f)
         {
-            Debug.Log("도착");
             // 다음 목적지 받기
-            // 웨이포인트의 points가 1증가해야함
-            //_npcStateMachine.wayPoint.points++;
+            _npcStateMachine.wayPointIdx++;
+            _npcStateMachine.destinationWay = _npcStateMachine.wayPoint.GetPoint(_npcStateMachine.wayPointIdx);
         }
         else
         {
