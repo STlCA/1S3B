@@ -11,26 +11,27 @@ public class NpcMoveState : NpcBaseState
     }  
 
     public override void Enter()
-    {
-        
+    {   
         base.Enter();
+        StartAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
+        StopAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
     }
 
     public override void Update()
     {
-        if(!IsInChaseRange())
+        /*if(!IsInChaseRange())
         {
             Debug.Log("근처아님");
         }
         else
         {
             Debug.Log("근처임");
-        }
+        }*/
 
         base.Update();
         // 목적지로 이동
@@ -38,6 +39,7 @@ public class NpcMoveState : NpcBaseState
         // 도착했으면 웨이포인트 타고 다음 목적지 받기
         // destinationWay 방향으로 이동 -> 도착 검사 -> 다음 목적지받기
         Move();
+        Rotate();
     }
 
     private void Move()
@@ -56,5 +58,12 @@ public class NpcMoveState : NpcBaseState
             _npcStateMachine._npc.transform.position += destinationWay * _npcStateMachine.movementSpeedModifier * Time.deltaTime;
         }
     }
-   
+
+    private void Rotate()
+    {
+        Vector3 destinationWay = _npcStateMachine.destinationWay.position - _npcStateMachine._npc.transform.position;
+        float rotateNpc = Mathf.Atan2(destinationWay.y, destinationWay.x) * Mathf.Rad2Deg;
+        _npcStateMachine._npc.npcRenderer.flipX = Mathf.Abs(rotateNpc) > 90f;
+    }
+
 }

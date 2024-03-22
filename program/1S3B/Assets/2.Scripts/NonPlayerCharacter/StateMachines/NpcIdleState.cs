@@ -13,10 +13,12 @@ public class NpcIdleState : NpcBaseState
     {
         _npcStateMachine.movementSpeedModifier = 0f;
         base.Enter();
+        StartAnimation(_npcStateMachine._npc.animationData.IdleParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
+        StopAnimation(_npcStateMachine._npc.animationData.IdleParameterHash);
     }
 }
