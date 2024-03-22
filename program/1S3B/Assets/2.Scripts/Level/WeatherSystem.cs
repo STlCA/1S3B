@@ -12,7 +12,7 @@ public class WeatherSystem : MonoBehaviour
     {
         Sun = 0x1,
         Rain = 0x2,
-        Thunder = 0x4
+        Snow = 0x4
     }
     //플래그>복수선택가능(여기서는 16진수로 표현)
 

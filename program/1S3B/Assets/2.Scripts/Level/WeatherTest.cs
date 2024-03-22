@@ -26,7 +26,7 @@ public class WeatherTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            weatherSystem.ChangeWeather(WeatherSystem.WeatherType.Thunder);
+            weatherSystem.ChangeWeather(WeatherSystem.WeatherType.Snow);
         }
     }
 }
