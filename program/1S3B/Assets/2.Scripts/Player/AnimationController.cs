@@ -17,6 +17,8 @@ public class AnimationController : AnimationBase
     {
         controller.OnMoveEvent += MoveAnimation;
         controller.OnClickEvent += UseAnimation;
+
+        //animator[1].enabled = false;
         //sceneChangeManager = scmGo.GetComponent<SceneChangeManager>();
         //sceneChangeManager.OnChangeEvent += StopAnimation;
     }
@@ -82,18 +84,22 @@ public class AnimationController : AnimationBase
         switch (equip)
         {
             case 0:
-                //animator[0].SetBool("useCarry", true);
-                //animator[0].SetBool("useHoe", false);
-                //animator[0].SetBool("useWater", false);
+                //animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
+                //animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
+                animator[0].SetTrigger("usePickUp");
+                //animator[1].SetTrigger("usePickUp");
                 break;            
             case 1:
+                animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
+                animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
                 animator[0].SetTrigger("useHoe");
                 animator[1].SetTrigger("useHoe");
                 break;            
-            case 2:               
-                //animator[0].SetBool("useCarry", false);
-                //animator[0].SetBool("useHoe", false);
-                //animator[0].SetBool("useWater", true);
+            case 2:
+                animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
+                animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
+                animator[0].SetTrigger("useWater");
+                animator[1].SetTrigger("useWater");
                 break;
         }
     }
