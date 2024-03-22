@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671139272046172069}
   - component: {fileID: 3982683469808609477}
-  - component: {fileID: 8672330112963354085}
+  - component: {fileID: 3101999516497776914}
   m_Layer: 0
   m_Name: SceneChageTrigger
   m_TagString: Town
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &8672330112963354085
+--- !u!114 &3101999516497776914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083175642986589768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f88655887b12141910b13cebe2337f, type: 3}
+  m_Script: {fileID: 11500000, guid: dab63450292934f43b0e5f584cbfd294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeImage: {fileID: 0}
+  type: 0
+  startCam: {fileID: 0}
+  endCam: {fileID: 0}

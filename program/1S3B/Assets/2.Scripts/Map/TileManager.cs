@@ -39,8 +39,6 @@ public class CropData
             cropRenderer.sortingOrder = (target.y * -1) + 100;
         else
             cropRenderer.sortingOrder = 100 - target.y;
-
-
     }
 }
 
@@ -126,10 +124,10 @@ public class TileManager : MonoBehaviour
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
         tempcropData.Init(cropID, cropDatabase, go);
+        tempcropData.SortingOrderSetting(target);
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
-        tempcropData.SortingOrderSetting(target);
 
         croptData.Add(target, tempcropData);
 
@@ -217,12 +215,12 @@ public class TileManager : MonoBehaviour
         waterTilemap.ClearAllTiles();
 
 
-        bool status = PlayerStatus.player.isTired;
+        bool status = PlayerStatus.instance.isTired;
 
         if (status == true)
-            PlayerStatus.player.EnergyReset(status);
+            PlayerStatus.instance.EnergyReset(status);
         else
-            PlayerStatus.player.EnergyReset();
+            PlayerStatus.instance.EnergyReset();
 
     }
 }
