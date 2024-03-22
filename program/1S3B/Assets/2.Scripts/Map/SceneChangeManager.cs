@@ -9,37 +9,50 @@ public class SceneChangeManager : MonoBehaviour
 {
     public Image fadeImage;
 
+    [HideInInspector] public bool isMapChange = false;
+
+    private GameObject startCam;
+    private GameObject endCam;
+
     private void Start()
     {
-        if (GameManager.Instance.sceneChangeManager == null)
-            GameManager.Instance.sceneChangeManager = this;
+        GameManager.Instance.sceneChangeManager = this;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void MapChangeSetting(GameObject startCam, GameObject endCam)
     {
-        Debug.Log("여기");
+        this.startCam = startCam;
+        this.endCam = endCam;
 
-        if (collision.gameObject.tag.Contains("Player"))
-        {
-            if (gameObject.tag.Contains("Town"))
-            {
-                PlayerStatus.player.playerPosition = new Vector3(25f, 0f, 0f);                
-                StartCoroutine("MapChange");
-                Time.timeScale = 0.0f;
-
-            }
-            else if (gameObject.tag.Contains("Farm"))
-            {
-                PlayerStatus.player.playerPosition = new Vector3(12f, 0f, 0f);
-                StartCoroutine("MapChange");
-                Time.timeScale = 0.0f;
-            }
-        }
+        StartCoroutine("MapChange");
     }
-    
-    public void ChangePosition()
-    {       
-        PlayerStatus.player.transform.position = PlayerStatus.player.playerPosition;
+
+    public IEnumerator MapChange()
+    {
+        fadeImage.gameObject.SetActive(true);
+
+        float fadeCount = 0;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSecondsRealtime(0.005f);
+            fadeImage.color = new Color(0, 0, 0, fadeCount);
+        }
+
+        PlayerStatus.instance.ChangePosition();
+        endCam.SetActive(true);
+        startCam.SetActive(false);
+
+        fadeCount = 1;
+        while (fadeCount >= 0f)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSecondsRealtime(0.005f);
+            fadeImage.color = new Color(0, 0, 0, fadeCount);
+        }
+
+        isMapChange = false;
+        fadeImage.gameObject.SetActive(false);
     }
 
     public IEnumerator FadeIn()//알파값높이기
@@ -47,7 +60,7 @@ public class SceneChangeManager : MonoBehaviour
         fadeImage.gameObject.SetActive(true);
 
         float fadeCount = 0;
-        while(fadeCount < 1.0f)
+        while (fadeCount < 1.0f)
         {
             fadeCount += 0.01f;
             yield return new WaitForSecondsRealtime(0.005f);
@@ -66,34 +79,12 @@ public class SceneChangeManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
-        Time.timeScale = 1.0f;
-
         fadeImage.gameObject.SetActive(false);
-    }
-
-    public IEnumerator MapChange()//캐릭터위치변경포함
-    {
-        fadeImage.gameObject.SetActive(true);
-
-        float fadeCount = 0;
-        while (fadeCount < 1.0f)
-        {
-            fadeCount += 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
-            fadeImage.color = new Color(0, 0, 0, fadeCount);
-        }
-
-        //StartCoroutine("FadeIn");
-        //yield return new AsyncOperation();
-
-        ChangePosition();
-
-        StartCoroutine("FadeOut");
     }
 
     public IEnumerator FadeInOut()
     {
-        fadeImage.gameObject.SetActive(true);      
+        fadeImage.gameObject.SetActive(true);
 
         float fadeCount = 0;
         while (fadeCount < 1.0f)

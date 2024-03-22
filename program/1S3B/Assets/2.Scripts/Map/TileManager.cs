@@ -31,11 +31,14 @@ public class CropData
         cropObj = go;
         cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
+    }
 
-        if (10003001<=id && id < 10004001)
-            cropRenderer.sortingOrder = 5;
+    public void SortingOrderSetting(Vector3Int target)
+    {
+        if (target.y < 0)
+            cropRenderer.sortingOrder = (target.y * -1) + 100;
         else
-            cropRenderer.sortingOrder = 4;
+            cropRenderer.sortingOrder = 100 - target.y;
     }
 }
 
@@ -121,10 +124,13 @@ public class TileManager : MonoBehaviour
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
         tempcropData.Init(cropID, cropDatabase, go);
+        tempcropData.SortingOrderSetting(target);
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
+
         croptData.Add(target, tempcropData);
+
     }
 
     public void WaterAt(Vector3Int target)
@@ -209,12 +215,12 @@ public class TileManager : MonoBehaviour
         waterTilemap.ClearAllTiles();
 
 
-        bool status = PlayerStatus.player.isTired;
+        bool status = PlayerStatus.instance.isTired;
 
         if (status == true)
-            PlayerStatus.player.EnergyReset(status);
+            PlayerStatus.instance.EnergyReset(status);
         else
-            PlayerStatus.player.EnergyReset();
+            PlayerStatus.instance.EnergyReset();
 
     }
 }

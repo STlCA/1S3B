@@ -6,13 +6,24 @@ public class Item
 {
     public int ID;
     public string Name;
-    public string Description;
+    public List<string> Description;
     public string Type;
     public string Season;
     public int SellGold;
     public int BuyGold;
     public int Stack;
-    public string SpritePath;
+    public string Path;
+    public List<string> SpriteName;
+
+    public List<Sprite> SpriteList;
+
+    public void Init()
+    {
+        foreach (string path in SpriteName)
+        {
+            SpriteList.Add(Resources.Load<Sprite>(Path + path));
+        }
+    }
 }
 
 // 아이템에 대한 정보를 가져온다
@@ -33,7 +44,7 @@ public abstract class ItemInstance
 [System.Serializable]
 public class ItemDatabase
 {
-    public List<Item> ItemData;        
+    public List<Item> ItemData;
     public Dictionary<int, Item> itemDic = new();
 
     public void Initialize()
