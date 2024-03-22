@@ -29,12 +29,14 @@ public class MapTrigger : MonoBehaviour
             if (type == MapTriggerType.FarmToTown)
             {
                 PlayerStatus.instance.playerPosition = new Vector3(25f, 0f, 0f);
+                //sceneChangeManager.CallChangeEvent(true);                
                 sceneChangeManager.isMapChange = true;
                 sceneChangeManager.MapChangeSetting(startCam, endCam);
             }
             else if (type == MapTriggerType.TownToFarm)
             {
                 PlayerStatus.instance.playerPosition = new Vector3(12f, 0f, 0f);
+                //sceneChangeManager.CallChangeEvent(true);
                 sceneChangeManager.isMapChange = true;
                 sceneChangeManager.MapChangeSetting(startCam, endCam);
             }

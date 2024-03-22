@@ -12,7 +12,7 @@ public class Npc : MonoBehaviour
 
     
 
-    public Rigidbody2D rigidbody2D { get; private set; }
+    public Rigidbody2D _rigidbody2D { get; private set; }
     public ForceReceiver forceReceiver { get; private set; }
     public WayPointManager wayPointManager { get; private set; }
     public Animator animator { get; private set; }
@@ -28,7 +28,7 @@ public class Npc : MonoBehaviour
     {
         animationData.Initialize();
         animator = GetComponentInChildren<Animator>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         //characterController = GetComponent<CharacterController>();
         forceReceiver = GetComponent<ForceReceiver>();
         

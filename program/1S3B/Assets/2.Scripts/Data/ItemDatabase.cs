@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 
 [System.Serializable]
 public class Item
@@ -8,21 +9,15 @@ public class Item
     public string Name;
     public List<string> Description;
     public string Type;
-    public string Season;
+    public int CropID;
     public int SellGold;
     public int BuyGold;
     public int Stack;
-    public string Path;
-    public List<string> SpriteName;
+    public string SpritePath;
 
-    public List<Sprite> SpriteList;
-
-    public void Init()
+    public void GetSprite()
     {
-        foreach (string path in SpriteName)
-        {
-            SpriteList.Add(Resources.Load<Sprite>(Path + path));
-        }
+        Resources.Load<Sprite>(SpritePath);
     }
 }
 

@@ -15,10 +15,19 @@ public class SceneChangeManager : MonoBehaviour
     private GameObject startCam;
     private GameObject endCam;
 
+    //public delegate void OnChangeDel(bool value);
+    //public event OnChangeDel OnChangeEvent;
+
     private void Start()
     {
         GameManager.Instance.sceneChangeManager = this;
     }
+
+    //public void CallChangeEvent(bool value)
+    //{
+    //    isMapChange = value;
+    //    OnChangeEvent?.Invoke(value);
+    //}
 
     public void MapChangeSetting(GameObject startCam, GameObject endCam)
     {
@@ -52,7 +61,9 @@ public class SceneChangeManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
+        //CallChangeEvent(false);
         isMapChange = false;
+        isReAnim = true;
         fadeImage.gameObject.SetActive(false);
     }
 

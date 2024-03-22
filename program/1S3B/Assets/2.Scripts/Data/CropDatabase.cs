@@ -9,6 +9,7 @@ public class Crop
 {
     public int ID;
     public string Name;
+    public string Season;
     public int GrowthTime;//총자라는 시간
     public int ReGrowthTime;//수확후 다시 자라는 시간
     public int AllGrowthStage;// 작물 성장 단계

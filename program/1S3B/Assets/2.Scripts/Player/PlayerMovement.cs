@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _controller.OnMoveEvent += Move;
+        _controller.OnMoveEvent += Move;        
     }
 
     private void FixedUpdate()
