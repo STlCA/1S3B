@@ -22,6 +22,8 @@ public class PlayerStatus : MonoBehaviour
 
     [HideInInspector] public float playerSpeed = 10f;
 
+    [SerializeField] public AnimationController animationController;
+
 
     private void Awake()
     {
@@ -40,6 +42,8 @@ public class PlayerStatus : MonoBehaviour
         Init();
 
         playerSpeed = 10f;
+
+        animationController = GetComponent<AnimationController>();
     }
 
     private void Init()
@@ -64,7 +68,10 @@ public class PlayerStatus : MonoBehaviour
         }
         else if(playerEnergy <= -20)
         {
-            GameManager.Instance.tileManager.Sleep();
+            animationController.DeathAnimation(true);
+            Invoke("DeathSleep", 1f);
+
+            //DeathSleep();
 
             playerGold -= GoldRange(10, 20);
         }
@@ -115,6 +122,11 @@ public class PlayerStatus : MonoBehaviour
     public void ChangePosition()
     {
         gameObject.transform.position = playerPosition;
+    }
+
+    private void DeathSleep()
+    {
+        GameManager.Instance.tileManager.Sleep();
     }
 
 }

@@ -103,4 +103,10 @@ public class AnimationController : AnimationBase
                 break;
         }
     }
+
+    public void DeathAnimation(bool value)
+    {
+        animator[0].SetBool("isDeath", value);
+        animator[1].SetBool("isDeath", value);
+    }
 }

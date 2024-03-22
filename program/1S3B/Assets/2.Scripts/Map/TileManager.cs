@@ -176,7 +176,7 @@ public class TileManager : MonoBehaviour
 
     public void Sleep()
     {
-        StartCoroutine(GameManager.Instance.sceneChangeManager.FadeInOut());
+        StartCoroutine(GameManager.Instance.sceneChangeManager.SleepFadeInOut());
 
         Time.timeScale = 0.0f;
 
@@ -221,6 +221,5 @@ public class TileManager : MonoBehaviour
             PlayerStatus.instance.EnergyReset(status);
         else
             PlayerStatus.instance.EnergyReset();
-
     }
 }
