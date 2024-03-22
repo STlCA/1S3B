@@ -34,6 +34,9 @@ public class AnimationController : AnimationBase
 
     public void MoveAnimation(Vector2 direction)
     {
+        if (animator[0].GetBool("isStart")==false)
+            animator[0].SetBool("isStart", true);
+
         if (direction.magnitude <= 0f)
         {
             animator[0].SetFloat("saveX", animator[0].GetFloat("inputX"));
@@ -81,23 +84,29 @@ public class AnimationController : AnimationBase
 
     public void UseAnimation(int equip)
     {
+        if (animator[0].GetFloat("saveX")== 0 && animator[0].GetFloat("saveY") == 0)
+        {
+            animator[0].SetBool("isStart", true);
+            animator[1].SetFloat("saveX", 0);
+            animator[1].SetFloat("saveY", -1);
+        }
+        else
+        {
+            animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
+            animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
+        }
+
         switch (equip)
         {
             case 0:
-                //animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
-                //animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
                 animator[0].SetTrigger("usePickUp");
                 //animator[1].SetTrigger("usePickUp");
                 break;            
             case 1:
-                animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
-                animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
                 animator[0].SetTrigger("useHoe");
                 animator[1].SetTrigger("useHoe");
                 break;            
             case 2:
-                animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
-                animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
                 animator[0].SetTrigger("useWater");
                 animator[1].SetTrigger("useWater");
                 break;
