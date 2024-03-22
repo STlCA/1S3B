@@ -41,7 +41,7 @@ public class PlayerInputController : CharacterEventController
 
         Vector2 position = value.Get<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
-        
+
         GameManager.Instance.targetSetting.SetCellPosition(worldPos);
 
     }
@@ -81,7 +81,7 @@ public class PlayerInputController : CharacterEventController
         }
 
         if (true)
-            PlayerStatus.player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
+            PlayerStatus.instance.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
     public void OnCommunication(InputValue value)

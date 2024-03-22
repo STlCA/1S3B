@@ -11,5 +11,11 @@ namespace Constants
         Spa,
     }
 
+    public enum MapTriggerType
+    {
+        FarmToTown,
+        TownToFarm,
+    }
+
 
 }

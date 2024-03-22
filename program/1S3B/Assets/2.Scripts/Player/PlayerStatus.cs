@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public static PlayerStatus player;
+    public static PlayerStatus instance;
 
     [HideInInspector] public Vector3 playerPosition;
 
@@ -25,8 +25,8 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake()
     {
-        if (player == null)
-            player = this;
+        if (instance == null)
+            instance = this;
         else
             Destroy(gameObject);
 
@@ -110,6 +110,11 @@ public class PlayerStatus : MonoBehaviour
     public void EnergyRecovery()
     {
         EnergyUpdate(playerEnergy += 10);
+    }
+
+    public void ChangePosition()
+    {
+        gameObject.transform.position = playerPosition;
     }
 
 }

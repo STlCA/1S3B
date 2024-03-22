@@ -47,7 +47,7 @@ public class InteractionObjects : MonoBehaviour
 
         if (tempTime >= recoveryTime)
         {
-            PlayerStatus.player.EnergyRecovery();
+            PlayerStatus.instance.EnergyRecovery();
             tempTime = 0;
         }
     }
