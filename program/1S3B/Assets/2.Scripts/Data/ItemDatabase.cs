@@ -14,15 +14,20 @@ public class Item
     public int Stack;
     public string Path;
     public List<string> SpriteName;
+    public bool canStack;
 
     public List<Sprite> SpriteList;
 
     public void Init()
     {
+        // 이미지 할당
         foreach (string path in SpriteName)
         {
             SpriteList.Add(Resources.Load<Sprite>(Path + path));
         }
+
+        // 스택 가능한 아이템인지 
+        canStack = Stack == 1 ? false : true;
     }
 }
 
