@@ -15,7 +15,7 @@ public class PlayerStatus : MonoBehaviour
     private int playerMaxEnergy = 150;
     [SerializeField] private int playerEnergy;//serial 나중에 지우기
 
-    public GameObject tired;
+    [HideInInspector] public GameObject tired;
     [SerializeField] public bool isTired = false;
 
     [HideInInspector] public int playerGold = 1500;

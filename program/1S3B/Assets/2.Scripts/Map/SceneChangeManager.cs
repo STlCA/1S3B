@@ -10,6 +10,7 @@ public class SceneChangeManager : MonoBehaviour
     public Image fadeImage;
 
     [HideInInspector] public bool isMapChange = false;
+    [HideInInspector] public bool isReAnim = false;
 
     private GameObject startCam;
     private GameObject endCam;

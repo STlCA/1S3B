@@ -12,10 +12,21 @@ public class AnimationController : AnimationBase
 
     private void Update()
     {
-        //if (GameManager.Instance.sceneChangeManager.isMapChange == true)
-        //    animator.speed = 0;
-        //else
-        //    animator.speed = 1;
+        if (GameManager.Instance.sceneChangeManager.isMapChange == true)
+        {
+            animator.SetBool("isWalking", false);
+            animator.speed = 0;
+        }
+        else
+        {            
+            animator.speed = 1;
+        }
+
+        if(GameManager.Instance.sceneChangeManager.isReAnim == true)
+        {
+            animator.SetBool("isWalking", true);
+            GameManager.Instance.sceneChangeManager.isReAnim = false;
+        }
     }
 
     public void MoveAnimation(Vector2 direction)
@@ -31,6 +42,4 @@ public class AnimationController : AnimationBase
         animator.SetFloat("inputX", direction.x);
         animator.SetFloat("inputY", direction.y);
     }
-
-
 }
