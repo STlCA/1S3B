@@ -22,8 +22,8 @@ public class CropData
     public decimal growRatio;
     public int harvest;
 
-    
-    public void Init(int id, CropDatabase cropDatabase, GameObject go )
+
+    public void Init(int id, CropDatabase cropDatabase, GameObject go)
     {
         plantCrop = cropDatabase.GetItemByKey(id);
         currentStage = 0;
@@ -116,7 +116,7 @@ public class TileManager : MonoBehaviour
         CropData tempcropData = new CropData();
 
         //임시 
-        int[] arr = { 10002001, 10002002, 10002003, 10002004, 10002005, 10002006, 10002007, 10003001, 10003002, 10003003, 10003004 };
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 101, 102, 103, 104 };
         int index = Random.Range(0, 11);
         int cropID = arr[index];
 
@@ -193,7 +193,7 @@ public class TileManager : MonoBehaviour
 
                 int temp = (int)(tempPlantData.currentStage);
 
-                if(temp >= tempPlantData.plantCrop.AllGrowthStage)
+                if (temp >= tempPlantData.plantCrop.AllGrowthStage)
                 {
                     tempPlantData.cropRenderer.sprite = tempPlantData.plantCrop.SpriteList[tempPlantData.plantCrop.AllGrowthStage];
                     tempPlantData.cropObj.tag = "Harvest";

@@ -34,14 +34,14 @@ public class AnimationController : AnimationBase
     {
         if (direction.magnitude <= 0f)
         {
-            animator.SetFloat("saveX", animator.GetFloat("inputX"));
-            animator.SetFloat("saveY", animator.GetFloat("inputY"));
+            animator[0].SetFloat("saveX", animator[0].GetFloat("inputX"));
+            animator[0].SetFloat("saveY", animator[0].GetFloat("inputY"));
         }
 
-        animator.SetFloat("inputX", direction.x);
-        animator.SetFloat("inputY", direction.y);
+        animator[0].SetFloat("inputX", direction.x);
+        animator[0].SetFloat("inputY", direction.y);
 
-        animator.SetBool("isWalking", direction.magnitude > 0f);
+        animator[0].SetBool("isWalking", direction.magnitude > 0f);
     }
 
     public void StopAnimation(bool value)
@@ -50,35 +50,51 @@ public class AnimationController : AnimationBase
         {
             if (oneTimeSave == false)
             {
-                saveDirection.x = animator.GetFloat("inputX");
-                saveDirection.y = animator.GetFloat("inputY");
+                saveDirection.x = animator[0].GetFloat("inputX");
+                saveDirection.y = animator[0].GetFloat("inputY");
 
                 oneTimeSave = true;
             }
 
-            animator.SetBool("isWalking", false);
+            animator[0].SetBool("isWalking", false);
 
-            animator.speed = 0;
+            animator[0].speed = 0;
 
-            animator.SetFloat("saveX", saveDirection.x);
-            animator.SetFloat("saveY", saveDirection.y);
+            animator[0].SetFloat("saveX", saveDirection.x);
+            animator[0].SetFloat("saveY", saveDirection.y);
         }
         else
         {
             GameManager.Instance.sceneChangeManager.isReAnim = false;
             oneTimeSave = false;
 
-            animator.speed = 1;
+            animator[0].speed = 1;
 
-            if (animator.GetFloat("inputX") != 0 || animator.GetFloat("inputY") != 0)
+            if (animator[0].GetFloat("inputX") != 0 || animator[0].GetFloat("inputY") != 0)
             {
                 MoveAnimation(saveDirection);
             }
         }
     }
 
-    public void UseAnimation()
+    public void UseAnimation(int equip)
     {
-
+        switch (equip)
+        {
+            case 0:
+                //animator[0].SetBool("useCarry", true);
+                //animator[0].SetBool("useHoe", false);
+                //animator[0].SetBool("useWater", false);
+                break;            
+            case 1:
+                animator[0].SetTrigger("useHoe");
+                animator[1].SetTrigger("useHoe");
+                break;            
+            case 2:               
+                //animator[0].SetBool("useCarry", false);
+                //animator[0].SetBool("useHoe", false);
+                //animator[0].SetBool("useWater", true);
+                break;
+        }
     }
 }
