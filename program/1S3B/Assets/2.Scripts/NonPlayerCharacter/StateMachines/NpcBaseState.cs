@@ -36,4 +36,14 @@ public class NpcBaseState : IState
         float playerDistanceSqr = (_npcStateMachine.targetPlayer.transform.position - _npcStateMachine._npc.transform.position).sqrMagnitude;
         return playerDistanceSqr <= _npcStateMachine._npc.npcData.PlayerChasingRange * _npcStateMachine._npc.npcData.PlayerChasingRange;
     }
+
+    protected void StartAnimation(int animationHash)
+    {
+        _npcStateMachine._npc.animator.SetBool(animationHash, true);
+    }
+
+    protected void StopAnimation(int animationHash)
+    {
+        _npcStateMachine._npc.animator.SetBool(animationHash, false);
+    }
 }
