@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
     public GameObject back1_1;
     public GameObject back1_2;
     public GameObject back1_3;
+    public GameObject back1_4;
 
     public GameObject back2_1;
     public GameObject back2_2;
     public GameObject back2_3;
+    public GameObject back2_4;
 
     public GameObject back3_1;
     public GameObject back3_2;
     public GameObject back3_3;
+    public GameObject back3_4;
 
     private float speed1;
     private float speed2;
@@ -29,7 +33,6 @@ public class StartSceneManager : MonoBehaviour
 
     private void Update()
     {
-
         back1_1.transform.position -= new Vector3(speed1 * Time.deltaTime, 0, 0);
         back1_2.transform.position -= new Vector3(speed1 * Time.deltaTime, 0, 0);
         back1_3.transform.position -= new Vector3(speed1 * Time.deltaTime, 0, 0);
@@ -39,7 +42,11 @@ public class StartSceneManager : MonoBehaviour
         back3_1.transform.position -= new Vector3(speed3 * Time.deltaTime, 0, 0);
         back3_2.transform.position -= new Vector3(speed3 * Time.deltaTime, 0, 0);
         back3_3.transform.position -= new Vector3(speed3 * Time.deltaTime, 0, 0);
+    }
 
+    public void GameSceneChange()
+    {
+        SceneManager.LoadScene("TempMerge");
     }
 
 }
