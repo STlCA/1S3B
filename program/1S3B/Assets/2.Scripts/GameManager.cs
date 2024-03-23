@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     public float DayDurationInSeconds;
     public float StartingTime = 0.0f;
     //시작시간
-
-
+    public float EndTime = 0.0f;
+    //끝나는시간
 
     private void Awake()
     {
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
             TimeText.text = GetTimeAsString(CurrentDayRatio);
             //시간텍스트 바꾸기
 
-
+        
         
     }
 
