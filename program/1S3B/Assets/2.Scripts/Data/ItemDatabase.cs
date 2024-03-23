@@ -13,17 +13,14 @@ public class Item
     public int SellGold;
     public int BuyGold;
     public int Stack;
-<<<<<<< HEAD
     public string Path;
     public List<string> SpriteName;
     public bool canStack;
-=======
-    public string SpritePath;
->>>>>>> Dev
+
+    public List<Sprite> SpriteList;
 
     public void GetSprite()
     {
-<<<<<<< HEAD
         // 이미지 할당
         foreach (string path in SpriteName)
         {
@@ -32,9 +29,6 @@ public class Item
 
         // 스택 가능한 아이템인지 
         canStack = Stack == 1 ? false : true;
-=======
-        Resources.Load<Sprite>(SpritePath);
->>>>>>> Dev
     }
 }
 
