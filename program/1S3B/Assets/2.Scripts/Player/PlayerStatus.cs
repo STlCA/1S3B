@@ -15,14 +15,14 @@ public class PlayerStatus : MonoBehaviour
     private int playerMaxEnergy = 150;
     [SerializeField] private int playerEnergy;//serial 나중에 지우기
 
-    [HideInInspector] public GameObject tired;
-    [SerializeField] public bool isTired = false;
+    public GameObject tired;
+    [HideInInspector] public bool isTired = false;
 
     [HideInInspector] public int playerGold = 1500;
 
     [HideInInspector] public float playerSpeed = 10f;
 
-    [SerializeField] public AnimationController animationController;
+    [HideInInspector] public AnimationController animationController;
 
 
     private void Awake()
