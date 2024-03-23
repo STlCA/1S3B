@@ -24,12 +24,12 @@ public class DayEventHandler : MonoBehaviour
 
     private void Start()
     {
-        GameManager.RegisterEventHandler(this);
+        //GameManager.RegisterEventHandler(this);
     }
 
     private void OnDisable()
     {
-        GameManager.RemoveEventHandler(this);
+        //GameManager.RemoveEventHandler(this);
     }
 }
 

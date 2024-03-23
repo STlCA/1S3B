@@ -4,11 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum PlayerState
+{
+    IDLE,
+    TIRED,
+
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     public static PlayerStatus instance;
 
     [HideInInspector] public Vector3 playerPosition;
+
+    PlayerState playerState;
 
     public Slider energyBar;
     private TMP_Text energyText;
@@ -43,6 +52,8 @@ public class PlayerStatus : MonoBehaviour
 
         playerSpeed = 10f;
 
+        playerState = PlayerState.IDLE;
+
         animationController = GetComponent<AnimationController>();
     }
 
@@ -66,8 +77,9 @@ public class PlayerStatus : MonoBehaviour
             isTired = true;
             tired.SetActive(true);
         }
-        else if(playerEnergy <= -20)
+        else if(playerEnergy <= -20 && playerState == PlayerState.IDLE)
         {
+            playerState = PlayerState.TIRED;
             animationController.DeathAnimation(true);
             Invoke("DeathSleep", 1f);
 
@@ -81,6 +93,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if(status == true)
         {
+            playerState = PlayerState.IDLE;
             playerSpeed = 10f;
             EnergyUpdate(playerMaxEnergy / 2);
             isTired = false;
@@ -126,7 +139,8 @@ public class PlayerStatus : MonoBehaviour
 
     private void DeathSleep()
     {
-        GameManager.Instance.tileManager.Sleep();
+        
+        GameManager.Instance.SleepOfDay();
     }
 
 }

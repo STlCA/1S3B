@@ -176,9 +176,7 @@ public class TileManager : MonoBehaviour
 
     public void Sleep()
     {
-        StartCoroutine(GameManager.Instance.sceneChangeManager.SleepFadeInOut());
-
-        Time.timeScale = 0.0f;
+        
 
         foreach (var (cell, tempPlantData) in croptData)
         {
@@ -214,12 +212,5 @@ public class TileManager : MonoBehaviour
 
         waterTilemap.ClearAllTiles();
 
-
-        bool status = PlayerStatus.instance.isTired;
-
-        if (status == true)
-            PlayerStatus.instance.EnergyReset(status);
-        else
-            PlayerStatus.instance.EnergyReset();
     }
 }
