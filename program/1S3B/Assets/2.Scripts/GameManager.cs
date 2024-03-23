@@ -146,8 +146,9 @@ public class GameManager : MonoBehaviour
        
             TimeText.text = GetTimeAsString(CurrentDayRatio);
             //시간텍스트 바꾸기
+
+
         
     }
 
-    
 }
