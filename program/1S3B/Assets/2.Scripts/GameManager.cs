@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
 
         if (DayDurationInSeconds <= 0.0f)
             DayDurationInSeconds = 10.0f;
+
+        m_CurrentTimeOfTheDay = StartingTime;
     }
 
 
@@ -93,8 +95,22 @@ public class GameManager : MonoBehaviour
         //시간
         var minute = GetMinuteFromRatio(ratio);
         //분
-        
-        return $"{hour}:{minute:00}";
+
+        int adjustedMinute = (int)(minute / 10) * 10;
+        //텍스트에서는 분이 10분 단위로 보이게
+
+        string AmPm;
+
+        if (hour < 13)
+            AmPm = "오전";
+
+        else
+        {
+            hour = hour - 12;
+            AmPm = "오후";
+        }
+
+        return $"{hour}:{adjustedMinute:00} {AmPm}";
     }
 
     public static int GetHourFromRatio(float ratio)
@@ -113,6 +129,8 @@ public class GameManager : MonoBehaviour
         return minute;
     }
 
+
+
     private void Update()
     {
         m_CurrentTimeOfTheDay += Time.deltaTime;
@@ -125,8 +143,12 @@ public class GameManager : MonoBehaviour
             DayCycleHandler.Tick();
 
         if(TimeText != null)
+       
             TimeText.text = GetTimeAsString(CurrentDayRatio);
+            //시간텍스트 바꾸기
+
+
+        
     }
 
-    
 }
