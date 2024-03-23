@@ -20,7 +20,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         _scroll = GetComponent<ScrollRect>();
         _scrollRect = _scroll.GetComponent<RectTransform>();
-        _itemHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height + 10;
+        _itemHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height + 5;
         _itemWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
     }
 
@@ -71,12 +71,12 @@ public class ScrollViewUI : MonoBehaviour
     // Slot 재사용
     private bool RelocationSlot(GameObject item, float contentPositionY, float scrollHeight)
     {
-        if (item.transform.localPosition.y + contentPositionY > _itemHeight)
+        if (item.transform.localPosition.y + contentPositionY > _itemHeight +15)
         {
             item.transform.localPosition -= new Vector3(0, _offset);
             return true;
         }
-        else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _itemHeight)
+        else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _itemHeight -15)
         {
             item.transform.localPosition += new Vector3(0, _offset);
             return true;
