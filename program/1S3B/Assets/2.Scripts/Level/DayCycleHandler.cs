@@ -8,47 +8,170 @@ using UnityEngine.UIElements;
 
 public class DayCycleHandler : MonoBehaviour
 {
+    GameManager gameManager;
+
+    private float currentTime;
+    //오늘의 현재 시간(누적되는시간)
+    private float priviousTime;
+    //이전시간
+
+    /* 
+    Will return the ratio of time for the current day between 0 (00:00) and 1 (23:59).
+    현재 날짜의 시간 비율을 0(00:00)에서 1(23:59) 사이에 반환합니다.
+    현재 날짜의 시간 비율 => 오늘의 현재 시간 / 하루 지속 시간(초)
+    */
+    public float currentDayRatio => currentTime / dayDurationInSeconds;
+
+
+    [Header("Time settings")]
+    [Min(1.0f)]
+    //최솟값(인스펙터에서 조절할때)
+    public float dayDurationInSeconds;
+    public float startingTime = 0.0f;
+    //시작시간
+    public float endTime = 0.0f;
+    //끝나는시간
 
     [Header("Day Light")]
-    public Light2D DayLight;
-    public Gradient DayLightGradient;
+    public Light2D dayLight;
+    public Gradient dayLightGradient;
 
     [Header("Night Light")]
-    public Light2D NightLight;
-    public Gradient NightLightGradient;
+    public Light2D nightLight;
+    public Gradient nightLightGradient;
 
     [Header("Ambient Light")]
-    public Light2D AmbientLight;
-    public Gradient AmbientLightGradient;
+    public Light2D ambientLight;
+    public Gradient ambientLightGradient;
 
-    private void Awake()
+
+
+    public void Init(GameManager gameManager)
     {
-        GameManager.Instance.DayCycleHandler = this;
+        this.gameManager = gameManager;
+        gameManager.dayCycleHandler = this;
+
+        if (dayDurationInSeconds <= 0.0f)
+            dayDurationInSeconds = 10.0f;
+
+        ResetDayTime();
+
     }
+
 
     public void Tick()
     {
-        UpdateLight(GameManager.Instance.CurrentDayRatio);
+        UpdateTime();
+        DayEndTime();
+        UpdateLight(currentDayRatio);
+    }
+
+    private void UpdateTime()
+    {
+        priviousTime = currentTime;
+        currentTime += Time.deltaTime;
+
+        while (currentTime > dayDurationInSeconds)
+            currentTime -= dayDurationInSeconds;
+        //하루가 120이면 120이 넘었을때 120을 빼고 1부터 시작
+    }
+
+    private void DayEndTime()
+    {
+        //이전시간과 현재시간의 중간에 끝나는시간이있어야함
+        if (priviousTime < endTime && endTime <= currentTime)
+        {
+            gameManager.DayOverTime();
+        }
+    }
+
+    public void ResetDayTime()
+    {
+        currentTime = startingTime;
+        //하루시작시간 초기화
+        priviousTime = currentTime;
     }
 
     public void UpdateLight(float ratio)
     {
-        DayLight.color = DayLightGradient.Evaluate(ratio);
-        NightLight.color = NightLightGradient.Evaluate(ratio);
+        dayLight.color = dayLightGradient.Evaluate(ratio);
+        nightLight.color = nightLightGradient.Evaluate(ratio);
 
-
-#if UNITY_EDITOR
-        //the test between the define will only happen in editor and not in build, as it is assumed those will be set
-        //in build. But in editor we may want to test without those set. (those were added later in development so
-        //some test scene didn't have those set and we wanted to be able to still test those)
-        if (AmbientLight != null)
-#endif
-            AmbientLight.color = AmbientLightGradient.Evaluate(ratio);
+        ambientLight.color = ambientLightGradient.Evaluate(ratio);
 
     }
 
-  
+    /*
+     private List<DayEventHandler> m_EventHandlers = new();
 
+    public static void RegisterEventHandler(DayEventHandler handler)
+    {
+        
+
+        foreach (var evt in handler.Events)
+        {
+            if (evt.IsInRange(GameManager.Instance.CurrentDayRatio))
+            {
+                evt.OnEvents.Invoke();
+            }
+            else
+            {
+                evt.OffEvent.Invoke();
+            }
+        }
+
+        Instance.m_EventHandlers.Add(handler);
+    }
+
+    public static void RemoveEventHandler(DayEventHandler handler)
+    {
+        Instance?.m_EventHandlers.Remove(handler);
+    }
+    */
+    public string GetTimeAsString()
+    {
+        return GetTimeAsString(currentDayRatio);
+    }
+
+    public string GetTimeAsString(float ratio)
+    {//문자열로 시간 가져오기
+        var hour = GetHourFromRatio(ratio);
+        //시간
+        var minute = GetMinuteFromRatio(ratio);
+        //분
+
+        int adjustedMinute = (int)(minute / 10) * 10;
+        //텍스트에서는 분이 10분 단위로 보이게
+
+        string AmPm;
+
+        if (hour < 13)
+            AmPm = "오전";
+
+        else
+        {
+            hour = hour - 12;
+            AmPm = "오후";
+        }
+
+        return $"{hour}:{adjustedMinute:00} {AmPm}";
+    }
+
+    public int GetHourFromRatio(float ratio)
+    {//비율로 시간
+        var time = ratio * 24.0f;
+        var hour = Mathf.FloorToInt(time);
+
+        return hour;
+    }
+
+    public int GetMinuteFromRatio(float ratio)
+    {//비율로 분
+        var time = ratio * 24.0f;
+        var minute = Mathf.FloorToInt((time - Mathf.FloorToInt(time)) * 60.0f);
+
+        return minute;
+    }
 
 
 #if UNITY_EDITOR
@@ -71,7 +194,7 @@ public class DayCycleHandler : MonoBehaviour
             {
                 m_Target.UpdateLight(evt.newValue);
 
-                slider.label = $"Test Time {GameManager.GetTimeAsString(evt.newValue)} ({evt.newValue:F2})";
+                slider.label = $"Test Time {m_Target.GetTimeAsString(evt.newValue)} ({evt.newValue:F2})";
                 SceneView.RepaintAll();
             });
 
