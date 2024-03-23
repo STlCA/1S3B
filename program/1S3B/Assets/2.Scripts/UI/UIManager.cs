@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public GameObject sleepInfoUI;
+    public InventoryUI inventoryUI;
 
     private void Start()
     {

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Npc : MonoBehaviour
 {
+    [field: Header("Animations")]
+    [field: SerializeField] public NpcAnimationData animationData { get; private set; }
+
     [field: Header("References")]
     [field: SerializeField] public NpcSO npcData { get; private set; }
 
-    public Rigidbody2D rigidbody2D { get; private set; }
+    
+
+    public Rigidbody2D _rigidbody2D { get; private set; }
     public ForceReceiver forceReceiver { get; private set; }
     public WayPointManager wayPointManager { get; private set; }
+    public Animator animator { get; private set; }
+    public SpriteRenderer npcRenderer;
     //public CharacterController characterController { get; private set; }
 
     private NpcStateMachine npcStateMachine;
@@ -19,9 +26,12 @@ public class Npc : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        animationData.Initialize();
+        animator = GetComponentInChildren<Animator>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         //characterController = GetComponent<CharacterController>();
         forceReceiver = GetComponent<ForceReceiver>();
+        
     }
 
     private void Start()

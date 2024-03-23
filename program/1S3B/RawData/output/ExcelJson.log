@@ -11,21 +11,23 @@ Found object mark: '#CropsData[{}]'
 [Crops_Data.xlsx(Sheet1): ROW 1]
  Key: Name at 2
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: GrowthTime at 3
+ Key: Season at 3
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: ReGrowthTime at 4
+ Key: GrowthTime at 4
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: AllGrowthStage at 5
+ Key: ReGrowthTime at 5
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: ProductPerHarvest at 6
+ Key: AllGrowthStage at 6
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: StageAfterHarvest at 7
+ Key: ProductPerHarvest at 7
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: DeathTimer at 8
+ Key: StageAfterHarvest at 8
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: Path at 9
+ Key: DeathTimer at 9
 [Crops_Data.xlsx(Sheet1): ROW 1]
- Key: SpriteName[] at 10
+ Key: Path at 10
+[Crops_Data.xlsx(Sheet1): ROW 1]
+ Key: SpriteName[] at 11
 Parsing Array Object Table...
 
 Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx
@@ -44,7 +46,7 @@ Found object mark: '#ItemData[{}]'
 [Item_Data.xlsx(Sheet1): ROW 1]
  Key: Type at 4
 [Item_Data.xlsx(Sheet1): ROW 1]
- Key: Season at 5
+ Key: CropID at 5
 [Item_Data.xlsx(Sheet1): ROW 1]
  Key: SellGold at 6
 [Item_Data.xlsx(Sheet1): ROW 1]
@@ -53,6 +55,4 @@ Found object mark: '#ItemData[{}]'
  Key: Stack at 8
 [Item_Data.xlsx(Sheet1): ROW 1]
  Key: Path at 9
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: SpriteName[] at 10
 Parsing Array Object Table...

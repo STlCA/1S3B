@@ -30,7 +30,7 @@ public class WayPointManager : MonoBehaviour
         }
 
         int idx = Random.Range(0, wayPoints.Length);
-        Debug.Log("idx" + idx);
+        //Debug.Log("idx" + idx);
         return wayPoints[idx];
     }
 }

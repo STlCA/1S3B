@@ -4,11 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum PlayerState
+{
+    IDLE,
+    TIRED,
+
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     public static PlayerStatus instance;
 
     [HideInInspector] public Vector3 playerPosition;
+
+    PlayerState playerState;
 
     public Slider energyBar;
     private TMP_Text energyText;
@@ -16,11 +25,13 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private int playerEnergy;//serial 나중에 지우기
 
     public GameObject tired;
-    [SerializeField] public bool isTired = false;
+    [HideInInspector] public bool isTired = false;
 
     [HideInInspector] public int playerGold = 1500;
 
     [HideInInspector] public float playerSpeed = 10f;
+
+    [HideInInspector] public AnimationController animationController;
 
 
     private void Awake()
@@ -40,6 +51,10 @@ public class PlayerStatus : MonoBehaviour
         Init();
 
         playerSpeed = 10f;
+
+        playerState = PlayerState.IDLE;
+
+        animationController = GetComponent<AnimationController>();
     }
 
     private void Init()
@@ -62,9 +77,13 @@ public class PlayerStatus : MonoBehaviour
             isTired = true;
             tired.SetActive(true);
         }
-        else if(playerEnergy <= -20)
+        else if(playerEnergy <= -20 && playerState == PlayerState.IDLE)
         {
-            GameManager.Instance.tileManager.Sleep();
+            playerState = PlayerState.TIRED;
+            animationController.DeathAnimation(true);
+            Invoke("DeathSleep", 1f);
+
+            //DeathSleep();
 
             playerGold -= GoldRange(10, 20);
         }
@@ -74,6 +93,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if(status == true)
         {
+            playerState = PlayerState.IDLE;
             playerSpeed = 10f;
             EnergyUpdate(playerMaxEnergy / 2);
             isTired = false;
@@ -115,6 +135,12 @@ public class PlayerStatus : MonoBehaviour
     public void ChangePosition()
     {
         gameObject.transform.position = playerPosition;
+    }
+
+    private void DeathSleep()
+    {
+        
+        GameManager.Instance.SleepOfDay();
     }
 
 }
