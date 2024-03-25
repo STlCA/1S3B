@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.OnMoveEvent += Move;        
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()//1초에 50번 일정하게부름 델타타임이 피료가음슴
     {
         if (GameManager.Instance.sceneChangeManager.isMapChange == true)
             ApplyMovement(_saveDirection);
