@@ -14,18 +14,13 @@ public class Item
     public int BuyGold;
     public int Stack;
     public string Path;
-    public List<string> SpriteName;
+
+    public Sprite sprite;
     public bool canStack;
 
-    public List<Sprite> SpriteList;
-
-    public void GetSprite()
+    public void Init()
     {
-        // 이미지 할당
-        foreach (string path in SpriteName)
-        {
-            SpriteList.Add(Resources.Load<Sprite>(Path + path));
-        }
+        sprite = Resources.Load<Sprite>(Path);
 
         // 스택 가능한 아이템인지 
         canStack = Stack == 1 ? false : true;
@@ -57,6 +52,7 @@ public class ItemDatabase
     {
         foreach (Item item in ItemData)
         {
+            item.Init();
             itemDic.Add(item.ID, item);
         }
     }
