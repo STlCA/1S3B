@@ -21,8 +21,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         curSlot = slot;
         icon.gameObject.SetActive(true);
-        //icon.sprite = slot.item.SpriteList[0];
-        icon.sprite = slot.item.sprite;
+        icon.sprite = slot.item.SpriteList[0];        
     }
 
     // 슬롯 창 초기화

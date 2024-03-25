@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 [System.Serializable]
 public class Item
@@ -14,13 +15,17 @@ public class Item
     public int BuyGold;
     public int Stack;
     public string Path;
+    public List<string> SpriteName;
 
-    public Sprite sprite;
+    public List<Sprite> SpriteList;
     public bool canStack;
 
     public void Init()
     {
-        sprite = Resources.Load<Sprite>(Path);
+        foreach (string path in SpriteName)
+        {
+            SpriteList.Add(Resources.Load<Sprite>(Path + path));
+        }
 
         // 스택 가능한 아이템인지 
         canStack = Stack == 1 ? false : true;
