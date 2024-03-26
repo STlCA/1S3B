@@ -22,24 +22,22 @@ public class MapTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("���̵�");
-
         if (other.gameObject.tag.Contains("Player"))
         {
-            if (type == MapTriggerType.FarmToTown)
+            switch (type)
             {
-                PlayerStatus.instance.playerPosition = new Vector3(-88f, -12f, 0f);
-                //sceneChangeManager.CallChangeEvent(true);                
-                sceneChangeManager.isMapChange = true;
-                sceneChangeManager.MapChangeSetting(startCam, endCam);
+                case MapTriggerType.FarmToTown:
+                    PlayerStatus.instance.playerPosition = new Vector3(-88f, -12f, 0f);
+                    GameManager.Instance.playerMap = PlayerMap.Town;
+                    break;
+                case MapTriggerType.TownToFarm:
+                    PlayerStatus.instance.playerPosition = new Vector3(-41f, -3.5f, 0f);
+                    GameManager.Instance.playerMap = PlayerMap.Farm;
+                    break;
             }
-            else if (type == MapTriggerType.TownToFarm)
-            {
-                PlayerStatus.instance.playerPosition = new Vector3(-41f, -3.5f, 0f);
-                //sceneChangeManager.CallChangeEvent(true);
-                sceneChangeManager.isMapChange = true;
-                sceneChangeManager.MapChangeSetting(startCam, endCam);
-            }
+
+            sceneChangeManager.isMapChange = true;
+            sceneChangeManager.MapChangeSetting(startCam, endCam);
         }
     }
 }

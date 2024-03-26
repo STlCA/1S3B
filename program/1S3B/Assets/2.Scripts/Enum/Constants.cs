@@ -16,6 +16,20 @@ namespace Constants
         FarmToTown,
         TownToFarm,
     }
+    
+    public enum PlayerMap
+    {
+        Farm,
+        Town,
+        Home
+    }
+
+    public enum PlayerState
+    {
+        IDLE,
+        TIRED,
+
+    }
 
 
 }

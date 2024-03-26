@@ -13540,7 +13540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 615824014}
   - component: {fileID: 615824015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ambient Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13582,7 +13582,7 @@ MonoBehaviour:
   m_Intensity: 0.25
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000035d9b633
+  m_ApplyToSortingLayers: 35d9b633f5cdd22400000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -25264,7 +25264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498811586}
   - component: {fileID: 1498811587}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NightLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25306,7 +25306,7 @@ MonoBehaviour:
   m_Intensity: 1.57
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000035d9b633
+  m_ApplyToSortingLayers: 35d9b633f5cdd22400000000
   m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -30443,7 +30443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1731794841}
   - component: {fileID: 1731794842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DayLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30485,7 +30485,7 @@ MonoBehaviour:
   m_Intensity: 1.57
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000035d9b633
+  m_ApplyToSortingLayers: 35d9b633f5cdd22400000000
   m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -30703,15 +30703,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.09978247, y: 1.1659076}
-      - {x: -0.7134229, y: 1.1423705}
-      - {x: -1.4915385, y: 1.209534}
+    - - {x: -0.060149193, y: 1.3006605}
+      - {x: -0.6737896, y: 1.3088299}
+      - {x: -1.4994651, y: 1.320507}
       - {x: -1.2747188, y: 0.5852612}
       - {x: 0.06923914, y: 0.5593618}
       - {x: 1.1839242, y: 0.5472312}
       - {x: 1.2705125, y: 0.777146}
-      - {x: 1.4193784, y: 1.1641954}
-      - {x: 0.42500412, y: 1.1655127}
+      - {x: 1.490718, y: 1.2989482}
+      - {x: 0.49634397, y: 1.2764857}
   m_UseDelaunayMesh: 0
 --- !u!1 &1780562421
 GameObject:
@@ -35942,7 +35942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000384869}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36515,6 +36515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataManager: {fileID: 8315184505823164240}
   TimeText: {fileID: 706123192}
+  playerMap: 0
 --- !u!212 &1247233693187203563
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37458,8 +37459,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 617795061
+  m_SortingLayer: -1
   m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -132488,7 +132489,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 867621173
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

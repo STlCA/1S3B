@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Constants;
 
-public enum PlayerState
-{
-    IDLE,
-    TIRED,
-
-}
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -17,7 +12,7 @@ public class PlayerStatus : MonoBehaviour
 
     [HideInInspector] public Vector3 playerPosition;
 
-    PlayerState playerState;
+    private PlayerState playerState;
 
     public Slider energyBar;
     private TMP_Text energyText;

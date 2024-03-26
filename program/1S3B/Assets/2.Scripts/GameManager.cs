@@ -1,3 +1,4 @@
+using Constants;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Time")]
     public TMP_Text TimeText;
 
+    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
 
     private void Awake()
     {
