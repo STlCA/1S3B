@@ -42,18 +42,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Communication",
                     "type": "Button",
-                    "id": "95b3025e-effe-4c56-a72c-3b37a5944511",
+                    "id": "c0df2d73-5618-4fa4-95ac-80cae8498d55",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Communication",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "c0df2d73-5618-4fa4-95ac-80cae8498d55",
+                    "id": "95b3025e-effe-4c56-a72c-3b37a5944511",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -153,17 +153,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Use",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cbcddb29-cf6a-4134-92fd-67cbbd7c2ef0",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Communication",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -351,6 +340,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbcddb29-cf6a-4134-92fd-67cbbd7c2ef0",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Communication",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
