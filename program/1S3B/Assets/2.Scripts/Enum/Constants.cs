@@ -31,5 +31,33 @@ namespace Constants
 
     }
 
+    public enum PlayerSkillType
+    {
+        Farming,
+        Felling,
+        Mining,
+        Battle,
+        Fishing,
+    }
 
+    public enum PlayerEquipmentType
+    {
+        PickUp,
+        Hoe,
+        Water,
+        Axe,
+        PickAxe,
+        Sword,
+        FishingRod,
+    }
+
+    public enum UpgradeEquipmentStep
+    {
+        None,
+        Copper,
+        Still,
+        Gold,
+        Diamond,
+        Bless,
+    }
 }

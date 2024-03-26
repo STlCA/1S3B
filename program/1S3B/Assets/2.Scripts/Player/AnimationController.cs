@@ -1,9 +1,12 @@
+using Constants;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
+using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
 {
@@ -34,7 +37,7 @@ public class AnimationController : AnimationBase
 
     public void MoveAnimation(Vector2 direction)
     {
-        if (animator[0].GetBool("isStart")==false)
+        if (animator[0].GetBool("isStart") == false)
             animator[0].SetBool("isStart", true);
 
         if (direction.magnitude <= 0f)
@@ -82,9 +85,9 @@ public class AnimationController : AnimationBase
         }
     }
 
-    public void UseAnimation(int equip)
+    public void UseAnimation(PlayerEquipmentType equipmentType)
     {
-        if (animator[0].GetFloat("saveX")== 0 && animator[0].GetFloat("saveY") == 0)
+        if (animator[0].GetFloat("saveX") == 0 && animator[0].GetFloat("saveY") == 0)
         {
             animator[0].SetBool("isStart", true);
             animator[1].SetFloat("saveX", 0);
@@ -96,19 +99,24 @@ public class AnimationController : AnimationBase
             animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
         }
 
-        switch (equip)
+        switch (equipmentType)
         {
-            case 0:
+            case PlayerEquipmentType.PickUp:
                 animator[0].SetTrigger("usePickUp");
                 //animator[1].SetTrigger("usePickUp");
-                break;            
-            case 1:
+                break;
+            case PlayerEquipmentType.Hoe:
                 animator[0].SetTrigger("useHoe");
                 animator[1].SetTrigger("useHoe");
-                break;            
-            case 2:
+                break;
+            case PlayerEquipmentType.Water:
                 animator[0].SetTrigger("useWater");
                 animator[1].SetTrigger("useWater");
+                break;
+            case PlayerEquipmentType.Axe:
+            case PlayerEquipmentType.PickAxe:
+            case PlayerEquipmentType.Sword:
+            case PlayerEquipmentType.FishingRod:
                 break;
         }
     }

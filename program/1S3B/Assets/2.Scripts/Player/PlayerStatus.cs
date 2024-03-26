@@ -6,6 +6,31 @@ using UnityEngine.UI;
 using Constants;
 
 
+public class PlayerSkill
+{
+    public string skillName;
+    public int level;
+    public float exp;
+}
+
+public class PlayerEquimentLevel
+{
+    public PlayerEquipmentType equimentType;
+    public int level;
+    public float exp;
+    public int count;
+    public UpgradeEquipmentStep step;
+
+    public void Init(PlayerEquipmentType equimentType)
+    {
+        this.equimentType = equimentType;
+        level = 1;
+        exp = 0;
+        count = 0;
+        step = UpgradeEquipmentStep.None;
+    }
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     public static PlayerStatus instance;
@@ -27,6 +52,13 @@ public class PlayerStatus : MonoBehaviour
     [HideInInspector] public float playerSpeed = 10f;
 
     [HideInInspector] public AnimationController animationController;
+    private CharacterEventController characterEventController;
+
+    private string[] skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
+    public PlayerSkill[] playerSkills = new PlayerSkill[5];
+
+    public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
+    //public Dictionary<PlayerSkillType, PlayerSkill> playerSkill = new();
 
 
     private void Awake()
@@ -42,6 +74,8 @@ public class PlayerStatus : MonoBehaviour
     private void Start()
     {
         energyText = energyBar.GetComponentInChildren<TMP_Text>();
+        animationController = GetComponent<AnimationController>();
+        characterEventController = GetComponent<CharacterEventController>();
 
         Init();
 
@@ -49,7 +83,8 @@ public class PlayerStatus : MonoBehaviour
 
         playerState = PlayerState.IDLE;
 
-        animationController = GetComponent<AnimationController>();
+        characterEventController.OnClickEvent += PlusExp;
+        characterEventController.OnClickEvent += PlusEquipmentExp;
     }
 
     private void Init()
@@ -60,6 +95,34 @@ public class PlayerStatus : MonoBehaviour
 
         energyText.gameObject.SetActive(false);
         tired.SetActive(false);
+
+
+        // skill init
+        /*        for (int i = 0; i < skillName.Length; i++)
+                {
+                    PlayerSkillType skillType = (PlayerSkillType)i;
+
+                    PlayerSkill tempPlayerSkill = new PlayerSkill();
+                    tempPlayerSkill.skillName = skillName[i];
+                    tempPlayerSkill.level = 1;
+                    tempPlayerSkill.exp = 0;
+                    tempPlayerSkill.count = 0;
+                    tempPlayerSkill.step = UpgradeEquipmentStep.None;
+
+                    playerSkill.Add(skillType, tempPlayerSkill);
+                }*/
+
+        for (int i = 0; i < equipmentsLevel.Length; i++)
+        {
+            equipmentsLevel[i].Init((PlayerEquipmentType)i);
+        }
+
+        for (int i = 0; i < playerSkills.Length; i++)
+        {
+            playerSkills[i].skillName = skillName[i];
+            playerSkills[i].level = 1;
+            playerSkills[i].exp = 0;
+        }
     }
 
     public void UseEnergy()
@@ -138,4 +201,66 @@ public class PlayerStatus : MonoBehaviour
         GameManager.Instance.SleepOfDay();
     }
 
+    public void PlusEquipmentExp(PlayerEquipmentType equipmentType)
+    {
+        int temp = (int)equipmentType;
+
+        equipmentsLevel[temp].exp += 1 / equipmentsLevel[temp].level;
+        equipmentsLevel[temp].count++;
+
+        if (equipmentsLevel[temp].exp >= 100)
+        {
+            equipmentsLevel[temp].exp = 0;
+            equipmentsLevel[temp].level++;
+            equipmentsLevel[temp].step = (UpgradeEquipmentStep)equipmentsLevel[temp].level - 1;
+        }
+    }
+
+    public void PlusExp(PlayerEquipmentType equipmentType)
+    {
+        /*PlayerSkill currentSkill = playerSkill[skillType];
+        currentSkill.exp += 1 / currentSkill.level;
+        currentSkill.count++;
+
+        if(currentSkill.exp >= 100)
+        {
+            currentSkill.exp = 0;
+            currentSkill.level++;
+            currentSkill.step = (UpgradeEquipmentStep)currentSkill.level - 1;
+        }    */
+
+        PlayerSkillType skillType = new();
+
+        switch (equipmentType)
+        {
+            case PlayerEquipmentType.PickUp:
+            case PlayerEquipmentType.Hoe:
+            case PlayerEquipmentType.Water:
+                skillType = PlayerSkillType.Farming;
+                break;
+            case PlayerEquipmentType.Axe:
+                skillType = PlayerSkillType.Felling;
+                break;
+            case PlayerEquipmentType.PickAxe:
+                skillType = PlayerSkillType.Mining;
+                break;
+            case PlayerEquipmentType.Sword:
+                skillType = PlayerSkillType.Battle;
+                break;
+            case PlayerEquipmentType.FishingRod:
+                skillType = PlayerSkillType.Fishing;
+                break;
+        }
+
+
+        int temp = (int)skillType;
+
+        playerSkills[temp].exp += 1 / playerSkills[temp].level;
+
+        if (playerSkills[temp].exp >= 100)
+        {
+            playerSkills[temp].exp = 0;
+            playerSkills[temp].level++;
+        }
+    }
 }
