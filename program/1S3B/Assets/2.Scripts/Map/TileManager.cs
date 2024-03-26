@@ -31,14 +31,8 @@ public class CropData
         cropObj = go;
         cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
-    }
-
-    public void SortingOrderSetting(Vector3Int target)
-    {
-        if (target.y < 0)
-            cropRenderer.sortingOrder = (target.y * -1) + 100;
-        else
-            cropRenderer.sortingOrder = 100 - target.y;
+        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 10 * -1);
+        cropRenderer.sortingLayerName = "Seed";
     }
 }
 
@@ -124,7 +118,6 @@ public class TileManager : MonoBehaviour
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
         tempcropData.Init(cropID, cropDatabase, go);
-        tempcropData.SortingOrderSetting(target);
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
@@ -176,8 +169,6 @@ public class TileManager : MonoBehaviour
 
     public void Sleep()
     {
-        
-
         foreach (var (cell, tempPlantData) in croptData)
         {
             tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
@@ -199,8 +190,11 @@ public class TileManager : MonoBehaviour
                 else
                     tempPlantData.cropRenderer.sprite = tempPlantData.plantCrop.SpriteList[temp];
 
+                if (temp != 0)
+                    tempPlantData.cropRenderer.sortingLayerName = "Default";
+
                 // 최대 인덱스를 넘어가지않게
-                //마지막인덱스때 콜리더생성 or 타일맵에 투명타일생성 or tag생성(두둥)
+                // 마지막인덱스때 콜리더생성 or 타일맵에 투명타일생성 or tag생성(두둥)
                 // 총 자라는 시간 % 단계 스프라이트 = 비율 맞춰서 비율 int로 변경한만큼 스프라이트변경
             }
         }

@@ -50,7 +50,7 @@ public class PlayerStatus : MonoBehaviour
 
         Init();
 
-        playerSpeed = 10f;
+        playerSpeed = 7f;
 
         playerState = PlayerState.IDLE;
 

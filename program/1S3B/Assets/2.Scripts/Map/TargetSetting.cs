@@ -15,8 +15,10 @@ public class TargetSetting : MonoBehaviour
     public GameObject playerObj;
     public GameObject targetSprite;
 
-    private Vector3Int playerCellPosition;
+    [HideInInspector] public Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
+
+
 
     private void Start()
     {
