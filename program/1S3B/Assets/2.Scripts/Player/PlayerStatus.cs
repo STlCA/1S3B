@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Constants;
 
-
+[System.Serializable]
 public class PlayerSkill
 {
     public string skillName;
@@ -13,6 +13,7 @@ public class PlayerSkill
     public float exp;
 }
 
+[System.Serializable]
 public class PlayerEquimentLevel
 {
     public PlayerEquipmentType equimentType;

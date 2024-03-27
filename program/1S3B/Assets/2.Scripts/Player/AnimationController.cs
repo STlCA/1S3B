@@ -110,20 +110,7 @@ public class AnimationController : AnimationBase
             {
                 anim.SetBool("isStart", true);
             }
-            //animator[1].SetFloat("saveX", 0);
-            //animator[1].SetFloat("saveY", -1);
-        }
-        //else
-        //{
-        //    foreach (var anim in animator)
-        //    {
-        //        anim.SetFloat("saveX", animator[0].GetFloat("saveX"));
-        //        anim.SetFloat("saveY", animator[0].GetFloat("saveY"));
-        //    }
-        //
-        //    //animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
-        //    //animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
-        //}
+        }        
 
         switch (equipmentType)
         {

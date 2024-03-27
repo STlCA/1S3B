@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a73c3b687645541b8ca20986cf224e, type: 3}
+  m_Name: VSSettings
+  m_EditorClassIdentifier: 
+  editPivot: 1
+  editBorders: 1
+  editRect: 1
+  hoverTextSize: 12
+  hoverFontStyle: 1
+  spritePanelSettings:
+    idColumn:
+      isVisible: 1
+      minColumnWidth: 36
+      isElastic: 0
+      useIcon: 0
+      shortName: ID
+      longName: ID
+      icon: {fileID: 2800000, guid: b1076b5f757981b4ab179f8e531fc199, type: 3}
+    nameColumn:
+      isVisible: 1
+      minColumnWidth: 150
+      isElastic: 1
+      useIcon: 0
+      shortName: Name
+      longName: Name
+      icon: {fileID: 2800000, guid: e22202fe22fdbb244b7bd56f2d6fa56c, type: 3}
+    xColumn:
+      isVisible: 1
+      minColumnWidth: 36
+      isElastic: 0
+      useIcon: 0
+      shortName: X
+      longName: X
+      icon: {fileID: 2800000, guid: 34649710421e2a84baea4afa8559076b, type: 3}
+    yColumn:
+      isVisible: 1
+      minColumnWidth: 36
+      isElastic: 0
+      useIcon: 0
+      shortName: Y
+      longName: Y
+      icon: {fileID: 2800000, guid: 891cf6fc10ecfa644a93cb1974f6663e, type: 3}
+    widthColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: Wid
+      longName: Width
+      icon: {fileID: 2800000, guid: 4c8fa45efc82616439f6412878b8ae4c, type: 3}
+    heightColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: Hei
+      longName: Height
+      icon: {fileID: 2800000, guid: f387419fee99ae344b34bfe0699ea7a6, type: 3}
+    borderLColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: B L
+      longName: Border L
+      icon: {fileID: 2800000, guid: 4756345ff7d69554592b683b9bda290b, type: 3}
+    borderTColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: B T
+      longName: Border T
+      icon: {fileID: 2800000, guid: d2ec3179a095fb84c90c9d69bdc7200f, type: 3}
+    borderRColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: B R
+      longName: Border R
+      icon: {fileID: 2800000, guid: 634f9908583c26941ab3e3ccb47db328, type: 3}
+    borderBColumn:
+      isVisible: 1
+      minColumnWidth: 28
+      isElastic: 0
+      useIcon: 1
+      shortName: B B
+      longName: Border B
+      icon: {fileID: 2800000, guid: c32e8de7e95ccc241b6b2525146b99b0, type: 3}
+    pivotColumn:
+      isVisible: 1
+      minColumnWidth: 36
+      isElastic: 0
+      useIcon: 1
+      shortName: Pivot
+      longName: Pivot
+      icon: {fileID: 2800000, guid: 023b5bda643e87d48ae72433ac665664, type: 3}
+    pivotXColumn:
+      isVisible: 1
+      minColumnWidth: 44
+      isElastic: 0
+      useIcon: 1
+      shortName: P X
+      longName: Pivot X
+      icon: {fileID: 2800000, guid: 8e913a5fa65a1564cbb406a6f2f79724, type: 3}
+    pivotYColumn:
+      isVisible: 1
+      minColumnWidth: 44
+      isElastic: 0
+      useIcon: 1
+      shortName: P Y
+      longName: Pivot Y
+      icon: {fileID: 2800000, guid: 9dcfe3f53d7e6fe4a97ac24e12b9ceac, type: 3}
+    pivotSettings:
+      topLeft: {fileID: 2800000, guid: 8db1d3422a03f654d99f2cbcf1a04e6b, type: 3}
+      topCenter: {fileID: 2800000, guid: a2ae3b490ef3d3645a718226b94bc672, type: 3}
+      topRight: {fileID: 2800000, guid: b3cca1912447b7840aee6fc984c272b7, type: 3}
+      leftCenter: {fileID: 2800000, guid: 57e384e3bd630864e8db7488a2167db8, type: 3}
+      center: {fileID: 2800000, guid: 023b5bda643e87d48ae72433ac665664, type: 3}
+      rightCenter: {fileID: 2800000, guid: 084c6055bec9f0d419399e562dadbac0, type: 3}
+      bottomLeft: {fileID: 2800000, guid: e41c4bde755a1d947a740faab9131b08, type: 3}
+      bottomCenter: {fileID: 2800000, guid: e6b9bde4a64341646a8b0f848fddce22, type: 3}
+      bottomRight: {fileID: 2800000, guid: 90a87a3a19a790f469b119e0a430c25e, type: 3}
+      custom: {fileID: 2800000, guid: df8d6cbf8e6d94e42b498566ea373a02, type: 3}

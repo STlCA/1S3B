@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public class PlayerInputController : CharacterEventController
 {
     private Camera mainCamera;
+    private bool isMove;
     private bool isUseEnergy;
 
     private void Start()
@@ -31,9 +32,15 @@ public class PlayerInputController : CharacterEventController
 
         //움직이면 타겟안보임
         if (moveInput == Vector2.zero)
+        {
+            isMove = false;
             GameManager.Instance.targetSetting.gameObject.SetActive(true);
+        }
         else
+        {
+            isMove = true;
             GameManager.Instance.targetSetting.gameObject.SetActive(false);
+        }
     }
 
     public void OnMouse(InputValue value)
@@ -61,26 +68,44 @@ public class PlayerInputController : CharacterEventController
 
         if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
         {
-            isUseEnergy = true;
-            CallClickEvent(PlayerEquipmentType.Hoe);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Hoe);
+            }
+
             GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsPlantable(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
 
-            
+
             GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsHarvest(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            isUseEnergy = true;
-            CallClickEvent(PlayerEquipmentType.PickUp);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickUp);
+            }
+
             GameManager.Instance.tileManager.Harvest(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            isUseEnergy = true;
-            CallClickEvent(PlayerEquipmentType.Water);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Water);
+            }
+
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
 
