@@ -38,18 +38,29 @@ public class AnimationController : AnimationBase
     public void MoveAnimation(Vector2 direction)
     {
         if (animator[0].GetBool("isStart") == false)
-            animator[0].SetBool("isStart", true);
+        {
+            foreach (var anim in animator)
+            {
+                anim.SetBool("isStart", true);
+            }
+        }
 
         if (direction.magnitude <= 0f)
         {
-            animator[0].SetFloat("saveX", animator[0].GetFloat("inputX"));
-            animator[0].SetFloat("saveY", animator[0].GetFloat("inputY"));
+            foreach (var anim in animator)
+            {
+                anim.SetFloat("saveX", animator[0].GetFloat("inputX"));
+                anim.SetFloat("saveY", animator[0].GetFloat("inputY"));
+            }       
         }
 
-        animator[0].SetFloat("inputX", direction.x);
-        animator[0].SetFloat("inputY", direction.y);
+        foreach(var anim in animator)
+        {
+            anim.SetFloat("inputX", direction.x);
+            anim.SetFloat("inputY", direction.y);
 
-        animator[0].SetBool("isWalking", direction.magnitude > 0f);
+            anim.SetBool("isWalking", direction.magnitude > 0f);
+        }
     }
 
     public void StopAnimation(bool value)
@@ -64,19 +75,25 @@ public class AnimationController : AnimationBase
                 oneTimeSave = true;
             }
 
-            animator[0].SetBool("isWalking", false);
+            foreach (var anim in animator)
+            {
+                anim.SetBool("isWalking", false);
 
-            animator[0].speed = 0;
+                anim.speed = 0;
 
-            animator[0].SetFloat("saveX", saveDirection.x);
-            animator[0].SetFloat("saveY", saveDirection.y);
+                anim.SetFloat("saveX", saveDirection.x);
+                anim.SetFloat("saveY", saveDirection.y);
+            }         
         }
         else
         {
             GameManager.Instance.sceneChangeManager.isReAnim = false;
             oneTimeSave = false;
 
-            animator[0].speed = 1;
+            foreach (var anim in animator)
+            {
+                anim.speed = 1;
+            }
 
             if (animator[0].GetFloat("inputX") != 0 || animator[0].GetFloat("inputY") != 0)
             {
@@ -89,29 +106,50 @@ public class AnimationController : AnimationBase
     {
         if (animator[0].GetFloat("saveX") == 0 && animator[0].GetFloat("saveY") == 0)
         {
-            animator[0].SetBool("isStart", true);
-            animator[1].SetFloat("saveX", 0);
-            animator[1].SetFloat("saveY", -1);
+            foreach (var anim in animator)
+            {
+                anim.SetBool("isStart", true);
+            }
+            //animator[1].SetFloat("saveX", 0);
+            //animator[1].SetFloat("saveY", -1);
         }
-        else
-        {
-            animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
-            animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
-        }
+        //else
+        //{
+        //    foreach (var anim in animator)
+        //    {
+        //        anim.SetFloat("saveX", animator[0].GetFloat("saveX"));
+        //        anim.SetFloat("saveY", animator[0].GetFloat("saveY"));
+        //    }
+        //
+        //    //animator[1].SetFloat("saveX", animator[0].GetFloat("saveX"));
+        //    //animator[1].SetFloat("saveY", animator[0].GetFloat("saveY"));
+        //}
 
         switch (equipmentType)
         {
-            case PlayerEquipmentType.PickUp:
-                animator[0].SetTrigger("usePickUp");
+            case PlayerEquipmentType.PickUp:                
+                foreach(var anim in animator)
+                {
+                    anim.SetTrigger("usePickUp");
+                }
+                //animator[0].SetTrigger("usePickUp");
                 //animator[1].SetTrigger("usePickUp");
                 break;
             case PlayerEquipmentType.Hoe:
-                animator[0].SetTrigger("useHoe");
-                animator[1].SetTrigger("useHoe");
+                foreach (var anim in animator)
+                {
+                    anim.SetTrigger("useHoe");
+                }
+                //animator[0].SetTrigger("useHoe");
+                //animator[1].SetTrigger("useHoe");
                 break;
             case PlayerEquipmentType.Water:
-                animator[0].SetTrigger("useWater");
-                animator[1].SetTrigger("useWater");
+                foreach (var anim in animator)
+                {
+                    anim.SetTrigger("useWater");
+                }
+                //animator[0].SetTrigger("useWater");
+                //animator[1].SetTrigger("useWater");
                 break;
             case PlayerEquipmentType.Axe:
             case PlayerEquipmentType.PickAxe:

@@ -20,15 +20,6 @@ public class PlayerEquimentLevel
     public float exp;
     public int count;
     public UpgradeEquipmentStep step;
-
-    public void Init(PlayerEquipmentType equimentType)
-    {
-        this.equimentType = equimentType;
-        level = 1;
-        exp = 0;
-        count = 0;
-        step = UpgradeEquipmentStep.None;
-    }
 }
 
 public class PlayerStatus : MonoBehaviour
@@ -90,7 +81,7 @@ public class PlayerStatus : MonoBehaviour
     private void Init()
     {
         energyBar.maxValue = playerMaxEnergy;
-        energyBar.minValue = 0;        
+        energyBar.minValue = 0;
         EnergyUpdate(playerMaxEnergy);
 
         energyText.gameObject.SetActive(false);
@@ -114,11 +105,18 @@ public class PlayerStatus : MonoBehaviour
 
         for (int i = 0; i < equipmentsLevel.Length; i++)
         {
-            equipmentsLevel[i].Init((PlayerEquipmentType)i);
+            equipmentsLevel[i] = new PlayerEquimentLevel();
+            equipmentsLevel[i].equimentType = ((PlayerEquipmentType)i);
+            equipmentsLevel[i].level = 1;
+            equipmentsLevel[i].exp = 0;
+            equipmentsLevel[i].count = 0; ;
+            equipmentsLevel[i].step = UpgradeEquipmentStep.None;
+
         }
 
         for (int i = 0; i < playerSkills.Length; i++)
         {
+            playerSkills[i] = new PlayerSkill();
             playerSkills[i].skillName = skillName[i];
             playerSkills[i].level = 1;
             playerSkills[i].exp = 0;
@@ -135,7 +133,7 @@ public class PlayerStatus : MonoBehaviour
             isTired = true;
             tired.SetActive(true);
         }
-        else if(playerEnergy <= -20 && playerState == PlayerState.IDLE)
+        else if (playerEnergy <= -20 && playerState == PlayerState.IDLE)
         {
             playerState = PlayerState.TIRED;
             animationController.DeathAnimation(true);
@@ -149,7 +147,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyReset(bool status = false)
     {
-        if(status == true)
+        if (status == true)
         {
             playerState = PlayerState.IDLE;
             playerSpeed = 10f;
@@ -197,7 +195,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void DeathSleep()
     {
-        
+
         GameManager.Instance.SleepOfDay();
     }
 

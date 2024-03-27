@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,7 +121,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: long_straight_die_26
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4effcf9d4f862be42830f6ba0a97e4da
+      internalID: -1773820070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: long_straight_die_27
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6be66b04a540bf4ba694bc3c13be4e8
+      internalID: -9444047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +174,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      long_straight_die_0: 1920553021
+      long_straight_die_1: -172382479
+      long_straight_die_10: 113242886
+      long_straight_die_11: 1054617710
+      long_straight_die_12: -2058722784
+      long_straight_die_13: -1878925026
+      long_straight_die_14: 736402144
+      long_straight_die_15: 1665798360
+      long_straight_die_16: -2020930404
+      long_straight_die_17: -1537622564
+      long_straight_die_18: -1972837152
+      long_straight_die_19: -1394975298
+      long_straight_die_2: 999563424
+      long_straight_die_20: -240548899
+      long_straight_die_21: 1252127666
+      long_straight_die_22: 209956923
+      long_straight_die_23: -1445136101
+      long_straight_die_24: -1977175521
+      long_straight_die_25: -972073917
+      long_straight_die_26: -1773820070
+      long_straight_die_27: -9444047
+      long_straight_die_3: 854510337
+      long_straight_die_4: 742685599
+      long_straight_die_5: 1532099851
+      long_straight_die_6: -1551231658
+      long_straight_die_7: -625211824
+      long_straight_die_8: -377005115
+      long_straight_die_9: -39662773
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
