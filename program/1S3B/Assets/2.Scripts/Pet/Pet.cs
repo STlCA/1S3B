@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class Pet : MonoBehaviour
     {
         Move();
         Rotate();
+        SortingOrderChange();
     }
 
     private void Move()
@@ -50,5 +52,10 @@ public class Pet : MonoBehaviour
         direction = (player.transform.position - this.transform.position);
         float rotatePet = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         petRenderer.flipX = Mathf.Abs(rotatePet) > 90f;
+    }
+
+    private void SortingOrderChange()
+    {
+        petRenderer.sortingOrder = (int)(transform.position.y * 100 * -1);
     }
 }

@@ -26,7 +26,7 @@ public class RecoveryObjects : MonoBehaviour
         if (inRecoveryZone == true)
             RecoveryTimeCheck();
 
-        if (lightTime >= 5)
+        if (lightTime >= 10)
             Destroy(gameObject);
 
         if (recoveryType == RecoveryType.Bonfire)
