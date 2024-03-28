@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text talkText;
     public GameObject scanObject;
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +44,9 @@ public class GameManager : MonoBehaviour
         weatherSystem = GetComponentInChildren<WeatherSystem>();
 
         DontDestroyOnLoad(gameObject);
+
+        sceneChangeManager = GetComponentInChildren<SceneChangeManager>();
+        sceneChangeManager.Init(this);
 
     }
 

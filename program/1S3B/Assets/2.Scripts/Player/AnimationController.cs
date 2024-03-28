@@ -10,6 +10,8 @@ using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
 {
+    private SceneChangeManager sceneChangeManager;
+
     private Vector2 saveDirection = Vector2.zero;
     private bool oneTimeSave = false;
 
@@ -24,24 +26,27 @@ public class AnimationController : AnimationBase
         //animator[1].enabled = false;
         //sceneChangeManager = scmGo.GetComponent<SceneChangeManager>();
         //sceneChangeManager.OnChangeEvent += StopAnimation;
+
+        sceneChangeManager = GameManager.Instance.sceneChangeManager;
+        sceneChangeManager.mapChangeAction += StopAnimation;
     }
 
-    private void Update()
-    {
-        if (GameManager.Instance.sceneChangeManager.isMapChange == true)
-            StopAnimation(true);
-
-        if (GameManager.Instance.sceneChangeManager.isMapChange == false && GameManager.Instance.sceneChangeManager.isReAnim == true)
-            StopAnimation(false);
-    }
+    //private void Update()
+    //{
+    //    if (GameManager.Instance.sceneChangeManager.isMapChange == true)
+    //        StopAnimation(true);
+    //
+    //    if (GameManager.Instance.sceneChangeManager.isMapChange == false && GameManager.Instance.sceneChangeManager.isReAnim == true)
+    //        StopAnimation(false);
+    //}
 
     public void MoveAnimation(Vector2 direction)
     {
-        if (animator[0].GetBool("isStart") == false)
+        if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
             foreach (var anim in animator)
             {
-                anim.SetBool("isStart", true);
+                anim.SetBool(ConstantsString.IsStart, true);
             }
         }
 
@@ -49,17 +54,17 @@ public class AnimationController : AnimationBase
         {
             foreach (var anim in animator)
             {
-                anim.SetFloat("saveX", animator[0].GetFloat("inputX"));
-                anim.SetFloat("saveY", animator[0].GetFloat("inputY"));
+                anim.SetFloat(ConstantsString.SaveX, animator[0].GetFloat(ConstantsString.InputX));
+                anim.SetFloat(ConstantsString.SaveY, animator[0].GetFloat(ConstantsString.InputY));
             }       
         }
 
         foreach(var anim in animator)
         {
-            anim.SetFloat("inputX", direction.x);
-            anim.SetFloat("inputY", direction.y);
+            anim.SetFloat(ConstantsString.InputX, direction.x);
+            anim.SetFloat(ConstantsString.InputY, direction.y);
 
-            anim.SetBool("isWalking", direction.magnitude > 0f);
+            anim.SetBool(ConstantsString.IsWalking, direction.magnitude > 0f);
         }
     }
 
@@ -69,25 +74,25 @@ public class AnimationController : AnimationBase
         {
             if (oneTimeSave == false)
             {
-                saveDirection.x = animator[0].GetFloat("inputX");
-                saveDirection.y = animator[0].GetFloat("inputY");
+                saveDirection.x = animator[0].GetFloat(ConstantsString.InputX);
+                saveDirection.y = animator[0].GetFloat(ConstantsString.InputY);
 
                 oneTimeSave = true;
             }
 
             foreach (var anim in animator)
             {
-                anim.SetBool("isWalking", false);
+                anim.SetBool(ConstantsString.IsWalking, false);
 
                 anim.speed = 0;
 
-                anim.SetFloat("saveX", saveDirection.x);
-                anim.SetFloat("saveY", saveDirection.y);
+                anim.SetFloat(ConstantsString.SaveX, saveDirection.x);
+                anim.SetFloat(ConstantsString.SaveY, saveDirection.y);
             }         
         }
-        else
+        else if(value == false) 
         {
-            GameManager.Instance.sceneChangeManager.isReAnim = false;
+            //GameManager.Instance.sceneChangeManager.isReAnim = false;
             oneTimeSave = false;
 
             foreach (var anim in animator)
@@ -95,66 +100,54 @@ public class AnimationController : AnimationBase
                 anim.speed = 1;
             }
 
-            if (animator[0].GetFloat("inputX") != 0 || animator[0].GetFloat("inputY") != 0)
-            {
+            if (animator[0].GetFloat(ConstantsString.InputX) != 0 || animator[0].GetFloat(ConstantsString.InputY) != 0)
                 MoveAnimation(saveDirection);
-            }
         }
     }
 
     public void UseAnimation(PlayerEquipmentType equipmentType, Vector2 pos)
     {
-        if (animator[0].GetFloat("saveX") == 0 && animator[0].GetFloat("saveY") == 0)
+        if (animator[0].GetFloat(ConstantsString.SaveX) == 0 && animator[0].GetFloat(ConstantsString.SaveY) == 0)
         {
             foreach (var anim in animator)
             {
-                anim.SetBool("isStart", true);
+                anim.SetBool(ConstantsString.IsStart, true);
             }
         }
 
         foreach (var anim in animator)
         {
-            anim.SetFloat("saveX", pos.x);
-            anim.SetFloat("saveY", pos.y);
+            anim.SetFloat(ConstantsString.SaveX, pos.x);
+            anim.SetFloat(ConstantsString.SaveY, pos.y);
         }
 
-        switch (equipmentType)
+        foreach (var anim in animator)
         {
-            case PlayerEquipmentType.PickUp:                
-                foreach(var anim in animator)
-                {
+            switch (equipmentType)
+            {
+                case PlayerEquipmentType.PickUp:
                     anim.SetTrigger("usePickUp");
-                }
-                //animator[0].SetTrigger("usePickUp");
-                //animator[1].SetTrigger("usePickUp");
-                break;
-            case PlayerEquipmentType.Hoe:
-                foreach (var anim in animator)
-                {
+                    break;
+                case PlayerEquipmentType.Hoe:
                     anim.SetTrigger("useHoe");
-                }
-                //animator[0].SetTrigger("useHoe");
-                //animator[1].SetTrigger("useHoe");
-                break;
-            case PlayerEquipmentType.Water:
-                foreach (var anim in animator)
-                {
+                    break;
+                case PlayerEquipmentType.Water:
                     anim.SetTrigger("useWater");
-                }
-                //animator[0].SetTrigger("useWater");
-                //animator[1].SetTrigger("useWater");
-                break;
-            case PlayerEquipmentType.Axe:
-            case PlayerEquipmentType.PickAxe:
-            case PlayerEquipmentType.Sword:
-            case PlayerEquipmentType.FishingRod:
-                break;
+                    break;
+                case PlayerEquipmentType.Axe:
+                case PlayerEquipmentType.PickAxe:
+                case PlayerEquipmentType.Sword:
+                case PlayerEquipmentType.FishingRod:
+                    break;
+            }
         }
     }
 
     public void DeathAnimation(bool value)
     {
-        animator[0].SetBool("isDeath", value);
-        animator[1].SetBool("isDeath", value);
+        foreach (var anim in animator)
+        {
+            anim.SetBool(ConstantsString.IsDeath, value);
+        }
     }
 }

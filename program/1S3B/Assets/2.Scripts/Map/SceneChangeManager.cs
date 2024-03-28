@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,9 @@ using UnityEngine.UI;
 
 public class SceneChangeManager : MonoBehaviour
 {
-    public Image fadeImage;
+    private GameManager gameManager;
 
-    [HideInInspector] public bool isMapChange = false;
-    [HideInInspector] public bool isReAnim = false;
+    public Image fadeImage;
 
     private GameObject startCam;
     private GameObject endCam;
@@ -19,19 +19,32 @@ public class SceneChangeManager : MonoBehaviour
     private float waitTime = 1f;
     private float time = 0f;
 
+    public Action<bool> mapChangeAction;
+
     //public delegate void OnChangeDel(bool value);
     //public event OnChangeDel OnChangeEvent;
-
-    private void Start()
-    {
-        GameManager.Instance.sceneChangeManager = this;
-    }
-
     //public void CallChangeEvent(bool value)
     //{
     //    isMapChange = value;
     //    OnChangeEvent?.Invoke(value);
     //}
+
+    public void Init(GameManager gm)
+    {
+        gameManager = gm;
+        gameManager.sceneChangeManager = this;
+    }
+
+    public void MapChangeSetting(GameObject startCam, GameObject endCam, float fadeTime, float waitTime)
+    {
+        this.startCam = startCam;
+        this.endCam = endCam;
+        this.fadeTime = fadeTime;
+        this.waitTime = waitTime;
+
+        StartCoroutine("MapChange");
+    }
+
     public void FadeFlowStart(float fadeTime, float waitTime)
     {
         this.fadeTime = fadeTime;
@@ -40,40 +53,7 @@ public class SceneChangeManager : MonoBehaviour
         StartCoroutine("FadeFlow");
     }
 
-    public IEnumerator FadeFlow()
-    {
-        fadeImage.gameObject.SetActive(true);
-        Color alpha = fadeImage.color;
-        time = 0f;
-
-        Time.timeScale = 0.0f;
-
-        while(alpha.a <1f)
-        {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(0,1,time);
-            fadeImage.color = alpha;
-            yield return null;
-        }
-
-        time = 0f;
-
-        Time.timeScale = 1f;
-
-        yield return new WaitForSeconds(waitTime);
-
-        while (alpha.a > 0f)
-        {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(1, 0, time);
-            fadeImage.color = alpha;
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);        
-    }
-
-    public IEnumerator FadeIn()//가려지게
+    /*    public IEnumerator FadeIn()//가려지게
     {
         fadeImage.gameObject.SetActive(true);
 
@@ -113,17 +93,8 @@ public class SceneChangeManager : MonoBehaviour
         }
 
         StartCoroutine("FadeOut");
-    }
-
-    public void MapChangeSetting(GameObject startCam, GameObject endCam)
-    {
-        this.startCam = startCam;
-        this.endCam = endCam;
-
-        StartCoroutine("MapChange");
-    }
-
-    public IEnumerator MapChange()
+    }*/
+    /*    public IEnumerator MapChange()
     {
         fadeImage.gameObject.SetActive(true);
 
@@ -151,8 +122,84 @@ public class SceneChangeManager : MonoBehaviour
         isMapChange = false;
         isReAnim = true;
         fadeImage.gameObject.SetActive(false);
+    }*/
+
+    public IEnumerator FadeFlow()
+    {
+        fadeImage.gameObject.SetActive(true);
+        Color alpha = fadeImage.color;
+        time = 0f;
+
+        Time.timeScale = 0.0f;
+
+        while(alpha.a <1f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(0,1,time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        time = 0f;
+
+        Time.timeScale = 1f;
+
+        yield return new WaitForSeconds(waitTime);
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false);        
     }
 
+    public IEnumerator MapChange()
+    {
+        fadeImage.gameObject.SetActive(true);
+        Color alpha = fadeImage.color;
+        time = 0f;
+
+        Time.timeScale = 0.0f;
+
+        while (alpha.a < 1f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(0, 1, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        time = 0f;
+        Time.timeScale = 1f;
+
+        PlayerStatus.instance.ChangePosition();
+        endCam.SetActive(true);
+        startCam.SetActive(false);
+
+
+        yield return new WaitForSeconds(waitTime);
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false);
+
+        CallMapChangeEvent(false);
+    }
+
+    public void CallMapChangeEvent(bool isChange)
+    {
+        mapChangeAction?.Invoke(isChange);
+    }
 
     public IEnumerator SleepFadeInOut()
     {
@@ -180,5 +227,4 @@ public class SceneChangeManager : MonoBehaviour
 
         fadeImage.gameObject.SetActive(false);
     }
-
 }
