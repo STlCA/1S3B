@@ -13,6 +13,7 @@ public class ObjectLayerSetting : MonoBehaviour
     private float fadeTime = 1f;
 
 
+
     private void Start()
     {
         objectSR = GetComponent<SpriteRenderer>();

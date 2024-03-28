@@ -1,0 +1,593 @@
+fileFormatVersion: 2
+guid: 265589e53cf5f6141b523123118aa92d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Carrot0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 578
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5c7fe73b36bf149a70dfc3b4be51d4
+      internalID: -307393511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tomato0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 563
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956f663b6b3de6d49a93c4af449ded04
+      internalID: 51105890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strawberry0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 546
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3838aa0e0fed5147a9870be86d692b6
+      internalID: -934577039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pumpkin0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 529
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a08f5d7fa7deb65469bda3d7079d8e69
+      internalID: -1359903802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Corn0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 515
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def7329f1b1821e42aa2a32c7e294f96
+      internalID: -1625629995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potato0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 498
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4608dddce26ea224690840c6a8ee9021
+      internalID: -659698786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Watermelon0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 482
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd6eb55fd3c149344b8f7a55a284c9a7
+      internalID: -432000996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Radish0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 466
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8281ab76d1a8c0149afadd861d978220
+      internalID: -2073541623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lettuce0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 448
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2aa97703dffd1d46a2fb0202c90ead7
+      internalID: -2067236320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wheat0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d4c6d306dedd641b5a82534a63a332
+      internalID: 281879117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Eggplant0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 417
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf1d99faa8a8f948b01b230979fd18e
+      internalID: -1573287302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Carrot0: -307393511
+      Carrot1: -1931835285
+      Carrot2: -304187062
+      Carrot3: -654155986
+      Carrot4: 1729066980
+      Carrot5: -1026192165
+      Corn0: -1625629995
+      Corn1: -1653733736
+      Corn2: -2033096857
+      Corn3: 1178293816
+      Corn4: 1805878611
+      Corn5: 2136697593
+      Eggplant0: -1573287302
+      Eggplant1: -2031968680
+      Eggplant2: 1669226098
+      Eggplant3: -539147873
+      Eggplant4: 1469178416
+      Eggplant5: 582183532
+      Lettuce0: -2067236320
+      Lettuce1: 982989245
+      Lettuce2: -423062883
+      Lettuce3: 674345375
+      Lettuce4: -852000848
+      Lettuce5: -1454412155
+      Potato0: -659698786
+      Potato1: 1113801400
+      Potato2: 915354539
+      Potato3: 1149737958
+      Potato4: 16063
+      Potato5: -1215858385
+      Pumpkin0: -1359903802
+      Pumpkin1: 802812164
+      Pumpkin2: 1299869833
+      Pumpkin3: 1703062973
+      Pumpkin4: -390388053
+      Pumpkin5: -1035033578
+      Radish0: -2073541623
+      Radish1: 838766415
+      Radish2: 360794125
+      Radish3: -916264674
+      Radish4: 741791131
+      Radish5: -925821051
+      Strawberry0: -934577039
+      Strawberry1: -1961350784
+      Strawberry2: -1090990891
+      Strawberry3: -2011963073
+      Strawberry4: 1591698634
+      Strawberry5: -1251641333
+      Tomato0: 51105890
+      Tomato1: 63077498
+      Tomato2: 1395523970
+      Tomato3: 2019465545
+      Tomato4: 732812475
+      Tomato5: 545036195
+      Watermelon0: -432000996
+      Watermelon1: -1173022972
+      Watermelon2: -287416381
+      Watermelon3: 2092260294
+      Watermelon4: -550318779
+      Watermelon5: -1183300032
+      Wheat0: 281879117
+      Wheat1: -1077521514
+      Wheat2: -1302748938
+      Wheat3: -442494924
+      Wheat4: -2131165707
+      Wheat5: -1610468715
+      crops_100: 689774361
+      crops_101: 1918696950
+      crops_102: 974861709
+      crops_103: 550073316
+      crops_104: 90838744
+      crops_105: -339193049
+      crops_106: -1754510324
+      crops_107: -291065651
+      crops_108: -1439921687
+      crops_109: -554995070
+      crops_110: 2043764343
+      crops_111: 1786575385
+      crops_112: -276428125
+      crops_113: 994178364
+      crops_114: -1662853852
+      crops_115: 1080978989
+      crops_116: 1365062397
+      crops_117: 117013449
+      crops_118: -2052547636
+      crops_119: 39560697
+      crops_120: -1686434809
+      crops_121: -940232831
+      crops_122: -2010542140
+      crops_123: 1685733263
+      crops_124: 1429170992
+      crops_125: -407176045
+      crops_126: -1615641130
+      crops_127: 2055628183
+      crops_128: -1223086721
+      crops_129: -1868147557
+      crops_130: 1791223886
+      crops_131: -1977778806
+      crops_132: -1558951982
+      crops_133: 744641296
+      crops_134: 1319213634
+      crops_135: 823200311
+      crops_136: -1030097690
+      crops_137: 2006960998
+      crops_138: -1692598469
+      crops_139: 1508882691
+      crops_140: -756153672
+      crops_141: 122948488
+      crops_142: -1061464559
+      crops_143: 1634009256
+      crops_144: 1042010537
+      crops_145: -90850
+      crops_146: 812767542
+      crops_147: 681136149
+      crops_148: 722622756
+      crops_149: -948857279
+      crops_150: 503233324
+      crops_151: 554673152
+      crops_152: -794732958
+      crops_153: -1321244449
+      crops_154: -1733993521
+      crops_155: 1490134218
+      crops_156: -1794890431
+      crops_157: 1013162635
+      crops_158: 983142738
+      crops_159: -1055180546
+      crops_160: 1872768472
+      crops_161: -1229875464
+      crops_162: -283465307
+      crops_163: 1263697766
+      crops_164: -1588070729
+      crops_165: 1695456657
+      crops_166: 1141925857
+      crops_167: 121513291
+      crops_168: -701329732
+      crops_169: -944515675
+      crops_170: -1096409157
+      crops_171: -522480262
+      crops_172: 50353274
+      crops_173: -128952581
+      crops_174: 778387614
+      crops_175: 2025737366
+      crops_176: -1866672250
+      crops_177: -1303693817
+      crops_178: 1907167899
+      crops_179: -1403104765
+      crops_180: -749578415
+      crops_181: 1931439082
+      crops_182: 1658777704
+      crops_183: -1053236135
+      crops_184: 1228831036
+      crops_185: 2052344699
+      crops_186: 1766962838
+      crops_187: -1004023213
+      crops_188: 1801178309
+      crops_189: -925410877
+      crops_190: 301419666
+      crops_191: -1031253730
+      crops_192: -181991337
+      crops_193: 1830774028
+      crops_194: -555097800
+      crops_195: 214135037
+      crops_66: -513999378
+      crops_67: 1113800106
+      crops_68: 1854554756
+      crops_69: 1625318132
+      crops_70: 1247658557
+      crops_71: 1531028984
+      crops_72: -796353709
+      crops_73: -1480275588
+      crops_74: 1223308084
+      crops_75: -577421262
+      crops_76: -1391985648
+      crops_77: -1876396433
+      crops_78: 2019316210
+      crops_79: -132570171
+      crops_80: -1096290438
+      crops_81: 484394330
+      crops_82: -440263767
+      crops_83: -555629334
+      crops_84: -1213280920
+      crops_85: -350152046
+      crops_86: -865947486
+      crops_87: -51517831
+      crops_88: 921787123
+      crops_89: -2137402406
+      crops_90: -889808475
+      crops_91: 1296409816
+      crops_92: 1246873133
+      crops_93: -1492494007
+      crops_94: 625348698
+      crops_95: -1265193597
+      crops_96: -2105457065
+      crops_97: -608378145
+      crops_98: 2140970708
+      crops_99: -1845056307
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
