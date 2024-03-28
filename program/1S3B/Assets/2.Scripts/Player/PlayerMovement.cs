@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterEventController _controller;
 
     private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer[] _spriteRenderer;
     private Vector2 _movementDirection = Vector2.zero;
     private Vector2 _saveDirection = Vector2.zero;
 
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<CharacterEventController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -50,7 +50,10 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody2D.velocity = direction;
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
 
-        _spriteRenderer.sortingOrder = (int)(transform.position.y * 10 * -1);
+        for (int i = 0; i < _spriteRenderer.Length; i++)
+        {
+            _spriteRenderer[i].sortingOrder = (int)(transform.position.y * 100 * -1) + i;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

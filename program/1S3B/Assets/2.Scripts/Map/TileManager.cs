@@ -31,7 +31,7 @@ public class CropData
         cropObj = go;
         cropRenderer = cropObj.GetComponent<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
-        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 10 * -1);
+        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 100 * -1);
         cropRenderer.sortingLayerName = "Seed";
     }
 }

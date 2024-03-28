@@ -16,15 +16,18 @@ public class ObjectLayerSetting : MonoBehaviour
     private void Start()
     {
         objectSR = GetComponent<SpriteRenderer>();
-        objectSR.sortingOrder = (int)(transform.position.y * 10 * -1);
+        objectSR.sortingOrder = (int)(transform.position.y * 100 * -1);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.GetComponent<SpriteRenderer>().sortingOrder < objectSR.sortingOrder)
+        if (other.CompareTag("Player"))
         {
-            StopCoroutine("PlusAlpha");
-            MinusAlphaStart();
+            if (ObjectSortingOrderCheck(other) == true)//other들이 다 작으면
+            {
+                StopCoroutine("PlusAlpha");
+                MinusAlphaStart();
+            }
         }
     }
 
@@ -73,5 +76,18 @@ public class ObjectLayerSetting : MonoBehaviour
             objectSR.color = alpha;
             yield return null;
         }
+    }
+
+    private bool ObjectSortingOrderCheck(Collider2D other)
+    {
+        SpriteRenderer[] otherSR = other.GetComponentsInChildren<SpriteRenderer>();
+
+        foreach(SpriteRenderer sr in otherSR)
+        {
+            if (sr.sortingOrder > objectSR.sortingOrder)
+                return false;
+        }
+
+        return true;
     }
 }
