@@ -10,21 +10,22 @@ public class PlayerMovement : MonoBehaviour
     private CharacterEventController _controller;
 
     private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer[] _spriteRenderer;
     private Vector2 _movementDirection = Vector2.zero;
     private Vector2 _saveDirection = Vector2.zero;
 
     [SerializeField] private float speed;
 
-
     private void Awake()
     {
         _controller = GetComponent<CharacterEventController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
-        _controller.OnMoveEvent += Move;        
+        _controller.OnMoveEvent += Move;
     }
 
     private void FixedUpdate()//1초에 50번 일정하게부름 델타타임이 피료가음슴
@@ -48,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody2D.velocity = direction;
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
+
+        for (int i = 0; i < _spriteRenderer.Length; i++)
+        {
+            _spriteRenderer[i].sortingOrder = (int)(transform.position.y * 100 * -1) + i;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

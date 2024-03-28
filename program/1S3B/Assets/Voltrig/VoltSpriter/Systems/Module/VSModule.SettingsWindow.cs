@@ -1,0 +1,1 @@
+﻿//Script renamed to VSSettingsProvider

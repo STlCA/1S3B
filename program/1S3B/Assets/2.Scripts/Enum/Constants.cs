@@ -16,6 +16,48 @@ namespace Constants
         FarmToTown,
         TownToFarm,
     }
+    
+    public enum PlayerMap
+    {
+        Farm,
+        Town,
+        Home
+    }
 
+    public enum PlayerState
+    {
+        IDLE,
+        TIRED,
 
+    }
+
+    public enum PlayerSkillType
+    {
+        Farming,
+        Felling,
+        Mining,
+        Battle,
+        Fishing,
+    }
+
+    public enum PlayerEquipmentType
+    {
+        PickUp,
+        Hoe,
+        Water,
+        Axe,
+        PickAxe,
+        Sword,
+        FishingRod,
+    }
+
+    public enum UpgradeEquipmentStep
+    {
+        None,
+        Copper,
+        Still,
+        Gold,
+        Diamond,
+        Bless,
+    }
 }

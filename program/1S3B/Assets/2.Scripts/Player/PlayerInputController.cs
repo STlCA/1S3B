@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
@@ -9,6 +10,7 @@ using UnityEngine.UIElements;
 public class PlayerInputController : CharacterEventController
 {
     private Camera mainCamera;
+    private bool isMove;
     private bool isUseEnergy;
 
     private void Start()
@@ -30,9 +32,15 @@ public class PlayerInputController : CharacterEventController
 
         //움직이면 타겟안보임
         if (moveInput == Vector2.zero)
+        {
+            isMove = false;
             GameManager.Instance.targetSetting.gameObject.SetActive(true);
+        }
         else
+        {
+            isMove = true;
             GameManager.Instance.targetSetting.gameObject.SetActive(false);
+        }
     }
 
     public void OnMouse(InputValue value)
@@ -54,32 +62,50 @@ public class PlayerInputController : CharacterEventController
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
+        //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
         isUseEnergy = false;
 
         if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
         {
-            isUseEnergy = true;
-            CallClickEvent(1);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Hoe);
+            }
+
             GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsPlantable(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            
-            
+
+
             GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsHarvest(GameManager.Instance.targetSetting.selectCellPosition) == true)
-        //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
         {
-            isUseEnergy = true;
-            CallClickEvent(0);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickUp);
+            }
+
             GameManager.Instance.tileManager.Harvest(GameManager.Instance.targetSetting.selectCellPosition);
         }
         else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
         {
-            isUseEnergy = true;
-            CallClickEvent(2);
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Water);
+            }
+
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
         }
 

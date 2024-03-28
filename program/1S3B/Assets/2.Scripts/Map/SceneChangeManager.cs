@@ -15,6 +15,10 @@ public class SceneChangeManager : MonoBehaviour
     private GameObject startCam;
     private GameObject endCam;
 
+    private float fadeTime = 1f;
+    private float waitTime = 1f;
+    private float time = 0f;
+
     //public delegate void OnChangeDel(bool value);
     //public event OnChangeDel OnChangeEvent;
 
@@ -28,6 +32,46 @@ public class SceneChangeManager : MonoBehaviour
     //    isMapChange = value;
     //    OnChangeEvent?.Invoke(value);
     //}
+    public void FadeFlowStart(float fadeTime, float waitTime)
+    {
+        this.fadeTime = fadeTime;
+        this.waitTime = waitTime;
+
+        StartCoroutine("FadeFlow");
+    }
+
+    public IEnumerator FadeFlow()
+    {
+        fadeImage.gameObject.SetActive(true);
+        Color alpha = fadeImage.color;
+        time = 0f;
+
+        Time.timeScale = 0.0f;
+
+        while(alpha.a <1f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(0,1,time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        time = 0f;
+
+        Time.timeScale = 1f;
+
+        yield return new WaitForSeconds(waitTime);
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false);        
+    }
 
     public IEnumerator FadeIn()//가려지게
     {
