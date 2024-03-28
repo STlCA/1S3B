@@ -14885,9 +14885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e67fde6390d48419e2b0772f3db8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1000
-  objectName: 
-  isNpc: 1
 --- !u!1 &706123190
 GameObject:
   m_ObjectHideFlags: 0
@@ -38582,6 +38579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseGrid: {fileID: 927759783699936362}
   backgroundTilemap: {fileID: 4684258245865271940}
+  tilledTilemap: {fileID: 0}
   plantsTilemap: {fileID: 7117787418432963015}
   waterTilemap: {fileID: 4184843672326465003}
   interactableTileMap: {fileID: 8090520630158112462}
@@ -117810,7 +117808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b4ddc8b5cccf946ae9151c7a5f2171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 407312372}
   moveSpeed: 5
   animator: {fileID: 7107256761028294067}
   petRenderer: {fileID: 6058573342118041423}
@@ -118148,7 +118146,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 200
-  m_Sprite: {fileID: 1999458551, guid: 739d828fc6937f64eaa454402f471ffa, type: 3}
+  m_Sprite: {fileID: 576834608, guid: e5ab28ddfd803e24780fe7aa0e41f340, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118423,7 +118421,7 @@ Animator:
   m_GameObject: {fileID: 2579677252739737129}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2c25a8b7a4ad72b46bc890c2194c73c0, type: 2}
+  m_Controller: {fileID: 9100000, guid: b2f3e81606b539a4ba956b6086f1089c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
