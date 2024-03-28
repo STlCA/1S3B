@@ -102,7 +102,7 @@ public class AnimationController : AnimationBase
         }
     }
 
-    public void UseAnimation(PlayerEquipmentType equipmentType)
+    public void UseAnimation(PlayerEquipmentType equipmentType, Vector2 pos)
     {
         if (animator[0].GetFloat("saveX") == 0 && animator[0].GetFloat("saveY") == 0)
         {
@@ -110,7 +110,13 @@ public class AnimationController : AnimationBase
             {
                 anim.SetBool("isStart", true);
             }
-        }        
+        }
+
+        foreach (var anim in animator)
+        {
+            anim.SetFloat("saveX", pos.x);
+            anim.SetFloat("saveY", pos.y);
+        }
 
         switch (equipmentType)
         {

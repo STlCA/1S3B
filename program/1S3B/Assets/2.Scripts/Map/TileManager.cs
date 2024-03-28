@@ -164,6 +164,7 @@ public class TileManager : MonoBehaviour
             croptData[target].harvest++;
             croptData[target].currentStage = croptData[target].plantCrop.StageAfterHarvest;
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
+            croptData[target].cropObj.tag = "Untagged";
         }
     }
 

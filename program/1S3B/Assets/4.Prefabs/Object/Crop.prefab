@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5016103205108863937}
   - component: {fileID: 9165821534250284843}
   - component: {fileID: 8666089722056240466}
+  - component: {fileID: 1048054831023837798}
   m_Layer: 0
   m_Name: Crop
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 617795061
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &1048054831023837798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694015475153660488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b51cd154f23e34c84b0e304caa8aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plusCursor: {fileID: 2800000, guid: a329db7d19e3dc44a9648adebe744fa2, type: 3}
