@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public UIManager uIManager { get; set; }
 
     public DataManager dataManager;
-
+    public TalkManager talkManager;
 
     public DayCycleHandler dayCycleHandler { get; set; }
     public WeatherSystem weatherSystem { get; set; }
@@ -22,6 +23,14 @@ public class GameManager : MonoBehaviour
     [Header("Time")]
     public TMP_Text TimeText;
 
+    [Header("Talk")]
+    public GameObject talkPanel;
+    public TMP_Text talkText;
+    public TMP_Text npcNameText;
+    public Image portraitImg;
+    public GameObject scanObject;
+    private bool isTalk;
+    private int talkIndex;
 
     private void Awake()
     {
@@ -75,4 +84,38 @@ public class GameManager : MonoBehaviour
         dayCycleHandler.ResetDayTime();
         weatherSystem.RandomChangeWeather();
     }
+
+    public void NpcTalkAction(GameObject scanObj)
+    {
+        scanObject = scanObj;
+        ObjectData objectData = scanObj.GetComponent<ObjectData>();
+        NpcTalk(objectData.id, objectData.isNpc);
+
+        talkPanel.SetActive(isTalk);
+    }
+
+    private void NpcTalk(int id, bool isNpc)
+    {
+        string talkData = talkManager.GetTalk(id, talkIndex);
+        string npcName = talkManager.GetNpcName(id);
+
+        if(talkData == null)
+        {
+            isTalk = false;
+            talkIndex = 0;
+            return;
+        }
+
+        if(isNpc)
+        {
+            talkText.text = talkData.Split(':')[0];
+            portraitImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
+            portraitImg.color = new Color(1, 1, 1, 1);
+            npcNameText.text = npcName;
+        }
+
+        isTalk = true;
+        talkIndex++;
+    }
+
 }
