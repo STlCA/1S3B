@@ -13,6 +13,8 @@ public class PlayerInputController : CharacterEventController
     private bool isMove;
     private bool isUseEnergy;
 
+    private Vector2 playerPos = new();
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -64,6 +66,16 @@ public class PlayerInputController : CharacterEventController
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
+
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));        
+        playerPos = transform.position;
+        Vector2 pos = new Vector2();
+
+        pos.x = (playerPos.x - mousePos.x)*-1;
+        pos.y = (playerPos.y - mousePos.y)*-1;
+
+        pos.Normalize();
+
         isUseEnergy = false;
 
         if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
@@ -73,7 +85,7 @@ public class PlayerInputController : CharacterEventController
             else
             {
                 isUseEnergy = true;
-                CallClickEvent(PlayerEquipmentType.Hoe);
+                CallClickEvent(PlayerEquipmentType.Hoe,pos);
             }
 
             GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
@@ -91,7 +103,7 @@ public class PlayerInputController : CharacterEventController
             else
             {
                 isUseEnergy = true;
-                CallClickEvent(PlayerEquipmentType.PickUp);
+                CallClickEvent(PlayerEquipmentType.PickUp, pos);
             }
 
             GameManager.Instance.tileManager.Harvest(GameManager.Instance.targetSetting.selectCellPosition);
@@ -103,7 +115,7 @@ public class PlayerInputController : CharacterEventController
             else
             {
                 isUseEnergy = true;
-                CallClickEvent(PlayerEquipmentType.Water);
+                CallClickEvent(PlayerEquipmentType.Water, pos);
             }
 
             GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);

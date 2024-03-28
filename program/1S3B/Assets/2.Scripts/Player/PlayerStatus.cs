@@ -200,7 +200,7 @@ public class PlayerStatus : MonoBehaviour
         GameManager.Instance.SleepOfDay();
     }
 
-    public void PlusEquipmentExp(PlayerEquipmentType equipmentType)
+    public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)
     {
         int temp = (int)equipmentType;
 
@@ -215,7 +215,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public void PlusExp(PlayerEquipmentType equipmentType)
+    public void PlusExp(PlayerEquipmentType equipmentType, Vector2 pos)
     {
         /*PlayerSkill currentSkill = playerSkill[skillType];
         currentSkill.exp += 1 / currentSkill.level;

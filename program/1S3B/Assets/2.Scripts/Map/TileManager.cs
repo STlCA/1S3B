@@ -41,6 +41,7 @@ public class TileManager : MonoBehaviour
     [Header("TileMap")]
     public Grid baseGrid;
     public Tilemap backgroundTilemap;
+    public Tilemap tilledTilemap;
     public Tilemap plantsTilemap;//씨앗뿌릴맵 // 나중에 씨앗만 물아래에 깔리게
     public Tilemap waterTilemap;//물뿌릴맵
 
@@ -97,8 +98,8 @@ public class TileManager : MonoBehaviour
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
         if (GameManager.Instance.targetSetting.TargetUI() == false)
             return;
-
-        backgroundTilemap.SetTile(target, tilledTile);
+               
+        tilledTilemap.SetTile(target, tilledTile);
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
     }
 
@@ -163,6 +164,7 @@ public class TileManager : MonoBehaviour
             croptData[target].harvest++;
             croptData[target].currentStage = croptData[target].plantCrop.StageAfterHarvest;
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
+            croptData[target].cropObj.tag = "Untagged";
         }
     }
 
