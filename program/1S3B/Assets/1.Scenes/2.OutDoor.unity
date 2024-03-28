@@ -15018,6 +15018,8 @@ MonoBehaviour:
   dataManager: {fileID: 2783805421750344618}
   TimeText: {fileID: 1088011323336861232}
   playerMap: 0
+  talkText: {fileID: 0}
+  scanObject: {fileID: 0}
 --- !u!4 &122637567782727300
 Transform:
   m_ObjectHideFlags: 0
@@ -33195,6 +33197,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b3762b2458c088743a925592790d7bb4, type: 2}
   - m_RefCount: 412
     m_Data: {fileID: 11400000, guid: e9dff038eb0c42f4aaddafe4e6a0358e, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -33214,6 +33218,20 @@ Tilemap:
     m_Data: {fileID: -1635072585, guid: 7f2010c4308308049a754925d46965fa, type: 3}
   - m_RefCount: 1195
     m_Data: {fileID: -1149925842, guid: 7f2010c4308308049a754925d46965fa, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 1619
     m_Data:
@@ -33240,7 +33258,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -159, y: -43, z: 0}
-  m_Size: {x: 176, y: 74, z: 1}
+  m_Size: {x: 199, y: 74, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
