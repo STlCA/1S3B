@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
 
+    [Header("Talk")]
+    public TMP_Text talkText;
+    public GameObject scanObject;
+
     private void Awake()
     {
         if (Instance == null)
@@ -76,5 +80,11 @@ public class GameManager : MonoBehaviour
 
         dayCycleHandler.ResetDayTime();
         weatherSystem.RandomChangeWeather();
+    }
+
+    public void TalkAction(GameObject scanObj)
+    {
+        scanObject = scanObj;
+        talkText.text = "이것의 이름은 : " + scanObject.name + "이라고 한다.";
     }
 }
