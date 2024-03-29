@@ -20,6 +20,8 @@ public class PlayerInputController : CharacterEventController
 
     private Vector2 playerPos = new();
 
+    private PlayerTalkController playerTalkController;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -27,6 +29,7 @@ public class PlayerInputController : CharacterEventController
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
+        playerTalkController = GetComponent<PlayerTalkController>();
     }
 
     public void OnMove(InputValue value)
@@ -136,7 +139,7 @@ public class PlayerInputController : CharacterEventController
 
     public void OnCommunication()
     {
-
+        playerTalkController.NearTalk();
     }
 
 

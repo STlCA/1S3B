@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Npc : MonoBehaviour
+public class Npc : MonoBehaviour, ITalk
 {
     [field: Header("Animations")]
     [field: SerializeField] public NpcAnimationData animationData { get; private set; }
@@ -80,5 +80,11 @@ public class Npc : MonoBehaviour
                 Debug.Log("Exception");
                 break;
         }
+    }
+
+    public void Talk()
+    {
+        // 대화 진행
+        Debug.Log("대화 시도");
     }
 }
