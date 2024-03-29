@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeatherSystem : MonoBehaviour
+public class WeatherSystem : Manager
 {
     [Flags]
     public enum WeatherType
@@ -20,20 +20,14 @@ public class WeatherSystem : MonoBehaviour
     //현재 날씨 타입
     private List<WeatherSystemElement> elements = new List<WeatherSystemElement>();
 
-    private void Awake()
-    {
-       
-    }
-
     void Start()
     {
-        GameManager.Instance.weatherSystem = this;
         FindAllElements();
         ChangeWeather(startingWeather);
     }
     public static void UnregisterElement(WeatherSystemElement element)
     {
-            GameManager.Instance?.weatherSystem?.elements.Remove(element);
+            GameManager.Instance?.WeatherSystem?.elements.Remove(element);
 
     }
     public void ChangeWeather(WeatherType newType)

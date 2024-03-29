@@ -49,7 +49,7 @@ public class InventoryUI : MonoBehaviour
     private void Init()
     {
         gameManager = GameManager.Instance;
-        dataManager = gameManager.dataManager;
+        dataManager = gameManager.DataManager;
 
         itemDatabase = dataManager.itemDatabase;
         cropDatabase = dataManager.cropDatabase;

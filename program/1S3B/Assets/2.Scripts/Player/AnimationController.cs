@@ -16,7 +16,7 @@ public class AnimationController : AnimationBase
     private bool oneTimeSave = false;
 
     //public GameObject scmGo;
-    //private SceneChangeManager sceneChangeManager;
+    //private SceneChangeManager SceneChangeManager;
 
     private void Start()
     {
@@ -24,19 +24,19 @@ public class AnimationController : AnimationBase
         controller.OnClickEvent += UseAnimation;
 
         //animator[1].enabled = false;
-        //sceneChangeManager = scmGo.GetComponent<SceneChangeManager>();
-        //sceneChangeManager.OnChangeEvent += StopAnimation;
+        //SceneChangeManager = scmGo.GetComponent<SceneChangeManager>();
+        //SceneChangeManager.OnChangeEvent += StopAnimation;
 
-        sceneChangeManager = GameManager.Instance.sceneChangeManager;
+        sceneChangeManager = GameManager.Instance.SceneChangeManager;
         sceneChangeManager.mapChangeAction += StopAnimation;
     }
 
     //private void Update()
     //{
-    //    if (GameManager.Instance.sceneChangeManager.isMapChange == true)
+    //    if (GameManager.Instance.SceneChangeManager.isMapChange == true)
     //        StopAnimation(true);
     //
-    //    if (GameManager.Instance.sceneChangeManager.isMapChange == false && GameManager.Instance.sceneChangeManager.isReAnim == true)
+    //    if (GameManager.Instance.SceneChangeManager.isMapChange == false && GameManager.Instance.SceneChangeManager.isReAnim == true)
     //        StopAnimation(false);
     //}
 
@@ -92,7 +92,7 @@ public class AnimationController : AnimationBase
         }
         else if(value == false) 
         {
-            //GameManager.Instance.sceneChangeManager.isReAnim = false;
+            //GameManager.Instance.SceneChangeManager.isReAnim = false;
             oneTimeSave = false;
 
             foreach (var anim in animator)

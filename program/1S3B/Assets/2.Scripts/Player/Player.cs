@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Constants;
+using UnityEngine.Playables;
 
 [System.Serializable]
 public class PlayerSkill
@@ -23,55 +24,35 @@ public class PlayerEquimentLevel
     public UpgradeEquipmentStep step;
 }
 
-public class PlayerStatus : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static PlayerStatus instance;
-
-    [HideInInspector] public Vector3 playerPosition;
-
-    private PlayerState playerState;
-
-    public Slider energyBar;
-    private TMP_Text energyText;
-    private int playerMaxEnergy = 150;
-    [SerializeField] private int playerEnergy;//serial 나중에 지우기
-
-    public GameObject tired;
-    [HideInInspector] public bool isTired = false;
-
-    [HideInInspector] public int playerGold = 1500;
-
-    [HideInInspector] public float playerSpeed = 10f;
+    private GameManager gameManager;
+    private UIManager uiManager;
 
     [HideInInspector] public AnimationController animationController;
     private CharacterEventController characterEventController;
 
-    private string[] skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
+    public Vector3 playerPosition { get; set; }
+    public PlayerState playerState {  get; private set; }
+    public int playerGold { get; private set; }
+    public float playerSpeed { get; private set; }    
+    public int playerMaxEnergy { get; private set; } = 150;
+    private int playerEnergy;
+
+    private string[] skillName;
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
 
     public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
-    //public Dictionary<PlayerSkillType, PlayerSkill> playerSkill = new();
-
-
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void Start()
     {
-        energyText = energyBar.GetComponentInChildren<TMP_Text>();
+        gameManager = GameManager.Instance;
+        uiManager = gameManager.UIManager;
+
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
 
-        Init();
-
-        playerSpeed = 7f;
+        Init();        
 
         playerState = PlayerState.IDLE;
 
@@ -81,28 +62,11 @@ public class PlayerStatus : MonoBehaviour
 
     private void Init()
     {
-        energyBar.maxValue = playerMaxEnergy;
-        energyBar.minValue = 0;
-        EnergyUpdate(playerMaxEnergy);
+        playerEnergy = playerMaxEnergy;
+        playerGold = 1500;
+        playerSpeed = 7f;
 
-        energyText.gameObject.SetActive(false);
-        tired.SetActive(false);
-
-
-        // skill init
-        /*        for (int i = 0; i < skillName.Length; i++)
-                {
-                    PlayerSkillType skillType = (PlayerSkillType)i;
-
-                    PlayerSkill tempPlayerSkill = new PlayerSkill();
-                    tempPlayerSkill.skillName = skillName[i];
-                    tempPlayerSkill.level = 1;
-                    tempPlayerSkill.exp = 0;
-                    tempPlayerSkill.count = 0;
-                    tempPlayerSkill.step = UpgradeEquipmentStep.None;
-
-                    playerSkill.Add(skillType, tempPlayerSkill);
-                }*/
+        skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
 
         for (int i = 0; i < equipmentsLevel.Length; i++)
         {
@@ -126,17 +90,18 @@ public class PlayerStatus : MonoBehaviour
 
     public void UseEnergy()
     {
-        EnergyUpdate(playerEnergy -= 2);
+        playerEnergy -= 2;
+        uiManager.EnergyUpdate(playerEnergy);
 
         if (playerEnergy <= 0 && playerEnergy > -20)
         {
             playerSpeed = 2f;
-            isTired = true;
-            tired.SetActive(true);
-        }
-        else if (playerEnergy <= -20 && playerState == PlayerState.IDLE)
-        {
             playerState = PlayerState.TIRED;
+            uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
+        }
+        else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
+        {
+            playerState = PlayerState.BLACKOUT;
             animationController.DeathAnimation(true);
             Invoke("DeathSleep", 1f);
 
@@ -152,24 +117,13 @@ public class PlayerStatus : MonoBehaviour
         {
             playerState = PlayerState.IDLE;
             playerSpeed = 10f;
-            EnergyUpdate(playerMaxEnergy / 2);
-            isTired = false;
-            tired.SetActive(false);
+            playerEnergy = playerMaxEnergy / 2;
+            uiManager.EnergyUpdate(playerEnergy);
+            playerState = PlayerState.IDLE;
+            uiManager.TiredIconOnOff(false);
         }
         else
-        {
-            EnergyUpdate(playerMaxEnergy);
-        }
-    }
-
-    private void EnergyUpdate(int playerEnergy)
-    {
-        if (playerEnergy > playerMaxEnergy)
-            playerEnergy = playerMaxEnergy;
-
-        this.playerEnergy = playerEnergy;
-        energyBar.value = playerEnergy;
-        energyText.text = playerEnergy + "/" + energyBar.maxValue;
+            uiManager.EnergyUpdate(playerMaxEnergy);
     }
 
     private int GoldRange(int range1, int range2)
@@ -186,17 +140,18 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyRecovery()
     {
-        EnergyUpdate(playerEnergy += 10);
+        playerEnergy += 10;
+        uiManager.EnergyUpdate(playerEnergy);
     }
 
     public void ChangePosition()
     {
-        gameObject.transform.position = playerPosition;
+        transform.position = playerPosition;
     }
 
     private void DeathSleep()
     {
-        GameManager.Instance.SleepOfDay();
+        gameManager.SleepOfDay();
     }
 
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)
@@ -260,5 +215,16 @@ public class PlayerStatus : MonoBehaviour
             playerSkills[temp].exp = 0;
             playerSkills[temp].level++;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Crop"))
+            playerSpeed = 5f;
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Crop"))
+            playerSpeed = 7f;
     }
 }

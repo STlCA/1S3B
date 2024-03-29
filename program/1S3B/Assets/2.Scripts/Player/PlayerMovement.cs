@@ -7,8 +7,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameManager gameManager;
+    private Player player;
     private CharacterEventController _controller;
     private SceneChangeManager sceneChangeManager;
+    private UIManager uiManager;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer[] _spriteRenderer;
@@ -28,9 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _controller.OnMoveEvent += Move;
+        gameManager = GameManager.Instance;
+        player = gameManager.Player;
+        sceneChangeManager = gameManager.SceneChangeManager;
+        uiManager = gameManager.UIManager;
 
-        sceneChangeManager = GameManager.Instance.sceneChangeManager;
+        _controller.OnMoveEvent += Move;
         sceneChangeManager.mapChangeAction += ChangeDirection;
     }
 
@@ -44,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeDirection(bool isChange)
     {
-        this.isChange = isChange;            
+        this.isChange = isChange;
     }
 
     private void Move(Vector2 dirction)
@@ -54,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        speed = PlayerStatus.instance.playerSpeed;
+        speed = player.playerSpeed;
 
         direction *= speed;
 
@@ -70,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bed")
-            GameManager.Instance.uIManager.UIOn(GameManager.Instance.uIManager.sleepInfoUI);
+            uiManager.UIOn(uiManager.sleepInfoUI);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        GameManager.Instance.uIManager.UIOff(GameManager.Instance.uIManager.sleepInfoUI);
+        uiManager.UIOff(uiManager.sleepInfoUI);
     }
 }

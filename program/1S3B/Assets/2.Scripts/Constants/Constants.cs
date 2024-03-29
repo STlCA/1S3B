@@ -4,6 +4,20 @@ using UnityEngine;
 
 namespace Constants
 {
+    public class ConstantsString : MonoBehaviour
+    {
+        //AnimationController
+        public static string IsStart = "isStart";
+        public static string IsWalking = "isWalking";
+        public static string IsDeath = "isDeath";
+
+        public static string InputX = "inputX";
+        public static string InputY = "inputY";
+
+        public static string SaveX = "saveX";
+        public static string SaveY = "saveY";
+    }
+
     public enum RecoveryType
     {
         None,
@@ -28,7 +42,7 @@ namespace Constants
     {
         IDLE,
         TIRED,
-
+        BLACKOUT,
     }
 
     public enum PlayerSkillType

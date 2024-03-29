@@ -9,6 +9,11 @@ using UnityEngine.UIElements;
 
 public class PlayerInputController : CharacterEventController
 {
+    private GameManager gameManager;
+    private TileManager tileManager;
+    private TargetSetting targetSetting;
+    private Player player;
+
     private Camera mainCamera;
     private bool isMove;
     private bool isUseEnergy;
@@ -18,6 +23,10 @@ public class PlayerInputController : CharacterEventController
     private void Start()
     {
         mainCamera = Camera.main;
+        gameManager = GameManager.Instance;
+        tileManager = gameManager.TileManager;
+        targetSetting = gameManager.TargetSetting;
+        player = gameManager.Player;
     }
 
     public void OnMove(InputValue value)
@@ -36,24 +45,24 @@ public class PlayerInputController : CharacterEventController
         if (moveInput == Vector2.zero)
         {
             isMove = false;
-            GameManager.Instance.targetSetting.gameObject.SetActive(true);
+            targetSetting.gameObject.SetActive(true);
         }
         else
         {
             isMove = true;
-            GameManager.Instance.targetSetting.gameObject.SetActive(false);
+            targetSetting.gameObject.SetActive(false);
         }
     }
 
     public void OnMouse(InputValue value)
     {
-        if (mainCamera == null && GameManager.Instance.targetSetting == null)
+        if (mainCamera == null && targetSetting == null)
             return;
 
         Vector2 position = value.Get<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
 
-        GameManager.Instance.targetSetting.SetCellPosition(worldPos);
+        targetSetting.SetCellPosition(worldPos);
 
     }
 
@@ -78,7 +87,7 @@ public class PlayerInputController : CharacterEventController
 
         isUseEnergy = false;
 
-        if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == false)
+        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -88,15 +97,15 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.Hoe,pos);
             }
 
-            GameManager.Instance.tileManager.TillAt(GameManager.Instance.targetSetting.selectCellPosition);
+            tileManager.TillAt(targetSetting.selectCellPosition);
         }
-        else if (GameManager.Instance.tileManager.IsPlantable(GameManager.Instance.targetSetting.selectCellPosition) == true)
+        else if (tileManager.IsPlantable(targetSetting.selectCellPosition) == true)
         {
 
 
-            GameManager.Instance.tileManager.PlantAt(GameManager.Instance.targetSetting.selectCellPosition);
+            tileManager.PlantAt(targetSetting.selectCellPosition);
         }
-        else if (GameManager.Instance.tileManager.IsHarvest(GameManager.Instance.targetSetting.selectCellPosition) == true)
+        else if (tileManager.IsHarvest(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -106,9 +115,9 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.PickUp, pos);
             }
 
-            GameManager.Instance.tileManager.Harvest(GameManager.Instance.targetSetting.selectCellPosition);
+            tileManager.Harvest(targetSetting.selectCellPosition);
         }
-        else if (GameManager.Instance.tileManager.IsTilled(GameManager.Instance.targetSetting.selectCellPosition) == true)
+        else if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -118,11 +127,11 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.Water, pos);
             }
 
-            GameManager.Instance.tileManager.WaterAt(GameManager.Instance.targetSetting.selectCellPosition);
+            GameManager.Instance.TileManager.WaterAt(targetSetting.selectCellPosition);
         }
 
         if (isUseEnergy == true)
-            PlayerStatus.instance.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨    
+            player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨    
     }
 
     public void OnCommunication()

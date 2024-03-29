@@ -6,10 +6,8 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
-public class DayCycleHandler : MonoBehaviour
+public class DayCycleHandler : Manager
 {
-    GameManager gameManager;
-
     private float currentTime;
     //오늘의 현재 시간(누적되는시간)
     private float priviousTime;
@@ -44,18 +42,14 @@ public class DayCycleHandler : MonoBehaviour
     public Light2D ambientLight;
     public Gradient ambientLightGradient;
 
-
-
-    public void Init(GameManager gameManager)
+    public override void Init(GameManager gm)
     {
-        this.gameManager = gameManager;
-        gameManager.dayCycleHandler = this;
+        base.Init(gm);
 
         if (dayDurationInSeconds <= 0.0f)
             dayDurationInSeconds = 10.0f;
 
         ResetDayTime();
-
     }
 
 
