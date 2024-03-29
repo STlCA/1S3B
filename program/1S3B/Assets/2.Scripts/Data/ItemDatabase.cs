@@ -4,7 +4,7 @@ using System.IO;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 [System.Serializable]
-public class Item
+public class ItemInfo
 {
     public int ID;
     public string Name;
@@ -33,10 +33,18 @@ public class Item
 }
 
 // 아이템에 대한 정보를 가져온다
-public abstract class ItemInstance
+public class Item
 {
     int no;
-    public Item item;
+    public ItemInfo ItemInfo { get; set; }
+
+    // 강화단계
+    // 내구도
+}
+
+public abstract class EquipItem
+{
+    Item Item { get; set; }
 
     public abstract bool CanUse(Vector3Int target);
     public abstract bool Use(Vector3Int target);
@@ -50,23 +58,32 @@ public abstract class ItemInstance
 [System.Serializable]
 public class ItemDatabase
 {
-    public List<Item> ItemData;
-    public Dictionary<int, Item> itemDic = new();
+    public List<ItemInfo> ItemData;
+    public Dictionary<int, ItemInfo> itemDic = new();
 
     public void Initialize()
     {
-        foreach (Item item in ItemData)
+        foreach (ItemInfo item in ItemData)
         {
             item.Init();
             itemDic.Add(item.ID, item);
         }
     }
 
-    public Item GetItemByKey(int id)
+    public ItemInfo GetItemByKey(int id)
     {
         if (itemDic.ContainsKey(id))
             return itemDic[id];
 
         return null;
+    }
+
+    public Item Gacha()
+    {
+        ItemInfo info = ItemData[Random.Range(0, ItemData.Count)];
+        Item newItem = new();
+        newItem.ItemInfo = info;
+
+        return newItem;
     }
 }

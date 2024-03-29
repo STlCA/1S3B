@@ -44,14 +44,20 @@ public class Player : MonoBehaviour
 
     public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
 
+    private Inventory inventory;
+    public Inventory Inventory { get { return inventory; } }
+
+    private void Awake()
+    {
+        inventory = GetComponent<Inventory>();
+        animationController = GetComponent<AnimationController>();
+        characterEventController = GetComponent<CharacterEventController>();
+    }
+
     private void Start()
     {
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
-
-        animationController = GetComponent<AnimationController>();
-        characterEventController = GetComponent<CharacterEventController>();
-
         Init();        
 
         playerState = PlayerState.IDLE;

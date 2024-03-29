@@ -31,7 +31,7 @@ public class ScrollViewUI : MonoBehaviour
         CreateSlots();
         SetContentHeight();
 
-        GameManager.Instance.uIManager.inventoryUI.Init();
+      
     }
 
     // Slot 생성
