@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather();
+        natureObjectController.SpawnNature();
     }
 
     public void TalkAction(GameObject scanObj)

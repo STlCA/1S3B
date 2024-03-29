@@ -63,7 +63,6 @@ public class PlayerInputController : CharacterEventController
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(position);
 
         targetSetting.SetCellPosition(worldPos);
-
     }
 
 
@@ -76,12 +75,12 @@ public class PlayerInputController : CharacterEventController
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
 
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));        
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         playerPos = transform.position;
         Vector2 pos = new Vector2();
 
-        pos.x = (playerPos.x - mousePos.x)*-1;
-        pos.y = (playerPos.y - mousePos.y)*-1;
+        pos.x = (mousePos.x - playerPos.x);
+        pos.y = (mousePos.y - playerPos.y);
 
         pos.Normalize();
 
@@ -94,7 +93,7 @@ public class PlayerInputController : CharacterEventController
             else
             {
                 isUseEnergy = true;
-                CallClickEvent(PlayerEquipmentType.Hoe,pos);
+                CallClickEvent(PlayerEquipmentType.Hoe, pos);
             }
 
             tileManager.TillAt(targetSetting.selectCellPosition);
