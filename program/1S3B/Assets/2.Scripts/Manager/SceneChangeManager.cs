@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class SceneChangeManager : MonoBehaviour
+public class SceneChangeManager : Manager
 {
-    private GameManager gameManager;
+    private Player player;
 
     public Image fadeImage;
 
@@ -29,10 +29,9 @@ public class SceneChangeManager : MonoBehaviour
     //    OnChangeEvent?.Invoke(value);
     //}
 
-    public void Init(GameManager gm)
+    private void Start()
     {
-        gameManager = gm;
-        gameManager.sceneChangeManager = this;
+        player = gameManager.Player;
     }
 
     public void MapChangeSetting(GameObject startCam, GameObject endCam, float fadeTime, float waitTime)
@@ -176,7 +175,7 @@ public class SceneChangeManager : MonoBehaviour
         time = 0f;
         Time.timeScale = 1f;
 
-        PlayerStatus.instance.ChangePosition();
+        player.ChangePosition();
         endCam.SetActive(true);
         startCam.SetActive(false);
 
@@ -213,7 +212,7 @@ public class SceneChangeManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
-        PlayerStatus.instance.animationController.DeathAnimation(false);
+        player.animationController.DeathAnimation(false);
         Time.timeScale = 1.0f;
 
         fadeCount = 1;
