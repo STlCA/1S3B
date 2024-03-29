@@ -18,7 +18,7 @@ public class TargetSetting : MonoBehaviour
     [HideInInspector] public Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
 
-
+    private TileManager tileManager;
 
     private void Start()
     {
@@ -27,19 +27,31 @@ public class TargetSetting : MonoBehaviour
 
     private void Update()
     {
-        playerCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(playerObj.transform.position);
+        if (tileManager == null)
+            tileManager = GameManager.Instance.tileManager;
+        else
+            PlayerSetCellPosition();
+
+    }
+
+    private void PlayerSetCellPosition()
+    {
+        playerCellPosition = tileManager.baseGrid.WorldToCell(playerObj.transform.position);
     }
 
     public void SetCellPosition(Vector3 value)
     {
-        selectCellPosition = GameManager.Instance.tileManager.baseGrid.WorldToCell(value);
+        if (tileManager == null)
+            tileManager = GameManager.Instance.tileManager;
+
+        selectCellPosition = tileManager.baseGrid.WorldToCell(value);
 
         TargetUI();
     }
 
     public bool TargetUI()
     {
-        if (GameManager.Instance.tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
+        if (tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
         {
             targetSprite.SetActive(false);
             return false;
@@ -70,6 +82,6 @@ public class TargetSetting : MonoBehaviour
 
     private void TargetPosition()
     {
-        gameObject.transform.position = GameManager.Instance.tileManager.baseGrid.GetCellCenterWorld(selectCellPosition);
+        gameObject.transform.position = tileManager.baseGrid.GetCellCenterWorld(selectCellPosition);
     }
 }

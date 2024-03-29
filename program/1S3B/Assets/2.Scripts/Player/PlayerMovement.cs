@@ -8,11 +8,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterEventController _controller;
+    private SceneChangeManager sceneChangeManager;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer[] _spriteRenderer;
     private Vector2 _movementDirection = Vector2.zero;
-    private Vector2 _saveDirection = Vector2.zero;
+    private Vector2 _zeroDirection = Vector2.zero;
+
+    private bool isChange = false;
 
     [SerializeField] private float speed;
 
@@ -26,14 +29,22 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _controller.OnMoveEvent += Move;
+
+        sceneChangeManager = GameManager.Instance.sceneChangeManager;
+        sceneChangeManager.mapChangeAction += ChangeDirection;
     }
 
     private void FixedUpdate()//1초에 50번 일정하게부름 델타타임이 피료가음슴
     {
-        if (GameManager.Instance.sceneChangeManager.isMapChange == true)
-            ApplyMovement(_saveDirection);
+        if (isChange == true)
+            ApplyMovement(_zeroDirection);
         else
             ApplyMovement(_movementDirection);
+    }
+
+    private void ChangeDirection(bool isChange)
+    {
+        this.isChange = isChange;            
     }
 
     private void Move(Vector2 dirction)

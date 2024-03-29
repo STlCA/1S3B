@@ -196,7 +196,6 @@ public class PlayerStatus : MonoBehaviour
 
     private void DeathSleep()
     {
-
         GameManager.Instance.SleepOfDay();
     }
 
