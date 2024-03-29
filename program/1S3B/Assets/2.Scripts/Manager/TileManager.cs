@@ -36,7 +36,7 @@ public class CropData
     }
 }
 
-public class TileManager : MonoBehaviour
+public class TileManager : Manager
 {
     [Header("TileMap")]
     public Grid baseGrid;
@@ -63,8 +63,7 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.tileManager = this;
-        cropDatabase = GameManager.Instance.dataManager.cropDatabase;
+        cropDatabase = gameManager.DataManager.cropDatabase;
     }
 
     //샘플
@@ -91,12 +90,10 @@ public class TileManager : MonoBehaviour
         return croptData[target].cropRenderer.sprite == croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.AllGrowthStage];
     }
 
-
-
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
-        if (GameManager.Instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
                
         tilledTilemap.SetTile(target, tilledTile);
@@ -105,7 +102,7 @@ public class TileManager : MonoBehaviour
 
     public void PlantAt(Vector3Int target)
     {
-        if (GameManager.Instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
         CropData tempcropData = new CropData();
@@ -129,7 +126,7 @@ public class TileManager : MonoBehaviour
 
     public void WaterAt(Vector3Int target)
     {
-        if (GameManager.Instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
         // 물주려고 봤더니? 플레이어 인풋에서 체크? 최대면 수확
@@ -148,7 +145,7 @@ public class TileManager : MonoBehaviour
 
     public void Harvest(Vector3Int target)
     {
-        if (GameManager.Instance.targetSetting.TargetUI() == false)
+        if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
 
@@ -164,7 +161,7 @@ public class TileManager : MonoBehaviour
             croptData[target].harvest++;
             croptData[target].currentStage = croptData[target].plantCrop.StageAfterHarvest;
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
-            croptData[target].cropObj.tag = "Untagged";
+            croptData[target].cropObj.tag = "Crop";
         }
     }
 
@@ -183,6 +180,9 @@ public class TileManager : MonoBehaviour
                 tempPlantData.currentStage += tempPlantData.growRatio;
 
                 int temp = (int)(tempPlantData.currentStage);
+
+                if(temp >= 1 )
+                    tempPlantData.cropObj.tag = "Crop";
 
                 if (temp >= tempPlantData.plantCrop.AllGrowthStage)
                 {

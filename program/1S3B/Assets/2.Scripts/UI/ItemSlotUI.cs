@@ -41,10 +41,10 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData _eventData)
     {
         // 아이템이 존재하지 않을 때
-        if (GameManager.Instance.uIManager.inventoryUI.slots[index].item == null)
+        if (GameManager.Instance.UIManager.inventoryUI.slots[index].item == null)
             return;
 
-        GameManager.Instance.uIManager.inventoryUI.SelectItem(index);
+        GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
         itemInfoUI.SetActive(true);
     }
 

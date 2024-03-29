@@ -9,11 +9,11 @@ public class CursorSetting : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(tag=="Harvest")
+        if (tag == "Harvest")
             Cursor.SetCursor(plusCursor, Vector2.zero, CursorMode.ForceSoftware);
     }
 
-    private void OnMouseExit()
+    private void OnMouseExit()        
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
     }

@@ -8,6 +8,9 @@ using UnityEditor.Rendering;
 
 public class RecoveryObjects : MonoBehaviour
 {
+    private GameManager gameManager;
+    private Player player;
+
     public RecoveryType recoveryType;
 
     private bool inRecoveryZone = false;
@@ -20,6 +23,11 @@ public class RecoveryObjects : MonoBehaviour
     private float lightTime = 0;
     private bool lightUp = false;
 
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+        player = gameManager.Player;
+    }
 
     private void Update()
     {
@@ -61,7 +69,7 @@ public class RecoveryObjects : MonoBehaviour
 
         if (tempTime >= recoveryTime)
         {
-            PlayerStatus.instance.EnergyRecovery();
+            player.EnergyRecovery();
             tempTime = 0;
         }
     }

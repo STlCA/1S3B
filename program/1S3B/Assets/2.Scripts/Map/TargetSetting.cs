@@ -11,6 +11,9 @@ using System.Reflection.Emit;
 
 public class TargetSetting : MonoBehaviour
 {
+    private GameManager gameManager;    
+    private TileManager tileManager;
+
     [Header("Object")]
     public GameObject playerObj;
     public GameObject targetSprite;
@@ -18,17 +21,17 @@ public class TargetSetting : MonoBehaviour
     [HideInInspector] public Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
 
-    private TileManager tileManager;
 
     private void Start()
     {
-        GameManager.Instance.targetSetting = this;
+        gameManager = GameManager.Instance;
+        tileManager = gameManager.TileManager;
     }
 
     private void Update()
     {
         if (tileManager == null)
-            tileManager = GameManager.Instance.tileManager;
+            tileManager = GameManager.Instance.TileManager;
         else
             PlayerSetCellPosition();
 
@@ -42,7 +45,7 @@ public class TargetSetting : MonoBehaviour
     public void SetCellPosition(Vector3 value)
     {
         if (tileManager == null)
-            tileManager = GameManager.Instance.tileManager;
+            tileManager = GameManager.Instance.TileManager;
 
         selectCellPosition = tileManager.baseGrid.WorldToCell(value);
 
@@ -70,7 +73,7 @@ public class TargetSetting : MonoBehaviour
         }
     }
 
-    private bool PlayerBoundCheck()
+    public bool PlayerBoundCheck()
     {
         Vector3 bound = playerCellPosition - selectCellPosition;
 

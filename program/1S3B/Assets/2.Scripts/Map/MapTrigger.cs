@@ -7,7 +7,7 @@ using Cinemachine;
 public class MapTrigger : MonoBehaviour
 {
     private GameManager gameManager;
-    private PlayerStatus playerStatus;
+    private Player playerStatus;
     private SceneChangeManager sceneChangeManager;
 
     [Header("Type")]
@@ -20,7 +20,7 @@ public class MapTrigger : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-        sceneChangeManager = gameManager.sceneChangeManager;
+        sceneChangeManager = gameManager.SceneChangeManager;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
