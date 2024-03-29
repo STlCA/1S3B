@@ -203,27 +203,33 @@ public class SceneChangeManager : Manager
     public IEnumerator SleepFadeInOut()
     {
         fadeImage.gameObject.SetActive(true);
+        Color alpha = fadeImage.color;
+        time = 0f;
 
-        float fadeCount = 0;
-        while (fadeCount < 1.0f)
+        while (alpha.a < 1f)
         {
-            fadeCount += 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
-            fadeImage.color = new Color(0, 0, 0, fadeCount);
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(0, 1, time);
+            fadeImage.color = alpha;
+            yield return null;
         }
 
+        time = 0f;
+
         player.animationController.DeathAnimation(false);
-        Time.timeScale = 1.0f;
 
-        fadeCount = 1;
+        yield return new WaitForSeconds(waitTime);
 
-        while (fadeCount >= 0f)
+        while (alpha.a > 0f)
         {
-            fadeCount -= 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
-            fadeImage.color = new Color(0, 0, 0, fadeCount);
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadeImage.color = alpha;
+            yield return null;
         }
 
         fadeImage.gameObject.SetActive(false);
     }
+
+
 }

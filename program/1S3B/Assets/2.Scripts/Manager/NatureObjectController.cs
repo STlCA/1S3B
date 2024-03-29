@@ -9,7 +9,6 @@ using UnityEngine.U2D.Animation;
 public class TreeData
 {
     public GameObject treeObj;
-
     public SpriteRenderer treeRenderer;
     public SpriteLibrary treeLibrayry;
     public int maxConut = 10;
@@ -68,7 +67,7 @@ public class NatureObjectController : Manager
 
     public void SpawnNature()
     {
-        float percentage = 50;
+        float percentage = 20;
         float randomPoint;
         int random;
 
@@ -76,7 +75,7 @@ public class NatureObjectController : Manager
         {
             if (tempdData.isSpawn == false)
             {
-                randomPoint = Random.value * percentage;
+                randomPoint = Random.Range(0,101);
                 if (randomPoint < percentage)
                 {
                     //Init()À¸·Î¹­±â
@@ -102,18 +101,26 @@ public class NatureObjectController : Manager
         }
     }
 
+    public bool IsPickUp(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return false;
 
+        return natureData.ContainsKey(target);
+    }
+    public void PickUpNature(Vector3Int target)
+    {
+        Destroy(natureData[target].natureObj);
+        natureData[target].isSpawn = false;
+    }
 
-    public bool IsLogging(Vector3Int target)
+    public bool IsFelling(Vector3Int target)
     {
         return treeData.ContainsKey(target);
     }
 
-    public void LoggingAt(Vector3Int target)
+    public void Felling(Vector3Int target)
     {
-        if (targetSetting == null)
-            targetSetting = GameManager.Instance.TargetSetting;
-
         if (targetSetting.PlayerBoundCheck() == false)
             return;
 

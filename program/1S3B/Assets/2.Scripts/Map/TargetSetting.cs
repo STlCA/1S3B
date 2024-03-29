@@ -8,15 +8,17 @@ using UnityEngine.U2D.Animation;
 using UnityEngine.UIElements;
 using System.Linq;
 using System.Reflection.Emit;
+using System;
 
 public class TargetSetting : MonoBehaviour
 {
-    private GameManager gameManager;    
+    private GameManager gameManager;
     private TileManager tileManager;
 
     [Header("Object")]
     public GameObject playerObj;
     public GameObject targetSprite;
+    private SpriteRenderer targetSR;
 
     [HideInInspector] public Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
@@ -26,15 +28,14 @@ public class TargetSetting : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         tileManager = gameManager.TileManager;
+
+        targetSR = targetSprite.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        if (tileManager == null)
-            tileManager = GameManager.Instance.TileManager;
-        else
-            PlayerSetCellPosition();
-
+        PlayerSetCellPosition();
+        targetSR.sortingOrder = (int)(transform.position.y * 100 * -1) - 1;
     }
 
     private void PlayerSetCellPosition()
