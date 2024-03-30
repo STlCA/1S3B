@@ -10,6 +10,7 @@ using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
 {
+    private GameManager gameManager;
     private SceneChangeManager sceneChangeManager;
 
     private Vector2 saveDirection = Vector2.zero;
@@ -20,15 +21,13 @@ public class AnimationController : AnimationBase
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
+        sceneChangeManager = gameManager.SceneChangeManager;
+
         controller.OnMoveEvent += MoveAnimation;
         controller.OnClickEvent += UseAnimation;
-
-        //animator[1].enabled = false;
-        //SceneChangeManager = scmGo.GetComponent<SceneChangeManager>();
-        //SceneChangeManager.OnChangeEvent += StopAnimation;
-
-        sceneChangeManager = GameManager.Instance.SceneChangeManager;
         sceneChangeManager.mapChangeAction += StopAnimation;
+
     }
 
     //private void Update()
@@ -92,7 +91,6 @@ public class AnimationController : AnimationBase
         }
         else if(value == false) 
         {
-            //GameManager.Instance.SceneChangeManager.isReAnim = false;
             oneTimeSave = false;
 
             foreach (var anim in animator)

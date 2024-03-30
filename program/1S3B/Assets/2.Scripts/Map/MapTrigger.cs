@@ -7,7 +7,7 @@ using Cinemachine;
 public class MapTrigger : MonoBehaviour
 {
     private GameManager gameManager;
-    private Player playerStatus;
+    private Player player;
     private SceneChangeManager sceneChangeManager;
 
     [Header("Type")]
@@ -21,6 +21,7 @@ public class MapTrigger : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         sceneChangeManager = gameManager.SceneChangeManager;
+        player = gameManager.Player;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,11 +31,11 @@ public class MapTrigger : MonoBehaviour
             switch (type)
             {
                 case MapTriggerType.FarmToTown:
-                    playerStatus.playerPosition = new Vector3(-88f, -12f, 0f);
+                    player.playerPosition = new Vector3(-88f, -12f, 0f);
                     gameManager.playerMap = PlayerMap.Town;
                     break;
                 case MapTriggerType.TownToFarm:
-                    playerStatus.playerPosition = new Vector3(-41f, -3.5f, 0f);
+                    player.playerPosition = new Vector3(-41f, -3.5f, 0f);
                     gameManager.playerMap = PlayerMap.Farm;
                     break;
             }
@@ -42,7 +43,7 @@ public class MapTrigger : MonoBehaviour
 
             //SceneChangeManager.isMapChage = true;
             sceneChangeManager.CallMapChangeEvent(true);
-            sceneChangeManager.MapChangeSetting(startCam, endCam,2f,2f);
+            sceneChangeManager.MapChangeSetting(startCam, endCam,0.5f,1f);
         }
     }
 }

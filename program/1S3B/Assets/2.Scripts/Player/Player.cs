@@ -217,6 +217,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayerStateChange(PlayerState state)
+    {
+        playerState = state;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Crop"))

@@ -1,10 +1,12 @@
 using Constants;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
 public class PlayerInputController : CharacterEventController
@@ -28,6 +30,15 @@ public class PlayerInputController : CharacterEventController
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
     }
+    public bool InputException()
+    {
+        if (player.playerState == PlayerState.MAPCHANGE)
+            return false;
+        if (player.playerState == PlayerState.SLEEP)
+            return false;
+
+        return true;
+    }
 
     public void OnMove(InputValue value)
     {
@@ -37,6 +48,9 @@ public class PlayerInputController : CharacterEventController
         if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
             return;
         if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
+            return;
+
+        if (InputException() == false && moveInput != Vector2.zero)
             return;
 
         CallMoveEvent(moveInput);
@@ -74,6 +88,10 @@ public class PlayerInputController : CharacterEventController
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
+        Debug.Log(value);
+
+        if (InputException() == false)
+            return;
 
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         playerPos = transform.position;
