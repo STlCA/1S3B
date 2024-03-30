@@ -14,6 +14,8 @@ TagManager:
   - InteractableTree
   - Crop
   - Seed
+  - Tree
+  - DropItem
   layers:
   - Default
   - TransparentFX
@@ -56,6 +58,9 @@ TagManager:
     locked: 0
   - name: Seed
     uniqueID: 617795061
+    locked: 0
+  - name: TargetMaker
+    uniqueID: 687448355
     locked: 0
   - name: Default
     uniqueID: 0
