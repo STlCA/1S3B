@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 167178880452115277}
   - component: {fileID: 81704223364864819}
   - component: {fileID: 2140347859641626612}
-  - component: {fileID: -4664381038417374358}
   m_Layer: 0
   m_Name: Pet
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 1516606573612891249}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &81704223364864819
 Rigidbody2D:
@@ -78,51 +77,6 @@ MonoBehaviour:
   moveSpeed: 5
   animator: {fileID: 3917385189135160722}
   petRenderer: {fileID: 6637038768172379684}
---- !u!61 &-4664381038417374358
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677479882886428262}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.035317034, y: -0.18541437}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75278074, y: 0.26893723}
-  m_EdgeRadius: 0
 --- !u!1 &5701109763287987101
 GameObject:
   m_ObjectHideFlags: 0
