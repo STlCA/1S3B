@@ -29,11 +29,14 @@ public class ObjectLayerSetting : MonoBehaviour
         gameManager = GameManager.Instance;
         player = gameManager.Player;
 
-        objectSR = GetComponent<SpriteRenderer>();
+        objectSR = GetComponent<SpriteRenderer>();        
         objectSR.sortingOrder = (int)(transform.position.y * 100 * -1);
 
-        circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.radius = radius;
+        if(CompareTag("DropItem"))
+        {
+            circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.radius = radius;
+        }
     }
 
     private void Update()

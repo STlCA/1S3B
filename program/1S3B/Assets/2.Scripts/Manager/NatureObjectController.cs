@@ -53,7 +53,7 @@ public class NatureObjectController : Manager
 
     private void StartSetting()
     {
-        if (naturePointObject != null)
+        if (naturePoint != null)
         {
             foreach (Transform go in naturePoint)
             {
@@ -89,14 +89,11 @@ public class NatureObjectController : Manager
                     string season = "Spring";//계절알아오기
 
                     IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
-                    string[] labels = new string[names.Count()];
 
                     random = Random.Range(0, names.Count());
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
                     tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
-                    //tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
-
                 }
             }
         }
