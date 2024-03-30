@@ -73,12 +73,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Bed")
+        if (other.tag == "Bed")
+        {
             uiManager.UIOn(uiManager.sleepInfoUI);
+        }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         uiManager.UIOff(uiManager.sleepInfoUI);
     }

@@ -35,7 +35,6 @@ public class TargetSetting : MonoBehaviour
     private void Update()
     {
         PlayerSetCellPosition();
-        targetSR.sortingOrder = (int)(transform.position.y * 100 * -1) - 1;
     }
 
     private void PlayerSetCellPosition()
