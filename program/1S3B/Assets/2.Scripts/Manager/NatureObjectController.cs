@@ -93,7 +93,7 @@ public class NatureObjectController : Manager
                     random = Random.Range(0, names.Count());
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
-                    tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
+                    //tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
                 }
             }
         }

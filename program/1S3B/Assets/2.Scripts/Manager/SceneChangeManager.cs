@@ -237,6 +237,8 @@ public class SceneChangeManager : Manager
         }
 
         fadeImage.gameObject.SetActive(false);
+
+        player.PlayerStateChange(PlayerState.IDLE);
     }
 
 

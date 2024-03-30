@@ -98,6 +98,8 @@ public class GameManager : MonoBehaviour
 
     public void SleepOfDay()
     {
+        player.PlayerStateChange(PlayerState.SLEEP);
+
         StartCoroutine(SceneChangeManager.SleepFadeInOut());
         TileManager.Sleep();
 
