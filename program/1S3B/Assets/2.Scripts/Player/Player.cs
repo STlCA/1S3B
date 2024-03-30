@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Constants;
 using UnityEngine.Playables;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class PlayerSkill
@@ -39,13 +40,18 @@ public class Player : MonoBehaviour
     public int playerMaxEnergy { get; private set; } = 150;
     private int playerEnergy;
 
-    private string[] skillName;
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
+    private string[] skillName;
 
     public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
 
-    private Inventory inventory;
     public Inventory Inventory { get { return inventory; } }
+    private Inventory inventory;
+
+    public bool isUse { get; private set; } = false;
+
+    //public Vector2 saveDirection { get; private set; }
+
 
     private void Awake()
     {
@@ -227,6 +233,11 @@ public class Player : MonoBehaviour
     {
         playerState = state;
     }
+
+    //public void SaveDirectionSet(Vector2 save)
+    //{
+    //    saveDirection = save;
+    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {

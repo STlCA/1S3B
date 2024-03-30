@@ -12,9 +12,13 @@ public class AnimationController : AnimationBase
 {
     private GameManager gameManager;
     private SceneChangeManager sceneChangeManager;
+    private Player player;
+    private PlayerInputController playerInputController;
 
     private Vector2 saveDirection = Vector2.zero;
     private bool oneTimeSave = false;
+
+    private PlayerState previousState;
 
     //public GameObject scmGo;
     //private SceneChangeManager SceneChangeManager;
@@ -23,11 +27,12 @@ public class AnimationController : AnimationBase
     {
         gameManager = GameManager.Instance;
         sceneChangeManager = gameManager.SceneChangeManager;
+        player = gameManager.Player;
+        playerInputController = GetComponent<PlayerInputController>();
 
         controller.OnMoveEvent += MoveAnimation;
         controller.OnClickEvent += UseAnimation;
         sceneChangeManager.mapChangeAction += StopAnimation;
-
     }
 
     //private void Update()
@@ -139,13 +144,27 @@ public class AnimationController : AnimationBase
                     break;
             }
         }
+
+        //StartCoroutine("StateDelay");
     }
+
+    //IEnumerator StateDelay()
+    //{
+    //    yield return new WaitForSeconds(0.1f);
+    //
+    //    float curAnimationTime = animator[0].GetCurrentAnimatorStateInfo(0).length;
+    //
+    //    yield return new WaitForSeconds(curAnimationTime);
+    //
+    //    playerInputController.UseAnimEnd();
+    //}
+
 
     public void DeathAnimation(bool value)
     {
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsDeath, value);
-        }
+        }        
     }
 }

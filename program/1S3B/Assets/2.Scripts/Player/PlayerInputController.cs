@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
@@ -15,14 +17,15 @@ public class PlayerInputController : CharacterEventController
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private Player player;
+    private PlayerTalkController playerTalkController;
 
     private Camera mainCamera;
     private bool isMove;
     private bool isUseEnergy;
+    //private bool isUseAnim = false;
 
     private Vector2 playerPos = new();
 
-    private PlayerTalkController playerTalkController;
 
     private void Start()
     {
@@ -31,8 +34,10 @@ public class PlayerInputController : CharacterEventController
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
+        
         playerTalkController = GetComponent<PlayerTalkController>();
     }
+
     public bool InputException()
     {
         if (player.playerState == PlayerState.MAPCHANGE)
@@ -43,18 +48,38 @@ public class PlayerInputController : CharacterEventController
         return true;
     }
 
+    public bool MoveException(Vector2 moveInput)
+    {
+        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
+            return false;
+        if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
+            return false;
+
+        if (InputException() == false && moveInput != Vector2.zero)
+            return false;
+
+        return true;
+    }
+
+    //public void UseAnimEnd()
+    //{
+    //    CallMoveEvent(player.saveDirection);
+    //    isUseAnim = false;
+    //}
+
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>();
         Debug.Log(moveInput);
 
-        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
-            return;
-        if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
+        if (MoveException(moveInput) == false)
             return;
 
-        if (InputException() == false && moveInput != Vector2.zero)
-            return;
+        //if (isUseAnim == true)
+        //{            
+        //    player.SaveDirectionSet(moveInput);
+        //    return;            
+        //}
 
         CallMoveEvent(moveInput);
 
@@ -62,12 +87,13 @@ public class PlayerInputController : CharacterEventController
         if (moveInput == Vector2.zero)
         {
             isMove = false;
-            targetSetting.gameObject.SetActive(true);
+            Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+            targetSetting.SetCellPosition(mousePos);
         }
         else
         {
             isMove = true;
-            targetSetting.gameObject.SetActive(false);
+            targetSetting.targetSprite.SetActive(false);
         }
     }
 
@@ -91,10 +117,10 @@ public class PlayerInputController : CharacterEventController
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
-        Debug.Log(value);
-
         if (InputException() == false)
             return;
+
+        //isUseAnim = true;
 
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         playerPos = transform.position;
@@ -151,7 +177,7 @@ public class PlayerInputController : CharacterEventController
         }
 
         if (isUseEnergy == true)
-            player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨    
+            player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
     public void OnCommunication()
