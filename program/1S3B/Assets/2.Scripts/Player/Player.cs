@@ -44,14 +44,20 @@ public class Player : MonoBehaviour
 
     public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
 
+    private Inventory inventory;
+    public Inventory Inventory { get { return inventory; } }
+
+    private void Awake()
+    {
+        inventory = GetComponent<Inventory>();
+        animationController = GetComponent<AnimationController>();
+        characterEventController = GetComponent<CharacterEventController>();
+    }
+
     private void Start()
     {
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
-
-        animationController = GetComponent<AnimationController>();
-        characterEventController = GetComponent<CharacterEventController>();
-
         Init();        
 
         playerState = PlayerState.IDLE;
@@ -215,6 +221,11 @@ public class Player : MonoBehaviour
             playerSkills[temp].exp = 0;
             playerSkills[temp].level++;
         }
+    }
+
+    public void PlayerStateChange(PlayerState state)
+    {
+        playerState = state;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

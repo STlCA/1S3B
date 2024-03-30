@@ -12,22 +12,22 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private TextMeshProUGUI selectedItemDescription;
 
     public Image icon;
-    private ItemSlot curSlot;
+    private Item item;
 
     public int index;
 
     // 슬롯 창 설정 초기화
-    public void Set(ItemSlot slot)
+    public void Set(Item item)
     {
-        curSlot = slot;
+        this.item = item;
         icon.gameObject.SetActive(true);
-        icon.sprite = slot.item.SpriteList[0];        
+        icon.sprite = item.ItemInfo.SpriteList[0];        
     }
 
     // 슬롯 창 초기화
     public void Clear()
     {
-        curSlot = null;
+        item = null;
         icon.gameObject.SetActive(false);
     }
 
@@ -41,11 +41,11 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData _eventData)
     {
         // 아이템이 존재하지 않을 때
-        if (GameManager.Instance.UIManager.inventoryUI.slots[index].item == null)
-            return;
+        //if (GameManager.Instance.UIManager.inventoryUI.slots[index].iteminstance == null)
+        //    return;
 
-        GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
-        itemInfoUI.SetActive(true);
+        //GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
+        //itemInfoUI.SetActive(true);
     }
 
     // 아이템 설명창 업데이트

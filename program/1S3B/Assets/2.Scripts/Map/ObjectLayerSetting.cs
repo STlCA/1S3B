@@ -7,34 +7,87 @@ using UnityEngine.UI;
 
 public class ObjectLayerSetting : MonoBehaviour
 {
+    private GameManager gameManager;
+    private Player player;
+
     private SpriteRenderer objectSR;
+    private CircleCollider2D circleCollider;
 
     private float time;
     private float fadeTime = 1f;
 
+    private float radius = 2;
+
+    private Vector3 playerPos;
+    private float lootSpeed = 7f;
+    private float distanceSpeed = 5f;
+    private bool isLooting = false;
 
 
     private void Start()
     {
-        objectSR = GetComponent<SpriteRenderer>();
+        gameManager = GameManager.Instance;
+        player = gameManager.Player;
+
+        objectSR = GetComponent<SpriteRenderer>();        
         objectSR.sortingOrder = (int)(transform.position.y * 100 * -1);
+
+        if(CompareTag("DropItem"))
+        {
+            circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.radius = radius;
+        }
+    }
+
+    private void Update()
+    {
+        if (isLooting == true)
+            LootingItem();
+        
+    }
+
+    public void RadiusSetting(float val)
+    {
+        radius = val;
+    }
+
+    private void LootingItem()
+    {
+        playerPos = player.transform.position;
+        Vector3 direction = (playerPos - transform.position).normalized;
+        float distance = Vector3.Distance(transform.position, playerPos);
+
+        float speed = lootSpeed * distanceSpeed / distance;
+        if (speed < distanceSpeed)
+            speed = distanceSpeed;
+
+        transform.position += direction * speed * Time.deltaTime;
+
+        if (distance < 0.1f)
+        {
+            isLooting = false;
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&&CompareTag("Tree"))
         {
-            if (ObjectSortingOrderCheck(other) == true)//otherµéÀÌ ´Ù ÀÛÀ¸¸é
+            if (ObjectSortingOrderCheck(other) == true)//otherï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 StopCoroutine("PlusAlpha");
                 MinusAlphaStart();
             }
         }
+
+        if (other.CompareTag("Player") && CompareTag("DropItem"))
+            isLooting = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&&CompareTag("Tree"))
         {
             StopCoroutine("MinusAlpha");
             PlusAlphaStart();
