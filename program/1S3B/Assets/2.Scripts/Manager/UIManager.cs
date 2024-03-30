@@ -23,6 +23,7 @@ public class UIManager : Manager
     private void Start()
     {
         player = gameManager.Player;
+        inventoryUI.Init(gameManager, this, player);
 
         maxEnergy = player.playerMaxEnergy;
         energyText = energyBar.GetComponentInChildren<TMP_Text>();

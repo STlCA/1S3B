@@ -1,31 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using TreeEditor;
+using UnityEditor.SceneManagement;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 public class TreeData
 {
     public GameObject treeObj;
-
     public SpriteRenderer treeRenderer;
     public SpriteLibrary treeLibrayry;
     public int maxConut = 10;
     public int count = 0;
 }
 
+[System.Serializable]
 public class NatureData
 {
-
-    public SpriteLibrary natureLibrary;
-    public SpriteResolver natureResolver;
-
-
     public GameObject natureObj;
     public SpriteRenderer natureRenderer;
+    public SpriteResolver natureResolver;
     public bool isSpawn = false;
-    
 }
 
 public class NatureObjectController : Manager
@@ -35,10 +32,11 @@ public class NatureObjectController : Manager
 
     [Header("Nature")]
     public GameObject naturePointObject;
-    private GameObject[] naturePoint;
+    private Transform[] naturePoint;
     public GameObject naturePrefab;
+    public SpriteLibraryAsset natureLibrary;
 
-
+    [SerializeField]
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
 
@@ -47,19 +45,19 @@ public class NatureObjectController : Manager
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
 
-        if(naturePointObject!=null)
-            naturePoint = naturePointObject.GetComponentsInChildren<GameObject>();
+        if (naturePointObject != null)
+            naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
+
+        StartSetting();
     }
 
-    public override void Init(GameManager gm)
+    private void StartSetting()
     {
-        base.Init(gm);
-
-        if(naturePoint!=null)
+        if (naturePointObject != null)
         {
-            foreach (GameObject go in naturePoint)
+            foreach (Transform go in naturePoint)
             {
-                Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.transform.position);
+                Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 NatureData tempData = new NatureData();
 
@@ -68,111 +66,62 @@ public class NatureObjectController : Manager
         }
     }
 
-    private void SpawnNature()
+    public void SpawnNature()
     {
-        float percentage = 50;
+        float percentage = 20;
         float randomPoint;
-        //int random;
+        int random;
 
         foreach (var (cell, tempdData) in natureData)
-        {            
-            if(tempdData.isSpawn == false)
+        {
+            if (tempdData.isSpawn == false)
             {
-                randomPoint = Random.value * percentage;
+                randomPoint = Random.Range(0,101);
                 if (randomPoint < percentage)
                 {
                     //Init()으로묶기
                     tempdData.isSpawn = true;
                     tempdData.natureObj = Instantiate(naturePrefab);
                     tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempdData.natureObj.tag = "Harvest";
+                    tempdData.natureRenderer = tempdData.natureObj.GetComponent<SpriteRenderer>();
+                    tempdData.natureResolver = tempdData.natureObj.GetComponent<SpriteResolver>();
 
-                    string str = "spring";//tempdData.natureResolver.GetCategory();
+                    string season = "Spring";//계절알아오기
 
-                    tempdData.natureLibrary.spriteLibraryAsset.GetCategoryLabelNames(str);
+                    IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
+                    string[] labels = new string[names.Count()];
 
-                    //tempdData.natureResolver.SetCategoryAndLabel("Spring", "0");
-                    //
-                    //tempdData.natureLibrary.GetSprite(Spring)
-                    //
-                    //random = Random.Range(0, tempdData.natureResolver.GetCategory())
-                    //
-                    //
-                    //
-                    //tempdData.natureRenderer.sprite = tempdData.natureLibrary.GetSprite()
+                    random = Random.Range(0, names.Count());
 
-                }                    
-            }                
-        }
+                    tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
+                    tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
+                    //tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
 
-
-
-
-
-
-
-
-
-        /*for (int i = 0; i < probs.Length; i++)
-        {
-            if (randomPoint < probs[i])
-            {
-                return i;
-            }
-            else
-            {
-                randomPoint -= probs[i];
+                }
             }
         }
-    출처: https://geojun.tistory.com/83 [Jungle(정글):티스토리]
-
-
-
-        int checkIndex = 0;
-        float total = 0;
-
-
-
-        //float[] itemPercent = new float[spawnItem.Length];
-        //for (int i = 0; i < spawnItem.Length; i++)
-        //{
-        //    float percent = spawnItem[i].GetComponent<Item>().Percent;
-        //    itemPercent[i] = percent;
-        //    total += percent;
-        //}
-
-
-
-        for (int i = 0; i < itemPercent.Length; i++)
-        {
-            if (randomPoint <= itemPercent[i])
-            {
-                dropIndex = i;
-                break;
-            }
-            else
-                randomPoint -= itemPercent[i];
-        }
-
-        if (!spawnItem[dropIndex].GetComponent<Item>().Useitem)
-        {
-            spawnItem[dropIndex].SetActive(true);
-            spawnItem[dropIndex].transform.position = gameObject.transform.position;
-        }*/
     }
 
+    public bool IsPickUp(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return false;
 
+        return natureData.ContainsKey(target);
+    }
+    public void PickUpNature(Vector3Int target)
+    {
+        Destroy(natureData[target].natureObj);
+        natureData[target].isSpawn = false;
+    }
 
-    public bool IsLogging(Vector3Int target)
+    public bool IsFelling(Vector3Int target)
     {
         return treeData.ContainsKey(target);
     }
 
-    public void LoggingAt(Vector3Int target)
+    public void Felling(Vector3Int target)
     {
-        if (targetSetting == null)
-            targetSetting = GameManager.Instance.TargetSetting;
-
         if (targetSetting.PlayerBoundCheck() == false)
             return;
 

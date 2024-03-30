@@ -43,6 +43,8 @@ namespace Constants
         IDLE,
         TIRED,
         BLACKOUT,
+        MAPCHANGE,
+        SLEEP,
     }
 
     public enum PlayerSkillType
