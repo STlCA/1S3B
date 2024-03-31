@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     public void UseEnergy()
     {
         playerEnergy -= 2;
-        uiManager.EnergyUpdate(playerEnergy);
+        uiManager.EnergyBarUpdate(playerEnergy);
 
         if (playerEnergy <= 0 && playerEnergy > -20)
         {
@@ -130,12 +130,14 @@ public class Player : MonoBehaviour
             playerState = PlayerState.IDLE;
             playerSpeed = 10f;
             playerEnergy = playerMaxEnergy / 2;
-            uiManager.EnergyUpdate(playerEnergy);
-            playerState = PlayerState.IDLE;
+            uiManager.EnergyBarUpdate(playerEnergy);
             uiManager.TiredIconOnOff(false);
         }
         else
-            uiManager.EnergyUpdate(playerMaxEnergy);
+        {
+            playerEnergy = playerMaxEnergy;
+            uiManager.EnergyBarUpdate(playerMaxEnergy);
+        }
     }
 
     private int GoldRange(int range1, int range2)
@@ -153,7 +155,7 @@ public class Player : MonoBehaviour
     public void EnergyRecovery()
     {
         playerEnergy += 10;
-        uiManager.EnergyUpdate(playerEnergy);
+        uiManager.EnergyBarUpdate(playerEnergy);
     }
 
     public void ChangePosition()

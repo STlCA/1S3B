@@ -35,12 +35,12 @@ public class UIManager : Manager
         energyBar.maxValue = maxEnergy;
         energyBar.minValue = 0;
 
-        EnergyUpdate(maxEnergy);
+        EnergyBarUpdate(maxEnergy);
 
         energyText.gameObject.SetActive(false);
         tired.SetActive(false);
     }
-    public void EnergyUpdate(int playerEnergy)
+    public void EnergyBarUpdate(int playerEnergy)
     {
         if (playerEnergy > maxEnergy)
             playerEnergy = maxEnergy;

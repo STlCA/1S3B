@@ -19,7 +19,7 @@ public class ObjectLayerSetting : MonoBehaviour
     private float radius = 2;
 
     private Vector3 playerPos;
-    private float lootSpeed = 7f;
+    //private float lootSpeed = 7f;
     private float distanceSpeed = 5f;
     private bool isLooting = false;
 
@@ -57,7 +57,7 @@ public class ObjectLayerSetting : MonoBehaviour
         Vector3 direction = (playerPos - transform.position).normalized;
         float distance = Vector3.Distance(transform.position, playerPos);
 
-        float speed = lootSpeed * distanceSpeed / distance;
+        float speed = distanceSpeed * distanceSpeed / distance;
         if (speed < distanceSpeed)
             speed = distanceSpeed;
 
@@ -65,8 +65,8 @@ public class ObjectLayerSetting : MonoBehaviour
 
         if (distance < 0.1f)
         {
-            isLooting = false;
             Destroy(gameObject);
+            isLooting = false;
         }
     }
 

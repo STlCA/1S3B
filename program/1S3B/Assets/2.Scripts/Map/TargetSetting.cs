@@ -18,7 +18,7 @@ public class TargetSetting : MonoBehaviour
     [Header("Object")]
     public GameObject playerObj;
     public GameObject targetSprite;
-    private SpriteRenderer targetSR;
+    [HideInInspector]public SpriteRenderer targetSR;
 
     [HideInInspector] public Vector3Int playerCellPosition;
     [HideInInspector] public Vector3Int selectCellPosition;
@@ -56,19 +56,19 @@ public class TargetSetting : MonoBehaviour
     {
         if (tileManager.isInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
         {
-            targetSprite.SetActive(false);
+            targetSR.color = new Color(1, 1, 1, 0);
             return false;
         }
 
         if (PlayerBoundCheck() == true)
         {
-            targetSprite.SetActive(true);
+            targetSR.color = new Color(1, 1, 1, 1);
             TargetPosition();
             return true;
         }
         else
         {
-            targetSprite.SetActive(false);
+            targetSR.color = new Color(1, 1, 1, 0);
             return false;
         }
     }

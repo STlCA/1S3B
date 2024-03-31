@@ -48,6 +48,17 @@ public class PlayerInputController : CharacterEventController
         return true;
     }
 
+    public bool UseException()
+    {
+        if (InputException() == false)
+            return false;
+
+        if (isMove == true)
+            return false;
+
+        return true;
+    }
+
     public bool MoveException(Vector2 moveInput)
     {
         if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
@@ -93,13 +104,15 @@ public class PlayerInputController : CharacterEventController
         else
         {
             isMove = true;
-            targetSetting.targetSprite.SetActive(false);
+            targetSetting.targetSR.color = new Color(1, 1, 1, 0);
         }
     }
 
     public void OnMouse(InputValue value)
     {
         if (mainCamera == null && targetSetting == null)
+            return;
+        if (isMove == true)
             return;
 
         Vector2 position = value.Get<Vector2>();
@@ -117,12 +130,13 @@ public class PlayerInputController : CharacterEventController
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
-        if (InputException() == false)
+        if (UseException() == false)
             return;
 
         //isUseAnim = true;
 
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        targetSetting.SetCellPosition(mousePos);
         playerPos = transform.position;
         Vector2 pos = new Vector2();
 
