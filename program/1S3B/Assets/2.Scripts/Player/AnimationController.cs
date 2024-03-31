@@ -186,7 +186,9 @@ public class AnimationController : AnimationBase
         else if (pos.y <= 0.71)
             pickupItemSR.sortingOrder = sr.sortingOrder + 10;
 
-        pickupItem.transform.position = player.transform.position;
+        Vector3 position = player.transform.position;
+        position.y -= 0.5f;
+        pickupItem.transform.position = position;
         pickupItemSR.sprite = pickUpSprite;
         pickItemAnim.SetFloat(ConstantsString.SaveX, pos.x);
         pickItemAnim.SetFloat(ConstantsString.SaveY, pos.y);
