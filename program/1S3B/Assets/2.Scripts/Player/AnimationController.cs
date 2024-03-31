@@ -21,7 +21,8 @@ public class AnimationController : AnimationBase
     public Action<bool> useAnimEnd;
 
     [Header("PickUp")]
-    public GameObject pickupItem;
+    public GameObject pickupItemPrefab;
+    private GameObject pickupItem;
     private SpriteRenderer pickupItemSR;
     private Animator pickItemAnim;
 
@@ -35,11 +36,10 @@ public class AnimationController : AnimationBase
         controller.OnClickEvent += UseAnimation;
         sceneChangeManager.mapChangeAction += StopAnimation;
 
-        if (pickupItem != null)
-        {
-            pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
-            pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
-        }
+        pickupItem = Instantiate(pickupItemPrefab);        
+        pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
+        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
+        
     }
 
     //private void Update()

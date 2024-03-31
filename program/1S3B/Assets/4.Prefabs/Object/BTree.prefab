@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9030420265551760039}
   - component: {fileID: 6484731510750668060}
   - component: {fileID: 1408430312851137701}
-  - component: {fileID: 6889364982973099290}
+  - component: {fileID: 5941573726551539133}
   m_Layer: 0
-  m_Name: BTree1-1
-  m_TagString: Tree
+  m_Name: BTree
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 1849115632059189868}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6484731510750668060
 SpriteRenderer:
@@ -141,7 +141,7 @@ PolygonCollider2D:
       - {x: 1.490718, y: 1.2989482}
       - {x: 0.49634397, y: 1.2764857}
   m_UseDelaunayMesh: 0
---- !u!114 &6889364982973099290
+--- !u!114 &5941573726551539133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 32191032734084000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1234dd42862589340b45a24e0a27eb63, type: 3}
+  m_Script: {fileID: 11500000, guid: 392eea7eccccbd7479c26739e2378494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6096028708468125306
