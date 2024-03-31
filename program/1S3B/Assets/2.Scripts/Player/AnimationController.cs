@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.U2D.Animation;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 using static UnityEngine.Rendering.ReloadAttribute;
 
@@ -18,10 +19,7 @@ public class AnimationController : AnimationBase
     private Vector2 saveDirection = Vector2.zero;
     private bool oneTimeSave = false;
 
-    private PlayerState previousState;
-
-    //public GameObject scmGo;
-    //private SceneChangeManager SceneChangeManager;
+    public Action<bool> useAnimEnd;
 
     private void Start()
     {
@@ -44,7 +42,7 @@ public class AnimationController : AnimationBase
     //        StopAnimation(false);
     //}
 
-    public void MoveAnimation(Vector2 direction)
+    public void MoveAnimation(Vector2 direction, bool isUse = false)
     {
         if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
@@ -54,7 +52,7 @@ public class AnimationController : AnimationBase
             }
         }
 
-        if (direction.magnitude <= 0f)
+        if (direction.magnitude <= 0f && isUse == false)
         {
             foreach (var anim in animator)
             {
@@ -69,7 +67,7 @@ public class AnimationController : AnimationBase
             anim.SetFloat(ConstantsString.InputY, direction.y);
 
             anim.SetBool(ConstantsString.IsWalking, direction.magnitude > 0f);
-        }
+        }       
     }
 
     public void StopAnimation(bool value)
@@ -110,6 +108,8 @@ public class AnimationController : AnimationBase
 
     public void UseAnimation(PlayerEquipmentType equipmentType, Vector2 pos)
     {
+        useAnimEnd?.Invoke(true);
+
         if (animator[0].GetFloat(ConstantsString.SaveX) == 0 && animator[0].GetFloat(ConstantsString.SaveY) == 0)
         {
             foreach (var anim in animator)
@@ -129,7 +129,7 @@ public class AnimationController : AnimationBase
             switch (equipmentType)
             {
                 case PlayerEquipmentType.PickUp:
-                    anim.SetTrigger("usePickUp");
+                    anim.SetTrigger("usePickUp");                    
                     break;
                 case PlayerEquipmentType.Hoe:
                     anim.SetTrigger("useHoe");
@@ -145,19 +145,19 @@ public class AnimationController : AnimationBase
             }
         }
 
-        //StartCoroutine("StateDelay");
+        StartCoroutine("StateDelay");
     }
 
-    //IEnumerator StateDelay()
-    //{
-    //    yield return new WaitForSeconds(0.1f);
-    //
-    //    float curAnimationTime = animator[0].GetCurrentAnimatorStateInfo(0).length;
-    //
-    //    yield return new WaitForSeconds(curAnimationTime);
-    //
-    //    playerInputController.UseAnimEnd();
-    //}
+    IEnumerator StateDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+    
+        float curAnimationTime = animator[0].GetCurrentAnimatorStateInfo(0).length;
+    
+        yield return new WaitForSeconds(curAnimationTime);
+
+        useAnimEnd?.Invoke(false);
+    }
 
 
     public void DeathAnimation(bool value)

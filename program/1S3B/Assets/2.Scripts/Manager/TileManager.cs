@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -5,6 +6,7 @@ using UnityEditor.PackageManager;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 
 [System.Serializable]
 public class GroundData
@@ -38,6 +40,8 @@ public class CropData
 
 public class TileManager : Manager
 {
+    private CharacterEventController _controller;
+
     [Header("TileMap")]
     public Grid baseGrid;
     public Tilemap backgroundTilemap;
@@ -55,6 +59,7 @@ public class TileManager : Manager
 
     [Header("Object")]
     public GameObject cropGoPrefabs;
+    public SpriteRenderer pickupItem;
 
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
     private Dictionary<Vector3Int, CropData> croptData = new();
@@ -64,6 +69,7 @@ public class TileManager : Manager
     private void Start()
     {
         cropDatabase = gameManager.DataManager.cropDatabase;
+        _controller = gameManager.Player.GetComponent<CharacterEventController>();
     }
 
     //샘플
@@ -121,7 +127,6 @@ public class TileManager : Manager
 
 
         croptData.Add(target, tempcropData);
-
     }
 
     public void WaterAt(Vector3Int target)
@@ -143,11 +148,12 @@ public class TileManager : Manager
         //croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
-    public void Harvest(Vector3Int target)
+    public void Harvest(Vector3Int target,Vector2 pos)
     {
         if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
+        pickupItem.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 1];
 
         if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
@@ -163,6 +169,8 @@ public class TileManager : Manager
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
             croptData[target].cropObj.tag = "Crop";
         }
+
+        _controller.CallClickEvent(PlayerEquipmentType.PickUp, pos);
     }
 
 

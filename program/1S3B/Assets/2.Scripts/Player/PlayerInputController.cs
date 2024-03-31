@@ -18,13 +18,15 @@ public class PlayerInputController : CharacterEventController
     private TargetSetting targetSetting;
     private Player player;
     private PlayerTalkController playerTalkController;
+    private AnimationController animController;
 
     private Camera mainCamera;
     private bool isMove;
     private bool isUseEnergy;
-    //private bool isUseAnim = false;
+    private bool isUseAnim;
 
     private Vector2 playerPos = new();
+    private Vector2 saveDirection = Vector2.zero;
 
 
     private void Start()
@@ -34,8 +36,24 @@ public class PlayerInputController : CharacterEventController
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
-        
+
         playerTalkController = GetComponent<PlayerTalkController>();
+        animController = GetComponent<AnimationController>();
+        animController.useAnimEnd += AnimState;
+    }
+
+    public void AnimState(bool value)
+    {
+        isUseAnim = value;
+
+        if (value == false)
+        {
+            if (saveDirection != Vector2.zero)
+                CallMoveEvent(saveDirection, true);
+
+            TargetCheck(saveDirection);
+            saveDirection = Vector2.zero;
+        }
     }
 
     public bool InputException()
@@ -69,31 +87,17 @@ public class PlayerInputController : CharacterEventController
         if (InputException() == false && moveInput != Vector2.zero)
             return false;
 
+        if (isUseAnim == true)
+        {
+            saveDirection = moveInput;
+            return false;
+        }
+
         return true;
     }
 
-    //public void UseAnimEnd()
-    //{
-    //    CallMoveEvent(player.saveDirection);
-    //    isUseAnim = false;
-    //}
-
-    public void OnMove(InputValue value)
+    private void TargetCheck(Vector2 moveInput)
     {
-        Vector2 moveInput = value.Get<Vector2>();
-        Debug.Log(moveInput);
-
-        if (MoveException(moveInput) == false)
-            return;
-
-        //if (isUseAnim == true)
-        //{            
-        //    player.SaveDirectionSet(moveInput);
-        //    return;            
-        //}
-
-        CallMoveEvent(moveInput);
-
         //움직이면 타겟안보임
         if (moveInput == Vector2.zero)
         {
@@ -106,6 +110,18 @@ public class PlayerInputController : CharacterEventController
             isMove = true;
             targetSetting.targetSR.color = new Color(1, 1, 1, 0);
         }
+    }
+
+    public void OnMove(InputValue value)
+    {
+        Vector2 moveInput = value.Get<Vector2>();
+        Debug.Log(moveInput);
+
+        if (MoveException(moveInput) == false)
+            return;
+
+        CallMoveEvent(moveInput);
+        TargetCheck(moveInput);
     }
 
     public void OnMouse(InputValue value)
@@ -133,10 +149,7 @@ public class PlayerInputController : CharacterEventController
         if (UseException() == false)
             return;
 
-        //isUseAnim = true;
-
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-        targetSetting.SetCellPosition(mousePos);
         playerPos = transform.position;
         Vector2 pos = new Vector2();
 
@@ -170,12 +183,9 @@ public class PlayerInputController : CharacterEventController
             if (isMove == true)
                 isUseEnergy = false;
             else
-            {
                 isUseEnergy = true;
-                CallClickEvent(PlayerEquipmentType.PickUp, pos);
-            }
 
-            tileManager.Harvest(targetSetting.selectCellPosition);
+            tileManager.Harvest(targetSetting.selectCellPosition,pos);
         }
         else if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
         {
@@ -187,7 +197,7 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.Water, pos);
             }
 
-            GameManager.Instance.TileManager.WaterAt(targetSetting.selectCellPosition);
+            tileManager.WaterAt(targetSetting.selectCellPosition);
         }
 
         if (isUseEnergy == true)

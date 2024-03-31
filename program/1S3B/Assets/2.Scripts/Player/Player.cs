@@ -48,10 +48,6 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
 
-    public bool isUse { get; private set; } = false;
-
-    //public Vector2 saveDirection { get; private set; }
-
 
     private void Awake()
     {
@@ -235,11 +231,6 @@ public class Player : MonoBehaviour
     {
         playerState = state;
     }
-
-    //public void SaveDirectionSet(Vector2 save)
-    //{
-    //    saveDirection = save;
-    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {

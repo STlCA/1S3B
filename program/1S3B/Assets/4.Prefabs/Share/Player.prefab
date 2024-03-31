@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 7792754854552026555}
   targetSprite: {fileID: 2602501819577196177}
+  targetSR: {fileID: 0}
   playerCellPosition: {x: 0, y: 0, z: 0}
   selectCellPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3395553085000603999
@@ -702,10 +703,10 @@ Transform:
   - {fileID: 2466502481667538210}
   - {fileID: 6628348998625313265}
   - {fileID: 6576275059213794923}
-  - {fileID: 7490208217715649292}
   - {fileID: 2612866635557161407}
+  - {fileID: 7490208217715649292}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6090136625704993183
 BoxCollider2D:

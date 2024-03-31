@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         this.isChange = isChange;
     }
 
-    private void Move(Vector2 dirction)
+    private void Move(Vector2 dirction, bool isUse = false)
     {
         _movementDirection = dirction;
     }
