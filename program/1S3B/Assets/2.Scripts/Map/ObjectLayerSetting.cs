@@ -23,6 +23,9 @@ public class ObjectLayerSetting : MonoBehaviour
     private float distanceSpeed = 5f;
     private bool isLooting = false;
 
+    Vector3 startPos;
+    float currentTime;
+
 
     private void Start()
     {
@@ -50,20 +53,21 @@ public class ObjectLayerSetting : MonoBehaviour
     {
         radius = val;
     }
-
     private void LootingItem()
     {
         playerPos = player.transform.position;
-        Vector3 direction = (playerPos - transform.position).normalized;
+        //Vector3 direction = (playerPos - transform.position).normalized;
         float distance = Vector3.Distance(transform.position, playerPos);
 
-        float speed = distanceSpeed * distanceSpeed / distance;
-        if (speed < distanceSpeed)
-            speed = distanceSpeed;
+        //float speed = distanceSpeed * distanceSpeed / distance;
+        //if (speed < distanceSpeed)
+        //    speed = distanceSpeed;
 
-        transform.position += direction * speed * Time.deltaTime;
+        //transform.position += direction * speed * Time.deltaTime;
+        currentTime += distanceSpeed * Time.deltaTime;
+        this.transform.position =  Vector3.Lerp(startPos, playerPos, currentTime);
 
-        if (distance < 0.1f)
+        if (distance < 0.5f)
         {
             Destroy(gameObject);
             isLooting = false;
@@ -82,7 +86,11 @@ public class ObjectLayerSetting : MonoBehaviour
         }
 
         if (other.CompareTag("Player") && CompareTag("DropItem"))
+        {
             isLooting = true;
+            startPos = this.transform.position;
+            currentTime = 0;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
