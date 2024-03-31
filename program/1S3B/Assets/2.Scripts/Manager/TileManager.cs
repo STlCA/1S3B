@@ -63,7 +63,7 @@ public class TileManager : Manager
     public GameObject cropGoPrefabs;
 
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
-    private Dictionary<Vector3Int, CropData> croptData = new();
+    public Dictionary<Vector3Int, CropData> croptData { get; private set; } = new();
 
     private CropDatabase cropDatabase;
 
