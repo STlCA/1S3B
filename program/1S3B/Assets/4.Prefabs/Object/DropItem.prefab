@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8315878947089839272}
   - component: {fileID: 233912416842116296}
-  - component: {fileID: 6394054742736253042}
   - component: {fileID: 2048050082608832673}
+  - component: {fileID: 1303224736229381707}
   m_Layer: 0
   m_Name: DropItem
-  m_TagString: DropItem
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &233912416842116296
 SpriteRenderer:
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6394054742736253042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036955304412341815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1234dd42862589340b45a24e0a27eb63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2048050082608832673
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,4 +120,16 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 5.36
+--- !u!114 &1303224736229381707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036955304412341815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b96682e64cd63842a293feebfa7ad59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

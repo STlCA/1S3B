@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
@@ -15,14 +17,18 @@ public class PlayerInputController : CharacterEventController
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private Player player;
+    private PlayerTalkController playerTalkController;
+    private AnimationController animController;
+    private NatureObjectController natureObjectController;
 
     private Camera mainCamera;
     private bool isMove;
     private bool isUseEnergy;
+    private bool isUseAnim;
 
     private Vector2 playerPos = new();
+    private Vector2 saveDirection = Vector2.zero;
 
-    private PlayerTalkController playerTalkController;
 
     private void Start()
     {
@@ -31,8 +37,27 @@ public class PlayerInputController : CharacterEventController
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
+        natureObjectController = gameManager.NatureObjectController;
+
         playerTalkController = GetComponent<PlayerTalkController>();
+        animController = GetComponent<AnimationController>();
+        animController.useAnimEnd += AnimState;
     }
+
+    public void AnimState(bool value)
+    {
+        isUseAnim = value;
+
+        if (value == false)
+        {
+            if (saveDirection != Vector2.zero)
+                CallMoveEvent(saveDirection, true);
+
+            TargetCheck(saveDirection);
+            saveDirection = Vector2.zero;
+        }
+    }
+
     public bool InputException()
     {
         if (player.playerState == PlayerState.MAPCHANGE)
@@ -43,37 +68,69 @@ public class PlayerInputController : CharacterEventController
         return true;
     }
 
+    public bool UseException()
+    {
+        if (InputException() == false)
+            return false;
+
+        if (isMove == true)
+            return false;
+
+        return true;
+    }
+
+    public bool MoveException(Vector2 moveInput)
+    {
+        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
+            return false;
+        if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
+            return false;
+
+        if (InputException() == false && moveInput != Vector2.zero)
+            return false;
+
+        if (isUseAnim == true)
+        {
+            saveDirection = moveInput;
+            return false;
+        }
+
+        return true;
+    }
+
+    private void TargetCheck(Vector2 moveInput)
+    {
+        //움직이면 타겟안보임
+        if (moveInput == Vector2.zero)
+        {
+            isMove = false;
+            Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+            targetSetting.SetCellPosition(mousePos);
+        }
+        else
+        {
+            isMove = true;
+            targetSetting.targetSR.color = new Color(1, 1, 1, 0);
+        }
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>();
         Debug.Log(moveInput);
 
-        if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
-            return;
-        if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
-            return;
-
-        if (InputException() == false && moveInput != Vector2.zero)
+        if (MoveException(moveInput) == false)
             return;
 
         CallMoveEvent(moveInput);
-
-        //움직이면 타겟안보임
-        if (moveInput == Vector2.zero)
-        {
-            isMove = false;
-            targetSetting.gameObject.SetActive(true);
-        }
-        else
-        {
-            isMove = true;
-            targetSetting.gameObject.SetActive(false);
-        }
+        TargetCheck(moveInput);
     }
 
     public void OnMouse(InputValue value)
     {
         if (mainCamera == null && targetSetting == null)
+            return;
+        if (isMove == true)
             return;
 
         Vector2 position = value.Get<Vector2>();
@@ -91,9 +148,7 @@ public class PlayerInputController : CharacterEventController
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
         //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
 
-        Debug.Log(value);
-
-        if (InputException() == false)
+        if (UseException() == false)
             return;
 
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
@@ -103,11 +158,24 @@ public class PlayerInputController : CharacterEventController
         pos.x = (mousePos.x - playerPos.x);
         pos.y = (mousePos.y - playerPos.y);
 
-        pos.Normalize();
+        pos = pos.normalized;
 
         isUseEnergy = false;
 
-        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
+        if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickUp, pos);
+            }
+
+            natureObjectController.PickUpNature(targetSetting.selectCellPosition,pos);
+            CallClickEvent(PlayerEquipmentType.PickUp, pos);
+        }
+        else if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -135,7 +203,7 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.PickUp, pos);
             }
 
-            tileManager.Harvest(targetSetting.selectCellPosition);
+            tileManager.Harvest(targetSetting.selectCellPosition,pos);
         }
         else if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
         {
@@ -147,11 +215,12 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.Water, pos);
             }
 
-            GameManager.Instance.TileManager.WaterAt(targetSetting.selectCellPosition);
+            tileManager.WaterAt(targetSetting.selectCellPosition);
         }
 
+
         if (isUseEnergy == true)
-            player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨    
+            player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
     public void OnCommunication()

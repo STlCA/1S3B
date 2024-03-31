@@ -76,4 +76,10 @@ namespace Constants
         Diamond,
         Bless,
     }
+
+    public enum NeedUpdateObject
+    {
+        None,
+        Need
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Constants;
 using UnityEngine.Playables;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class PlayerSkill
@@ -39,13 +40,14 @@ public class Player : MonoBehaviour
     public int playerMaxEnergy { get; private set; } = 150;
     private int playerEnergy;
 
-    private string[] skillName;
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
+    private string[] skillName;
 
     public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
 
-    private Inventory inventory;
     public Inventory Inventory { get { return inventory; } }
+    private Inventory inventory;
+
 
     private void Awake()
     {
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour
     public void UseEnergy()
     {
         playerEnergy -= 2;
-        uiManager.EnergyUpdate(playerEnergy);
+        uiManager.EnergyBarUpdate(playerEnergy);
 
         if (playerEnergy <= 0 && playerEnergy > -20)
         {
@@ -124,12 +126,14 @@ public class Player : MonoBehaviour
             playerState = PlayerState.IDLE;
             playerSpeed = 10f;
             playerEnergy = playerMaxEnergy / 2;
-            uiManager.EnergyUpdate(playerEnergy);
-            playerState = PlayerState.IDLE;
+            uiManager.EnergyBarUpdate(playerEnergy);
             uiManager.TiredIconOnOff(false);
         }
         else
-            uiManager.EnergyUpdate(playerMaxEnergy);
+        {
+            playerEnergy = playerMaxEnergy;
+            uiManager.EnergyBarUpdate(playerMaxEnergy);
+        }
     }
 
     private int GoldRange(int range1, int range2)
@@ -147,7 +151,7 @@ public class Player : MonoBehaviour
     public void EnergyRecovery()
     {
         playerEnergy += 10;
-        uiManager.EnergyUpdate(playerEnergy);
+        uiManager.EnergyBarUpdate(playerEnergy);
     }
 
     public void ChangePosition()

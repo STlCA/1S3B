@@ -5,29 +5,41 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.U2D.Animation;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
 {
     private GameManager gameManager;
+    private Player player;
     private SceneChangeManager sceneChangeManager;
 
     private Vector2 saveDirection = Vector2.zero;
     private bool oneTimeSave = false;
 
-    //public GameObject scmGo;
-    //private SceneChangeManager SceneChangeManager;
+    public Action<bool> useAnimEnd;
+
+    [Header("PickUp")]
+    public GameObject pickupItemPrefab;
+    private GameObject pickupItem;
+    private SpriteRenderer pickupItemSR;
+    private Animator pickItemAnim;
 
     private void Start()
     {
         gameManager = GameManager.Instance;
+        player = gameManager.Player;
         sceneChangeManager = gameManager.SceneChangeManager;
 
         controller.OnMoveEvent += MoveAnimation;
         controller.OnClickEvent += UseAnimation;
         sceneChangeManager.mapChangeAction += StopAnimation;
 
+        pickupItem = Instantiate(pickupItemPrefab);        
+        pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
+        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
+        
     }
 
     //private void Update()
@@ -39,7 +51,7 @@ public class AnimationController : AnimationBase
     //        StopAnimation(false);
     //}
 
-    public void MoveAnimation(Vector2 direction)
+    public void MoveAnimation(Vector2 direction, bool isUse = false)
     {
         if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
@@ -49,16 +61,16 @@ public class AnimationController : AnimationBase
             }
         }
 
-        if (direction.magnitude <= 0f)
+        if (direction.magnitude <= 0f && isUse == false)
         {
             foreach (var anim in animator)
             {
                 anim.SetFloat(ConstantsString.SaveX, animator[0].GetFloat(ConstantsString.InputX));
                 anim.SetFloat(ConstantsString.SaveY, animator[0].GetFloat(ConstantsString.InputY));
-            }       
+            }
         }
 
-        foreach(var anim in animator)
+        foreach (var anim in animator)
         {
             anim.SetFloat(ConstantsString.InputX, direction.x);
             anim.SetFloat(ConstantsString.InputY, direction.y);
@@ -87,9 +99,9 @@ public class AnimationController : AnimationBase
 
                 anim.SetFloat(ConstantsString.SaveX, saveDirection.x);
                 anim.SetFloat(ConstantsString.SaveY, saveDirection.y);
-            }         
+            }
         }
-        else if(value == false) 
+        else if (value == false)
         {
             oneTimeSave = false;
 
@@ -105,6 +117,8 @@ public class AnimationController : AnimationBase
 
     public void UseAnimation(PlayerEquipmentType equipmentType, Vector2 pos)
     {
+        useAnimEnd?.Invoke(true);
+
         if (animator[0].GetFloat(ConstantsString.SaveX) == 0 && animator[0].GetFloat(ConstantsString.SaveY) == 0)
         {
             foreach (var anim in animator)
@@ -139,7 +153,21 @@ public class AnimationController : AnimationBase
                     break;
             }
         }
+
+        StartCoroutine("StateDelay");
     }
+
+    IEnumerator StateDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        float curAnimationTime = animator[0].GetCurrentAnimatorStateInfo(0).length;
+
+        yield return new WaitForSeconds(curAnimationTime);
+
+        useAnimEnd?.Invoke(false);
+    }
+
 
     public void DeathAnimation(bool value)
     {
@@ -148,4 +176,21 @@ public class AnimationController : AnimationBase
             anim.SetBool(ConstantsString.IsDeath, value);
         }
     }
+
+    public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
+    {
+        SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
+
+        if (pos.y > 0.71)
+            pickupItemSR.sortingOrder = sr.sortingOrder - 1;
+        else if (pos.y <= 0.71)
+            pickupItemSR.sortingOrder = sr.sortingOrder + 10;
+
+        pickupItem.transform.position = player.transform.position;
+        pickupItemSR.sprite = pickUpSprite;
+        pickItemAnim.SetFloat(ConstantsString.SaveX, pos.x);
+        pickItemAnim.SetFloat(ConstantsString.SaveY, pos.y);
+        pickItemAnim.SetTrigger("usePickUp");
+    }
+
 }

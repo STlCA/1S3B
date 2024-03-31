@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     private Player player;
     public TargetSetting TargetSetting { get { return targetSetting; } }
     private TargetSetting targetSetting;
+    public AnimationController AnimationController { get { return animationController; } }
+    private AnimationController animationController;
 
     //========================Inspector
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
 
         player = GetFind<Player>();
         targetSetting = GetFind<TargetSetting>();
+        animationController = player.GetComponent<AnimationController>();//물어보기
 
         DontDestroyOnLoad(gameObject);
     }
