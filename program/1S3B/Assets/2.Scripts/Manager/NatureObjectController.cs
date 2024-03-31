@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using TreeEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.U2D.Animation;
 public class TreeData
 {
@@ -29,6 +31,7 @@ public class NatureObjectController : Manager
 {
     private TileManager tileManager;
     private TargetSetting targetSetting;
+    private AnimationController animationController;
 
     [Header("Nature")]
     public GameObject naturePointObject;
@@ -44,6 +47,7 @@ public class NatureObjectController : Manager
     {
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
+        animationController = gameManager.AnimationController;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
@@ -68,7 +72,7 @@ public class NatureObjectController : Manager
 
     public void SpawnNature()
     {
-        float percentage = 20;
+        float percentage = 50;
         float randomPoint;
         int random;
 
@@ -76,7 +80,7 @@ public class NatureObjectController : Manager
         {
             if (tempdData.isSpawn == false)
             {
-                randomPoint = Random.Range(0,101);
+                randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
                     //Init()À¸·Î¹­±â
@@ -104,12 +108,19 @@ public class NatureObjectController : Manager
         if (targetSetting.PlayerBoundCheck() == false)
             return false;
 
-        return natureData.ContainsKey(target);
+        if (natureData.ContainsKey(target) && natureData[target].isSpawn == false)
+            return false;
+
+        return natureData.ContainsKey(target) && natureData[target].isSpawn == true;
     }
-    public void PickUpNature(Vector3Int target)
+
+    public void PickUpNature(Vector3Int target, Vector2 pos)
     {
-        Destroy(natureData[target].natureObj);
+        Sprite pickUpSprite = natureData[target].natureRenderer.sprite;
+        animationController.PickUpAnim(target, pos, pickUpSprite);
+
         natureData[target].isSpawn = false;
+        Destroy(natureData[target].natureObj);
     }
 
     public bool IsFelling(Vector3Int target)

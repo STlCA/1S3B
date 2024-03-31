@@ -40,7 +40,9 @@ public class CropData
 
 public class TileManager : Manager
 {
+    private Player player;
     private CharacterEventController _controller;
+    private AnimationController animationController;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -59,7 +61,6 @@ public class TileManager : Manager
 
     [Header("Object")]
     public GameObject cropGoPrefabs;
-    public SpriteRenderer pickupItem;
 
     private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
     private Dictionary<Vector3Int, CropData> croptData = new();
@@ -68,6 +69,9 @@ public class TileManager : Manager
 
     private void Start()
     {
+        player = gameManager.Player;
+        animationController = gameManager.AnimationController;
+
         cropDatabase = gameManager.DataManager.cropDatabase;
         _controller = gameManager.Player.GetComponent<CharacterEventController>();
     }
@@ -101,7 +105,7 @@ public class TileManager : Manager
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
         if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
-               
+
         tilledTilemap.SetTile(target, tilledTile);
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
     }
@@ -148,12 +152,13 @@ public class TileManager : Manager
         //croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
-    public void Harvest(Vector3Int target,Vector2 pos)
+    public void Harvest(Vector3Int target, Vector2 pos)
     {
         if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
-        pickupItem.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 1];
+        Sprite pickUpSprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 1];
+        animationController.PickUpAnim(target, pos, pickUpSprite);
 
         if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
@@ -169,10 +174,7 @@ public class TileManager : Manager
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
             croptData[target].cropObj.tag = "Crop";
         }
-
-        _controller.CallClickEvent(PlayerEquipmentType.PickUp, pos);
     }
-
 
     public void Sleep()
     {
@@ -189,7 +191,7 @@ public class TileManager : Manager
 
                 int temp = (int)(tempPlantData.currentStage);
 
-                if(temp >= 1 )
+                if (temp >= 1)
                     tempPlantData.cropObj.tag = "Crop";
 
                 if (temp >= tempPlantData.plantCrop.AllGrowthStage)

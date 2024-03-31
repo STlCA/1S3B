@@ -19,6 +19,7 @@ public class PlayerInputController : CharacterEventController
     private Player player;
     private PlayerTalkController playerTalkController;
     private AnimationController animController;
+    private NatureObjectController natureObjectController;
 
     private Camera mainCamera;
     private bool isMove;
@@ -36,6 +37,7 @@ public class PlayerInputController : CharacterEventController
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         player = gameManager.Player;
+        natureObjectController = gameManager.NatureObjectController;
 
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
@@ -156,11 +158,24 @@ public class PlayerInputController : CharacterEventController
         pos.x = (mousePos.x - playerPos.x);
         pos.y = (mousePos.y - playerPos.y);
 
-        pos.Normalize();
+        pos = pos.normalized;
 
         isUseEnergy = false;
 
-        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
+        if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickUp, pos);
+            }
+
+            natureObjectController.PickUpNature(targetSetting.selectCellPosition,pos);
+            CallClickEvent(PlayerEquipmentType.PickUp, pos);
+        }
+        else if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -183,7 +198,10 @@ public class PlayerInputController : CharacterEventController
             if (isMove == true)
                 isUseEnergy = false;
             else
+            {
                 isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickUp, pos);
+            }
 
             tileManager.Harvest(targetSetting.selectCellPosition,pos);
         }
@@ -199,6 +217,7 @@ public class PlayerInputController : CharacterEventController
 
             tileManager.WaterAt(targetSetting.selectCellPosition);
         }
+
 
         if (isUseEnergy == true)
             player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨

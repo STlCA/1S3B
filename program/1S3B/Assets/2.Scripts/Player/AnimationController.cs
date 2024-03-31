@@ -12,25 +12,34 @@ using static UnityEngine.Rendering.ReloadAttribute;
 public class AnimationController : AnimationBase
 {
     private GameManager gameManager;
-    private SceneChangeManager sceneChangeManager;
     private Player player;
-    private PlayerInputController playerInputController;
+    private SceneChangeManager sceneChangeManager;
 
     private Vector2 saveDirection = Vector2.zero;
     private bool oneTimeSave = false;
 
     public Action<bool> useAnimEnd;
 
+    [Header("PickUp")]
+    public GameObject pickupItem;
+    private SpriteRenderer pickupItemSR;
+    private Animator pickItemAnim;
+
     private void Start()
     {
         gameManager = GameManager.Instance;
-        sceneChangeManager = gameManager.SceneChangeManager;
         player = gameManager.Player;
-        playerInputController = GetComponent<PlayerInputController>();
+        sceneChangeManager = gameManager.SceneChangeManager;
 
         controller.OnMoveEvent += MoveAnimation;
         controller.OnClickEvent += UseAnimation;
         sceneChangeManager.mapChangeAction += StopAnimation;
+
+        if (pickupItem != null)
+        {
+            pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
+            pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
+        }
     }
 
     //private void Update()
@@ -58,16 +67,16 @@ public class AnimationController : AnimationBase
             {
                 anim.SetFloat(ConstantsString.SaveX, animator[0].GetFloat(ConstantsString.InputX));
                 anim.SetFloat(ConstantsString.SaveY, animator[0].GetFloat(ConstantsString.InputY));
-            }       
+            }
         }
 
-        foreach(var anim in animator)
+        foreach (var anim in animator)
         {
             anim.SetFloat(ConstantsString.InputX, direction.x);
             anim.SetFloat(ConstantsString.InputY, direction.y);
 
             anim.SetBool(ConstantsString.IsWalking, direction.magnitude > 0f);
-        }       
+        }
     }
 
     public void StopAnimation(bool value)
@@ -90,9 +99,9 @@ public class AnimationController : AnimationBase
 
                 anim.SetFloat(ConstantsString.SaveX, saveDirection.x);
                 anim.SetFloat(ConstantsString.SaveY, saveDirection.y);
-            }         
+            }
         }
-        else if(value == false) 
+        else if (value == false)
         {
             oneTimeSave = false;
 
@@ -129,7 +138,7 @@ public class AnimationController : AnimationBase
             switch (equipmentType)
             {
                 case PlayerEquipmentType.PickUp:
-                    anim.SetTrigger("usePickUp");                    
+                    anim.SetTrigger("usePickUp");
                     break;
                 case PlayerEquipmentType.Hoe:
                     anim.SetTrigger("useHoe");
@@ -151,9 +160,9 @@ public class AnimationController : AnimationBase
     IEnumerator StateDelay()
     {
         yield return new WaitForSeconds(0.1f);
-    
+
         float curAnimationTime = animator[0].GetCurrentAnimatorStateInfo(0).length;
-    
+
         yield return new WaitForSeconds(curAnimationTime);
 
         useAnimEnd?.Invoke(false);
@@ -165,6 +174,23 @@ public class AnimationController : AnimationBase
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsDeath, value);
-        }        
+        }
     }
+
+    public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
+    {
+        SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
+
+        if (pos.y > 0.71)
+            pickupItemSR.sortingOrder = sr.sortingOrder - 1;
+        else if (pos.y <= 0.71)
+            pickupItemSR.sortingOrder = sr.sortingOrder + 10;
+
+        pickupItem.transform.position = player.transform.position;
+        pickupItemSR.sprite = pickUpSprite;
+        pickItemAnim.SetFloat(ConstantsString.SaveX, pos.x);
+        pickItemAnim.SetFloat(ConstantsString.SaveY, pos.y);
+        pickItemAnim.SetTrigger("usePickUp");
+    }
+
 }
