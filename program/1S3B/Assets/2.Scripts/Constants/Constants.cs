@@ -82,4 +82,10 @@ namespace Constants
         None,
         Need
     }
+
+    public enum TreeInteractable
+    {
+        None,
+        Can
+    }
 }

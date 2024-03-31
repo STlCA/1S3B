@@ -9,14 +9,7 @@ using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.U2D.Animation;
-public class TreeData
-{
-    public GameObject treeObj;
-    public SpriteRenderer treeRenderer;
-    public SpriteLibrary treeLibrayry;
-    public int maxConut = 10;
-    public int count = 0;
-}
+
 
 [System.Serializable]
 public class NatureData
@@ -24,6 +17,18 @@ public class NatureData
     public GameObject natureObj;
     public SpriteRenderer natureRenderer;
     public SpriteResolver natureResolver;
+    public bool isSpawn = false;
+}
+
+public class TreeData
+{
+    public GameObject treeObj;
+    public SpriteRenderer treeRenderer;
+    public SpriteResolver treeResolver;
+    public Animator animator;
+    public float count = 0;
+    public int cutConut = 10;
+    public int maxCount = 15;
     public bool isSpawn = false;
 }
 
@@ -39,7 +44,13 @@ public class NatureObjectController : Manager
     public GameObject naturePrefab;
     public SpriteLibraryAsset natureLibrary;
 
-    [SerializeField]
+    [Header("Tree")]
+    public GameObject treePointObject;
+    private Transform[] treePoint;
+    public GameObject treePrefab;
+    public SpriteLibraryAsset treeLibrary;
+    public GameObject dropItemPrefab;
+
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
 
@@ -51,6 +62,8 @@ public class NatureObjectController : Manager
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
+        if (treePointObject != null)
+            treePoint = treePointObject.GetComponentsInChildren<Transform>();
 
         StartSetting();
     }
@@ -68,6 +81,18 @@ public class NatureObjectController : Manager
                 natureData.Add(goCellPos, tempData);
             }
         }
+
+        if (treePoint != null)
+        {
+            foreach (Transform go in treePoint)
+            {
+                Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
+
+                TreeData tempData = new TreeData();
+
+                treeData.Add(goCellPos, tempData);
+            }
+        }
     }
 
     public void SpawnNature()
@@ -78,7 +103,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false)
+            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell))
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -97,7 +122,41 @@ public class NatureObjectController : Manager
                     random = Random.Range(0, names.Count());
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
-                    //tempdData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
+                    //tempData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
+                }
+            }
+        }
+    }
+
+    public void SpawnTree()
+    {
+        float percentage = 50;
+        float randomPoint;
+        int random;
+
+        foreach (var (cell, tempData) in treeData)
+        {
+            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell))
+            {
+                randomPoint = Random.Range(0, 101);
+                if (randomPoint < percentage)
+                {
+                    //Init()으로묶기
+                    tempData.isSpawn = true;
+                    tempData.treeObj = Instantiate(naturePrefab);
+                    tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
+                    tempData.treeRenderer = tempData.treeObj.GetComponent<SpriteRenderer>();
+                    tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
+                    tempData.animator = tempData.treeObj.GetComponent<Animator>();
+
+                    string season = "Spring";//계절알아오기
+
+                    IEnumerable<string> names = treeLibrary.GetCategoryLabelNames(season);
+
+                    random = Random.Range(0, names.Count());
+
+                    tempData.treeResolver.SetCategoryAndLabel(season, random.ToString());
+                    //tempData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
                 }
             }
         }
@@ -134,11 +193,34 @@ public class NatureObjectController : Manager
             return;
 
         treeData[target].count--;
+        treeData[target].animator.SetTrigger("isFelling");
 
-        if (treeData[target].count == treeData[target].maxConut)
+        if (treeData[target].count >= treeData[target].cutConut)
         {
-            //애니메이션 실행
-            treeData[target].treeRenderer.sprite = treeData[target].treeLibrayry.GetSprite("tree", "0");
+            treeData[target].animator.SetTrigger("isFellied");
+
+            string treeSet = "First";
+
+            treeData[target].treeResolver.SetCategoryAndLabel(treeSet, "0");
+
+            Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
+
+            DropItem(treeData[target].treeObj.transform.position + spawItemPos, 10);
+        }
+        if (treeData[target].count >= treeData[target].maxCount)
+        {
+            DropItem(treeData[target].treeObj.transform.position, 5);
+            Destroy(treeData[target].treeObj);
+            treeData.Remove(target);
+        }
+    }
+
+    private void DropItem(Vector3 target, int count)
+    {
+        for ( int i = 0; i < count; ++i)
+        {
+            GameObject go = Instantiate(dropItemPrefab);
+            go.transform.position = new Vector3(target.x, target.y + 0.5f);//리지드달기
         }
     }
 }

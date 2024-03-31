@@ -157,7 +157,7 @@ public class TileManager : Manager
         if (GameManager.Instance.TargetSetting.TargetUI() == false)
             return;
 
-        Sprite pickUpSprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 1];
+        Sprite pickUpSprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 2];
         animationController.PickUpAnim(target, pos, pickUpSprite);
 
         if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제

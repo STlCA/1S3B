@@ -17072,6 +17072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BTree1-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8775199597246954693, guid: 20b9059a41020094d861dee69977a673, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 128b62baaf9abfe4582f1207cea0b361, type: 2}
     - target: {fileID: 9030420265551760039, guid: 20b9059a41020094d861dee69977a673, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -17116,8 +17120,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6889364982973099290, guid: 20b9059a41020094d861dee69977a673, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

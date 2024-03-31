@@ -79,9 +79,9 @@ public class AnimationController : AnimationBase
         }
     }
 
-    public void StopAnimation(bool value)
+    public void StopAnimation(bool isChange)
     {
-        if (value == true)
+        if (isChange == true)
         {
             if (oneTimeSave == false)
             {
@@ -101,7 +101,7 @@ public class AnimationController : AnimationBase
                 anim.SetFloat(ConstantsString.SaveY, saveDirection.y);
             }
         }
-        else if (value == false)
+        else if (isChange == false)
         {
             oneTimeSave = false;
 
