@@ -7,6 +7,7 @@ using TreeEditor;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEditor.ShaderGraph;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.U2D.Animation;
@@ -55,6 +56,8 @@ public class NatureObjectController : Manager
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
 
+    private Vector3Int saveTarget = new();
+
     private void Start()
     {
         tileManager = gameManager.TileManager;
@@ -65,6 +68,9 @@ public class NatureObjectController : Manager
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
         if (treePointObject != null)
             treePoint = treePointObject.GetComponentsInChildren<Transform>();
+
+        animationController.useAnimEnd += DropItemTime;
+        animationController.useAnimEnd += DestroyTree;
 
         StartSetting();
     }
@@ -157,9 +163,9 @@ public class NatureObjectController : Manager
                     tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponent<Animator>();
-                                        
+
                     string season = "Spring";
-                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);                    
+                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);
                 }
             }
         }
@@ -208,35 +214,48 @@ public class NatureObjectController : Manager
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
 
+        saveTarget = target;
+    }
 
-        if (treeData[target].count >= treeData[target].maxCount)
+    public void DropItemTime(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
         {
-            DropItem(treeData[target].treeObj.transform.position, 5);
-            Destroy(treeData[target].treeObj);
-            treeData[target].isSpawn = false;
-            treeData[target].itemDrop = false;
-            treeData[target].count = 0;
+            if (treeData[saveTarget].itemDrop == false && treeData[saveTarget].count >= treeData[saveTarget].cutConut)
+            {
+                //treeData[target].animator.SetTrigger("isFellied");
+                treeData[saveTarget].itemDrop = true;
+
+                string type = treeData[saveTarget].treeResolver.GetCategory();
+
+                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+                treeData[saveTarget].animator.enabled = false;
+
+                Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
+                Vector3 dropPos = new();
+                if (spawItemPos.x < 0)
+                    dropPos.x = 3f;
+                else if (spawItemPos.x > 0)
+                    dropPos.x = -3f;
+
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10);
+            }
         }
-        else if (treeData[target].itemDrop == false && treeData[target].count >= treeData[target].cutConut)
+    }
+
+    public void DestroyTree(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
         {
-            //treeData[target].animator.SetTrigger("isFellied");
-            treeData[target].itemDrop = true;
-
-            string type = treeData[target].treeResolver.GetCategory();
-
-            treeData[target].treeResolver.SetCategoryAndLabel(type, "0");
-            treeData[target].animator.enabled = false;
-
-            Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
-            Vector3 dropPos = new();
-            if (spawItemPos.x > 0)
-                dropPos.x = 2f;
-            else if (spawItemPos.x < 0)
-                dropPos.x = -2f;
-
-            DropItem(treeData[target].treeObj.transform.position + dropPos, 10);
+            if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
+            {
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5);
+                Destroy(treeData[saveTarget].treeObj);
+                treeData[saveTarget].isSpawn = false;
+                treeData[saveTarget].itemDrop = false;
+                treeData[saveTarget].count = 0;
+            }
         }
-
     }
 
     private void DropItem(Vector3 target, int count)
