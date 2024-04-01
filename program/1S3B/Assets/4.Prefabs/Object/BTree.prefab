@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 9030420265551760039}
   - component: {fileID: 6484731510750668060}
   - component: {fileID: 1408430312851137701}
-  - component: {fileID: 5941573726551539133}
+  - component: {fileID: 700235409236845185}
+  - component: {fileID: -8695346229981554240}
+  - component: {fileID: 3545371224412309934}
   m_Layer: 0
   m_Name: BTree
   m_TagString: Untagged
@@ -141,7 +143,7 @@ PolygonCollider2D:
       - {x: 1.490718, y: 1.2989482}
       - {x: 0.49634397, y: 1.2764857}
   m_UseDelaunayMesh: 0
---- !u!114 &5941573726551539133
+--- !u!114 &700235409236845185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,9 +152,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 32191032734084000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392eea7eccccbd7479c26739e2378494, type: 3}
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: c8cc401c41cf33244a55dd9d83b45d32, type: 3}
+--- !u!114 &-8695346229981554240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32191032734084000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 1.2780488e-30
+  m_labelHash: 1.2985474e-36
+  m_SpriteKey: 0
+  m_SpriteHash: 409112346
+--- !u!95 &3545371224412309934
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32191032734084000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 128b62baaf9abfe4582f1207cea0b361, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6096028708468125306
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1849115632059189868}
   - component: {fileID: 3945243372787646842}
-  - component: {fileID: 2688372149067322779}
   - component: {fileID: 1231123217595276561}
   m_Layer: 0
   m_Name: Body
@@ -232,19 +272,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.78887296, y: 0.37593615}
   m_EdgeRadius: 0
---- !u!114 &2688372149067322779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6096028708468125306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b51cd154f23e34c84b0e304caa8aa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plusCursor: {fileID: 2800000, guid: a329db7d19e3dc44a9648adebe744fa2, type: 3}
 --- !u!60 &1231123217595276561
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -252,7 +279,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6096028708468125306}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

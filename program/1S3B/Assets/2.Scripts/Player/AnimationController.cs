@@ -79,9 +79,9 @@ public class AnimationController : AnimationBase
         }
     }
 
-    public void StopAnimation(bool value)
+    public void StopAnimation(bool isChange)
     {
-        if (value == true)
+        if (isChange == true)
         {
             if (oneTimeSave == false)
             {
@@ -101,7 +101,7 @@ public class AnimationController : AnimationBase
                 anim.SetFloat(ConstantsString.SaveY, saveDirection.y);
             }
         }
-        else if (value == false)
+        else if (isChange == false)
         {
             oneTimeSave = false;
 
@@ -147,6 +147,8 @@ public class AnimationController : AnimationBase
                     anim.SetTrigger("useWater");
                     break;
                 case PlayerEquipmentType.Axe:
+                    anim.SetTrigger("useAxe");
+                    break;
                 case PlayerEquipmentType.PickAxe:
                 case PlayerEquipmentType.Sword:
                 case PlayerEquipmentType.FishingRod:
@@ -186,7 +188,9 @@ public class AnimationController : AnimationBase
         else if (pos.y <= 0.71)
             pickupItemSR.sortingOrder = sr.sortingOrder + 10;
 
-        pickupItem.transform.position = player.transform.position;
+        Vector3 position = player.transform.position;
+        position.y -= 0.5f;
+        pickupItem.transform.position = position;
         pickupItemSR.sprite = pickUpSprite;
         pickItemAnim.SetFloat(ConstantsString.SaveX, pos.x);
         pickItemAnim.SetFloat(ConstantsString.SaveY, pos.y);

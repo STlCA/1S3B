@@ -39,6 +39,7 @@ public class PlayerInputController : CharacterEventController
         player = gameManager.Player;
         natureObjectController = gameManager.NatureObjectController;
 
+
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
         animController.useAnimEnd += AnimState;
@@ -76,6 +77,9 @@ public class PlayerInputController : CharacterEventController
         if (isMove == true)
             return false;
 
+        if (isUseAnim == true)
+            return false;
+
         return true;
     }
 
@@ -87,6 +91,9 @@ public class PlayerInputController : CharacterEventController
             return false;
 
         if (InputException() == false && moveInput != Vector2.zero)
+            return false;
+
+        if (player.playerState == PlayerState.SLEEP && moveInput == Vector2.zero)
             return false;
 
         if (isUseAnim == true)
@@ -162,7 +169,19 @@ public class PlayerInputController : CharacterEventController
 
         isUseEnergy = false;
 
-        if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        if(natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Axe, pos);
+            }
+
+            natureObjectController.Felling(targetSetting.selectCellPosition);
+        }
+        else if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -172,8 +191,7 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.PickUp, pos);
             }
 
-            natureObjectController.PickUpNature(targetSetting.selectCellPosition,pos);
-            CallClickEvent(PlayerEquipmentType.PickUp, pos);
+            natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
         }
         else if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
@@ -203,7 +221,7 @@ public class PlayerInputController : CharacterEventController
                 CallClickEvent(PlayerEquipmentType.PickUp, pos);
             }
 
-            tileManager.Harvest(targetSetting.selectCellPosition,pos);
+            tileManager.Harvest(targetSetting.selectCellPosition, pos);
         }
         else if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
         {

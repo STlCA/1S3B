@@ -211,6 +211,7 @@ public class SceneChangeManager : Manager
     public IEnumerator SleepFadeInOut()
     {
         fadeImage.gameObject.SetActive(true);
+
         Color alpha = fadeImage.color;
         time = 0f;
 
