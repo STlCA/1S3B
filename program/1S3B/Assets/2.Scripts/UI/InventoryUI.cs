@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// 인벤토리 UI 스크립트 [컨트롤러? 프레젠터?]
+// 슬롯 UI 스크립트로 슬롯 프리팹 선언 (-> 그럼 상점용 슬롯이 필요하면 따로 또 선언해줘야함?)
+// 인벤토리 Refresh
+// 쓰려고 하는 아이템을 여기서 처리해줘야하나?
+
 //public class ItemSlot  
 //{
 //    public Item item;
@@ -10,32 +15,23 @@ using UnityEngine.UIElements;
 
 public class InventoryUI : MonoBehaviour
 {
+    // Manager, Data
     GameManager gameManager;
+    UIManager uiManager;
     DataManager dataManager;
     ItemDatabase itemDatabase;
-    ScrollViewUI scrollViewUI;
-    UIManager uiManager;
-    //List<ItemInstance> hasItems = new List<ItemInstance>();
 
-    //public ItemSlotUI[] uiSlots;
+    // Script
+    Player player;
+    Inventory inventory;
+    ScrollViewUI scrollViewUI;
+
     public ItemSlotUI itemSlotPrefab;
     public List<ItemSlotUI> uiSlots;
-    // public ItemSlot[] slots;
 
     [Header("Selected Item")]
     private ItemSlotUI _selectedItem;
     private int _selectedItemIndex;
-
-    Player player;
-    Inventory inventory;
-
-
-
-
-    void Awake()
-    {
-
-    }
 
     private void Start()
     {
@@ -85,11 +81,23 @@ public class InventoryUI : MonoBehaviour
 
     public void Refresh()
     {
-        for(int i = 0;i < inventory.Items.Count; i++)
+        for (int i = 0; i < inventory.Items.Count; i++)
         {
             Item item = inventory.Items[i];
             // 슬롯 셋팅
             // scrollViewUI.SetSlot(i, item);
+        }
+
+        for (int i = 0; i < slots.Length; i++) 
+        {
+            if (slots[i].iteminstance.item != null)
+            {
+                uiSlots[i].Set(slots[i]);
+            }
+            else
+            {
+                uiSlots[i].Clear();
+            }
         }
     }
 
