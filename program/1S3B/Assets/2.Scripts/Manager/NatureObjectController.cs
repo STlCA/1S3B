@@ -30,6 +30,7 @@ public class TreeData
     public int cutConut = 10;
     public int maxCount = 15;
     public bool isSpawn = false;
+    public bool itemDrop = false;
 }
 
 public class NatureObjectController : Manager
@@ -74,6 +75,7 @@ public class NatureObjectController : Manager
         {
             foreach (Transform go in naturePoint)
             {
+
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 NatureData tempData = new NatureData();
@@ -86,6 +88,9 @@ public class NatureObjectController : Manager
         {
             foreach (Transform go in treePoint)
             {
+                if (go.position == Vector3.zero)
+                    continue;
+
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 TreeData tempData = new TreeData();
@@ -103,7 +108,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell))
+            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -136,27 +141,23 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell))
+            if (tempData.isSpawn == false  && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
                     //Init()으로묶기
                     tempData.isSpawn = true;
-                    tempData.treeObj = Instantiate(naturePrefab);
+                    tempData.treeObj = Instantiate(treePrefab);
                     tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempData.treeRenderer = tempData.treeObj.GetComponent<SpriteRenderer>();
                     tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponent<Animator>();
 
-                    string season = "Spring";//계절알아오기
-
-                    IEnumerable<string> names = treeLibrary.GetCategoryLabelNames(season);
-
-                    random = Random.Range(0, names.Count());
-
-                    tempData.treeResolver.SetCategoryAndLabel(season, random.ToString());
-                    //tempData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
+                    random = Random.Range(1, 4);
+                    string type = "Tree" + random.ToString();
+                    //string season = "Spring";
+                    tempData.treeResolver.SetCategoryAndLabel(type, "1");
                 }
             }
         }
@@ -184,7 +185,13 @@ public class NatureObjectController : Manager
 
     public bool IsFelling(Vector3Int target)
     {
-        return treeData.ContainsKey(target);
+        if (targetSetting.PlayerBoundCheck() == false)
+            return false;
+
+        if (treeData.ContainsKey(target) && treeData[target].isSpawn == false)
+            return false;
+
+        return treeData.ContainsKey(target) && treeData[target].isSpawn == true;
     }
 
     public void Felling(Vector3Int target)
@@ -192,32 +199,43 @@ public class NatureObjectController : Manager
         if (targetSetting.PlayerBoundCheck() == false)
             return;
 
-        treeData[target].count--;
+        treeData[target].count++;
+        Vector3 direction = treeData[target].treeObj.transform.position - GameManager.Instance.Player.transform.position;
         treeData[target].animator.SetTrigger("isFelling");
+        treeData[target].animator.SetFloat("inputX", direction.x);
+        treeData[target].animator.SetFloat("inputY", direction.y);
 
-        if (treeData[target].count >= treeData[target].cutConut)
-        {
-            treeData[target].animator.SetTrigger("isFellied");
 
-            string treeSet = "First";
-
-            treeData[target].treeResolver.SetCategoryAndLabel(treeSet, "0");
-
-            Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
-
-            DropItem(treeData[target].treeObj.transform.position + spawItemPos, 10);
-        }
         if (treeData[target].count >= treeData[target].maxCount)
         {
             DropItem(treeData[target].treeObj.transform.position, 5);
             Destroy(treeData[target].treeObj);
-            treeData.Remove(target);
+            treeData[target].isSpawn = false;
         }
+        else if (treeData[target].itemDrop == false && treeData[target].count >= treeData[target].cutConut)
+        {
+            //treeData[target].animator.SetTrigger("isFellied");
+            treeData[target].itemDrop = true;
+
+            string type = treeData[target].treeResolver.GetCategory();
+
+            treeData[target].treeResolver.SetCategoryAndLabel(type, "0");
+
+            Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
+            Vector3 dropPos = new();
+            if (spawItemPos.x > 0)
+                dropPos.x = 2f;
+            else if (spawItemPos.x < 0)
+                dropPos.x = -2f;
+
+            DropItem(treeData[target].treeObj.transform.position + dropPos, 10);
+        }
+
     }
 
     private void DropItem(Vector3 target, int count)
     {
-        for ( int i = 0; i < count; ++i)
+        for (int i = 0; i < count; ++i)
         {
             GameObject go = Instantiate(dropItemPrefab);
             go.transform.position = new Vector3(target.x, target.y + 0.5f);//리지드달기

@@ -147,6 +147,8 @@ public class AnimationController : AnimationBase
                     anim.SetTrigger("useWater");
                     break;
                 case PlayerEquipmentType.Axe:
+                    anim.SetTrigger("useAxe");
+                    break;
                 case PlayerEquipmentType.PickAxe:
                 case PlayerEquipmentType.Sword:
                 case PlayerEquipmentType.FishingRod:

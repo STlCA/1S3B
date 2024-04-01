@@ -169,7 +169,19 @@ public class PlayerInputController : CharacterEventController
 
         isUseEnergy = false;
 
-        if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        if(natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.Axe, pos);
+            }
+
+            natureObjectController.Felling(targetSetting.selectCellPosition);
+        }
+        else if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -180,7 +192,6 @@ public class PlayerInputController : CharacterEventController
             }
 
             natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
-            CallClickEvent(PlayerEquipmentType.PickUp, pos);
         }
         else if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
