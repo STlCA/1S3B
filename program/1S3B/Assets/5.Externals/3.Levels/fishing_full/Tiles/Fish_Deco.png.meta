@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa3fb1864d5b799409f99ae8249cb39d
+guid: 79ab34c75380940969763323a748a13d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,7 +124,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,7 +137,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: buildings_all_0
+      name: Fish_Deco_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 192
-        width: 80
-        height: 57
+        x: 208
+        y: 417
+        width: 16
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,314 +163,482 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fd4f088c6af84caf842115ff280fdb9
-      internalID: 91261343
+      spriteID: 02d860cb0ccef42b2976ab9a696c2ab5
+      internalID: -1985927332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_1
+      name: Fish_Deco_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 417
+        width: 16
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332327a99f8fb48b69af7a33034b08fc
+      internalID: 1530293936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_2
       rect:
         serializedVersion: 2
         x: 240
-        y: 192
-        width: 16
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 898bd879e98894fe6ac625b1ee965b06
-      internalID: -1420723898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 208
+        y: 416
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 836b7db3633bc4baa9e25d77389d626e
-      internalID: -1047631201
+      spriteID: 4507f795a8ec448c3af1cb492ecaf667
+      internalID: 1960764083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_3
+      name: Fish_Deco_3
       rect:
         serializedVersion: 2
-        x: 272
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 306
+        y: 384
+        width: 13
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0df8bbeef7ff48d9a53d717662b286c
-      internalID: 1360723132
+      spriteID: 36ecc5ca77cbc40eab2ce9c916bf162e
+      internalID: -919834525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_4
+      name: Fish_Deco_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37e1756ea77e44dadbbcb7074a1bddec
-      internalID: -1011131584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_5
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c24e31f351bc41a69c5125e96ef1fea
-      internalID: -1975978756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_6
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 203
-        width: 26
+        x: 323
+        y: 352
+        width: 8
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 571ab3d24be3a467685b1e8afefd1b61
-      internalID: 1376619828
+      spriteID: 85a86a485156941ddbc61e040d1778be
+      internalID: -108214540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_7
+      name: Fish_Deco_5
       rect:
         serializedVersion: 2
-        x: 336
-        y: 192
-        width: 5
+        x: 339
+        y: 352
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d225c2217fab4847b89aef3877a41af
+      internalID: 1512512723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_6
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 352
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9b8868c9ca24e65a7723ccabc3d507
+      internalID: 1731959091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_7
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 352
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40d43621e94144819f946986e0f1dde
+      internalID: -777118322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_8
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 352
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620917395c7454b67a6a94781820699c
+      internalID: 969586665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_9
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 128
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b8167966c9d49b1bc6dfbf28857279
+      internalID: 241592517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_10
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 144
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff27e70cd80349998552d80366f4a96
+      internalID: 1873961180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfff857559e1c4ff588e23dea6b5ede8
+      internalID: -425906671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_12
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 128
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7980820bfa0ea42ffa1bda2ada7d2e4f
+      internalID: -956091534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_13
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 128
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eecd5f09d8b3142b9a5e4b8cec0d5071
+      internalID: -2068665168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 128
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd41cd79707d43a3bfe6ec524605c04
+      internalID: -1985568566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_15
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 256
+        width: 25
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7381c7d0b85674ecea76828d48456706
+      internalID: 518593554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_16
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 256
+        width: 25
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f94d738936624ffa8d950de01514ebe
+      internalID: -98582532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish_Deco_17
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 256
+        width: 25
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c69fe5f156bc4e3e800c1baaaa034a6
-      internalID: 804083849
+      spriteID: 9251ff4e5f6494944986123f29eea72b
+      internalID: -1947948170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_8
+      name: Fish_Deco_18
       rect:
         serializedVersion: 2
-        x: 363
-        y: 192
-        width: 5
+        x: 388
+        y: 256
+        width: 25
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7d5fc08dd0874718b1360685fcf540f
-      internalID: -1909706007
+      spriteID: 1321a4354fddc4b1fb11e8195b84c42b
+      internalID: -758174089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_9
+      name: Fish_Deco_19
       rect:
         serializedVersion: 2
-        x: 242
-        y: 242
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 420
+        y: 256
+        width: 25
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b0900e906eaa4cb995628be42be4c75
-      internalID: 1009482318
+      spriteID: 58a814e666848452298deea2d0a53ab6
+      internalID: 936050520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_10
+      name: Fish_Deco_20
       rect:
         serializedVersion: 2
-        x: 258
-        y: 242
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 417
+        width: 15
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fc15e7397c8d4a2aa45e9f24375f824
-      internalID: 556365065
+      spriteID: 145a3ee02561448ab91d8ecc17155b34
+      internalID: -235599591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_11
+      name: Fish_Deco_21
       rect:
         serializedVersion: 2
-        x: 274
-        y: 242
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 272
+        y: 416
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05f24b5c81fa349f7ad137c29abdf079
-      internalID: -216615510
+      spriteID: 99cc5b78826fd47adb2269b21a7a5198
+      internalID: 1496996485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_12
+      name: Fish_Deco_22
       rect:
         serializedVersion: 2
-        x: 291
-        y: 242
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 289
+        y: 416
+        width: 15
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 442c9b428ccda4c339ba144bd3a3f4fc
-      internalID: -942927058
+      spriteID: da4ceccd41d0d404eae5905ff63803bf
+      internalID: -1192581564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_13
+      name: Fish_Deco_23
       rect:
         serializedVersion: 2
         x: 305
-        y: 242
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 518838be8759a4e0da0093a5413afdf3
-      internalID: -993568372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_14
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 177
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8183c404eb65f4004b84ad682c86be55
-      internalID: 1880724464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 79
-        height: 80
+        y: 416
+        width: 15
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,41 +646,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac0db322f128441158d21d0652d8b257
-      internalID: -1052450647
+      spriteID: fd865dd9bbe01482d96f787a20486eb3
+      internalID: 1511507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_16
+      name: Fish_Deco_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d74cf933a428f45d8a7d1f0a9c961414
-      internalID: -2048339558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_17
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 64
-        width: 12
-        height: 11
+        x: 320
+        y: 416
+        width: 15
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -520,176 +667,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c9952bb576c14953848b99b04eb76a0
-      internalID: -1094737974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_18
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 64
-        width: 12
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05b601c0615a54c5eb008a7ed0ebba90
-      internalID: -318252739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_19
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 64
-        width: 12
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8ba29c00d0e541ca918b9d2ff0953d1
-      internalID: -1507281034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_20
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 64
-        width: 12
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 51f536ee36f504e88bc8bd22ed76a53d
-      internalID: -626700908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_21
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 64
-        width: 12
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2b36299189fb4f8999d0e2af6f606f6
-      internalID: 321999855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_22
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 36
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf184d5abb1e346dbb8f4c108597b7fa
-      internalID: 650052904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_23
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 35
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 592d5f61c966f4551849acb9aae73401
-      internalID: 581633442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_24
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 19
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9bfca3f96a2b4a5e9a8a21f5c20b390
-      internalID: -61131419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_25
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 19
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff46ac6d0ef4440f09471b00c563347f
-      internalID: 1511804135
+      spriteID: 1c3d96faa68524a18aef20f6a4191510
+      internalID: 385304189
       vertices: []
       indices: 
       edges: []
@@ -705,32 +684,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      buildings_all_0: 91261343
-      buildings_all_1: -1420723898
-      buildings_all_10: 556365065
-      buildings_all_11: -216615510
-      buildings_all_12: -942927058
-      buildings_all_13: -993568372
-      buildings_all_14: 1880724464
-      buildings_all_15: -1052450647
-      buildings_all_16: -2048339558
-      buildings_all_17: -1094737974
-      buildings_all_18: -318252739
-      buildings_all_19: -1507281034
-      buildings_all_2: -1047631201
-      buildings_all_20: -626700908
-      buildings_all_21: 321999855
-      buildings_all_22: 650052904
-      buildings_all_23: 581633442
-      buildings_all_24: -61131419
-      buildings_all_25: 1511804135
-      buildings_all_3: 1360723132
-      buildings_all_4: -1011131584
-      buildings_all_5: -1975978756
-      buildings_all_6: 1376619828
-      buildings_all_7: 804083849
-      buildings_all_8: -1909706007
-      buildings_all_9: 1009482318
+      Fish_Deco_0: -1985927332
+      Fish_Deco_1: 1530293936
+      Fish_Deco_10: 1873961180
+      Fish_Deco_11: -425906671
+      Fish_Deco_12: -956091534
+      Fish_Deco_13: -2068665168
+      Fish_Deco_14: -1985568566
+      Fish_Deco_15: 518593554
+      Fish_Deco_16: -98582532
+      Fish_Deco_17: -1947948170
+      Fish_Deco_18: -758174089
+      Fish_Deco_19: 936050520
+      Fish_Deco_2: 1960764083
+      Fish_Deco_20: -235599591
+      Fish_Deco_21: 1496996485
+      Fish_Deco_22: -1192581564
+      Fish_Deco_23: 1511507
+      Fish_Deco_24: 385304189
+      Fish_Deco_3: -919834525
+      Fish_Deco_4: -108214540
+      Fish_Deco_5: 1512512723
+      Fish_Deco_6: 1731959091
+      Fish_Deco_7: -777118322
+      Fish_Deco_8: 969586665
+      Fish_Deco_9: 241592517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

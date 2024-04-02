@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa3fb1864d5b799409f99ae8249cb39d
+guid: 670a8d1dc52f4460783556aa3f367f9b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,7 +124,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,7 +137,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,328 +149,76 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: buildings_all_0
+      name: Deco_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 192
-        width: 80
-        height: 57
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fd4f088c6af84caf842115ff280fdb9
-      internalID: 91261343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_1
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 192
-        width: 16
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 898bd879e98894fe6ac625b1ee965b06
-      internalID: -1420723898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 208
+        x: 96
+        y: 368
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 836b7db3633bc4baa9e25d77389d626e
-      internalID: -1047631201
+      spriteID: bdacdafb7ebaf4a2ea00588afd38473b
+      internalID: -1531577887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_3
+      name: Deco_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 208
+        x: 112
+        y: 368
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0df8bbeef7ff48d9a53d717662b286c
-      internalID: 1360723132
+      spriteID: 0eead17de03724a5e9169f526d18087a
+      internalID: 296496318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_4
+      name: Deco_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 128
+        y: 368
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37e1756ea77e44dadbbcb7074a1bddec
-      internalID: -1011131584
+      spriteID: 570df43dd62a34e7e9e5a1d81d37ebdb
+      internalID: 785333403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_5
+      name: Deco_3
       rect:
         serializedVersion: 2
-        x: 272
-        y: 192
+        x: 144
+        y: 368
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c24e31f351bc41a69c5125e96ef1fea
-      internalID: -1975978756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_6
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 203
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 571ab3d24be3a467685b1e8afefd1b61
-      internalID: 1376619828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_7
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 192
-        width: 5
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c69fe5f156bc4e3e800c1baaaa034a6
-      internalID: 804083849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_8
-      rect:
-        serializedVersion: 2
-        x: 363
-        y: 192
-        width: 5
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7d5fc08dd0874718b1360685fcf540f
-      internalID: -1909706007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_9
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 242
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b0900e906eaa4cb995628be42be4c75
-      internalID: 1009482318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_10
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 242
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fc15e7397c8d4a2aa45e9f24375f824
-      internalID: 556365065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_11
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 242
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05f24b5c81fa349f7ad137c29abdf079
-      internalID: -216615510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_12
-      rect:
-        serializedVersion: 2
-        x: 291
-        y: 242
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 442c9b428ccda4c339ba144bd3a3f4fc
-      internalID: -942927058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_13
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 242
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 518838be8759a4e0da0093a5413afdf3
-      internalID: -993568372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_14
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 177
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8183c404eb65f4004b84ad682c86be55
-      internalID: 1880724464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 79
-        height: 80
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,41 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac0db322f128441158d21d0652d8b257
-      internalID: -1052450647
+      spriteID: 3171ea2a8f4434c3781beef1c8ca5bbd
+      internalID: -1461404168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_16
+      name: Deco_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d74cf933a428f45d8a7d1f0a9c961414
-      internalID: -2048339558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_17
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 64
-        width: 12
-        height: 11
+        x: 96
+        y: 350
+        width: 16
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -520,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c9952bb576c14953848b99b04eb76a0
-      internalID: -1094737974
+      spriteID: 323092dc9887f4701bd8125b03a3ad5e
+      internalID: -1188477013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_18
+      name: Deco_5
       rect:
         serializedVersion: 2
-        x: 98
-        y: 64
-        width: 12
-        height: 11
+        x: 112
+        y: 350
+        width: 16
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -541,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05b601c0615a54c5eb008a7ed0ebba90
-      internalID: -318252739
+      spriteID: 7bdb114fd819348809a15acb914f74d7
+      internalID: 1869606303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_19
+      name: Deco_6
       rect:
         serializedVersion: 2
-        x: 114
-        y: 64
-        width: 12
-        height: 11
+        x: 128
+        y: 350
+        width: 16
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -562,41 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8ba29c00d0e541ca918b9d2ff0953d1
-      internalID: -1507281034
+      spriteID: 7f792e74d9dc744a290127a9c1e28d72
+      internalID: 197494656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_20
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 64
-        width: 12
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 51f536ee36f504e88bc8bd22ed76a53d
-      internalID: -626700908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buildings_all_21
+      name: Deco_7
       rect:
         serializedVersion: 2
         x: 146
-        y: 64
-        width: 12
-        height: 11
+        y: 352
+        width: 30
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -604,92 +310,239 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b36299189fb4f8999d0e2af6f606f6
-      internalID: 321999855
+      spriteID: 15b381e08b47f4ffcb1d4d90c07464cd
+      internalID: 945996213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_22
+      name: Deco_8
       rect:
         serializedVersion: 2
-        x: 84
-        y: 36
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 336
+        width: 16
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf184d5abb1e346dbb8f4c108597b7fa
-      internalID: 650052904
+      spriteID: 4fe535945dd7046298e2265f01144591
+      internalID: 1956838004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_23
+      name: Deco_9
       rect:
         serializedVersion: 2
-        x: 100
-        y: 35
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 336
+        width: 16
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 592d5f61c966f4551849acb9aae73401
-      internalID: 581633442
+      spriteID: 200ce4702c2ec4f5a8b6f90afdc2f311
+      internalID: -54350827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_24
+      name: Deco_10
       rect:
         serializedVersion: 2
-        x: 83
+        x: 1
         y: 19
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 15
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9bfca3f96a2b4a5e9a8a21f5c20b390
-      internalID: -61131419
+      spriteID: 33e3061463da4481c9af9d57a93d120a
+      internalID: -923337497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buildings_all_25
+      name: Deco_11
       rect:
         serializedVersion: 2
-        x: 99
-        y: 19
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 33
+        y: 0
+        width: 13
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff46ac6d0ef4440f09471b00c563347f
-      internalID: 1511804135
+      spriteID: 1d0268295d2044cb9ac2f4704e730749
+      internalID: 145016809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_12
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 13
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92518170a1e9140de899694b31cf2d58
+      internalID: 774489466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 31
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b655faccd1c4e1495bc569c72129e0
+      internalID: -1985447600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 31
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de87d89dca07b486e88e9abc8bab6c5d
+      internalID: 891130907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_15
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 32
+        width: 10
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075ee5b27c0b74a5cabcc41bb2e30603
+      internalID: 2097722192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_16
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 32
+        width: 10
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d437b6368fe1439ea6f124deffc016a
+      internalID: 1362246036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_17
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 32
+        width: 10
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5f4ff01888e4735970cdef342b7984
+      internalID: -1834386862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f442fb3bbf44445f28d68b0cf695652c
+      internalID: 1956369085
       vertices: []
       indices: 
       edges: []
@@ -705,32 +558,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      buildings_all_0: 91261343
-      buildings_all_1: -1420723898
-      buildings_all_10: 556365065
-      buildings_all_11: -216615510
-      buildings_all_12: -942927058
-      buildings_all_13: -993568372
-      buildings_all_14: 1880724464
-      buildings_all_15: -1052450647
-      buildings_all_16: -2048339558
-      buildings_all_17: -1094737974
-      buildings_all_18: -318252739
-      buildings_all_19: -1507281034
-      buildings_all_2: -1047631201
-      buildings_all_20: -626700908
-      buildings_all_21: 321999855
-      buildings_all_22: 650052904
-      buildings_all_23: 581633442
-      buildings_all_24: -61131419
-      buildings_all_25: 1511804135
-      buildings_all_3: 1360723132
-      buildings_all_4: -1011131584
-      buildings_all_5: -1975978756
-      buildings_all_6: 1376619828
-      buildings_all_7: 804083849
-      buildings_all_8: -1909706007
-      buildings_all_9: 1009482318
+      Deco_0: -1531577887
+      Deco_1: 296496318
+      Deco_10: -923337497
+      Deco_11: 145016809
+      Deco_12: 774489466
+      Deco_13: -1985447600
+      Deco_14: 891130907
+      Deco_15: 2097722192
+      Deco_16: 1362246036
+      Deco_17: -1834386862
+      Deco_18: 1956369085
+      Deco_2: 785333403
+      Deco_3: -1461404168
+      Deco_4: -1188477013
+      Deco_5: 1869606303
+      Deco_6: 197494656
+      Deco_7: 945996213
+      Deco_8: 1956838004
+      Deco_9: -54350827
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
