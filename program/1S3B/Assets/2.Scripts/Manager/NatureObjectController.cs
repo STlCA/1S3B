@@ -48,12 +48,19 @@ public class NatureObjectController : Manager
     public SpriteLibraryAsset natureLibrary;
 
     [Header("Tree")]
+    public Transform[] treeRange;
     public GameObject treePointObject;
     private Transform[] treePoint;
     public GameObject tree1Prefab;
     public GameObject tree2Prefab;
-    public GameObject dropItemPrefab;
     public RuntimeAnimatorController posAnimator;
+
+    [Header("Item")]
+    public GameObject dropItemPrefab;
+
+    [Header("Clip")]
+    public AnimationClip clip1;
+    public AnimationClip clip2;
 
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
@@ -142,7 +149,7 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void SpawnTree()
+    public void PointSpawnTree()
     {
         float percentage = 50;
         float randomPoint;
@@ -164,13 +171,49 @@ public class NatureObjectController : Manager
 
                     tempData.isSpawn = true;
                     //tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0, 0);
+                    tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
                     string season = "Spring";
                     tempData.treeResolver.SetCategoryAndLabel("Tree", season);
                 }
+            }
+        }
+    }
+
+    public void RangeSpawnTree(int spawnCount)
+    {
+        Vector3Int randomPos;
+        int type;
+
+        for (int i = 0; i < spawnCount;)
+        {
+            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
+            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+
+            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
+
+            if (treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            {
+                TreeData newTree = new();
+                type = Random.Range(1, 3);
+
+                if (type == 1)
+                    newTree.treeObj = Instantiate(tree1Prefab);
+                else
+                    newTree.treeObj = Instantiate(tree2Prefab);
+
+                newTree.isSpawn = true;
+                newTree.treeObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
+                newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
+                newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
+
+                string season = "Spring";
+                newTree.treeResolver.SetCategoryAndLabel("Tree", season);
+
+                treeData.Add(randomPos, newTree);
+                ++i;
             }
         }
     }
@@ -213,11 +256,15 @@ public class NatureObjectController : Manager
 
         treeData[target].count++;
         Vector3 direction = treeData[target].treeObj.transform.position - player.transform.position;
+
+        if (treeData[target].animator.enabled == false)
+            treeData[target].animator.enabled = true;
+
         treeData[target].animator.SetTrigger("isFelling");
-        treeData[target].animator.SetTrigger("spring");//
+        treeData[target].animator.SetTrigger("fall");//날짜받아오기
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
-
+        
         saveTarget = target;
     }
 
@@ -271,6 +318,17 @@ public class NatureObjectController : Manager
         {
             GameObject go = Instantiate(dropItemPrefab);
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
+        }
+    }
+
+    public void SpriteChange()//Sprite바꿀때 애니메이터 꺼두고 애니션 실행할때 다시 켜
+    {
+        foreach (var (cell,temp) in treeData)
+        {
+            if (temp.animator == null)
+                continue;
+            temp.animator.enabled = false;
+            temp.treeResolver.SetCategoryAndLabel("Tree", "Fall");
         }
     }
 }

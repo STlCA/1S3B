@@ -17,7 +17,7 @@ public class DropItem : MonoBehaviour
     //Drop
     private int maxBounce = 3;
     private float xForce = 5;
-    private float yForce = 10;
+    private float yForce = 7;
     private float gravity = 25;
 
     private Vector2 direction;
@@ -44,7 +44,7 @@ public class DropItem : MonoBehaviour
 
         currentHeight = Random.Range(yForce - 1, yForce);
         maxHeight = currentHeight;
-        Init(new Vector2(Random.Range(-xForce, xForce), Random.Range(-xForce, xForce)));
+        Init(new Vector2(Random.Range(-xForce, xForce),0));
     }
 
     public void RadiusSetting(float val)
@@ -100,8 +100,6 @@ public class DropItem : MonoBehaviour
 
     private void LootingItem()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
-
         Vector3 playerPos = player.transform.position;
         float distance = Vector3.Distance(transform.position, playerPos);
         currentTime += distanceSpeed * Time.deltaTime;

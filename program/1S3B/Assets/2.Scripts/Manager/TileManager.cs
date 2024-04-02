@@ -40,8 +40,6 @@ public class CropData
 
 public class TileManager : Manager
 {
-    private Player player;
-    private CharacterEventController _controller;
     private AnimationController animationController;
 
     [Header("TileMap")]
@@ -69,11 +67,8 @@ public class TileManager : Manager
 
     private void Start()
     {
-        player = gameManager.Player;
         animationController = gameManager.AnimationController;
-
         cropDatabase = gameManager.DataManager.cropDatabase;
-        _controller = gameManager.Player.GetComponent<CharacterEventController>();
     }
 
     //샘플
