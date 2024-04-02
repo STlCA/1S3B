@@ -64,6 +64,8 @@ public class InventoryUI : MonoBehaviour
 
         itemDatabase = dataManager.itemDatabase;
         scrollViewUI = GetComponent<ScrollViewUI>();
+
+        inventorySlotUIPrefab.inventory = inventory;
         scrollViewUI.Init(inventorySlotUIPrefab); // TODO
         //// 슬롯 초기화
         ////uiSlots = new ItemSlotUI[uiSlots.Count];

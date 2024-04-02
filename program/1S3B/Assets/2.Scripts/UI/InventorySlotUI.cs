@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InventorySlotUI : ScrollSlotUI
 {
-    Inventory inventory;
+    public Inventory inventory;
     Item item;
 
     public override void Init()
     {
         base.Init();
-        inventory = GameManager.Instance.Player.Inventory;
+        //inventory = GameManager.Instance.Player.Inventory;
     }
 
     public override void Set(int idx)
