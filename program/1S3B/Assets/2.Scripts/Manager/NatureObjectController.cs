@@ -36,6 +36,7 @@ public class TreeData
 
 public class NatureObjectController : Manager
 {
+    private Player player;
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
@@ -52,6 +53,7 @@ public class NatureObjectController : Manager
     public GameObject tree1Prefab;
     public GameObject tree2Prefab;
     public GameObject dropItemPrefab;
+    public RuntimeAnimatorController posAnimator;
 
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
@@ -63,6 +65,7 @@ public class NatureObjectController : Manager
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         animationController = gameManager.AnimationController;
+        player = gameManager.Player;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
@@ -161,8 +164,8 @@ public class NatureObjectController : Manager
 
                     tempData.isSpawn = true;
                     tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
-                    tempData.animator = tempData.treeObj.GetComponent<Animator>();
+                    tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
+                    tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
                     string season = "Spring";
                     tempData.treeResolver.SetCategoryAndLabel("Tree", season);
@@ -208,7 +211,7 @@ public class NatureObjectController : Manager
             return;
 
         treeData[target].count++;
-        Vector3 direction = treeData[target].treeObj.transform.position - GameManager.Instance.Player.transform.position;
+        Vector3 direction = treeData[target].treeObj.transform.position - player.transform.position;
         treeData[target].animator.SetTrigger("isFelling");
         treeData[target].animator.SetTrigger("spring");//
         treeData[target].animator.SetFloat("inputX", direction.x);
@@ -228,17 +231,20 @@ public class NatureObjectController : Manager
 
                 string type = treeData[saveTarget].treeResolver.GetCategory();
 
-                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
                 treeData[saveTarget].animator.enabled = false;
+                treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
+                treeData[saveTarget].animator.enabled = true;
+                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+                treeData[saveTarget].treeObj.GetComponentInChildren<PolygonCollider2D>().enabled = false;
 
-                Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
+                Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
                 Vector3 dropPos = new();
                 if (spawItemPos.x < 0)
                     dropPos.x = 3f;
                 else if (spawItemPos.x > 0)
                     dropPos.x = -3f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10);
+                DropItem(treeData[saveTarget].treeObj.transform.position + new Vector3(0,1,0), 10);
             }
         }
     }
@@ -263,7 +269,7 @@ public class NatureObjectController : Manager
         for (int i = 0; i < count; ++i)
         {
             GameObject go = Instantiate(dropItemPrefab);
-            go.transform.position = new Vector3(target.x, target.y + 0.5f);//리지드달기
+            go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
     }
 }
