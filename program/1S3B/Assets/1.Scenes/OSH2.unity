@@ -20926,6 +20926,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7199552488979354152, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: inventorySlotUIPrefab
+      value: 
+      objectReference: {fileID: -840619694718816174, guid: 01dc39671ed75f8408d5026c94a362e2, type: 3}
     - target: {fileID: 7896672558279844322, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -128688,7 +128692,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7792754854552026555, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6753704676732962648}
   m_SourcePrefab: {fileID: 100100000, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
 --- !u!212 &803007580016603653
 SpriteRenderer:
@@ -129248,6 +129255,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7792754854552026555, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
   m_PrefabInstance: {fileID: 802942271254580525}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6753704676732962648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753704676732962640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86aa9c93fcc4baa45ac110381dc37469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6771332148031637051
 GameObject:
   m_ObjectHideFlags: 0
