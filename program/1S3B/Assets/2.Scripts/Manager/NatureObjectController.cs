@@ -163,7 +163,8 @@ public class NatureObjectController : Manager
                         tempData.treeObj = Instantiate(tree2Prefab);
 
                     tempData.isSpawn = true;
-                    tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
+                    //tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
+                    tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0, 0);
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
@@ -240,11 +241,11 @@ public class NatureObjectController : Manager
                 Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
                 Vector3 dropPos = new();
                 if (spawItemPos.x < 0)
-                    dropPos.x = 3f;
+                    dropPos.x = 1f;
                 else if (spawItemPos.x > 0)
-                    dropPos.x = -3f;
+                    dropPos.x = -1f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + new Vector3(0,1,0), 10);
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10);
             }
         }
     }
