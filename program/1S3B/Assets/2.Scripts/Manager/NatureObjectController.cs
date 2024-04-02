@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using TreeEditor;
+using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
@@ -23,7 +24,6 @@ public class NatureData
 public class TreeData
 {
     public GameObject treeObj;
-    public SpriteRenderer treeRenderer;
     public SpriteResolver treeResolver;
     public Animator animator;
     public float count = 0;
@@ -48,8 +48,8 @@ public class NatureObjectController : Manager
     [Header("Tree")]
     public GameObject treePointObject;
     private Transform[] treePoint;
-    public GameObject treePrefab;
-    public SpriteLibraryAsset treeLibrary;
+    public GameObject tree1Prefab;
+    public GameObject tree2Prefab;
     public GameObject dropItemPrefab;
 
     private Dictionary<Vector3Int, NatureData> natureData = new();
@@ -141,23 +141,25 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false  && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
-                    //Init()À¸·Î¹­±â
+                    random = Random.Range(1, 3);
+
+                    if (random == 1)
+                        tempData.treeObj = Instantiate(tree1Prefab);
+                    else
+                        tempData.treeObj = Instantiate(tree2Prefab);
+
                     tempData.isSpawn = true;
-                    tempData.treeObj = Instantiate(treePrefab);
                     tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempData.treeRenderer = tempData.treeObj.GetComponent<SpriteRenderer>();
                     tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponent<Animator>();
-
-                    random = Random.Range(1, 4);
-                    string type = "Tree" + random.ToString();
-                    //string season = "Spring";
-                    tempData.treeResolver.SetCategoryAndLabel(type, "1");
+                                        
+                    string season = "Spring";
+                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);                    
                 }
             }
         }
@@ -202,6 +204,7 @@ public class NatureObjectController : Manager
         treeData[target].count++;
         Vector3 direction = treeData[target].treeObj.transform.position - GameManager.Instance.Player.transform.position;
         treeData[target].animator.SetTrigger("isFelling");
+        treeData[target].animator.SetTrigger("spring");//
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
 
@@ -211,6 +214,8 @@ public class NatureObjectController : Manager
             DropItem(treeData[target].treeObj.transform.position, 5);
             Destroy(treeData[target].treeObj);
             treeData[target].isSpawn = false;
+            treeData[target].itemDrop = false;
+            treeData[target].count = 0;
         }
         else if (treeData[target].itemDrop == false && treeData[target].count >= treeData[target].cutConut)
         {
@@ -220,6 +225,7 @@ public class NatureObjectController : Manager
             string type = treeData[target].treeResolver.GetCategory();
 
             treeData[target].treeResolver.SetCategoryAndLabel(type, "0");
+            treeData[target].animator.enabled = false;
 
             Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
             Vector3 dropPos = new();
