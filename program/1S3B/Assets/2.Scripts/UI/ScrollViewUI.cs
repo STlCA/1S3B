@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,17 +30,20 @@ public class ScrollViewUI : MonoBehaviour
     //public List<GameObject> _itemList;
     private float _offset;
 
-    private void Awake()
+    private List<ScrollSlotUI> uiSlots;
+
+    private ScrollSlotUI slotPrefab;
+
+    public void Init(ScrollSlotUI prefab)
     {
+        slotPrefab = prefab;
+
         inventoryUI = GetComponent<InventoryUI>();
         _scroll = GetComponent<ScrollRect>();
         _scrollRect = _scroll.GetComponent<RectTransform>();
-        _itemHeight = inventoryUI.itemSlotPrefab.GetComponent<RectTransform>().rect.height + 5;
-        _itemWidth = inventoryUI.itemSlotPrefab.GetComponent<RectTransform>().rect.width;
-    }
+        _itemHeight = slotPrefab.GetComponent<RectTransform>().rect.height + 5;
+        _itemWidth = slotPrefab.GetComponent<RectTransform>().rect.width;
 
-    private void Start()
-    {
         CreateSlots();
         SetContentHeight();
     }
@@ -47,20 +51,20 @@ public class ScrollViewUI : MonoBehaviour
     // Slot 생성
     private void CreateSlots()
     {
-        inventoryUI.uiSlots = new List<ItemSlotUI>();
+        uiSlots = new List<ScrollSlotUI>();
 
         int itemCount = ((int)(_scrollRect.rect.height / _itemHeight) + 3) * (int)(_scrollRect.rect.width / _itemWidth);
 
         for (int i = 0; i < itemCount; i++)
         {
-            ItemSlotUI item = Instantiate(inventoryUI.itemSlotPrefab, _scroll.content);
-            inventoryUI.uiSlots.Add(item);
+            ScrollSlotUI item = Instantiate(slotPrefab, _scroll.content);
+            item.Init();
+            uiSlots.Add(item);
 
             item.transform.localPosition = new Vector3(0, -i * _itemHeight);
         }
 
-        _offset = inventoryUI.uiSlots.Count / (int)(_scrollRect.rect.width / _itemWidth) * _itemHeight;
-    }
+        _offset = uiSlots.Count / (int)(_scrollRect.rect.width / _itemWidth) * _itemHeight;    }
 
     // 전체 컨텐츠의 길이 세팅
     private void SetContentHeight()
@@ -72,7 +76,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         float contentPositionY = _scroll.content.anchoredPosition.y;
         float scrollHeight = _scrollRect.rect.height;
-        foreach (ItemSlotUI item in inventoryUI.uiSlots)
+        foreach (ScrollSlotUI item in uiSlots)
         {
             bool isChanged = RelocationSlot(item, contentPositionY, scrollHeight);
             if(isChanged)
@@ -83,7 +87,7 @@ public class ScrollViewUI : MonoBehaviour
     }
 
     // Slot 재사용
-    private bool RelocationSlot(ItemSlotUI item, float contentPositionY, float scrollHeight)
+    private bool RelocationSlot(ScrollSlotUI item, float contentPositionY, float scrollHeight)
     {
         if (item.transform.localPosition.y + contentPositionY > _itemHeight*1.5)
         {
@@ -93,15 +97,10 @@ public class ScrollViewUI : MonoBehaviour
         else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _itemHeight*1.5)
         {
             item.transform.localPosition += new Vector3(0, _offset);
+            item.Set(0);     // TODO  idx 던져주기
             return true;
         }
         return false;
-    }
-
-    // 슬롯에 인덱스 부여
-    private void SetSlotIndex()
-    {
-
     }
 
     // 가장 마지막 슬롯 반환

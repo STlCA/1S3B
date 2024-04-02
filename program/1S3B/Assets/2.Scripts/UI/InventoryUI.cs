@@ -26,12 +26,14 @@ public class InventoryUI : MonoBehaviour
     Inventory inventory;
     ScrollViewUI scrollViewUI;
 
-    public ItemSlotUI itemSlotPrefab;
-    public List<ItemSlotUI> uiSlots;
+    // public ItemSlotUI itemSlotPrefab;
+    //public List<ItemSlotUI> uiSlots;
 
     [Header("Selected Item")]
-    private ItemSlotUI _selectedItem;
+    private InventorySlotUI _selectedItem;
     private int _selectedItemIndex;
+
+    public InventorySlotUI inventorySlotUIPrefab;
 
     private void Start()
     {
@@ -62,7 +64,7 @@ public class InventoryUI : MonoBehaviour
 
         itemDatabase = dataManager.itemDatabase;
         scrollViewUI = GetComponent<ScrollViewUI>();
-
+        scrollViewUI.Init(inventorySlotUIPrefab); // TODO
         //// 슬롯 초기화
         ////uiSlots = new ItemSlotUI[uiSlots.Count];
         //slots = new ItemSlot[uiSlots.Count];
@@ -88,17 +90,17 @@ public class InventoryUI : MonoBehaviour
             // scrollViewUI.SetSlot(i, item);
         }
 
-        for (int i = 0; i < slots.Length; i++) 
-        {
-            if (slots[i].iteminstance.item != null)
-            {
-                uiSlots[i].Set(slots[i]);
-            }
-            else
-            {
-                uiSlots[i].Clear();
-            }
-        }
+        //for (int i = 0; i < slots.Length; i++) 
+        //{
+        //    if (slots[i].iteminstance.item != null)
+        //    {
+        //        uiSlots[i].Set(slots[i]);
+        //    }
+        //    else
+        //    {
+        //        uiSlots[i].Clear();
+        //    }
+        //}
     }
 
     //// 인벤토리에 아이템 추가

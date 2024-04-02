@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,12 @@ public class Inventory : MonoBehaviour
     private void RemoveSelectedItem()
     {
 
+    }
+
+    public Item GetItem(int idx)
+    {
+        // 예외처리
+        return items[idx];
     }
 
 
