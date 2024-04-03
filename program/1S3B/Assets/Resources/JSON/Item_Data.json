@@ -11,9 +11,9 @@
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"Path": 0,
+			"Path": "Equip/Hoe/",
 			"SpriteName": [
-				0
+				1
 			]
 		},
 		{
@@ -27,9 +27,9 @@
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"Path": 0,
+			"Path": "Equip/Water/",
 			"SpriteName": [
-				0
+				1
 			]
 		},
 		{
@@ -43,9 +43,9 @@
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"Path": 0,
+			"Path": "Equip/PickAxe/",
 			"SpriteName": [
-				0
+				1
 			]
 		},
 		{
@@ -59,9 +59,25 @@
 			"SellGold": 0,
 			"BuyGold": 0,
 			"Stack": 1,
-			"Path": 0,
+			"Path": "Equip/Axe",
 			"SpriteName": [
-				0
+				1
+			]
+		},
+		{
+			"ID": 10001005,
+			"Name": "검",
+			"Description": [
+				"몬스터를 공격할 때 사용한다."
+			],
+			"Type": "Equip",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 1,
+			"Path": "Equip/Sword",
+			"SpriteName": [
+				1
 			]
 		},
 		{
@@ -238,6 +254,38 @@
 			"Path": "Crops/Seeds/",
 			"SpriteName": [
 				"StrawberrySeed"
+			]
+		},
+		{
+			"ID": 20001001,
+			"Name": "나무",
+			"Description": [
+				"나무를 베서 나온 나무조각. 건물을 짓거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 1000,
+			"Path": "Item/",
+			"SpriteName": [
+				"wood"
+			]
+		},
+		{
+			"ID": 20001002,
+			"Name": "돌",
+			"Description": [
+				"돌을 캐서 나온 돌조각. 건물을 짓거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 1000,
+			"Path": "Item/",
+			"SpriteName": [
+				"stone"
 			]
 		}
 	]

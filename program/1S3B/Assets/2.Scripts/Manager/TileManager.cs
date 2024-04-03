@@ -25,23 +25,24 @@ public class CropData
     public int harvest;
 
 
-    public void Init(int id, CropDatabase cropDatabase, GameObject go)
+    public void Init(int id, CropDatabase cropDatabase, GameObject go, bool isWater)
     {
         plantCrop = cropDatabase.GetItemByKey(id);
         currentStage = 0;
         growRatio = plantCrop.AllGrowthStage / (decimal)plantCrop.GrowthTime;
         cropObj = go;
-        cropRenderer = cropObj.GetComponent<SpriteRenderer>();
+        cropRenderer = cropObj.GetComponentInChildren<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
-        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 100 * -1);
+        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
         cropRenderer.sortingLayerName = "Seed";
+
+        if (isWater == true)
+            cropRenderer.color = Color.gray;
     }
 }
 
 public class TileManager : Manager
 {
-    private Player player;
-    private CharacterEventController _controller;
     private AnimationController animationController;
 
     [Header("TileMap")]
@@ -69,11 +70,8 @@ public class TileManager : Manager
 
     private void Start()
     {
-        player = gameManager.Player;
         animationController = gameManager.AnimationController;
-
         cropDatabase = gameManager.DataManager.cropDatabase;
-        _controller = gameManager.Player.GetComponent<CharacterEventController>();
     }
 
     //샘플
@@ -83,7 +81,7 @@ public class TileManager : Manager
     }
 
     //내가한거
-    public bool isInteractable(Vector3Int target)//상호작용할수있는땅
+    public bool IisInteractable(Vector3Int target)//상호작용할수있는땅
     {
         return interactableTileMap.GetTile(target) != null;
     }
@@ -125,7 +123,9 @@ public class TileManager : Manager
         GameObject go = Instantiate(cropGoPrefabs);
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
-        tempcropData.Init(cropID, cropDatabase, go);
+        bool isWater = groundData[target].isWater;
+
+        tempcropData.Init(cropID, cropDatabase, go, isWater);
 
         //cropData.plantCrop.DeathTimer = 28 - 지금날짜
 
@@ -142,14 +142,14 @@ public class TileManager : Manager
         // 수확 후 단계 체크하고 그쪽 스프라이트로 변경
         // 최대 인덱스를 넘어가지않게
 
-        var tempGroundData = groundData[target];
+        groundData[target].isWater = true;
 
-        tempGroundData.isWater = true;
+        if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
+            croptData[target].cropRenderer.color = Color.gray;
+
+        croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
         waterTilemap.SetTile(target, wateredTile);
-
-        //TODO :: spriteList바꾸는메서드만들기
-        //croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
     public void Harvest(Vector3Int target, Vector2 pos)
@@ -205,10 +205,14 @@ public class TileManager : Manager
                 if (temp != 0)
                     tempPlantData.cropRenderer.sortingLayerName = "Default";
 
+                tempPlantData.cropRenderer.color = Color.white;
+
                 // 최대 인덱스를 넘어가지않게
                 // 마지막인덱스때 콜리더생성 or 타일맵에 투명타일생성 or tag생성(두둥)
                 // 총 자라는 시간 % 단계 스프라이트 = 비율 맞춰서 비율 int로 변경한만큼 스프라이트변경
             }
+            
+
         }
 
         foreach (var (cell, TempgroundData) in groundData)

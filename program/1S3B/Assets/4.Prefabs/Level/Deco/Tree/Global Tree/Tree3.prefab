@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3952006286632573097}
   - component: {fileID: 6589226776871001276}
   - component: {fileID: 4529511598222445031}
+  - component: {fileID: -6603043990115031513}
   m_Layer: 0
   m_Name: Tree3
   m_TagString: Untagged
@@ -219,6 +220,19 @@ PolygonCollider2D:
       - {x: 0.49634397, y: 1.2764857}
   m_UseDelaunayMesh: 0
 --- !u!114 &4529511598222445031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901777874355626958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392eea7eccccbd7479c26739e2378494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &-6603043990115031513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

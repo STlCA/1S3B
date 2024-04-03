@@ -111,7 +111,9 @@ public class GameManager : MonoBehaviour
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather();
         natureObjectController.SpawnNature();
-        natureObjectController.SpawnTree();
+        natureObjectController.PointSpawnTree();
+        natureObjectController.RangeSpawnTree(10);
+        natureObjectController.RangeSpawnStone(10);
     }
 
     public void TalkAction(GameObject scanObj)
