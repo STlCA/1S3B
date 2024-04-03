@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < _spriteRenderer.Length; i++)
         {
-            _spriteRenderer[i].sortingOrder = (int)(transform.position.y * 100 * -1) + i;
+            _spriteRenderer[i].sortingOrder = (int)(transform.position.y * 1000 * -1) + i;
         }
     }
 

@@ -30,7 +30,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interaction",
@@ -138,7 +138,7 @@
                     "name": "",
                     "id": "aea6883d-a646-44fb-9fd7-a65cb57a4b1b",
                     "path": "<Keyboard>/f",
-                    "interactions": "Tap,Press(behavior=1)",
+                    "interactions": "Tap,Press(behavior=2)",
                     "processors": "",
                     "groups": "PC",
                     "action": "Use",
@@ -149,9 +149,9 @@
                     "name": "",
                     "id": "d555ecb8-c436-4222-8b62-3b63ee920c53",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
+                    "interactions": "Tap,Press(behavior=2)",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false

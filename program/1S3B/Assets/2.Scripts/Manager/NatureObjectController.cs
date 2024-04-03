@@ -58,10 +58,6 @@ public class NatureObjectController : Manager
     [Header("Item")]
     public GameObject dropItemPrefab;
 
-    [Header("Clip")]
-    public AnimationClip clip1;
-    public AnimationClip clip2;
-
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
 
@@ -196,6 +192,9 @@ public class NatureObjectController : Manager
 
             if (treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
             {
+                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
+                    continue;
+
                 TreeData newTree = new();
                 type = Random.Range(1, 3);
 
@@ -261,7 +260,7 @@ public class NatureObjectController : Manager
             treeData[target].animator.enabled = true;
 
         treeData[target].animator.SetTrigger("isFelling");
-        treeData[target].animator.SetTrigger("fall");//날짜받아오기
+        treeData[target].animator.SetTrigger("fall");//계절받아오기
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
         
