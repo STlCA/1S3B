@@ -32,6 +32,17 @@ public class TreeData
     public int maxCount = 15;
     public bool isSpawn = false;
     public bool itemDrop = false;
+    public bool isPoint = false;
+}
+
+public class StoneData
+{
+    public GameObject stoneObj;
+    public Animator animator;
+    public float count = 0;
+    public int maxCount = 3;
+    public bool isSpawn = false;
+    public bool itemDrop = false;
 }
 
 public class NatureObjectController : Manager
@@ -55,11 +66,15 @@ public class NatureObjectController : Manager
     public GameObject tree2Prefab;
     public RuntimeAnimatorController posAnimator;
 
+    [Header("Stone")]
+    public GameObject stonePrefab;
+
     [Header("Item")]
     public GameObject dropItemPrefab;
 
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
+    private Dictionary<Vector3Int, StoneData> stoneData = new();
 
     private Vector3Int saveTarget = new();
     private ItemDatabase itemDatabase;
@@ -79,6 +94,7 @@ public class NatureObjectController : Manager
 
         animationController.useAnimEnd += DropItemTime;
         animationController.useAnimEnd += DestroyTree;
+        animationController.useAnimEnd += DestroyStone;
 
         StartSetting();
     }
@@ -108,6 +124,7 @@ public class NatureObjectController : Manager
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 TreeData tempData = new TreeData();
+                tempData.isPoint = true;
 
                 treeData.Add(goCellPos, tempData);
             }
@@ -122,7 +139,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false)
+            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -155,7 +172,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false&&stoneData.ContainsKey(cell) == false )
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -192,7 +209,7 @@ public class NatureObjectController : Manager
 
             randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
 
-            if (treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            if (stoneData.ContainsKey(randomPos)== false&&treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
             {
                 if (tileManager.interactableTileMap.GetTile(randomPos) == null)
                     continue;
@@ -219,7 +236,37 @@ public class NatureObjectController : Manager
         }
     }
 
-    public bool IsPickUp(Vector3Int target)
+    public void RangeSpawnStone(int spawnCount)
+    {
+        Vector3Int randomPos;
+
+        for (int i = 0; i < spawnCount;)
+        {
+            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
+            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+
+            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
+
+            if (stoneData.ContainsKey(randomPos) == false && treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            {
+                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
+                    continue;
+
+                StoneData newStone = new();
+
+                newStone.stoneObj = Instantiate(stonePrefab);
+
+                newStone.isSpawn = true;
+                newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
+                newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
+
+                stoneData.Add(randomPos, newStone);
+                ++i;
+            }
+        }
+    }
+
+    public bool IsPickUpNature(Vector3Int target)
     {
         if (targetSetting.PlayerBoundCheck() == false)
             return false;
@@ -269,6 +316,35 @@ public class NatureObjectController : Manager
         saveTarget = target;
     }
 
+    public bool IsMining(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return false;
+
+        if (stoneData.ContainsKey(target) && stoneData[target].isSpawn == false)
+            return false;
+
+        return stoneData.ContainsKey(target) && stoneData[target].isSpawn == true;
+    }
+
+    public void Mining(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return;
+
+        stoneData[target].count++;
+        Vector3 direction = stoneData[target].stoneObj.transform.position - player.transform.position;
+
+        if (stoneData[target].animator.enabled == false)
+            stoneData[target].animator.enabled = true;
+
+        stoneData[target].animator.SetTrigger("isFelling");//TODO
+        stoneData[target].animator.SetFloat("inputX", direction.x);
+        stoneData[target].animator.SetFloat("inputY", direction.y);
+
+        saveTarget = target;
+    }
+
     public void DropItemTime(bool value)
     {
         if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
@@ -309,9 +385,29 @@ public class NatureObjectController : Manager
                 treeData[saveTarget].isSpawn = false;
                 treeData[saveTarget].itemDrop = false;
                 treeData[saveTarget].count = 0;
+
+                if (treeData[saveTarget].isPoint == false)
+                    treeData.Remove(saveTarget);
+
+                saveTarget = Vector3Int.zero;
             }
         }
     }
+    public void DestroyStone(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && stoneData.ContainsKey(saveTarget) == true)
+        {
+            if (stoneData[saveTarget].count>= stoneData[saveTarget].maxCount)
+            {
+                DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, 20001002);
+                Destroy(stoneData[saveTarget].stoneObj);
+                stoneData.Remove(saveTarget);
+
+                saveTarget = Vector3Int.zero;
+            }
+        }
+    }
+
 
     private void DropItem(Vector3 target, int count, int ID)
     {

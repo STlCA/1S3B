@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         natureObjectController.SpawnNature();
         natureObjectController.PointSpawnTree();
         natureObjectController.RangeSpawnTree(10);
+        natureObjectController.RangeSpawnStone(10);
     }
 
     public void TalkAction(GameObject scanObj)

@@ -204,7 +204,19 @@ public class PlayerInputController : CharacterEventController
 
             natureObjectController.Felling(targetSetting.selectCellPosition);
         }
-        else if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        else if (natureObjectController.IsMining(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickAxe, pos);
+            }
+
+            natureObjectController.Mining(targetSetting.selectCellPosition);
+        }
+        else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
