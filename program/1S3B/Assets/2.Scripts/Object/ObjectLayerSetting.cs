@@ -18,13 +18,13 @@ public class ObjectLayerSetting : MonoBehaviour
     private void Start()
     {
         objectSR = GetComponent<SpriteRenderer>();        
-        objectSR.sortingOrder = (int)(transform.position.y * 100 * -1);
+        objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
     private void Update()
     {
         if (type == NeedUpdateObject.Need)
-            objectSR.sortingOrder = (int)(transform.position.y * 100 * -1);
+            objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
     private bool ObjectSortingOrderCheck(Collider2D other)

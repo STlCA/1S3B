@@ -7,6 +7,7 @@ using TreeEditor;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEditor.ShaderGraph;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.U2D.Animation;
@@ -31,10 +32,22 @@ public class TreeData
     public int maxCount = 15;
     public bool isSpawn = false;
     public bool itemDrop = false;
+    public bool isPoint = false;
+}
+
+public class StoneData
+{
+    public GameObject stoneObj;
+    public Animator animator;
+    public float count = 0;
+    public int maxCount = 3;
+    public bool isSpawn = false;
+    public bool itemDrop = false;
 }
 
 public class NatureObjectController : Manager
 {
+    private Player player;
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
@@ -46,25 +59,42 @@ public class NatureObjectController : Manager
     public SpriteLibraryAsset natureLibrary;
 
     [Header("Tree")]
+    public Transform[] treeRange;
     public GameObject treePointObject;
     private Transform[] treePoint;
     public GameObject tree1Prefab;
     public GameObject tree2Prefab;
+    public RuntimeAnimatorController posAnimator;
+
+    [Header("Stone")]
+    public GameObject stonePrefab;
+
+    [Header("Item")]
     public GameObject dropItemPrefab;
 
     private Dictionary<Vector3Int, NatureData> natureData = new();
     private Dictionary<Vector3Int, TreeData> treeData = new();
+    private Dictionary<Vector3Int, StoneData> stoneData = new();
+
+    private Vector3Int saveTarget = new();
+    private ItemDatabase itemDatabase;
 
     private void Start()
     {
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
         animationController = gameManager.AnimationController;
+        player = gameManager.Player;
+        itemDatabase = gameManager.DataManager.itemDatabase;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
         if (treePointObject != null)
             treePoint = treePointObject.GetComponentsInChildren<Transform>();
+
+        animationController.useAnimEnd += DropItemTime;
+        animationController.useAnimEnd += DestroyTree;
+        animationController.useAnimEnd += DestroyStone;
 
         StartSetting();
     }
@@ -94,6 +124,7 @@ public class NatureObjectController : Manager
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 TreeData tempData = new TreeData();
+                tempData.isPoint = true;
 
                 treeData.Add(goCellPos, tempData);
             }
@@ -108,7 +139,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false)
+            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -133,7 +164,7 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void SpawnTree()
+    public void PointSpawnTree()
     {
         float percentage = 50;
         float randomPoint;
@@ -141,7 +172,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false&&stoneData.ContainsKey(cell) == false )
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -154,18 +185,88 @@ public class NatureObjectController : Manager
                         tempData.treeObj = Instantiate(tree2Prefab);
 
                     tempData.isSpawn = true;
-                    tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempData.treeResolver = tempData.treeObj.GetComponent<SpriteResolver>();
-                    tempData.animator = tempData.treeObj.GetComponent<Animator>();
-                                        
+                    //tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
+                    tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
+                    tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
+                    tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
+
                     string season = "Spring";
-                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);                    
+                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);
                 }
             }
         }
     }
 
-    public bool IsPickUp(Vector3Int target)
+    public void RangeSpawnTree(int spawnCount)
+    {
+        Vector3Int randomPos;
+        int type;
+
+        for (int i = 0; i < spawnCount;)
+        {
+            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
+            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+
+            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
+
+            if (stoneData.ContainsKey(randomPos)== false&&treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            {
+                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
+                    continue;
+
+                TreeData newTree = new();
+                type = Random.Range(1, 3);
+
+                if (type == 1)
+                    newTree.treeObj = Instantiate(tree1Prefab);
+                else
+                    newTree.treeObj = Instantiate(tree2Prefab);
+
+                newTree.isSpawn = true;
+                newTree.treeObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
+                newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
+                newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
+
+                string season = "Spring";
+                newTree.treeResolver.SetCategoryAndLabel("Tree", season);
+
+                treeData.Add(randomPos, newTree);
+                ++i;
+            }
+        }
+    }
+
+    public void RangeSpawnStone(int spawnCount)
+    {
+        Vector3Int randomPos;
+
+        for (int i = 0; i < spawnCount;)
+        {
+            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
+            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+
+            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
+
+            if (stoneData.ContainsKey(randomPos) == false && treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            {
+                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
+                    continue;
+
+                StoneData newStone = new();
+
+                newStone.stoneObj = Instantiate(stonePrefab);
+
+                newStone.isSpawn = true;
+                newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
+                newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
+
+                stoneData.Add(randomPos, newStone);
+                ++i;
+            }
+        }
+    }
+
+    public bool IsPickUpNature(Vector3Int target)
     {
         if (targetSetting.PlayerBoundCheck() == false)
             return false;
@@ -202,49 +303,130 @@ public class NatureObjectController : Manager
             return;
 
         treeData[target].count++;
-        Vector3 direction = treeData[target].treeObj.transform.position - GameManager.Instance.Player.transform.position;
+        Vector3 direction = treeData[target].treeObj.transform.position - player.transform.position;
+
+        if (treeData[target].animator.enabled == false)
+            treeData[target].animator.enabled = true;
+
         treeData[target].animator.SetTrigger("isFelling");
-        treeData[target].animator.SetTrigger("spring");//
+        treeData[target].animator.SetTrigger("fall");//계절받아오기
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
-
-
-        if (treeData[target].count >= treeData[target].maxCount)
-        {
-            DropItem(treeData[target].treeObj.transform.position, 5);
-            Destroy(treeData[target].treeObj);
-            treeData[target].isSpawn = false;
-            treeData[target].itemDrop = false;
-            treeData[target].count = 0;
-        }
-        else if (treeData[target].itemDrop == false && treeData[target].count >= treeData[target].cutConut)
-        {
-            //treeData[target].animator.SetTrigger("isFellied");
-            treeData[target].itemDrop = true;
-
-            string type = treeData[target].treeResolver.GetCategory();
-
-            treeData[target].treeResolver.SetCategoryAndLabel(type, "0");
-            treeData[target].animator.enabled = false;
-
-            Vector3 spawItemPos = (GameManager.Instance.Player.transform.position - treeData[target].treeObj.transform.position).normalized;
-            Vector3 dropPos = new();
-            if (spawItemPos.x > 0)
-                dropPos.x = 2f;
-            else if (spawItemPos.x < 0)
-                dropPos.x = -2f;
-
-            DropItem(treeData[target].treeObj.transform.position + dropPos, 10);
-        }
-
+        
+        saveTarget = target;
     }
 
-    private void DropItem(Vector3 target, int count)
+    public bool IsMining(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return false;
+
+        if (stoneData.ContainsKey(target) && stoneData[target].isSpawn == false)
+            return false;
+
+        return stoneData.ContainsKey(target) && stoneData[target].isSpawn == true;
+    }
+
+    public void Mining(Vector3Int target)
+    {
+        if (targetSetting.PlayerBoundCheck() == false)
+            return;
+
+        stoneData[target].count++;
+        Vector3 direction = stoneData[target].stoneObj.transform.position - player.transform.position;
+
+        if (stoneData[target].animator.enabled == false)
+            stoneData[target].animator.enabled = true;
+
+        stoneData[target].animator.SetTrigger("isFelling");//TODO
+        stoneData[target].animator.SetFloat("inputX", direction.x);
+        stoneData[target].animator.SetFloat("inputY", direction.y);
+
+        saveTarget = target;
+    }
+
+    public void DropItemTime(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
+        {
+            if (treeData[saveTarget].itemDrop == false && treeData[saveTarget].count >= treeData[saveTarget].cutConut)
+            {
+                //treeData[target].animator.SetTrigger("isFellied");
+                treeData[saveTarget].itemDrop = true;
+
+                string type = treeData[saveTarget].treeResolver.GetCategory();
+
+                treeData[saveTarget].animator.enabled = false;
+                treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
+                treeData[saveTarget].animator.enabled = true;
+                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+                treeData[saveTarget].treeObj.GetComponentInChildren<PolygonCollider2D>().enabled = false;
+
+                Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
+                Vector3 dropPos = new();
+                if (spawItemPos.x < 0)
+                    dropPos.x = 1f;
+                else if (spawItemPos.x > 0)
+                    dropPos.x = -1f;
+
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, 20001001);
+            }
+        }
+    }
+
+    public void DestroyTree(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
+        {
+            if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
+            {
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5, 20001001);
+                Destroy(treeData[saveTarget].treeObj);
+                treeData[saveTarget].isSpawn = false;
+                treeData[saveTarget].itemDrop = false;
+                treeData[saveTarget].count = 0;
+
+                if (treeData[saveTarget].isPoint == false)
+                    treeData.Remove(saveTarget);
+
+                saveTarget = Vector3Int.zero;
+            }
+        }
+    }
+    public void DestroyStone(bool value)
+    {
+        if (saveTarget != Vector3Int.zero && stoneData.ContainsKey(saveTarget) == true)
+        {
+            if (stoneData[saveTarget].count>= stoneData[saveTarget].maxCount)
+            {
+                DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, 20001002);
+                Destroy(stoneData[saveTarget].stoneObj);
+                stoneData.Remove(saveTarget);
+
+                saveTarget = Vector3Int.zero;
+            }
+        }
+    }
+
+
+    private void DropItem(Vector3 target, int count, int ID)
     {
         for (int i = 0; i < count; ++i)
         {
             GameObject go = Instantiate(dropItemPrefab);
-            go.transform.position = new Vector3(target.x, target.y + 0.5f);//리지드달기
+            go.GetComponentInChildren<SpriteRenderer>().sprite = itemDatabase.GetItemByKey(ID).SpriteList[0];
+            go.transform.position = new Vector3(target.x, target.y + 0.5f);
+        }
+    }
+
+    public void SpriteChange()//Sprite바꿀때 애니메이터 꺼두고 애니션 실행할때 다시 켜
+    {
+        foreach (var (cell,temp) in treeData)
+        {
+            if (temp.animator == null)
+                continue;
+            temp.animator.enabled = false;
+            temp.treeResolver.SetCategoryAndLabel("Tree", "Fall");
         }
     }
 }

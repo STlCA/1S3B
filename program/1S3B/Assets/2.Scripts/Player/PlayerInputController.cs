@@ -25,6 +25,8 @@ public class PlayerInputController : CharacterEventController
     private bool isMove;
     private bool isUseEnergy;
     private bool isUseAnim;
+    private bool isUse;
+    private float saveTime;
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
@@ -43,6 +45,17 @@ public class PlayerInputController : CharacterEventController
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
         animController.useAnimEnd += AnimState;
+    }
+
+    private void Update()
+    {
+        if(isUse == true)
+        {
+            if(isUseAnim == false)
+            {
+                Use();
+            }
+        }
     }
 
     public void AnimState(bool value)
@@ -153,8 +166,18 @@ public class PlayerInputController : CharacterEventController
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
         //메서드로 묶어서 들고있는거별로 다른거 호출하고 거기서 할수있는지 체크?
-        //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성
+        //레이를 써서 앞에있을때 그 앞에가 뭐가있을지에 따라 //레이는 마지막인덱스때 콜리더생성        
+        
+        Use();
 
+        if (value.isPressed == true)//press진입시간을 줄여서 탭으로만들면?
+            isUse = true;
+        else if (value.isPressed == false)
+            isUse = false;
+    }
+
+    private void Use()
+    {
         if (UseException() == false)
             return;
 
@@ -169,7 +192,7 @@ public class PlayerInputController : CharacterEventController
 
         isUseEnergy = false;
 
-        if(natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
+        if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
@@ -181,7 +204,19 @@ public class PlayerInputController : CharacterEventController
 
             natureObjectController.Felling(targetSetting.selectCellPosition);
         }
-        else if (natureObjectController.IsPickUp(targetSetting.selectCellPosition) == true)
+        else if (natureObjectController.IsMining(targetSetting.selectCellPosition) == true)
+        {
+            if (isMove == true)
+                isUseEnergy = false;
+            else
+            {
+                isUseEnergy = true;
+                CallClickEvent(PlayerEquipmentType.PickAxe, pos);
+            }
+
+            natureObjectController.Mining(targetSetting.selectCellPosition);
+        }
+        else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
         {
             if (isMove == true)
                 isUseEnergy = false;
