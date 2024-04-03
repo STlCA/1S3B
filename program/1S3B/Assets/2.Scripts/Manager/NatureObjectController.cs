@@ -62,6 +62,7 @@ public class NatureObjectController : Manager
     private Dictionary<Vector3Int, TreeData> treeData = new();
 
     private Vector3Int saveTarget = new();
+    private ItemDatabase itemDatabase;
 
     private void Start()
     {
@@ -69,6 +70,7 @@ public class NatureObjectController : Manager
         targetSetting = gameManager.TargetSetting;
         animationController = gameManager.AnimationController;
         player = gameManager.Player;
+        itemDatabase = gameManager.DataManager.itemDatabase;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
@@ -291,7 +293,7 @@ public class NatureObjectController : Manager
                 else if (spawItemPos.x > 0)
                     dropPos.x = -1f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10);
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, 20001001);
             }
         }
     }
@@ -302,7 +304,7 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
             {
-                DropItem(treeData[saveTarget].treeObj.transform.position, 5);
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5, 20001001);
                 Destroy(treeData[saveTarget].treeObj);
                 treeData[saveTarget].isSpawn = false;
                 treeData[saveTarget].itemDrop = false;
@@ -311,11 +313,12 @@ public class NatureObjectController : Manager
         }
     }
 
-    private void DropItem(Vector3 target, int count)
+    private void DropItem(Vector3 target, int count, int ID)
     {
         for (int i = 0; i < count; ++i)
         {
             GameObject go = Instantiate(dropItemPrefab);
+            go.GetComponentInChildren<SpriteRenderer>().sprite = itemDatabase.GetItemByKey(ID).SpriteList[0];
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
     }

@@ -147,13 +147,9 @@ public class TileManager : Manager
         if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
             croptData[target].cropRenderer.color = Color.gray;
 
-        //var tempGroundData = groundData[target];
-        //tempGroundData.isWater = true;
+        croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
         waterTilemap.SetTile(target, wateredTile);
-
-        //TODO :: spriteList바꾸는메서드만들기
-        //croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[(int)croptData[target].currentStage + 1];
     }
 
     public void Harvest(Vector3Int target, Vector2 pos)

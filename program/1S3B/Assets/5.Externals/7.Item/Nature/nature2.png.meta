@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nature2_0
+      name: wood
       rect:
         serializedVersion: 2
         x: 1
@@ -291,6 +291,27 @@ TextureImporter:
       bones: []
       spriteID: 7a8051320f0a3f945ba6c4bc3a5d02a7
       internalID: -1624289071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stone
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 67
+        width: 13
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ec04428dde0e84892db5bfd6973d42
+      internalID: 694626542
       vertices: []
       indices: 
       edges: []
@@ -404,7 +425,8 @@ TextureImporter:
       items_95: -346346262
       items_96: -148448102
       items_97: -1810153319
-      nature2_0: -1624289071
+      stone: 694626542
+      wood: -1624289071
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

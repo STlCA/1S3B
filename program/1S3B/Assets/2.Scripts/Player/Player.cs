@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
     private GameManager gameManager;
     private UIManager uiManager;
 
-    [HideInInspector] public AnimationController animationController;
-    private CharacterEventController characterEventController;
+    public AnimationController animationController { get; private set; }
+    public CharacterEventController characterEventController { get; private set; }
 
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
