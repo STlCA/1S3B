@@ -15480,6 +15480,7 @@ GameObject:
   - component: {fileID: 5599563813641429076}
   - component: {fileID: 8501629701385653685}
   - component: {fileID: 7453903779605040904}
+  - component: {fileID: 4367807579858029979}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15679,7 +15680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9492d68fee8678b4aadb9e59baca80cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 0}
   playerSkills:
   - skillName: 
     level: 0
@@ -15770,3 +15770,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupItemPrefab: {fileID: 4931143099737641354, guid: a0cd23438507c7d499f741af5d8ee1aa, type: 3}
+--- !u!114 &4367807579858029979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792754854552026555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75b43e58df11e24086501a43ef9cb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
