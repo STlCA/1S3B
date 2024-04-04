@@ -1702,6 +1702,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2398101165072404259, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: cropGoPrefabs
+      value: 
+      objectReference: {fileID: 8204728094199821704, guid: 05390414908ea9942b9060b6d3a88b25, type: 3}
     - target: {fileID: 5999763758169166763, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_Name
       value: GameManager
