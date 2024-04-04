@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour
         natureObjectController.RangeSpawnTree(10);
         natureObjectController.RangeSpawnStone(10);
 
+        dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
     }
 

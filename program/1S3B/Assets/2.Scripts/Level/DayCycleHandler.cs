@@ -23,7 +23,7 @@ public class DayCycleHandler : Manager
     public int currentDay { private set; get; }
     public Season currentSeason { private set; get; } = Season.Spring;
 
-    List<string> week = new List<string> { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일" };
+    List<string> week = new List<string> { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일", };
 
     [Header("Time settings")]
     [Min(1.0f)]
@@ -88,10 +88,6 @@ public class DayCycleHandler : Manager
         currentTime = startingTime;
         //하루시작시간 초기화
         priviousTime = currentTime;
-
-        ChangeDate();
-        //날짜
-
     }
 
     public void UpdateLight(float ratio)
@@ -195,9 +191,14 @@ public class DayCycleHandler : Manager
     public string GetDayAsString()
     {//문자열로 날짜표시하기
         int dayofWeek = currentDay % 7;
-        int day = currentDay % 28 + 1;
+        int day = currentDay % 28+1;
         
          return $"{week[dayofWeek]}. {day}";
+    }
+
+    public void DateTest()
+    {
+        currentDay = 25;
     }
 
 #if UNITY_EDITOR
