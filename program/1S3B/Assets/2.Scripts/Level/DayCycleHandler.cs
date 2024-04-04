@@ -193,7 +193,7 @@ public class DayCycleHandler : Manager
         int dayofWeek = currentDay % 7;
         int day = currentDay % 28 + 1;
 
-        return $"{week[dayofWeek]}. {day}";
+        return $"{week[dayofWeek]} | {day}";
     }
 
     public void DateTest()
