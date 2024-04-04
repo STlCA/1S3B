@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Constants;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -19,7 +20,10 @@ public class DayCycleHandler : Manager
     현재 날짜의 시간 비율 => 오늘의 현재 시간 / 하루 지속 시간(초)
     */
     public float currentDayRatio => currentTime / dayDurationInSeconds;
+    public int currentDay { private set; get; }
+    public Season currentSeason { private set; get; } = Season.Spring;
 
+    List<string> week = new List<string> { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일" };
 
     [Header("Time settings")]
     [Min(1.0f)]
@@ -84,6 +88,10 @@ public class DayCycleHandler : Manager
         currentTime = startingTime;
         //하루시작시간 초기화
         priviousTime = currentTime;
+
+        ChangeDate();
+        //날짜
+
     }
 
     public void UpdateLight(float ratio)
@@ -167,6 +175,30 @@ public class DayCycleHandler : Manager
         return minute;
     }
 
+    public void ChangeDate()
+    {
+        currentDay++;
+
+        if(currentDay % 28 == 0)
+        {
+           
+            if(currentSeason == Season.Winter)
+            {
+                currentSeason = Season.Spring;
+            }
+            else
+                currentSeason++;
+
+        }
+    }
+
+    public string GetDayAsString()
+    {//문자열로 날짜표시하기
+        int dayofWeek = currentDay % 7;
+        int day = currentDay % 28 + 1;
+        
+         return $"{week[dayofWeek]}. {day}";
+    }
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(DayCycleHandler))]
