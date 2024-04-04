@@ -128,4 +128,12 @@ namespace Constants
         None,
         Can
     }
+
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Fall,
+        Winter
+    }
 }
