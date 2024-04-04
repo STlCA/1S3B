@@ -29,6 +29,7 @@ namespace Constants
     {
         FarmToTown,
         TownToFarm,
+
     }
     
     public enum PlayerMap
