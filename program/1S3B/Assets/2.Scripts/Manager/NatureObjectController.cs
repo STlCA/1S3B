@@ -303,9 +303,7 @@ public class NatureObjectController : Manager
             if (SpawnCheck(randomPos) == true)
             {
                 StoneData newStone = new();
-
                 newStone.stoneObj = Instantiate(stonePrefab);
-
                 newStone.isSpawn = true;
                 newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();

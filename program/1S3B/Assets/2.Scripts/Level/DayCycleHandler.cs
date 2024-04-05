@@ -177,14 +177,12 @@ public class DayCycleHandler : Manager
 
         if (currentDay % 28 == 0)
         {
-
             if (currentSeason == Season.Winter)
             {
                 currentSeason = Season.Spring;
             }
             else
                 currentSeason++;
-
         }
     }
 
