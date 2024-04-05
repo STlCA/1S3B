@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class ObjectLayerSetting : MonoBehaviour
 {
-    private SpriteRenderer objectSR;
+    private SpriteRenderer objectSR = null;
 
     private float time;
     private float fadeTime = 1f;
@@ -17,7 +18,7 @@ public class ObjectLayerSetting : MonoBehaviour
 
     private void Start()
     {
-        objectSR = GetComponent<SpriteRenderer>();        
+        objectSR = GetComponent<SpriteRenderer>();
         objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 

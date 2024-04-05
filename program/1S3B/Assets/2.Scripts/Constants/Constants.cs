@@ -27,15 +27,54 @@ namespace Constants
 
     public enum MapTriggerType
     {
-        FarmToTown,
-        TownToFarm,
+        Farm_FarmRoad,
+        FarmRoad_Town,
+        Town_FarmRoad,
+        FarmRoad_Farm,
 
+        Farm_ForestRoad,
+        ForestRoad_Forest,
+        Forest_ForestRoad,
+        ForestRoad_Farm,
+
+        Forest_BossRoom,
+        BossRoom_Forest,
+
+        Town_TownRoad,
+        TownRoad_Forest,
+        Forest_TownRoad,
+        TownRoad_Town,
+
+        Town_Beach,
+        Beach_Island,
+
+        Beach_BeachR,
+        BeachR_Quarry,
+        Quarry_Island,
+        Island_Quarry,
+        Quarry_BeachR,
+        BeachR_Beach,
+
+        Beach_BeachL,
+        BeachL_Beach,
+        BeachL_Forest,
+        Forest_Beach,
     }
     
     public enum PlayerMap
     {
         Farm,
+        FarmRoad,
         Town,
+        TownRoad,
+        Forest,
+        ForestRoad,
+        Beach,
+        BeachR,
+        BeachL,
+        BossRoom,
+        Island,
+        Quarry,
         Home
     }
 
@@ -81,12 +120,20 @@ namespace Constants
     public enum NeedUpdateObject
     {
         None,
-        Need
+        Need,
     }
 
     public enum TreeInteractable
     {
         None,
         Can
+    }
+
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Fall,
+        Winter
     }
 }

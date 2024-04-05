@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [Header("Time")]
     public TMP_Text TimeText;
 
+    [Header("Day")]
+    public TMP_Text DayText;
+
     [Header("Talk")]
     public TMP_Text talkText;
     public GameObject scanObject;
@@ -82,15 +85,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        DayText.text = DayCycleHandler.GetDayAsString();
+    }
+
     private void Update()
     {
         if (DayCycleHandler != null)
             DayCycleHandler.Tick();
 
         if (TimeText != null)
-
+        
             TimeText.text = DayCycleHandler.GetTimeAsString();
-        //시간텍스트 바꾸기
+            //시간텍스트 바꾸기
+        
+
     }
 
     public void DayOverTime()
@@ -114,6 +124,9 @@ public class GameManager : MonoBehaviour
         natureObjectController.PointSpawnTree();
         natureObjectController.RangeSpawnTree(10);
         natureObjectController.RangeSpawnStone(10);
+
+        dayCycleHandler.ChangeDate();
+        DayText.text = DayCycleHandler.GetDayAsString();
     }
 
     public void TalkAction(GameObject scanObj)
