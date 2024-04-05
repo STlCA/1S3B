@@ -250,7 +250,7 @@ public class NatureObjectController : Manager
             return false;
         if (natureData.ContainsKey(target) == true)
             return false;
-        if (tileManager.interactableTileMap.GetTile(target) == null)
+        if (interactableMap.GetTile(target) == null)
             return false;
 
         if(tileManager.groundData.ContainsKey(target) == true)

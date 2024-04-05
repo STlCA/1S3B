@@ -120,14 +120,14 @@ public class GameManager : MonoBehaviour
 
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather();
-        natureObjectController.SpawnNature();
-        natureObjectController.PointSpawnTree();
+        //natureObjectController.SpawnNature();
+        //natureObjectController.PointSpawnTree();
 
         natureObjectController.RangeSpawnTree(10,SpawnType.Farm);
         natureObjectController.RangeSpawnStone(10,SpawnType.Farm);
 
-        natureObjectController.RangeSpawnTree(20, SpawnType.UpForest);
-        natureObjectController.RangeSpawnTree(20, SpawnType.DownForest);
+        natureObjectController.RangeSpawnTree(10, SpawnType.UpForest);
+        natureObjectController.RangeSpawnTree(10, SpawnType.DownForest);
         natureObjectController.RangeSpawnStone(10, SpawnType.Quarry);
 
         dayCycleHandler.ChangeDate();
