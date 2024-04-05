@@ -122,8 +122,13 @@ public class GameManager : MonoBehaviour
         WeatherSystem.RandomChangeWeather();
         natureObjectController.SpawnNature();
         natureObjectController.PointSpawnTree();
-        natureObjectController.RangeSpawnTree(10);
-        natureObjectController.RangeSpawnStone(10);
+
+        natureObjectController.RangeSpawnTree(10,SpawnType.Farm);
+        natureObjectController.RangeSpawnStone(10,SpawnType.Farm);
+
+        natureObjectController.RangeSpawnTree(20, SpawnType.UpForest);
+        natureObjectController.RangeSpawnTree(20, SpawnType.DownForest);
+        natureObjectController.RangeSpawnStone(10, SpawnType.Quarry);
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
