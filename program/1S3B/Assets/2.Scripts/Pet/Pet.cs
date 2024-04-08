@@ -56,6 +56,6 @@ public class Pet : MonoBehaviour
 
     private void SortingOrderChange()
     {
-        petRenderer.sortingOrder = (int)(transform.position.y * 100 * -1);
+        petRenderer.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 }
