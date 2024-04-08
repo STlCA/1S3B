@@ -10,6 +10,7 @@ using UnityEditor.ShaderGraph;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
 
 
@@ -52,16 +53,25 @@ public class NatureObjectController : Manager
     private TargetSetting targetSetting;
     private AnimationController animationController;
 
-    [Header("Nature")]
+    [Header("Range")]
+    public Tilemap interactableMap;
+    public Transform[] farmRange;
+    public Transform[] forestRange;
+    public Transform[] quarryRange;
+
+    [Header("Point")]
     public GameObject naturePointObject;
     private Transform[] naturePoint;
+    public GameObject treePointObject;
+    private Transform[] treePoint;
+    public GameObject stonePointObject;
+    private Transform[] stonePoint;
+
+    [Header("Nature")]
     public GameObject naturePrefab;
     public SpriteLibraryAsset natureLibrary;
 
     [Header("Tree")]
-    public Transform[] treeRange;
-    public GameObject treePointObject;
-    private Transform[] treePoint;
     public GameObject tree1Prefab;
     public GameObject tree2Prefab;
     public RuntimeAnimatorController posAnimator;
@@ -91,6 +101,8 @@ public class NatureObjectController : Manager
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
         if (treePointObject != null)
             treePoint = treePointObject.GetComponentsInChildren<Transform>();
+        if(stonePointObject!= null)
+            stonePoint = stonePointObject.GetComponentsInChildren<Transform>();
 
         animationController.useAnimEnd += DropItemTime;
         animationController.useAnimEnd += DestroyTree;
@@ -172,7 +184,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false&&stoneData.ContainsKey(cell) == false )
+            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -197,27 +209,71 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void RangeSpawnTree(int spawnCount)
+    private Vector3 RandomXY(SpawnType type)
+    {
+        float randomX;
+        float randomY;
+
+        if (type == SpawnType.UpForest)
+        {
+            randomX = Random.Range(forestRange[0].position.x, forestRange[1].position.x);
+            randomY = Random.Range(forestRange[0].position.y, forestRange[1].position.y);
+        }
+        else if (type == SpawnType.DownForest)
+        {
+            randomX = Random.Range(forestRange[2].position.x, forestRange[3].position.x);
+            randomY = Random.Range(forestRange[2].position.y, forestRange[3].position.y);
+        }
+        else if (type == SpawnType.Farm)
+        {
+            randomX = Random.Range(farmRange[0].position.x, farmRange[1].position.x);
+            randomY = Random.Range(farmRange[0].position.y, farmRange[1].position.y);
+        }
+        else if (type == SpawnType.Quarry)
+        {
+            randomX = Random.Range(quarryRange[0].position.x, quarryRange[1].position.x);
+            randomY = Random.Range(quarryRange[0].position.y, quarryRange[1].position.y);
+        }
+        else
+            return Vector3.zero;
+
+        return new Vector3(randomX, randomY);
+    }
+
+    private bool SpawnCheck(Vector3Int target)
+    {
+        if (stoneData.ContainsKey(target) == true)
+            return false;
+        if (treeData.ContainsKey(target) == true)
+            return false;
+        if (tileManager.croptData.ContainsKey(target) == true)
+            return false;
+        if (natureData.ContainsKey(target) == true)
+            return false;
+        if (interactableMap.GetTile(target) == null)
+            return false;
+
+        if(tileManager.groundData.ContainsKey(target) == true)
+            tileManager.DestroyGroundData(target);
+
+        return true;
+    }
+
+    public void RangeSpawnTree(int spawnCount, SpawnType type)
     {
         Vector3Int randomPos;
-        int type;
+        int treeType;
 
         for (int i = 0; i < spawnCount;)
         {
-            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
-            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+            randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
 
-            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
-
-            if (stoneData.ContainsKey(randomPos)== false&&treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            if (SpawnCheck(randomPos) == true)//스폰이 안되어 있으면 true;
             {
-                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
-                    continue;
-
                 TreeData newTree = new();
-                type = Random.Range(1, 3);
+                treeType = Random.Range(1, 3);
 
-                if (type == 1)
+                if (treeType == 1)
                     newTree.treeObj = Instantiate(tree1Prefab);
                 else
                     newTree.treeObj = Instantiate(tree2Prefab);
@@ -236,26 +292,18 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void RangeSpawnStone(int spawnCount)
+    public void RangeSpawnStone(int spawnCount, SpawnType type)
     {
         Vector3Int randomPos;
 
         for (int i = 0; i < spawnCount;)
         {
-            float randomX = Random.Range(treeRange[0].position.x, treeRange[1].position.x);
-            float randomY = Random.Range(treeRange[0].position.y, treeRange[1].position.y);
+            randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
 
-            randomPos = tileManager.baseGrid.WorldToCell(new Vector3(randomX, randomY));
-
-            if (stoneData.ContainsKey(randomPos) == false && treeData.ContainsKey(randomPos) == false && tileManager.croptData.ContainsKey(randomPos) == false && natureData.ContainsKey(randomPos) == false)
+            if (SpawnCheck(randomPos) == true)
             {
-                if (tileManager.interactableTileMap.GetTile(randomPos) == null)
-                    continue;
-
                 StoneData newStone = new();
-
                 newStone.stoneObj = Instantiate(stonePrefab);
-
                 newStone.isSpawn = true;
                 newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
@@ -312,7 +360,7 @@ public class NatureObjectController : Manager
         treeData[target].animator.SetTrigger("fall");//계절받아오기
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
-        
+
         saveTarget = target;
     }
 
@@ -397,7 +445,7 @@ public class NatureObjectController : Manager
     {
         if (saveTarget != Vector3Int.zero && stoneData.ContainsKey(saveTarget) == true)
         {
-            if (stoneData[saveTarget].count>= stoneData[saveTarget].maxCount)
+            if (stoneData[saveTarget].count >= stoneData[saveTarget].maxCount)
             {
                 DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, 20001002);
                 Destroy(stoneData[saveTarget].stoneObj);
@@ -421,7 +469,7 @@ public class NatureObjectController : Manager
 
     public void SpriteChange()//Sprite바꿀때 애니메이터 꺼두고 애니션 실행할때 다시 켜
     {
-        foreach (var (cell,temp) in treeData)
+        foreach (var (cell, temp) in treeData)
         {
             if (temp.animator == null)
                 continue;

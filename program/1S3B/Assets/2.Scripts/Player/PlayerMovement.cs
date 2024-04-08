@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private SceneChangeManager sceneChangeManager;
     private UIManager uiManager;
 
+    public SortingGroup playerSprite;
     private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer[] _spriteRenderer;
     private Vector2 _movementDirection = Vector2.zero;
     private Vector2 _zeroDirection = Vector2.zero;
 
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<CharacterEventController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -67,10 +67,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody2D.velocity = direction;
         //velocity = 방향, 속도 //direction방향으로 5라는 만큼 이동
 
-        for (int i = 0; i < _spriteRenderer.Length; i++)
-        {
-            _spriteRenderer[i].sortingOrder = (int)(transform.position.y * 1000 * -1) + i;
-        }
+        playerSprite.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

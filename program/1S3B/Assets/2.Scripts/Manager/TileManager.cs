@@ -63,7 +63,7 @@ public class TileManager : Manager
     [Header("Object")]
     public GameObject cropGoPrefabs;
 
-    private Dictionary<Vector3Int, GroundData> groundData = new();//좌표가 키값 GroundData가 value 받아오기
+    public Dictionary<Vector3Int, GroundData> groundData { get; private set; } = new();//좌표가 키값 GroundData가 value 받아오기
     public Dictionary<Vector3Int, CropData> croptData { get; private set; } = new();
 
     private CropDatabase cropDatabase;
@@ -222,5 +222,10 @@ public class TileManager : Manager
 
         waterTilemap.ClearAllTiles();
 
+    }
+
+    public void DestroyGroundData(Vector3Int target)
+    {
+        groundData.Remove(target);
     }
 }

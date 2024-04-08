@@ -136,4 +136,16 @@ namespace Constants
         Fall,
         Winter
     }
+
+    public enum SpawnType
+    {
+        NaturePoint,
+        TreePoint,
+        StonePoint,       
+        Quarry,
+        MapNature,
+        UpForest,
+        DownForest,
+        Farm,
+    }
 }
