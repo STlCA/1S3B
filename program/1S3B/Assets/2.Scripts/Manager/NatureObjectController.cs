@@ -52,6 +52,7 @@ public class NatureObjectController : Manager
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
+    private DayCycleHandler dayCycleHandler;
 
     [Header("Range")]
     public Tilemap interactableMap;
@@ -95,6 +96,7 @@ public class NatureObjectController : Manager
         targetSetting = gameManager.TargetSetting;
         animationController = gameManager.AnimationController;
         player = gameManager.Player;
+        dayCycleHandler = gameManager.DayCycleHandler;
         itemDatabase = gameManager.DataManager.itemDatabase;
 
         if (naturePointObject != null)
@@ -104,9 +106,11 @@ public class NatureObjectController : Manager
         if(stonePointObject!= null)
             stonePoint = stonePointObject.GetComponentsInChildren<Transform>();
 
-        animationController.useAnimEnd += DropItemTime;
+        animationController.useAnimEnd += CutTreeTime;
         animationController.useAnimEnd += DestroyTree;
         animationController.useAnimEnd += DestroyStone;
+
+        dayCycleHandler.changeSeasonAction += SpriteChange;
 
         StartSetting();
     }
@@ -156,14 +160,14 @@ public class NatureObjectController : Manager
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
-                    //Init()À¸·Î¹­±â
+                    //Init()ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½
                     tempdData.isSpawn = true;
                     tempdData.natureObj = Instantiate(naturePrefab);
                     tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempdData.natureRenderer = tempdData.natureObj.GetComponent<SpriteRenderer>();
                     tempdData.natureResolver = tempdData.natureObj.GetComponent<SpriteResolver>();
 
-                    string season = "Spring";//°èÀý¾Ë¾Æ¿À±â
+                    string season = "Spring";//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¾Æ¿ï¿½ï¿½ï¿½
 
                     IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
 
@@ -268,7 +272,7 @@ public class NatureObjectController : Manager
         {
             randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
 
-            if (SpawnCheck(randomPos) == true)//½ºÆùÀÌ ¾ÈµÇ¾î ÀÖÀ¸¸é true;
+            if (SpawnCheck(randomPos) == true)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true;
             {
                 TreeData newTree = new();
                 treeType = Random.Range(1, 3);
@@ -283,7 +287,7 @@ public class NatureObjectController : Manager
                 newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
                 newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
 
-                string season = "Spring";
+                string season = dayCycleHandler.currentSeason.ToString();
                 newTree.treeResolver.SetCategoryAndLabel("Tree", season);
 
                 treeData.Add(randomPos, newTree);
@@ -357,7 +361,7 @@ public class NatureObjectController : Manager
             treeData[target].animator.enabled = true;
 
         treeData[target].animator.SetTrigger("isFelling");
-        treeData[target].animator.SetTrigger("fall");//°èÀý¹Þ¾Æ¿À±â
+        treeData[target].animator.SetTrigger(dayCycleHandler.currentSeason.ToString());//ï¿½ï¿½ï¿½ï¿½ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
 
@@ -393,7 +397,7 @@ public class NatureObjectController : Manager
         saveTarget = target;
     }
 
-    public void DropItemTime(bool value)
+    public void CutTreeTime(bool value)
     {
         if (saveTarget != Vector3Int.zero && treeData.ContainsKey(saveTarget) == true)
         {
@@ -467,14 +471,14 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void SpriteChange()//Sprite¹Ù²Ü¶§ ¾Ö´Ï¸ÞÀÌÅÍ ²¨µÎ°í ¾Ö´Ï¼Ç ½ÇÇàÇÒ¶§ ´Ù½Ã ÄÑ
+    public void SpriteChange(Season current)//Spriteï¿½Ù²Ü¶ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½Ö´Ï¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½
     {
         foreach (var (cell, temp) in treeData)
         {
             if (temp.animator == null)
                 continue;
             temp.animator.enabled = false;
-            temp.treeResolver.SetCategoryAndLabel("Tree", "Fall");
+            temp.treeResolver.SetCategoryAndLabel("Tree", current.ToString());
         }
     }
 }
