@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Constants;
@@ -24,6 +25,8 @@ public class DayCycleHandler : Manager
     public Season currentSeason { private set; get; } = Season.Spring;
 
     List<string> week = new List<string> { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일", };
+
+    public Action<Season> changeSeasonAction;
 
     [Header("Time settings")]
     [Min(1.0f)]
@@ -183,6 +186,8 @@ public class DayCycleHandler : Manager
             }
             else
                 currentSeason++;
+
+            changeSeasonAction?.Invoke(currentSeason);
         }
     }
 
