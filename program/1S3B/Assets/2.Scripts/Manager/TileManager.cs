@@ -67,6 +67,7 @@ public class TileManager : Manager
     public Dictionary<Vector3Int, CropData> croptData { get; private set; } = new();
 
     private CropDatabase cropDatabase;
+    private bool isRain = false;
 
     private void Start()
     {
@@ -105,7 +106,12 @@ public class TileManager : Manager
             return;
 
         tilledTilemap.SetTile(target, tilledTile);
+
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
+
+        if (isRain == true)
+            groundData[target].isWater = true;
+
     }
 
     public void PlantAt(Vector3Int target)
@@ -227,5 +233,17 @@ public class TileManager : Manager
     public void DestroyGroundData(Vector3Int target)
     {
         groundData.Remove(target);
+    }
+
+    public void RainWatering()
+    {
+        foreach(var (cell,ground) in groundData)
+        {
+            ground.isWater = true;
+        }
+
+        isRain = true;
+
+        //땅 새로팔때도 지금은 데이터만 바꿨으니 물타일 넣어야하고 새로팔때도 넣어야하고 날씨가 끝나면 false로 바꿔야하고
     }
 }
