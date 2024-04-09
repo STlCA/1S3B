@@ -148,4 +148,9 @@ namespace Constants
         DownForest,
         Farm,
     }
+
+    public enum SFXSound
+    {
+      
+    }
 }
