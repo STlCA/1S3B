@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
 
+    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
     private void Awake()
     {

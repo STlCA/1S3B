@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     private AnimationController animationController;
 
     //========================Inspector
-    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
 
     [Header("Time")]
     public TMP_Text TimeText;

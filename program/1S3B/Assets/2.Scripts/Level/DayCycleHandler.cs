@@ -201,7 +201,7 @@ public class DayCycleHandler : Manager
 
     public void DateTest()
     {
-        currentDay = 25;
+        currentDay += 26;
     }
 
 #if UNITY_EDITOR

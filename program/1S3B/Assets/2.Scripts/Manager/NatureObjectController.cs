@@ -1,4 +1,5 @@
 using Constants;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
+using Random = UnityEngine.Random;
 
 
 [System.Serializable]
@@ -221,9 +223,10 @@ public class NatureObjectController : Manager
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
-                    string season = dayCycleHandler.currentSeason.ToString();
-                    string category = tempData.treeResolver.GetCategory();
-                    tempData.treeResolver.SetCategoryAndLabel(category, season);
+                    //string season = dayCycleHandler.currentSeason.ToString();
+                    //string category = tempData.treeResolver.GetCategory();
+                    //tempData.treeResolver.SetCategoryAndLabel(category, season);
+                    ChangeResolver(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
                 }
             }
         }
@@ -298,9 +301,10 @@ public class NatureObjectController : Manager
                 newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
                 newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
 
-                string season = dayCycleHandler.currentSeason.ToString();
-                string category = newTree.treeResolver.GetCategory();
-                newTree.treeResolver.SetCategoryAndLabel(category, season);
+                //string season = dayCycleHandler.currentSeason.ToString();
+                //string category = newTree.treeResolver.GetCategory();
+                //newTree.treeResolver.SetCategoryAndLabel(category, season);
+                ChangeResolver(ref newTree.treeResolver, dayCycleHandler.currentSeason.ToString());
 
                 treeData.Add(randomPos, newTree);
                 ++i;
@@ -418,12 +422,14 @@ public class NatureObjectController : Manager
                 //treeData[target].animator.SetTrigger("isFellied");
                 treeData[saveTarget].itemDrop = true;
 
-                string type = treeData[saveTarget].treeResolver.GetCategory();
-
                 treeData[saveTarget].animator.enabled = false;
                 treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
+
+                ChangeResolver(ref treeData[saveTarget].treeResolver, "0");
+                //string type = treeData[saveTarget].treeResolver.GetCategory();
+                //treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+
                 //treeData[saveTarget].animator.enabled = true;
-                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
                 treeData[saveTarget].treeObj.GetComponentInChildren<PolygonCollider2D>().enabled = false;
 
                 Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
@@ -490,7 +496,17 @@ public class NatureObjectController : Manager
             if (temp.animator == null)
                 continue;
             temp.animator.enabled = false;
-            temp.treeResolver.SetCategoryAndLabel("Tree", current.ToString());
+
+            //string category = temp.treeResolver.GetCategory();
+            //temp.treeResolver.SetCategoryAndLabel(category, current.ToString());
+            ChangeResolver(ref temp.treeResolver, current.ToString());
         }
     }
+
+    private void ChangeResolver(ref SpriteResolver resolver, string current)
+    {
+        string category = resolver.GetCategory();
+        resolver.SetCategoryAndLabel(category, current);
+    }
 }
+
