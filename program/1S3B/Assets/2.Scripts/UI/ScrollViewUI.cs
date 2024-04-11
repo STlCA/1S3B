@@ -41,8 +41,9 @@ public class ScrollViewUI : MonoBehaviour
         inventoryUI = GetComponent<InventoryUI>();
         _scroll = GetComponent<ScrollRect>();
         _scrollRect = _scroll.GetComponent<RectTransform>();
-        _itemHeight = slotPrefab.GetComponent<RectTransform>().rect.height + 5;
-        _itemWidth = slotPrefab.GetComponent<RectTransform>().rect.width;
+        //_itemHeight = slotPrefab.GetComponent<RectTransform>().rect.height + 5;
+        //_itemWidth = slotPrefab.GetComponent<RectTransform>().rect.width;
+        slotPrefab.SetSlotSize(out _itemWidth, _itemHeight);
 
         CreateSlots();
         SetContentHeight();
@@ -64,7 +65,8 @@ public class ScrollViewUI : MonoBehaviour
             item.transform.localPosition = new Vector3(0, -i * _itemHeight);
         }
 
-        _offset = uiSlots.Count / (int)(_scrollRect.rect.width / _itemWidth) * _itemHeight;    }
+        _offset = uiSlots.Count / (int)(_scrollRect.rect.width / _itemWidth) * _itemHeight;
+    }
 
     // 전체 컨텐츠의 길이 세팅
     private void SetContentHeight()
@@ -82,6 +84,7 @@ public class ScrollViewUI : MonoBehaviour
             if(isChanged)
             {
                 int idx = (int)(-item.transform.localPosition.y / _itemHeight);
+                SetData(item);
             }
         }
     }
@@ -103,7 +106,17 @@ public class ScrollViewUI : MonoBehaviour
         return false;
     }
 
+
+    private void SetData(ScrollSlotUI item)
+    {
+
+    }
+
     // 가장 마지막 슬롯 반환
+    public void ReturnEndSlot()
+    {
+
+    }
 
     //private void SetData(GameObject item, int idx)
     //{

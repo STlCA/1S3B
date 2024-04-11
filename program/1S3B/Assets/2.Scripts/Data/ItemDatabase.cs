@@ -37,6 +37,7 @@ public class Item
 {
     int no;
     public ItemInfo ItemInfo { get; set; }
+    public int quantity;
 
     // 강화단계
     // 내구도

@@ -26,11 +26,11 @@ public class TmpInvenBtn : MonoBehaviour
     public void OnClickAddItem()
     {
         // dataManager.itemDatabase.ItemData[Random.Range(0, dataManager.itemDatabase.ItemData.Count)]
-        // Å×½ºÆ® ¾ÆÀÌÅÛ ¸¸µé±â
+        // ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         Item item = dataManager.itemDatabase.Gacha();
-        if (!inventory.AddItem(item))
+        if (inventory.AddItem(item))
         {
-            // ½ÇÆÐ
+            // ï¿½ï¿½ï¿½ï¿½
         }      
 
     }

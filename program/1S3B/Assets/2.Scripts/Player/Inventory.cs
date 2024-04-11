@@ -20,7 +20,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<Item> items = new();
     public List<Item> Items { get { return items; } }
 
-    
+    //[Header("Selected Item")]
+    //private InventorySlotUI _selectedItem;
+    //private int _selectedItemIndex;
+
     private void Start()
     {
         player = GetComponent<Player>();
@@ -35,101 +38,78 @@ public class Inventory : MonoBehaviour
         // 스택
         // 더 이상 가질수 있는지 없는지
         // return false
+        Item emptySlot = GetEmptySlot();
 
         // 스택 가능한 아이템
         if (item.ItemInfo.canStack)
         {
-
+            Item slotToStackTo = GetItemStack(item);
+            if (slotToStackTo != null)
+            {
+                slotToStackTo.quantity++;
+                //UpdateUI();
+                return true;
+            }
         }
         // 스택이 안되는 아이템
         else
         {
-            items.Add(item);
+            emptySlot = item;
+            emptySlot.quantity = 1;
+            inventoryUI.Refresh();
+            return true;
         }
-        inventoryUI.Refresh();
-        return true;
+        //inventoryUI.Refresh();
+        return false;
+    }
+
+    // 획득한 아이템이 기존에 획득했것인지 확인
+    Item GetItemStack(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == item && items[i].quantity < item.ItemInfo.Stack)
+            {
+                return items[i];
+            }
+        }
+
+        return null;
+    }
+
+    // 비어있는 슬롯 확인
+    public Item GetEmptySlot()
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == null)
+                return items[i];
+        }
+
+        return null;
     }
 
     // 아이템 제거
-    private void RemoveSelectedItem()
+    private void RemoveSelectedItem(Item item)
     {
+        items.Remove(item);
 
+        //_selectedItem.quantity--;
+
+        //    if (_selectedItem.quantity <= 0)
+        //    {
+        //        _selectedItem.iteminstance.item = null;
+        //    }
+
+        //    UpdateUI();
     }
 
+    // 아이템 선택
     public Item GetItem(int idx)
     {
         // 예외처리
         return items[idx];
     }
-
-
-    //// 인벤토리에 아이템 추가
-    //public void AddItem(ItemInfo item)
-    //{
-    //    // 아이템이 도구가 아닐 때
-    //    if (item.canStack)
-    //    {
-    //        ItemSlot slotToStackTo = GetItemStack(item);
-    //        if (slotToStackTo != null)
-    //        {
-    //            slotToStackTo.quantity++;
-    //            UpdateUI();
-    //            return;
-    //        }
-    //    }
-
-    //    ItemSlot emptySlot = GetEmptySlot();
-
-    //    if (emptySlot != null)
-    //    {
-    //        emptySlot.iteminstance.item = item;
-    //        emptySlot.quantity = 1;
-    //        UpdateUI();
-    //        return;
-    //    }
-    //}
-
-    //// 획득한 아이템이 기존에 획득했것인지 확인
-    //ItemSlot GetItemStack(ItemInfo item)
-    //{
-    //    for (int i = 0; i < slots.Length; i++)
-    //    {
-    //        if (slots[i].iteminstance.item == item && slots[i].quantity < item.Stack)
-    //        {
-    //            return slots[i];
-    //        }
-    //    }
-
-    //    return null;
-    //}
-
-    //// 비어있는 슬롯 확인
-    //public ItemSlot GetEmptySlot()
-    //{
-    //    for (int i = 0; i < slots.Length; i++)
-    //    {
-    //        if (slots[i].iteminstance.item == null)
-    //            return slots[i];
-    //    }
-
-    //    return null;
-    //}
-
-    //// UI 업데이트
-    //void UpdateUI()
-    //{
-    //    for (int i = 0; i < slots.Length; i++)
-    //    {
-    //        if (slots[i].iteminstance.item != null)
-    //        {
-    //            uiSlots[i].Set(slots[i]);
-    //        }
-    //        else
-    //        {
-    //            uiSlots[i].Clear();
-    //        }
-    //    }
-    //}
 
     //// 아이템 선택
     //public void SelectItem(int index)
@@ -144,18 +124,5 @@ public class Inventory : MonoBehaviour
     //    }
 
     //    uiSlots[index].UpdateItemInfo(_selectedItem.iteminstance.item.Name, infoString);
-    //}
-
-    //// 아이템 제거
-    //private void RemoveSelectedItem()
-    //{
-    //    _selectedItem.quantity--;
-
-    //    if (_selectedItem.quantity <= 0)
-    //    {
-    //        _selectedItem.iteminstance.item = null;
-    //    }
-
-    //    UpdateUI();
     //}
 }
