@@ -9,6 +9,8 @@ public class TalkManager : MonoBehaviour
     private Dictionary<int, string> npcName;
     //public Sprite[] portraitArr;
 
+    public TalksDatabese talksDatabese;
+
     private void Awake()
     {
         talkData = new Dictionary<int, string[]>();
@@ -38,5 +40,7 @@ public class TalkManager : MonoBehaviour
 
         return npcName[id];
     }
-   
+
+    
+
 }

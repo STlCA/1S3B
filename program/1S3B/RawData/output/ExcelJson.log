@@ -1,8 +1,8 @@
 
-Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx
+Loading: D:\github\1S3B\program\1S3B\RawData\Crops_Data.xlsx
 Parse sheet: Sheet1
-Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx.$$$\Sheet1.csv
-Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Crops_Data.xlsx
+Parsing: D:\github\1S3B\program\1S3B\RawData\Crops_Data.xlsx.$$$\Sheet1.csv
+Closing: D:\github\1S3B\program\1S3B\RawData\Crops_Data.xlsx
 ------------------------------------------------------------------------------
 [Crops_Data.xlsx(Sheet1): ROW 1]
 Found object mark: '#CropsData[{}]'
@@ -30,31 +30,32 @@ Found object mark: '#CropsData[{}]'
  Key: SpriteName[] at 11
 Parsing Array Object Table...
 
-Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx
+Loading: D:\github\1S3B\program\1S3B\RawData\Npc_Data.xlsx
 Parse sheet: Sheet1
-Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx.$$$\Sheet1.csv
-Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Item_Data.xlsx
+Parsing: D:\github\1S3B\program\1S3B\RawData\Npc_Data.xlsx.$$$\Sheet1.csv
+Closing: D:\github\1S3B\program\1S3B\RawData\Npc_Data.xlsx
 ------------------------------------------------------------------------------
-[Item_Data.xlsx(Sheet1): ROW 1]
-Found object mark: '#ItemData[{}]'
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: ID at 1
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: Name at 2
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: Description[] at 3
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: Type at 4
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: CropID at 5
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: SellGold at 6
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: BuyGold at 7
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: Stack at 8
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: Path at 9
-[Item_Data.xlsx(Sheet1): ROW 1]
- Key: SpriteName[] at 10
+[Npc_Data.xlsx(Sheet1): ROW 1]
+Found object mark: '#NpcData[{}]'
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcId at 1
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcName at 2
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcSprite_path at 3
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: talk_Id at 4
+Parsing Array Object Table...
+
+Loading: D:\github\1S3B\program\1S3B\RawData\Talk_Data.xlsx
+Parse sheet: TalkDataFile2
+Parsing: D:\github\1S3B\program\1S3B\RawData\Talk_Data.xlsx.$$$\TalkDataFile2.csv
+Closing: D:\github\1S3B\program\1S3B\RawData\Talk_Data.xlsx
+------------------------------------------------------------------------------
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+Found object mark: '#TalkData[{}]'
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+ Key: Id at 1
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+ Key: npcDialogue[] at 2
 Parsing Array Object Table...

@@ -7,11 +7,15 @@ public class DataManager : Manager
 {
     public CropDatabase cropDatabase;
     public ItemDatabase itemDatabase;
+    public NpcDataBese npcDatabese;
+    public TalksDatabese talksDatabese;
 
     void Awake()
     {
         CropAwake();
         ItemAwake();
+        NpcAwake();
+        TalkAwake();
     }
 
     private void CropAwake()
@@ -63,4 +67,37 @@ public class DataManager : Manager
             Debug.LogError("Failed to load itemDatabase.json");
         }
     }
+
+    private void NpcAwake()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Npc_Data");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+
+            npcDatabese = JsonUtility.FromJson<NpcDataBese>(json);
+            npcDatabese.Initialize();
+        }
+        else
+        {
+            Debug.LogError("Failed to load NpcDatabase.json");
+        }
+    }
+
+    private void TalkAwake()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Talk_Data");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+
+            talksDatabese = JsonUtility.FromJson<TalksDatabese>(json);
+            talksDatabese.Initialize();
+        }
+        else
+        {
+            Debug.LogError("Failed to load talkDatabase.json");
+        }
+    }
+
 }

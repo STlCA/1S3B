@@ -44,8 +44,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text DayText;
 
     [Header("Talk")]
+    public GameObject talkPanel;
     public TMP_Text talkText;
-    public GameObject scanObject;
+    public TMP_Text npcNameText;
 
     //============================================
     public T GetManager<T>() where T : Manager
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DayText.text = DayCycleHandler.GetDayAsString();
+        talkPanel.SetActive(false);
     }
 
     private void Update()
@@ -134,9 +136,4 @@ public class GameManager : MonoBehaviour
         DayText.text = DayCycleHandler.GetDayAsString();
     }
 
-    public void TalkAction(GameObject scanObj)
-    {
-        scanObject = scanObj;
-        talkText.text = "이것의 이름은 : " + scanObject.name + "이라고 한다.";
-    }
 }
