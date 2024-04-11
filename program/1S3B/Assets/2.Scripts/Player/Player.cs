@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public int playerGold { get; private set; }
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
-    private int playerEnergy;
+    [SerializeField]private int playerEnergy;//나중에지우기
 
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
     private string[] skillName;
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         if (status == true)
         {
             playerState = PlayerState.IDLE;
-            playerSpeed = 10f;
+            playerSpeed = 7f;
             playerEnergy = playerMaxEnergy / 2;
             uiManager.EnergyBarUpdate(playerEnergy);
             uiManager.TiredIconOnOff(false);

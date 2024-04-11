@@ -111,12 +111,12 @@ public class GameManager : MonoBehaviour
 
     public void SleepOfDay()
     {
-        player.PlayerStateChange(PlayerState.SLEEP);
-
         StartCoroutine(SceneChangeManager.SleepFadeInOut());
-        TileManager.Sleep();
 
         player.EnergyReset(player.playerState == PlayerState.TIRED);
+        player.PlayerStateChange(PlayerState.SLEEP);
+
+        TileManager.Sleep();
 
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather();
