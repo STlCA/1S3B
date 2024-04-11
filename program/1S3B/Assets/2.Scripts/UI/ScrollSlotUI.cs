@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollSlotUI : MonoBehaviour
+public abstract class ScrollSlotUI : MonoBehaviour
 {
     public virtual void Init()
     {
@@ -13,4 +13,6 @@ public class ScrollSlotUI : MonoBehaviour
     {
 
     }
+
+    public abstract void SetSlotSize(out float width, float height);
 }
