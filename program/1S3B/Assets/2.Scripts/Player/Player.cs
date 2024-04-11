@@ -109,11 +109,10 @@ public class Player : MonoBehaviour
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
         {
-            playerState = PlayerState.BLACKOUT;
             animationController.DeathAnimation(true);
-            Invoke("DeathSleep", 1f);
+            //Invoke("DeathSleep", 1f);
 
-            //DeathSleep();
+            DeathSleep();
 
             playerGold -= GoldRange(10, 20);
         }
@@ -121,10 +120,11 @@ public class Player : MonoBehaviour
 
     public void EnergyReset(bool status = false)
     {
+        playerState = PlayerState.IDLE;
+        playerSpeed = 7f;
+
         if (status == true)
         {
-            playerState = PlayerState.IDLE;
-            playerSpeed = 7f;
             playerEnergy = playerMaxEnergy / 2;
             uiManager.EnergyBarUpdate(playerEnergy);
             uiManager.TiredIconOnOff(false);

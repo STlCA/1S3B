@@ -179,7 +179,7 @@ public class AnimationController : AnimationBase
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsDeath, value);
-        }
+        }        
     }
 
     public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
