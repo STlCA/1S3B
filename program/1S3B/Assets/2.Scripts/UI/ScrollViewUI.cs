@@ -93,7 +93,13 @@ public class ScrollViewUI : MonoBehaviour
             bool isChanged = RelocationSlot(item, contentPositionY, scrollHeight);
             if(isChanged)
             {
-                int idx = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
+                // int idx = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
+
+                int y = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
+                int x = (int)(item.transform.localPosition.x / _slotPrefabWidth);
+
+                int idx = y * (int)(_scrollRect.rect.width / _slotPrefabWidth) + x;
+
                 SetIndex(item, idx);
             }
         }
