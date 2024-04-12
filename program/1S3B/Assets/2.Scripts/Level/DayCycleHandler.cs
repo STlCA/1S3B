@@ -202,6 +202,10 @@ public class DayCycleHandler : Manager
     public void DateTest()
     {
         currentDay += 26;
+        foreach(var (cell, data) in GameManager.Instance.TileManager.croptData)
+        {
+            data.deathTimer = data.plantCrop.DeathTimer - currentDay % 28;
+        }
     }
 
 #if UNITY_EDITOR

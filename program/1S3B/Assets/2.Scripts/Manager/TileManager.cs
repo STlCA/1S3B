@@ -23,9 +23,10 @@ public class CropData
     public decimal currentStage;
     public decimal growRatio;
     public int harvest;
+    public int deathTimer;
 
 
-    public void Init(int id, CropDatabase cropDatabase, GameObject go, bool isWater)
+    public void Init(int id, CropDatabase cropDatabase, GameObject go, bool isWater, int currentDay)
     {
         plantCrop = cropDatabase.GetItemByKey(id);
         currentStage = 0;
@@ -35,6 +36,7 @@ public class CropData
         cropRenderer.sprite = plantCrop.SpriteList[0];
         cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
         cropRenderer.sortingLayerName = "Seed";
+        deathTimer = plantCrop.DeathTimer - currentDay % 28;
 
         if (isWater == true)
             cropRenderer.color = Color.gray;
@@ -45,6 +47,7 @@ public class TileManager : Manager
 {
     private AnimationController animationController;
     private TargetSetting targetSetting;
+    private DayCycleHandler dayCycleHandler;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -63,6 +66,7 @@ public class TileManager : Manager
 
     [Header("Object")]
     public GameObject cropGoPrefabs;
+    public Sprite deathCrop;
 
     public Dictionary<Vector3Int, GroundData> groundData { get; private set; } = new();//좌표가 키값 GroundData가 value 받아오기
     public Dictionary<Vector3Int, CropData> croptData { get; private set; } = new();
@@ -74,6 +78,7 @@ public class TileManager : Manager
     {
         animationController = gameManager.AnimationController;
         targetSetting = gameManager.TargetSetting;
+        dayCycleHandler = gameManager.DayCycleHandler;
 
         cropDatabase = gameManager.DataManager.cropDatabase;
     }
@@ -133,11 +138,9 @@ public class TileManager : Manager
         go.transform.position = baseGrid.GetCellCenterWorld(target);
 
         bool isWater = groundData[target].isWater;
+        int currentDay = dayCycleHandler.currentDay;
 
-        tempcropData.Init(cropID, cropDatabase, go, isWater);
-
-        //cropData.plantCrop.DeathTimer = 28 - 지금날짜
-
+        tempcropData.Init(cropID, cropDatabase, go, isWater, currentDay);
 
         croptData.Add(target, tempcropData);
     }
@@ -157,7 +160,7 @@ public class TileManager : Manager
         if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
             croptData[target].cropRenderer.color = Color.gray;
 
-        if(rain == false)
+        if (rain == false)
             croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
     }
@@ -190,9 +193,15 @@ public class TileManager : Manager
     {
         foreach (var (cell, tempPlantData) in croptData)
         {
-            tempPlantData.plantCrop.DeathTimer -= 1;//하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
+            tempPlantData.deathTimer--; //하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
 
-            if (groundData[cell].isWater == true)
+            if (tempPlantData.deathTimer <= 0)
+            {
+                tempPlantData.cropRenderer.sprite = deathCrop;
+                tempPlantData.cropRenderer.sortingLayerName = "Default";
+                tempPlantData.cropRenderer.color = Color.white;
+            }
+            else if (groundData[cell].isWater == true)
             {
                 if (tempPlantData.harvest > 0)
                     tempPlantData.growRatio = (tempPlantData.plantCrop.AllGrowthStage - tempPlantData.plantCrop.StageAfterHarvest) / (decimal)tempPlantData.plantCrop.ReGrowthTime;
@@ -221,7 +230,7 @@ public class TileManager : Manager
                 // 마지막인덱스때 콜리더생성 or 타일맵에 투명타일생성 or tag생성(두둥)
                 // 총 자라는 시간 % 단계 스프라이트 = 비율 맞춰서 비율 int로 변경한만큼 스프라이트변경
             }
-            
+
 
         }
 
@@ -249,7 +258,7 @@ public class TileManager : Manager
 
     public void RainWatering()
     {
-        foreach(var (cell,ground) in groundData)
+        foreach (var (cell, ground) in groundData)
         {
             WaterAt(cell, true);
         }
