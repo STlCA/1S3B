@@ -1,7 +1,7 @@
 {
 	"ItemData": [
 		{
-			"ID": 10001001,
+			"ID": 1001,
 			"Name": "괭이",
 			"Description": [
 				"땅을 개간할때 사용한다."
@@ -17,7 +17,7 @@
 			]
 		},
 		{
-			"ID": 10001002,
+			"ID": 1002,
 			"Name": "물뿌리개",
 			"Description": [
 				"작물에 물을 줄 때 사용한다."
@@ -33,7 +33,7 @@
 			]
 		},
 		{
-			"ID": 10001003,
+			"ID": 1003,
 			"Name": "곡괭이",
 			"Description": [
 				"돌을 깰 때 사용한다."
@@ -49,7 +49,7 @@
 			]
 		},
 		{
-			"ID": 10001004,
+			"ID": 1004,
 			"Name": "도끼",
 			"Description": [
 				"나무를 벨 때 사용한다."
@@ -65,7 +65,7 @@
 			]
 		},
 		{
-			"ID": 10001005,
+			"ID": 1005,
 			"Name": "검",
 			"Description": [
 				"몬스터를 공격할 때 사용한다."
@@ -81,7 +81,7 @@
 			]
 		},
 		{
-			"ID": 10002001,
+			"ID": 2001,
 			"Name": "당근씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -97,7 +97,7 @@
 			]
 		},
 		{
-			"ID": 10002002,
+			"ID": 2002,
 			"Name": "호박씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -113,7 +113,7 @@
 			]
 		},
 		{
-			"ID": 10002003,
+			"ID": 2003,
 			"Name": "감자씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -129,7 +129,7 @@
 			]
 		},
 		{
-			"ID": 10002004,
+			"ID": 2004,
 			"Name": "수박씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -145,7 +145,7 @@
 			]
 		},
 		{
-			"ID": 10002005,
+			"ID": 2005,
 			"Name": "무씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -161,7 +161,7 @@
 			]
 		},
 		{
-			"ID": 10002006,
+			"ID": 2006,
 			"Name": "양배추씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -177,7 +177,7 @@
 			]
 		},
 		{
-			"ID": 10002007,
+			"ID": 2007,
 			"Name": "밀씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -193,7 +193,7 @@
 			]
 		},
 		{
-			"ID": 10003001,
+			"ID": 3001,
 			"Name": "가지씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -209,7 +209,7 @@
 			]
 		},
 		{
-			"ID": 10003002,
+			"ID": 3002,
 			"Name": "옥수수씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -225,7 +225,7 @@
 			]
 		},
 		{
-			"ID": 10003003,
+			"ID": 3003,
 			"Name": "토마토씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -241,7 +241,7 @@
 			]
 		},
 		{
-			"ID": 10003004,
+			"ID": 3004,
 			"Name": "딸기씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
@@ -257,7 +257,7 @@
 			]
 		},
 		{
-			"ID": 20001001,
+			"ID": 4001,
 			"Name": "나무",
 			"Description": [
 				"나무를 베서 나온 나무조각. 건물을 짓거나 제작할 때 사용된다."
@@ -266,14 +266,14 @@
 			"CropID": -1,
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 1000,
+			"Stack": 100,
 			"Path": "Item/",
 			"SpriteName": [
 				"wood"
 			]
 		},
 		{
-			"ID": 20001002,
+			"ID": 4002,
 			"Name": "돌",
 			"Description": [
 				"돌을 캐서 나온 돌조각. 건물을 짓거나 제작할 때 사용된다."
@@ -282,26 +282,378 @@
 			"CropID": -1,
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 1000,
+			"Stack": 100,
 			"Path": "Item/",
 			"SpriteName": [
 				"stone"
 			]
 		},
 		{
-			"ID": 0,
-			"Name": 0,
+			"ID": 5001,
+			"Name": "식용버섯",
 			"Description": [
-				0
+				"봄 버섯"
 			],
-			"Type": 0,
-			"CropID": 0,
+			"Type": "Nature",
+			"CropID": -1,
 			"SellGold": 0,
 			"BuyGold": 0,
-			"Stack": 0,
-			"Path": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
 			"SpriteName": [
-				0
+				1
+			]
+		},
+		{
+			"ID": 5002,
+			"Name": "약초",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				2
+			]
+		},
+		{
+			"ID": 5003,
+			"Name": "꽃",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				3
+			]
+		},
+		{
+			"ID": 5004,
+			"Name": "꽃",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				4
+			]
+		},
+		{
+			"ID": 5005,
+			"Name": "꽃",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				5
+			]
+		},
+		{
+			"ID": 5006,
+			"Name": "꽃",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				6
+			]
+		},
+		{
+			"ID": 5007,
+			"Name": "민들레",
+			"Description": [
+				"봄"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/spring",
+			"SpriteName": [
+				7
+			]
+		},
+		{
+			"ID": 5101,
+			"Name": "통통한버섯",
+			"Description": [
+				"여름 버섯"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				1
+			]
+		},
+		{
+			"ID": 5102,
+			"Name": "식용꽃",
+			"Description": [
+				"여름"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				2
+			]
+		},
+		{
+			"ID": 5103,
+			"Name": "꽃",
+			"Description": [
+				"여름"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				3
+			]
+		},
+		{
+			"ID": 5104,
+			"Name": "꽃",
+			"Description": [
+				"여름"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				4
+			]
+		},
+		{
+			"ID": 5105,
+			"Name": "꽃",
+			"Description": [
+				"여름"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				5
+			]
+		},
+		{
+			"ID": 5106,
+			"Name": "꽃",
+			"Description": [
+				"여름"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/summer",
+			"SpriteName": [
+				6
+			]
+		},
+		{
+			"ID": 5201,
+			"Name": "가을버섯",
+			"Description": [
+				"가을 버섯"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				1
+			]
+		},
+		{
+			"ID": 5202,
+			"Name": "꽃",
+			"Description": [
+				"가을"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				2
+			]
+		},
+		{
+			"ID": 5203,
+			"Name": "꽃",
+			"Description": [
+				"가을"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				3
+			]
+		},
+		{
+			"ID": 5204,
+			"Name": "꽃",
+			"Description": [
+				"가을"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				4
+			]
+		},
+		{
+			"ID": 5205,
+			"Name": "꽃",
+			"Description": [
+				"가을"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				5
+			]
+		},
+		{
+			"ID": 5206,
+			"Name": "독버섯",
+			"Description": [
+				"독 버섯"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/fall",
+			"SpriteName": [
+				6
+			]
+		},
+		{
+			"ID": 5301,
+			"Name": "겨울베리",
+			"Description": [
+				"겨울베리"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/winter",
+			"SpriteName": [
+				1
+			]
+		},
+		{
+			"ID": 5302,
+			"Name": "꽃",
+			"Description": [
+				"겨울"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/winter",
+			"SpriteName": [
+				2
+			]
+		},
+		{
+			"ID": 5303,
+			"Name": "꽃",
+			"Description": [
+				"겨울"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/winter",
+			"SpriteName": [
+				3
+			]
+		},
+		{
+			"ID": 5304,
+			"Name": "꽃",
+			"Description": [
+				"겨울"
+			],
+			"Type": "Nature",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Nature/winter",
+			"SpriteName": [
+				4
 			]
 		}
 	]
