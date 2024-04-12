@@ -21,9 +21,9 @@ public class ScrollViewUI : MonoBehaviour
     // Script
     InventoryUI inventoryUI;
 
-    // 슬롯 너비, 높이
-    private float _itemHeight;
-    private float _itemWidth;
+    //// 슬롯 너비, 높이
+    //private float _itemHeight;
+    //private float _itemWidth;
 
     private ScrollRect _scroll;
     private RectTransform _scrollRect;
@@ -33,7 +33,11 @@ public class ScrollViewUI : MonoBehaviour
     private List<ScrollSlotUI> uiSlots;
 
     private ScrollSlotUI slotPrefab;
+    private float _slotPrefabHeight;
+    private float _slotPrefabWidth;
+    private float _paddingHeight = 5;
 
+    // 스크롤뷰 초기화
     public void Init(ScrollSlotUI prefab)
     {
         slotPrefab = prefab;
@@ -43,7 +47,12 @@ public class ScrollViewUI : MonoBehaviour
         _scrollRect = _scroll.GetComponent<RectTransform>();
         //_itemHeight = slotPrefab.GetComponent<RectTransform>().rect.height + 5;
         //_itemWidth = slotPrefab.GetComponent<RectTransform>().rect.width;
-        slotPrefab.SetSlotSize(out _itemWidth, _itemHeight);
+
+        //slotPrefab.SetSlotSize(out _slotPrefabWidth, _slotPrefabHeight);
+        // 슬롯 프리팹의 크기 설정
+        RectTransform rectTransform = slotPrefab.GetComponent<RectTransform>();
+        _slotPrefabWidth = rectTransform.rect.width;
+        _slotPrefabHeight = rectTransform.rect.height + _paddingHeight;
 
         CreateSlots();
         SetContentHeight();
@@ -54,7 +63,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         uiSlots = new List<ScrollSlotUI>();
 
-        int itemCount = ((int)(_scrollRect.rect.height / _itemHeight) + 3) * (int)(_scrollRect.rect.width / _itemWidth);
+        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scrollRect.rect.width / _slotPrefabWidth);
 
         for (int i = 0; i < itemCount; i++)
         {
@@ -62,16 +71,17 @@ public class ScrollViewUI : MonoBehaviour
             item.Init();
             uiSlots.Add(item);
 
-            item.transform.localPosition = new Vector3(0, -i * _itemHeight);
+            item.transform.localPosition = new Vector3(0, -i * _slotPrefabHeight);
+            SetIndex(item, i);
         }
 
-        _offset = uiSlots.Count / (int)(_scrollRect.rect.width / _itemWidth) * _itemHeight;
+        _offset = uiSlots.Count / (int)(_scrollRect.rect.width / _slotPrefabWidth) * _slotPrefabHeight;
     }
 
     // 전체 컨텐츠의 길이 세팅
     private void SetContentHeight()
     {
-        _scroll.content.sizeDelta = new Vector2(_scroll.content.sizeDelta.x, _itemHeight * 10); // y 값 data 길이에 따른 변수로 바꾸기!
+        _scroll.content.sizeDelta = new Vector2(_scroll.content.sizeDelta.x, _slotPrefabHeight * 10); // y 값 data 길이에 따른 변수로 바꾸기!
     }
 
     private void Update()
@@ -83,8 +93,8 @@ public class ScrollViewUI : MonoBehaviour
             bool isChanged = RelocationSlot(item, contentPositionY, scrollHeight);
             if(isChanged)
             {
-                int idx = (int)(-item.transform.localPosition.y / _itemHeight);
-                SetData(item);
+                int idx = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
+                SetIndex(item, idx);
             }
         }
     }
@@ -92,24 +102,24 @@ public class ScrollViewUI : MonoBehaviour
     // Slot 재사용
     private bool RelocationSlot(ScrollSlotUI item, float contentPositionY, float scrollHeight)
     {
-        if (item.transform.localPosition.y + contentPositionY > _itemHeight*1.5)
+        if (item.transform.localPosition.y + contentPositionY > _slotPrefabHeight * 1.5)
         {
             item.transform.localPosition -= new Vector3(0, _offset);
             return true;
         }
-        else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _itemHeight*1.5)
+        else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _slotPrefabHeight * 1.5)
         {
             item.transform.localPosition += new Vector3(0, _offset);
-            item.Set(0);     // TODO  idx 던져주기
+            //item.Set(0);     // TODO  idx 던져주기
             return true;
         }
         return false;
     }
 
-
-    private void SetData(ScrollSlotUI item)
+    // 슬롯 인덱스 값 설정
+    private void SetIndex(ScrollSlotUI item, int idx)
     {
-
+        item.Set(idx);
     }
 
     // 가장 마지막 슬롯 반환
@@ -118,7 +128,7 @@ public class ScrollViewUI : MonoBehaviour
 
     }
 
-    //private void SetData(GameObject item, int idx)
+    //private void SetData(ScrollSlotUI item, int idx)
     //{
     //    if (idx < 0 || idx >= dataList.Count)
     //    {

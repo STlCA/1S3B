@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 8462904804462810089}
   - component: {fileID: 3989292922384028941}
   - component: {fileID: -840619694718816174}
+  - component: {fileID: -4575858337053539335}
   m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -319,6 +320,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c12cd7d49a42ce46b3c9c00c9c2a989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemInfoUI: {fileID: 2021886180736554127}
+  _selectedItemName: {fileID: 4030667713008700734}
+  _selectedItemDescription: {fileID: 8362797859035186354}
+  index: 0
+  inventory: {fileID: 0}
+  icon: {fileID: 170732863357165344}
+--- !u!114 &-4575858337053539335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135412899177978595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73e24978e6aa854ba1855fb87a606aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemInfoUI: {fileID: 2021886180736554127}
+  _selectedItemName: {fileID: 4030667713008700734}
+  _selectedItemDescription: {fileID: 8362797859035186354}
+  index: 0
 --- !u!1 &4666136716459670340
 GameObject:
   m_ObjectHideFlags: 0
