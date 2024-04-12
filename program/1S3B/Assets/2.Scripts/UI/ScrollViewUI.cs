@@ -7,11 +7,7 @@ using UnityEngine.UI;
 
 // 동적 스크롤 스크립트 [뷰?]
 // 인벤토리 UI 스크립트에서 슬롯 프리팹 사이즈 가져와서 해당 스크롤뷰 생성 (-> 그럼 인벤토리의 가로 길이도 스크립트에서 관리해야하나? 아님 그냥 에디터에서 해야하나?)
-// 스크롤을 움직였을 때 슬롯 재사용
-// 높이, 너비 이용하여 각 슬롯에 인덱스 값 부여
 // 콜백 - 액션 이용하여 사용된 슬롯 내부의 데이터 파악(-> 근데 내부 내이터 파악을 하려면 반환값이 있어야하는거 아닌감..?)
-// 비어있는 슬롯 전달(을 인벤토리 UI에 해줘야하나? ㅋㅋㅋㅋ)
-// 제네릭...이 여기에 있어야하나..?
 // 인벤토리를 몇 줄로 할지는 스크립트에서 정해야하나 아님 이것도 동적으로 정해야하나?
 
 [RequireComponent(typeof(ScrollRect))]
@@ -35,7 +31,7 @@ public class ScrollViewUI : MonoBehaviour
     private ScrollSlotUI slotPrefab;
     private float _slotPrefabHeight;
     private float _slotPrefabWidth;
-    private float _paddingHeight = 5;
+    private float _padding = 5;
 
     // 스크롤뷰 초기화
     public void Init(ScrollSlotUI prefab)
@@ -52,7 +48,7 @@ public class ScrollViewUI : MonoBehaviour
         // 슬롯 프리팹의 크기 설정
         RectTransform rectTransform = slotPrefab.GetComponent<RectTransform>();
         _slotPrefabWidth = rectTransform.rect.width;
-        _slotPrefabHeight = rectTransform.rect.height + _paddingHeight;
+        _slotPrefabHeight = rectTransform.rect.height + _padding;
 
         CreateSlots();
         SetContentHeight();
@@ -91,14 +87,15 @@ public class ScrollViewUI : MonoBehaviour
         foreach (ScrollSlotUI item in uiSlots)
         {
             bool isChanged = RelocationSlot(item, contentPositionY, scrollHeight);
+            // 슬롯 인덱스 설정
             if(isChanged)
             {
                 // int idx = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
 
-                int y = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
-                int x = (int)(item.transform.localPosition.x / _slotPrefabWidth);
+                int y = (int)(-item.transform.localPosition.y / (_slotPrefabHeight + _padding));
+                int x = (int)(item.transform.localPosition.x / (_slotPrefabWidth + _padding));
 
-                int idx = y * (int)(_scrollRect.rect.width / _slotPrefabWidth) + x;
+                int idx = y * (int)(_scrollRect.rect.width / _slotPrefabWidth) + x;///10+9
 
                 SetIndex(item, idx);
             }
