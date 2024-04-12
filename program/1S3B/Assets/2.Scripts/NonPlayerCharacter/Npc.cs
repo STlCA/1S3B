@@ -104,9 +104,30 @@ public class Npc : MonoBehaviour, ITalk
         // 대화 진행
         Debug.Log("대화 시도");
 
-        for(int i = 0; i < talkInfo.npcDialogue.Count;  i++)
+        if(talkInfo.npcDialogue == null)
         {
-            Debug.Log(talkInfo.npcDialogue[i]);
+            gameManager.talkPanel.SetActive(false);
         }
+        else
+        {
+            gameManager.talkPanel.SetActive(true);
+            for (int i = 0; i < talkInfo.npcDialogue.Count; i++)
+            {
+                Debug.Log(talkInfo.npcDialogue[i]);
+                gameManager.npcNameText.text = npcInfo.npcName;
+                gameManager.talkText.text = talkInfo.npcDialogue[i];
+            }
+        }
+    }
+
+    IEnumerator NextContentTalk()
+    {
+        // 일정 시간이 지나면 다음 내용 출력
+        yield return new WaitForSeconds(10f);
+    }
+
+    public void CloseTalkPanel()
+    {
+        gameManager.talkPanel.SetActive(false);
     }
 }

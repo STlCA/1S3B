@@ -83,13 +83,13 @@ public class GameManager : MonoBehaviour
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
+
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
         DayText.text = DayCycleHandler.GetDayAsString();
-        talkPanel.SetActive(false);
     }
 
     private void Update()
