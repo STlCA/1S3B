@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeatherSystem : Manager
 {
+    private TileManager tileManager;
+
     [Flags]
     public enum WeatherType
     {
@@ -22,6 +24,8 @@ public class WeatherSystem : Manager
 
     void Start()
     {
+        tileManager = gameManager.TileManager;
+
         FindAllElements();
         ChangeWeather(startingWeather);
     }
@@ -61,13 +65,14 @@ public class WeatherSystem : Manager
                 currentWeatherType = WeatherType.Sun;
                 break;
             case 1:
-                currentWeatherType = WeatherType.Rain;
+                currentWeatherType = WeatherType.Rain;                
                 break;
             case 2:
                 currentWeatherType = WeatherType.Snow;
                 break;
             
         }
+        tileManager.IsRain(currentWeatherType == WeatherType.Rain);
         SwitchAllElementsToCurrentWeather();
     }
 }

@@ -177,7 +177,6 @@ public class NatureObjectController : Manager
                     random = Random.Range(0, names.Count());
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
-                    //tempData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
                 }
             }
         }
@@ -218,15 +217,11 @@ public class NatureObjectController : Manager
                     tempData.treeObj = RandomTree();
 
                     tempData.isSpawn = true;
-                    //tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
-                    //string season = dayCycleHandler.currentSeason.ToString();
-                    //string category = tempData.treeResolver.GetCategory();
-                    //tempData.treeResolver.SetCategoryAndLabel(category, season);
-                    ChangeResolver(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
+                    ChangeCategoryLabel(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
                 }
             }
         }
@@ -301,10 +296,7 @@ public class NatureObjectController : Manager
                 newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
                 newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
 
-                //string season = dayCycleHandler.currentSeason.ToString();
-                //string category = newTree.treeResolver.GetCategory();
-                //newTree.treeResolver.SetCategoryAndLabel(category, season);
-                ChangeResolver(ref newTree.treeResolver, dayCycleHandler.currentSeason.ToString());
+                ChangeCategoryLabel(ref newTree.treeResolver, dayCycleHandler.currentSeason.ToString());
 
                 treeData.Add(randomPos, newTree);
                 ++i;
@@ -425,11 +417,8 @@ public class NatureObjectController : Manager
                 treeData[saveTarget].animator.enabled = false;
                 treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
 
-                ChangeResolver(ref treeData[saveTarget].treeResolver, "0");
-                //string type = treeData[saveTarget].treeResolver.GetCategory();
-                //treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+                ChangeCategoryLabel(ref treeData[saveTarget].treeResolver, "0");
 
-                //treeData[saveTarget].animator.enabled = true;
                 treeData[saveTarget].treeObj.GetComponentInChildren<PolygonCollider2D>().enabled = false;
 
                 Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
@@ -463,6 +452,7 @@ public class NatureObjectController : Manager
             }
         }
     }
+
     public void DestroyStone(bool value)
     {
         if (saveTarget != Vector3Int.zero && stoneData.ContainsKey(saveTarget) == true)
@@ -477,7 +467,6 @@ public class NatureObjectController : Manager
             }
         }
     }
-
 
     private void DropItem(Vector3 target, int count, int ID)
     {
@@ -497,13 +486,11 @@ public class NatureObjectController : Manager
                 continue;
             temp.animator.enabled = false;
 
-            //string category = temp.treeResolver.GetCategory();
-            //temp.treeResolver.SetCategoryAndLabel(category, current.ToString());
-            ChangeResolver(ref temp.treeResolver, current.ToString());
+            ChangeCategoryLabel(ref temp.treeResolver, current.ToString());
         }
     }
 
-    private void ChangeResolver(ref SpriteResolver resolver, string current)
+    private void ChangeCategoryLabel(ref SpriteResolver resolver, string current)
     {
         string category = resolver.GetCategory();
         resolver.SetCategoryAndLabel(category, current);

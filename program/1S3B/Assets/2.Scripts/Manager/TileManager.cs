@@ -44,6 +44,7 @@ public class CropData
 public class TileManager : Manager
 {
     private AnimationController animationController;
+    private TargetSetting targetSetting;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -72,6 +73,8 @@ public class TileManager : Manager
     private void Start()
     {
         animationController = gameManager.AnimationController;
+        targetSetting = gameManager.TargetSetting;
+
         cropDatabase = gameManager.DataManager.cropDatabase;
     }
 
@@ -102,7 +105,7 @@ public class TileManager : Manager
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
-        if (GameManager.Instance.TargetSetting.TargetUI() == false)
+        if (targetSetting.TargetUI() == false)
             return;
 
         tilledTilemap.SetTile(target, tilledTile);
@@ -110,13 +113,13 @@ public class TileManager : Manager
         groundData.Add(target, new GroundData());//좌표에 정보만넣어주는거지 타일에 무언가 직접하는건 아님
 
         if (isRain == true)
-            groundData[target].isWater = true;
+            WaterAt(target, true);
 
     }
 
     public void PlantAt(Vector3Int target)
     {
-        if (GameManager.Instance.TargetSetting.TargetUI() == false)
+        if (targetSetting.TargetUI() == false)
             return;
 
         CropData tempcropData = new CropData();
@@ -139,9 +142,9 @@ public class TileManager : Manager
         croptData.Add(target, tempcropData);
     }
 
-    public void WaterAt(Vector3Int target)
+    public void WaterAt(Vector3Int target, bool rain = false)
     {
-        if (GameManager.Instance.TargetSetting.TargetUI() == false)
+        if (rain == false && targetSetting.TargetUI() == false)
             return;
 
         // 물주려고 봤더니? 플레이어 인풋에서 체크? 최대면 수확
@@ -149,18 +152,19 @@ public class TileManager : Manager
         // 최대 인덱스를 넘어가지않게
 
         groundData[target].isWater = true;
+        waterTilemap.SetTile(target, wateredTile);
 
         if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
             croptData[target].cropRenderer.color = Color.gray;
 
-        croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
+        if(rain == false)
+            croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
-        waterTilemap.SetTile(target, wateredTile);
     }
 
     public void Harvest(Vector3Int target, Vector2 pos)
     {
-        if (GameManager.Instance.TargetSetting.TargetUI() == false)
+        if (targetSetting.TargetUI() == false)
             return;
 
         Sprite pickUpSprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 2];
@@ -235,14 +239,20 @@ public class TileManager : Manager
         groundData.Remove(target);
     }
 
+    public void IsRain(bool isRain)
+    {
+        this.isRain = isRain;
+
+        if (isRain == true)
+            RainWatering();
+    }
+
     public void RainWatering()
     {
         foreach(var (cell,ground) in groundData)
         {
-            ground.isWater = true;
+            WaterAt(cell, true);
         }
-
-        isRain = true;
 
         //땅 새로팔때도 지금은 데이터만 바꿨으니 물타일 넣어야하고 새로팔때도 넣어야하고 날씨가 끝나면 false로 바꿔야하고
     }
