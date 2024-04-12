@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
 
     private void DeathSleep()
     {
-        gameManager.SleepOfDay();
+        StartCoroutine(gameManager.SleepOfDay());
     }
 
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)

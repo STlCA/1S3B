@@ -208,7 +208,7 @@ public class SceneChangeManager : Manager
         mapChangeAction?.Invoke(isChange);
     }
 
-    public IEnumerator SleepFadeInOut()
+    public IEnumerator SleepFadeIn()
     {
         fadeImage.gameObject.SetActive(true);
 
@@ -227,7 +227,12 @@ public class SceneChangeManager : Manager
 
         player.animationController.DeathAnimation(false);
 
-        yield return new WaitForSeconds(waitTime);
+        //yield return new WaitForSeconds(waitTime);
+    }
+
+    public IEnumerator SleepFadeOut()
+    {
+        Color alpha = fadeImage.color;
 
         while (alpha.a > 0f)
         {
@@ -241,11 +246,6 @@ public class SceneChangeManager : Manager
 
         player.PlayerStateChange(PlayerState.IDLE);
     }
-
-    //public IEnumerator SleepFadeOut()
-    //{
-    //
-    //}
 
 
 }

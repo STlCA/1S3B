@@ -105,15 +105,17 @@ public class GameManager : MonoBehaviour
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        SleepOfDay();
+        StartCoroutine(SleepOfDay());
     }
 
-    public void SleepOfDay()
+    public IEnumerator SleepOfDay()
     {
-        StartCoroutine(SceneChangeManager.SleepFadeInOut());
-
-        player.EnergyReset(player.playerState == PlayerState.TIRED);
+        bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
+
+        yield return StartCoroutine(SceneChangeManager.SleepFadeIn());
+
+        player.EnergyReset(isTired);
 
         TileManager.Sleep();
 
@@ -129,6 +131,8 @@ public class GameManager : MonoBehaviour
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
+
+        yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
     public void TalkAction(GameObject scanObj)

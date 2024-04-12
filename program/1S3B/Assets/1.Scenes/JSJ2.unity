@@ -1592,6 +1592,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908525921220634817, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DayOverTime
+      objectReference: {fileID: 0}
     - target: {fileID: 8556821605966747331, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8

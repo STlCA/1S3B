@@ -39,8 +39,7 @@ public class AnimationController : AnimationBase
 
         pickupItem = Instantiate(pickupItemPrefab);        
         pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
-        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
-        
+        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();        
     }
 
     //private void Update()
