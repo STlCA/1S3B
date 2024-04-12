@@ -95,10 +95,10 @@ public class GameManager : MonoBehaviour
             DayCycleHandler.Tick();
 
         if (TimeText != null)
-        
+
             TimeText.text = DayCycleHandler.GetTimeAsString();
-            //시간텍스트 바꾸기
-        
+        //시간텍스트 바꾸기
+
 
     }
 
@@ -119,15 +119,13 @@ public class GameManager : MonoBehaviour
 
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
-        //natureObjectController.SpawnNature();
-        //natureObjectController.PointSpawnTree();
 
-        natureObjectController.RangeSpawnTree(10,SpawnType.Farm);
-        natureObjectController.RangeSpawnStone(10,SpawnType.Farm);
+        natureObjectController.SpawnNature();
+        natureObjectController.PointSpawnTree();
 
-        natureObjectController.RangeSpawnTree(10, SpawnType.UpForest);
-        natureObjectController.RangeSpawnTree(10, SpawnType.DownForest);
-        natureObjectController.RangeSpawnStone(10, SpawnType.Quarry);
+        natureObjectController.RangeSpawnTree(1, SpawnType.UpForest);
+        natureObjectController.RangeSpawnTree(1, SpawnType.DownForest);
+        natureObjectController.RangeSpawnStone(1, SpawnType.Quarry);
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();

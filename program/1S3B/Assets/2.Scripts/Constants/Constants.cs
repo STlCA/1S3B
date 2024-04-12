@@ -154,4 +154,10 @@ namespace Constants
     {
       
     }
+
+    public enum DropItemType
+    {
+        Wood = 4001,
+        Stone = 4002,
+    }
 }

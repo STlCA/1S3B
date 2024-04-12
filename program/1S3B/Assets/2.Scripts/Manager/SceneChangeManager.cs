@@ -242,5 +242,10 @@ public class SceneChangeManager : Manager
         player.PlayerStateChange(PlayerState.IDLE);
     }
 
+    //public IEnumerator SleepFadeOut()
+    //{
+    //
+    //}
+
 
 }
