@@ -10,6 +10,7 @@ public class ItemInfo
     public string Name;
     public List<string> Description;
     public string Type;
+    public string EquipType;
     public int CropID;
     public int SellGold;
     public int BuyGold;

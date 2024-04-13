@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
+
+    public PlayerEquipmentType currentSelect { get; set; }
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
     public int playerGold { get; private set; }

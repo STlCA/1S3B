@@ -159,6 +159,35 @@ public class PlayerInputController : CharacterEventController
         targetSetting.SetCellPosition(worldPos);
     }
 
+    public void OnHoe(InputValue value)//1
+    {
+        player.currentSelect = PlayerEquipmentType.Hoe;
+    }
+    public void OnWater(InputValue value)//2
+    {
+        player.currentSelect = PlayerEquipmentType.Water;
+    }
+    public void OnAxe(InputValue value)//3
+    {
+        player.currentSelect = PlayerEquipmentType.Axe;
+    }
+    public void OnPickAxe(InputValue value)//4
+    {
+        player.currentSelect = PlayerEquipmentType.PickAxe;
+    }
+    public void OnSword(InputValue value)//5
+    {
+        player.currentSelect = PlayerEquipmentType.Sword;
+    }
+    public void OnSeed(InputValue value)//6
+    {
+        player.currentSelect = PlayerEquipmentType.Seed;
+    }
+    public void OnCarry(InputValue value)//7
+    {
+        player.currentSelect = PlayerEquipmentType.Carry;
+    }
+
 
     public void OnUse(InputValue value)
     {

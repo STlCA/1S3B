@@ -106,6 +106,8 @@ namespace Constants
         PickAxe,
         Sword,
         FishingRod,
+        Carry,
+        Seed,
     }
 
     public enum UpgradeEquipmentStep
