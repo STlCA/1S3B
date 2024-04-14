@@ -1,4 +1,5 @@
 using Constants;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
+using Random = UnityEngine.Random;
 
 
 [System.Serializable]
@@ -21,6 +23,7 @@ public class NatureData
     public SpriteRenderer natureRenderer;
     public SpriteResolver natureResolver;
     public bool isSpawn = false;
+    public int id;
 }
 
 public class TreeData
@@ -75,6 +78,7 @@ public class NatureObjectController : Manager
     [Header("Tree")]
     public GameObject tree1Prefab;
     public GameObject tree2Prefab;
+    public GameObject tree3Prefab;
     public RuntimeAnimatorController posAnimator;
 
     [Header("Stone")]
@@ -103,7 +107,7 @@ public class NatureObjectController : Manager
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
         if (treePointObject != null)
             treePoint = treePointObject.GetComponentsInChildren<Transform>();
-        if(stonePointObject!= null)
+        if (stonePointObject != null)
             stonePoint = stonePointObject.GetComponentsInChildren<Transform>();
 
         animationController.useAnimEnd += CutTreeTime;
@@ -111,8 +115,12 @@ public class NatureObjectController : Manager
         animationController.useAnimEnd += DestroyStone;
 
         dayCycleHandler.changeSeasonAction += SpriteChange;
+        dayCycleHandler.changeSeasonAction += ResetNature;
+        dayCycleHandler.changeSeasonAction += SeasonSpawn;
 
         StartSetting();
+
+        StartSpawn();
     }
 
     private void StartSetting()
@@ -121,7 +129,6 @@ public class NatureObjectController : Manager
         {
             foreach (Transform go in naturePoint)
             {
-
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 NatureData tempData = new NatureData();
@@ -147,9 +154,52 @@ public class NatureObjectController : Manager
         }
     }
 
+    private void StartSpawn()
+    {
+        RangeSpawnTree(20, SpawnType.Farm);
+        RangeSpawnStone(20, SpawnType.Farm);
+
+        RangeSpawnTree(40, SpawnType.UpForest);
+        RangeSpawnStone(20, SpawnType.UpForest);
+
+        RangeSpawnTree(40, SpawnType.DownForest);
+        RangeSpawnStone(20, SpawnType.DownForest);
+
+        RangeSpawnStone(40, SpawnType.Quarry);
+    }
+
+    private void SeasonSpawn(Season season)
+    {
+        if(season == Season.Spring)
+        {
+            RangeSpawnTree(20, SpawnType.Farm);
+            RangeSpawnStone(20, SpawnType.Farm);
+
+            RangeSpawnTree(40, SpawnType.UpForest);
+            RangeSpawnStone(20, SpawnType.UpForest);
+
+            RangeSpawnTree(40, SpawnType.DownForest);
+            RangeSpawnStone(20, SpawnType.DownForest);
+
+            RangeSpawnStone(40, SpawnType.Quarry);
+        }
+
+        RangeSpawnTree(10, SpawnType.Farm);
+        RangeSpawnStone(10, SpawnType.Farm);
+
+        RangeSpawnTree(20, SpawnType.UpForest);
+        RangeSpawnStone(10, SpawnType.UpForest);
+
+        RangeSpawnTree(20, SpawnType.DownForest);
+        RangeSpawnStone(10, SpawnType.DownForest);
+
+        RangeSpawnStone(20, SpawnType.Quarry);
+    }
+
+
     public void SpawnNature()
     {
-        float percentage = 50;
+        float percentage = 20;
         float randomPoint;
         int random;
 
@@ -158,33 +208,63 @@ public class NatureObjectController : Manager
             if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
-                if (randomPoint < percentage)
+                if (randomPoint <= percentage)
                 {
-                    //Init()���ι���
+                    //Init()화하기
                     tempdData.isSpawn = true;
                     tempdData.natureObj = Instantiate(naturePrefab);
                     tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempdData.natureRenderer = tempdData.natureObj.GetComponent<SpriteRenderer>();
                     tempdData.natureResolver = tempdData.natureObj.GetComponent<SpriteResolver>();
 
-                    string season = "Spring";//�����˾ƿ���
+                    string season = dayCycleHandler.currentSeason.ToString();
 
                     IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
 
                     random = Random.Range(0, names.Count());
+                    string id = "5" + ((dayCycleHandler.currentDay / 28) % 4).ToString() + "0" + (random + 1).ToString();
+                    tempdData.id = int.Parse(id);
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
-                    //tempData.natureRenderer.sprite = natureLibrary.GetSprite(season, random.ToString());
                 }
             }
         }
     }
 
+    private void ResetNature(Season season)
+    {
+        foreach (var (cell, data) in natureData)
+        {
+            Destroy(data.natureObj);
+            natureData[cell].isSpawn = false;
+        }
+    }
+
+
+    private GameObject RandomTree()
+    {
+        int random;
+
+        random = Random.Range(1, 4);
+
+        switch (random)
+        {
+            case 1:
+                return Instantiate(tree1Prefab);
+            case 2:
+                return Instantiate(tree2Prefab);
+            case 3:
+                return Instantiate(tree3Prefab);
+        }
+
+        return null;
+    }
+
+
     public void PointSpawnTree()
     {
         float percentage = 50;
         float randomPoint;
-        int random;
 
         foreach (var (cell, tempData) in treeData)
         {
@@ -193,21 +273,14 @@ public class NatureObjectController : Manager
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
-                    random = Random.Range(1, 3);
-
-                    if (random == 1)
-                        tempData.treeObj = Instantiate(tree1Prefab);
-                    else
-                        tempData.treeObj = Instantiate(tree2Prefab);
+                    tempData.treeObj = RandomTree();
 
                     tempData.isSpawn = true;
-                    //tempData.treeObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
                     tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
-                    string season = "Spring";
-                    tempData.treeResolver.SetCategoryAndLabel("Tree", season);
+                    ChangeCategoryLabel(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
                 }
             }
         }
@@ -257,7 +330,7 @@ public class NatureObjectController : Manager
         if (interactableMap.GetTile(target) == null)
             return false;
 
-        if(tileManager.groundData.ContainsKey(target) == true)
+        if (tileManager.groundData.ContainsKey(target) == true)
             tileManager.DestroyGroundData(target);
 
         return true;
@@ -266,29 +339,27 @@ public class NatureObjectController : Manager
     public void RangeSpawnTree(int spawnCount, SpawnType type)
     {
         Vector3Int randomPos;
-        int treeType;
 
         for (int i = 0; i < spawnCount;)
         {
+            if (treeData.Count >= 150)
+                return;
+
             randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
 
-            if (SpawnCheck(randomPos) == true)//������ �ȵǾ� ������ true;
+            if (SpawnCheck(randomPos) == true)
             {
                 TreeData newTree = new();
-                treeType = Random.Range(1, 3);
 
-                if (treeType == 1)
-                    newTree.treeObj = Instantiate(tree1Prefab);
-                else
-                    newTree.treeObj = Instantiate(tree2Prefab);
+                newTree.treeObj = RandomTree();
 
                 newTree.isSpawn = true;
                 newTree.treeObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newTree.treeResolver = newTree.treeObj.GetComponentInChildren<SpriteResolver>();
                 newTree.animator = newTree.treeObj.GetComponentInChildren<Animator>();
 
-                string season = dayCycleHandler.currentSeason.ToString();
-                newTree.treeResolver.SetCategoryAndLabel("Tree", season);
+                ChangeCategoryLabel(ref newTree.treeResolver, dayCycleHandler.currentSeason.ToString());
+                newTree.animator.enabled = false;
 
                 treeData.Add(randomPos, newTree);
                 ++i;
@@ -302,6 +373,9 @@ public class NatureObjectController : Manager
 
         for (int i = 0; i < spawnCount;)
         {
+            if (stoneData.Count >= 150)
+                return;
+
             randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
 
             if (SpawnCheck(randomPos) == true)
@@ -361,7 +435,7 @@ public class NatureObjectController : Manager
             treeData[target].animator.enabled = true;
 
         treeData[target].animator.SetTrigger("isFelling");
-        treeData[target].animator.SetTrigger(dayCycleHandler.currentSeason.ToString());//�����޾ƿ���
+        treeData[target].animator.SetTrigger(dayCycleHandler.currentSeason.ToString());
         treeData[target].animator.SetFloat("inputX", direction.x);
         treeData[target].animator.SetFloat("inputY", direction.y);
 
@@ -406,12 +480,11 @@ public class NatureObjectController : Manager
                 //treeData[target].animator.SetTrigger("isFellied");
                 treeData[saveTarget].itemDrop = true;
 
-                string type = treeData[saveTarget].treeResolver.GetCategory();
-
                 treeData[saveTarget].animator.enabled = false;
                 treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
-                treeData[saveTarget].animator.enabled = true;
-                treeData[saveTarget].treeResolver.SetCategoryAndLabel(type, "0");
+
+                ChangeCategoryLabel(ref treeData[saveTarget].treeResolver, "0");
+
                 treeData[saveTarget].treeObj.GetComponentInChildren<PolygonCollider2D>().enabled = false;
 
                 Vector3 spawItemPos = (player.transform.position - treeData[saveTarget].treeObj.transform.position).normalized;
@@ -421,7 +494,7 @@ public class NatureObjectController : Manager
                 else if (spawItemPos.x > 0)
                     dropPos.x = -1f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, 20001001);
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, (int)DropItemType.Wood);
             }
         }
     }
@@ -432,7 +505,7 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
             {
-                DropItem(treeData[saveTarget].treeObj.transform.position, 5, 20001001);
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5, (int)DropItemType.Wood);
                 Destroy(treeData[saveTarget].treeObj);
                 treeData[saveTarget].isSpawn = false;
                 treeData[saveTarget].itemDrop = false;
@@ -445,13 +518,14 @@ public class NatureObjectController : Manager
             }
         }
     }
+
     public void DestroyStone(bool value)
     {
         if (saveTarget != Vector3Int.zero && stoneData.ContainsKey(saveTarget) == true)
         {
             if (stoneData[saveTarget].count >= stoneData[saveTarget].maxCount)
             {
-                DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, 20001002);
+                DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, (int)DropItemType.Stone);
                 Destroy(stoneData[saveTarget].stoneObj);
                 stoneData.Remove(saveTarget);
 
@@ -459,7 +533,6 @@ public class NatureObjectController : Manager
             }
         }
     }
-
 
     private void DropItem(Vector3 target, int count, int ID)
     {
@@ -471,14 +544,22 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void SpriteChange(Season current)//Sprite�ٲܶ� �ִϸ����� ���ΰ� �ִϼ� �����Ҷ� �ٽ� ��
+    public void SpriteChange(Season current)
     {
         foreach (var (cell, temp) in treeData)
         {
             if (temp.animator == null)
                 continue;
             temp.animator.enabled = false;
-            temp.treeResolver.SetCategoryAndLabel("Tree", current.ToString());
+
+            ChangeCategoryLabel(ref temp.treeResolver, current.ToString());
         }
     }
+
+    private void ChangeCategoryLabel(ref SpriteResolver resolver, string current)
+    {
+        string category = resolver.GetCategory();
+        resolver.SetCategoryAndLabel(category, current);
+    }
 }
+

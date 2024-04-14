@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -152,5 +153,11 @@ namespace Constants
     public enum SFXSound
     {
       
+    }
+
+    public enum DropItemType
+    {
+        Wood = 4001,
+        Stone = 4002,
     }
 }

@@ -28,28 +28,12 @@ public class ObjectLayerSetting : MonoBehaviour
             objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
-    private bool ObjectSortingOrderCheck(Collider2D other)
-    {
-        SpriteRenderer[] otherSR = other.GetComponentsInChildren<SpriteRenderer>();
-
-        foreach (SpriteRenderer sr in otherSR)
-        {
-            if (sr.sortingOrder > objectSR.sortingOrder)
-                return false;
-        }
-
-        return true;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (ObjectSortingOrderCheck(other) == true)//other == player
-            {
-                StopCoroutine("PlusAlpha");
-                MinusAlphaStart();
-            }
+            StopCoroutine("PlusAlpha");
+            MinusAlphaStart();
         }
     }
 

@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     private AnimationController animationController;
 
     //========================Inspector
-    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
 
     [Header("Time")]
     public TMP_Text TimeText;
@@ -96,42 +95,44 @@ public class GameManager : MonoBehaviour
             DayCycleHandler.Tick();
 
         if (TimeText != null)
-        
+
             TimeText.text = DayCycleHandler.GetTimeAsString();
-            //시간텍스트 바꾸기
-        
+        //시간텍스트 바꾸기
+
 
     }
 
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        SleepOfDay();
+        StartCoroutine(SleepOfDay());
     }
 
-    public void SleepOfDay()
+    public IEnumerator SleepOfDay()
     {
+        bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
 
-        StartCoroutine(SceneChangeManager.SleepFadeInOut());
+        yield return StartCoroutine(SceneChangeManager.SleepFadeIn());
+
+        player.EnergyReset(isTired);
+
         TileManager.Sleep();
 
-        player.EnergyReset(player.playerState == PlayerState.TIRED);
-
         DayCycleHandler.ResetDayTime();
-        WeatherSystem.RandomChangeWeather();
-        //natureObjectController.SpawnNature();
-        //natureObjectController.PointSpawnTree();
+        WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
 
-        natureObjectController.RangeSpawnTree(10,SpawnType.Farm);
-        natureObjectController.RangeSpawnStone(10,SpawnType.Farm);
+        natureObjectController.SpawnNature();
+        natureObjectController.PointSpawnTree();
 
-        natureObjectController.RangeSpawnTree(10, SpawnType.UpForest);
-        natureObjectController.RangeSpawnTree(10, SpawnType.DownForest);
-        natureObjectController.RangeSpawnStone(10, SpawnType.Quarry);
+        natureObjectController.RangeSpawnTree(1, SpawnType.UpForest);
+        natureObjectController.RangeSpawnTree(1, SpawnType.DownForest);
+        natureObjectController.RangeSpawnStone(1, SpawnType.Quarry);
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
+
+        yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
     public void TalkAction(GameObject scanObj)
