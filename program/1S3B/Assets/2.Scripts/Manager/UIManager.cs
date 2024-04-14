@@ -20,7 +20,8 @@ public class UIManager : Manager
     [Header("Image")]
     public GameObject sleepInfoUI;
     public InventoryUI inventoryUI;
-    public GameObject equipIcon;
+    public Image equipIcon;
+    public SpriteLibraryAsset libraryAsset;
 
     [Header("EnergyBar")]
     [SerializeField] private GameObject tired;
@@ -48,6 +49,11 @@ public class UIManager : Manager
         playerImage = playerObj.GetComponent<RectTransform>();
     }
 
+    public void EquipIconChange(PlayerEquipmentType type)
+    {
+        equipIcon.sprite = libraryAsset.GetSprite("Equip", type.ToString());
+    }
+
     public void MiniMapPosition(PlayerMap map)
     {
         player.playerMap = map;
@@ -55,39 +61,39 @@ public class UIManager : Manager
         switch (map)
         {
             case PlayerMap.Farm:
-                playerImage.anchoredPosition = new Vector2(528, 186);    
-                break;                                   
-            case PlayerMap.FarmRoad:                     
+                playerImage.anchoredPosition = new Vector2(528, 186);
+                break;
+            case PlayerMap.FarmRoad:
                 playerImage.anchoredPosition = new Vector2(29, 359);
-                break;                                   
-            case PlayerMap.Town:                         
+                break;
+            case PlayerMap.Town:
                 playerImage.anchoredPosition = new Vector2(50, 134);
-                break;                                   
-            case PlayerMap.TownRoad:                     
+                break;
+            case PlayerMap.TownRoad:
                 playerImage.anchoredPosition = new Vector2(267, 134);
-                break;                                   
-            case PlayerMap.Forest:                       
+                break;
+            case PlayerMap.Forest:
                 playerImage.anchoredPosition = new Vector2(-501, 151);
-                break;                                   
-            case PlayerMap.ForestRoad:                   
+                break;
+            case PlayerMap.ForestRoad:
                 playerImage.anchoredPosition = new Vector2(-176, 138);
-                break;                                   
-            case PlayerMap.Beach:                        
+                break;
+            case PlayerMap.Beach:
                 playerImage.anchoredPosition = new Vector2(37, -129);
-                break;                                   
-            case PlayerMap.BeachR:                       
+                break;
+            case PlayerMap.BeachR:
                 playerImage.anchoredPosition = new Vector2(375, -104);
-                break;                                   
-            case PlayerMap.BeachL:                       
+                break;
+            case PlayerMap.BeachL:
                 playerImage.anchoredPosition = new Vector2(-488, -167);
-                break;                                   
-            case PlayerMap.BossRoom:                     
+                break;
+            case PlayerMap.BossRoom:
                 playerImage.anchoredPosition = new Vector2(-701, 96);
-                break;                                   
-            case PlayerMap.Island:                       
+                break;
+            case PlayerMap.Island:
                 playerImage.anchoredPosition = new Vector2(142, -384);
-                break;                                   
-            case PlayerMap.Quarry:                       
+                break;
+            case PlayerMap.Quarry:
                 playerImage.anchoredPosition = new Vector2(693, -296);
                 break;
 

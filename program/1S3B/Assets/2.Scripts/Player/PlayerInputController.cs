@@ -16,6 +16,7 @@ public class PlayerInputController : CharacterEventController
     private GameManager gameManager;
     private TileManager tileManager;
     private TargetSetting targetSetting;
+    private UIManager uiManager;
     private Player player;
     private PlayerTalkController playerTalkController;
     private AnimationController animController;
@@ -26,7 +27,6 @@ public class PlayerInputController : CharacterEventController
     private bool isUseEnergy;
     private bool isUseAnim;
     private bool isUse;
-    private float saveTime;
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
@@ -38,6 +38,7 @@ public class PlayerInputController : CharacterEventController
         gameManager = GameManager.Instance;
         tileManager = gameManager.TileManager;
         targetSetting = gameManager.TargetSetting;
+        uiManager = gameManager.UIManager;
         player = gameManager.Player;
         natureObjectController = gameManager.NatureObjectController;
 
@@ -162,30 +163,37 @@ public class PlayerInputController : CharacterEventController
     public void OnHoe(InputValue value)//1
     {
         player.currentSelect = PlayerEquipmentType.Hoe;
+        uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
     }
     public void OnWater(InputValue value)//2
     {
         player.currentSelect = PlayerEquipmentType.Water;
+        uiManager.EquipIconChange(PlayerEquipmentType.Water);
     }
     public void OnAxe(InputValue value)//3
     {
         player.currentSelect = PlayerEquipmentType.Axe;
+        uiManager.EquipIconChange(PlayerEquipmentType.Axe);
     }
     public void OnPickAxe(InputValue value)//4
     {
         player.currentSelect = PlayerEquipmentType.PickAxe;
+        uiManager.EquipIconChange(PlayerEquipmentType.PickAxe);
     }
     public void OnSword(InputValue value)//5
     {
         player.currentSelect = PlayerEquipmentType.Sword;
+        uiManager.EquipIconChange(PlayerEquipmentType.Sword);
     }
     public void OnSeed(InputValue value)//6
     {
         player.currentSelect = PlayerEquipmentType.Seed;
+        uiManager.EquipIconChange(PlayerEquipmentType.Seed);
     }
     public void OnCarry(InputValue value)//7
     {
         player.currentSelect = PlayerEquipmentType.Carry;
+        uiManager.EquipIconChange(PlayerEquipmentType.Carry);
     }
 
 
