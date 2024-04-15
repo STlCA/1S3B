@@ -24,7 +24,10 @@ public class ItemInfo
     {
         foreach (string path in SpriteName)
         {
-            SpriteList.Add(Resources.Load<Sprite>(Path + path));
+            Sprite sprite = Resources.Load<Sprite>(Path + path);
+            SpriteList.Add(sprite);
+            if (sprite == null)
+                Debug.Log(Path + path + " is null");
         }
 
         // 스택 가능한 아이템인지 

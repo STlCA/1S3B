@@ -144,10 +144,11 @@ public class Inventory : MonoBehaviour
     }
 
     // 아이템 선택
-    public void SelectItem(int index)
+    public void SelectItem(InventorySlotUI _item)
     {
-        _selectedItem._item = items[index];
-        _selectedItemIndex = index;
+        _selectedItem = _item;
+        _selectedItemIndex = _item.index;
+
         string infoString = "";
 
         for (int i = 0; i < _selectedItem._item.ItemInfo.Description.Count; i++)

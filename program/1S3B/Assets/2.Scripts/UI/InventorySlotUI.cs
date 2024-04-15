@@ -54,7 +54,7 @@ public class InventorySlotUI : ScrollSlotUI
         }
         Debug.Log(_item.ItemInfo.Name);
 
-        inventory.SelectItem(index);
+        inventory.SelectItem(this);
         _itemInfoUI.SetActive(true);
     }
     #endregion // ScrollSlotUI 오버라이드
