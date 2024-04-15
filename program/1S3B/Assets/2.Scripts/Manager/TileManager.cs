@@ -104,7 +104,7 @@ public class TileManager : Manager
     }
     public bool IsHarvest(Vector3Int target)
     {
-        return croptData[target].cropRenderer.sprite == croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.AllGrowthStage];
+        return croptData.ContainsKey(target) == true && croptData[target].cropRenderer.sprite == croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.AllGrowthStage];
     }
 
     public void TillAt(Vector3Int target)//밭 가는 작업
@@ -187,6 +187,12 @@ public class TileManager : Manager
             croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
             croptData[target].cropObj.tag = "Crop";
         }
+    }
+
+    public void DestroyGround(Vector3Int target, Vector2 pos)
+    {
+        if (targetSetting.TargetUI() == false)
+            return;
     }
 
     public void Sleep()
