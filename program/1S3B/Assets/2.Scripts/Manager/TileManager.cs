@@ -69,7 +69,7 @@ public class TileManager : Manager
     public Sprite deathCrop;
 
     public Dictionary<Vector3Int, GroundData> groundData { get; private set; } = new();//좌표가 키값 GroundData가 value 받아오기
-    public Dictionary<Vector3Int, CropData> croptData { get; private set; } = new();
+    public Dictionary<Vector3Int, CropData> cropData { get; private set; } = new();
 
     private CropDatabase cropDatabase;
     private bool isRain = false;
@@ -100,11 +100,15 @@ public class TileManager : Manager
     }
     public bool IsPlantable(Vector3Int target)//갈려있고 씨앗이 심어져있지 않다면
     {
-        return IsTilled(target) && !croptData.ContainsKey(target);
+        return IsTilled(target) && !cropData.ContainsKey(target);
+    }
+    public bool IsPlant(Vector3Int target)
+    {
+        return cropData.ContainsKey(target) == true && IsHarvest(target) == false;
     }
     public bool IsHarvest(Vector3Int target)
     {
-        return croptData.ContainsKey(target) == true && croptData[target].cropRenderer.sprite == croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.AllGrowthStage];
+        return cropData.ContainsKey(target) == true && cropData[target].cropRenderer.sprite == cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.AllGrowthStage];
     }
 
     public void TillAt(Vector3Int target)//밭 가는 작업
@@ -142,7 +146,7 @@ public class TileManager : Manager
 
         tempcropData.Init(cropID, cropDatabase, go, isWater, currentDay);
 
-        croptData.Add(target, tempcropData);
+        cropData.Add(target, tempcropData);
     }
 
     public void WaterAt(Vector3Int target, bool rain = false)
@@ -157,11 +161,11 @@ public class TileManager : Manager
         groundData[target].isWater = true;
         waterTilemap.SetTile(target, wateredTile);
 
-        if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
-            croptData[target].cropRenderer.color = Color.gray;
+        if (cropData.ContainsKey(target) && cropData[target].cropRenderer.sortingLayerName == "Seed")
+            cropData[target].cropRenderer.color = Color.gray;
 
-        if (rain == false && croptData.ContainsKey(target) == true)
-            croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
+        if (rain == false && cropData.ContainsKey(target) == true)
+            cropData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
     }
 
@@ -170,34 +174,27 @@ public class TileManager : Manager
         if (targetSetting.TargetUI() == false)
             return;
 
-        Sprite pickUpSprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.SpriteList.Count - 2];
+        Sprite pickUpSprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.SpriteList.Count - 2];
         animationController.PickUpAnim(target, pos, pickUpSprite);
 
-        if (croptData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
+        if (cropData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
             //인벤넣기
-            Destroy(croptData[target].cropObj);
-            croptData.Remove(target);
+            DestroyCropData(target);
+
         }
         else//여러번수확
         {
             //인벤넣기
-            croptData[target].harvest++;
-            croptData[target].currentStage = croptData[target].plantCrop.StageAfterHarvest;
-            croptData[target].cropRenderer.sprite = croptData[target].plantCrop.SpriteList[croptData[target].plantCrop.StageAfterHarvest];
-            croptData[target].cropObj.tag = "Crop";
+            cropData[target].harvest++;
+            cropData[target].currentStage = cropData[target].plantCrop.StageAfterHarvest;
+            cropData[target].cropRenderer.sprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.StageAfterHarvest];
+            cropData[target].cropObj.tag = "Crop";
         }
     }
-
-    public void DestroyGround(Vector3Int target, Vector2 pos)
-    {
-        if (targetSetting.TargetUI() == false)
-            return;
-    }
-
     public void Sleep()
     {
-        foreach (var (cell, tempPlantData) in croptData)
+        foreach (var (cell, tempPlantData) in cropData)
         {
             tempPlantData.deathTimer--; //하루가 갈수록 -1씩 / 처음에 심을때ㅐ 한 계절인 28에서 지금 날짜 빼기
 
@@ -249,8 +246,16 @@ public class TileManager : Manager
 
     }
 
+    public void DestroyCropData(Vector3Int target)
+    {
+        Destroy(cropData[target].cropObj);
+        cropData.Remove(target);
+    }
+
     public void DestroyGroundData(Vector3Int target)
     {
+        tilledTilemap.SetTile(target, null);
+        waterTilemap.SetTile(target, null);
         groundData.Remove(target);
     }
 

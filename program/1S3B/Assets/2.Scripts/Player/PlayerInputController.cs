@@ -349,91 +349,64 @@ public class PlayerInputController : CharacterEventController
 
     private void UsePickAxe(PlayerEquipmentType pickAxe, Vector2 pos)
     {
-        if (natureObjectController.IsMining(targetSetting.selectCellPosition) == true)
-        {
-            isUseEnergy = true;
-            CallClickEvent(pickAxe, pos);
+        Vector3Int target = targetSetting.selectCellPosition;
 
-            natureObjectController.Mining(targetSetting.selectCellPosition);
-        }
-        else
-        {
-            isUseEnergy = true;
-            CallClickEvent(pickAxe, pos);
-        }
+        isUseEnergy = true;
+        CallClickEvent(pickAxe, pos);
+
+        if (natureObjectController.IsMining(target) == true)
+            natureObjectController.Mining(target);
+
+        else if (tileManager.IsPlant(target) == true)
+            tileManager.DestroyCropData(target);//작물파괴
+
+        else if (tileManager.IsPlantable(target) == true)
+            tileManager.DestroyGroundData(target);//땅파괴
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
     {
-        if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
-        {
-            isUseEnergy = true;
+        isUseEnergy = true;
             CallClickEvent(axe, pos);
 
+        if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
             natureObjectController.Felling(targetSetting.selectCellPosition);
-        }
         else
-        {
-            isUseEnergy = true;
             CallClickEvent(axe, pos);
-        }
-        //DestroyGround(targetSetting.selectCellPosition);
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
     {
+        CallClickEvent(pickUp, pos);
+
         if (tileManager.IsHarvest(targetSetting.selectCellPosition) == true)//그자리에 작물이 없으면 오류뜰수도
-        {
-            CallClickEvent(pickUp, pos);
-
             tileManager.Harvest(targetSetting.selectCellPosition, pos);
-        }
         else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
-        {
-            CallClickEvent(pickUp, pos);
-
             natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
-        }
     }
 
     private void UseWater(PlayerEquipmentType water, Vector2 pos)
     {
-        if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
-        {
-            isUseEnergy = true;
-            CallClickEvent(water, pos);
+        isUseEnergy = true;
+        CallClickEvent(water, pos);
 
+        if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
             tileManager.WaterAt(targetSetting.selectCellPosition);
-        }
-        else
-        {
-            isUseEnergy = true;
-            CallClickEvent(water, pos);
-        }
     }
 
     private void UseSeed(PlayerEquipmentType seed, Vector2 pos)
     {
         if (tileManager.IsPlantable(targetSetting.selectCellPosition) == true)
-        {
             tileManager.PlantAt(targetSetting.selectCellPosition);
-        }
     }
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)
     {
-        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
-        {
-            isUseEnergy = true;
-            CallClickEvent(type, pos);
+        isUseEnergy = true;
+        CallClickEvent(type, pos);
 
+        if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
             tileManager.TillAt(targetSetting.selectCellPosition);
-        }
-        else
-        {
-            isUseEnergy = true;
-            CallClickEvent(type, pos);
-        }
     }
 
     public void OnCommunication()
