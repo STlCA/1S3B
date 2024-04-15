@@ -34,9 +34,9 @@ public class ScrollViewUI : MonoBehaviour
     private float _padding = 5;
 
     // 스크롤뷰 초기화
-    public void Init(ScrollSlotUI prefab)
+    public void Init(ScrollSlotUI slot)
     {
-        slotPrefab = prefab;
+        slotPrefab = slot;
 
         inventoryUI = GetComponent<InventoryUI>();
         _scroll = GetComponent<ScrollRect>();
@@ -84,35 +84,35 @@ public class ScrollViewUI : MonoBehaviour
     {
         float contentPositionY = _scroll.content.anchoredPosition.y;
         float scrollHeight = _scrollRect.rect.height;
-        foreach (ScrollSlotUI item in uiSlots)
+        foreach (ScrollSlotUI slot in uiSlots)
         {
-            bool isChanged = RelocationSlot(item, contentPositionY, scrollHeight);
+            bool isChanged = RelocationSlot(slot, contentPositionY, scrollHeight);
             // 슬롯 인덱스 설정
             if(isChanged)
             {
                 // int idx = (int)(-item.transform.localPosition.y / _slotPrefabHeight);
 
-                int y = (int)(-item.transform.localPosition.y / (_slotPrefabHeight + _padding));
-                int x = (int)(item.transform.localPosition.x / (_slotPrefabWidth + _padding));
+                int y = (int)(-slot.transform.localPosition.y / (_slotPrefabHeight + _padding));
+                int x = (int)(slot.transform.localPosition.x / (_slotPrefabWidth + _padding));
 
-                int idx = y * (int)(_scrollRect.rect.width / _slotPrefabWidth) + x;///10+9
+                int idx = y * (int)(_scrollRect.rect.width / _slotPrefabWidth) + x;
 
-                SetIndex(item, idx);
+                SetIndex(slot, idx);
             }
         }
     }
 
     // Slot 재사용
-    private bool RelocationSlot(ScrollSlotUI item, float contentPositionY, float scrollHeight)
+    private bool RelocationSlot(ScrollSlotUI slot, float contentPositionY, float scrollHeight)
     {
-        if (item.transform.localPosition.y + contentPositionY > _slotPrefabHeight * 1.5)
+        if (slot.transform.localPosition.y + contentPositionY > _slotPrefabHeight * 1.5)
         {
-            item.transform.localPosition -= new Vector3(0, _offset);
+            slot.transform.localPosition -= new Vector3(0, _offset);
             return true;
         }
-        else if (item.transform.localPosition.y + contentPositionY < -scrollHeight - _slotPrefabHeight * 1.5)
+        else if (slot.transform.localPosition.y + contentPositionY < -scrollHeight - _slotPrefabHeight * 1.5)
         {
-            item.transform.localPosition += new Vector3(0, _offset);
+            slot.transform.localPosition += new Vector3(0, _offset);
             //item.Set(0);     // TODO  idx 던져주기
             return true;
         }
@@ -120,9 +120,9 @@ public class ScrollViewUI : MonoBehaviour
     }
 
     // 슬롯 인덱스 값 설정
-    private void SetIndex(ScrollSlotUI item, int idx)
+    private void SetIndex(ScrollSlotUI slot, int idx)
     {
-        item.Set(idx);
+        slot.SetIndex(idx);
     }
 
     // 가장 마지막 슬롯 반환

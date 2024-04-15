@@ -28,10 +28,15 @@ public class TmpInvenBtn : MonoBehaviour
         // dataManager.itemDatabase.ItemData[Random.Range(0, dataManager.itemDatabase.ItemData.Count)]
         // �׽�Ʈ ������ �����
         Item item = dataManager.itemDatabase.Gacha();
-        if (inventory.AddItem(item))
+        Debug.Log(item.ItemInfo.Name);
+
+        if (!inventory.AddItem(item))
         {
-            // ����
+            Debug.Log("설마 이거..?");
+            return;
         }      
+        inventory.AddItem(item);
+        Debug.Log(item.ItemInfo.Name);
 
     }
 }

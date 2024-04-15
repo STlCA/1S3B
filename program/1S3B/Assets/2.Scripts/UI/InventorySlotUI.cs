@@ -13,7 +13,8 @@ public class InventorySlotUI : ScrollSlotUI
 {
     public Inventory inventory;
     public Image icon;
-    private Item _item;
+    public Item _item;
+    public TextMeshProUGUI quantity; 
 
     #region ScrollSlotUI 오버라이드
     public override void Init()
@@ -22,13 +23,39 @@ public class InventorySlotUI : ScrollSlotUI
         inventory = GameManager.Instance.Player.Inventory;
     }
 
-    public override void Set(int idx)
+    public override void SetIndex(int idx)
     {
-        base.Set(idx);
-        //_item = inventory.GetItem(idx);
+        base.SetIndex(idx);
+        _item = inventory.GetItem(idx);
+
+        if (_item == null)
+        {
+            // 빈슬롯일 때
+            Clear();
+        }
+        else
+        {
+            // 아이템이 들어있을 때
+            Load(idx);
+        }
 
 
         // item ������ ����
+    }
+
+    // 아이템에 마우스를 올렸을 때
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        // 아이템이 존재하지 않을 때
+        if (_item == null)
+        {
+            Debug.Log("null");
+            return;
+        }
+        Debug.Log(_item.ItemInfo.Name);
+
+        inventory.SelectItem(index);
+        _itemInfoUI.SetActive(true);
     }
     #endregion // ScrollSlotUI 오버라이드
 
@@ -41,12 +68,19 @@ public class InventorySlotUI : ScrollSlotUI
 
     //public int index;
 
+    // 슬롯 창 불러오기
+    public void Load(int idx)
+    {
+        Item item = inventory.Items[idx];
+        Set(item);
+    }
+
     // 슬롯 창 설정 초기화
     public void Set(Item item)
     {
-        this._item = item;
         icon.gameObject.SetActive(true);
         icon.sprite = item.ItemInfo.SpriteList[0]; // ***** TODO : 사용할 스프라이트 인덱스 확인하기!!!
+        quantity.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
     }
 
     // 슬롯 창 초기화
@@ -54,8 +88,8 @@ public class InventorySlotUI : ScrollSlotUI
     {
         _item = null;
         icon.gameObject.SetActive(false);
+        quantity.text = string.Empty;
     }
-
     //// 아이템에서 마우스를 치웠을 때
     //public void OnPointerExit(PointerEventData eventData)
     //{

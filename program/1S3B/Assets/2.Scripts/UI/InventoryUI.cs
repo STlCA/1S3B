@@ -25,6 +25,7 @@ public class InventoryUI : MonoBehaviour
     Player player;
     Inventory inventory;
     ScrollViewUI scrollViewUI;
+    InventorySlotUI inventorySlotUI;
 
     // public ItemSlotUI itemSlotPrefab;
     //public List<ItemSlotUI> uiSlots;
@@ -88,20 +89,18 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inventory.Items.Count; i++)
         {
             Item item = inventory.Items[i];
+
+            if (item != null)
+            {
+                inventorySlotUIPrefab.Set(item);
+            }
+            else
+            {
+                inventorySlotUIPrefab.Clear();
+            }
+
             // 슬롯 셋팅
             // scrollViewUI.SetSlot(i, item);
         }
-
-        //for (int i = 0; i < slots.Length; i++) 
-        //{
-        //    if (slots[i].iteminstance.item != null)
-        //    {
-        //        uiSlots[i].Set(slots[i]);
-        //    }
-        //    else
-        //    {
-        //        uiSlots[i].Clear();
-        //    }
-        //}
     }
 }

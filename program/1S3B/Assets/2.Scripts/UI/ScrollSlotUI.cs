@@ -10,7 +10,7 @@ public class ScrollSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     //private RectTransform rectTransform;
     //[HideInInspector] public float paddingHeight;
-    [SerializeField] private GameObject _itemInfoUI;
+    [SerializeField] public GameObject _itemInfoUI;
     [SerializeField] private TextMeshProUGUI _selectedItemName;
     [SerializeField] private TextMeshProUGUI _selectedItemDescription;
 
@@ -22,7 +22,7 @@ public class ScrollSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         //paddingHeight = 5;
     }
     
-    public virtual void Set(int idx)
+    public virtual void SetIndex(int idx)
     {
         index = idx;
     }
@@ -42,7 +42,6 @@ public class ScrollSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // 아이템에 마우스를 올렸을 때
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(index);
         // 아이템이 존재하지 않을 때
         //if (GameManager.Instance.UIManager.inventoryUI.slots[index].iteminstance == null)
         //    return;
