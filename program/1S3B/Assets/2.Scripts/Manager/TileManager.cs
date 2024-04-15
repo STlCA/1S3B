@@ -160,7 +160,7 @@ public class TileManager : Manager
         if (croptData.ContainsKey(target) && croptData[target].cropRenderer.sortingLayerName == "Seed")
             croptData[target].cropRenderer.color = Color.gray;
 
-        if (rain == false)
+        if (rain == false && croptData.ContainsKey(target) == true)
             croptData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
 
     }

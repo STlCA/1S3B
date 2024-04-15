@@ -76,7 +76,7 @@ public class Inventory : MonoBehaviour
         //}
 
         //inventoryUI.Refresh();
-        return false;
+        //return false;
     }
 
     public void AddNewItem(Item item)

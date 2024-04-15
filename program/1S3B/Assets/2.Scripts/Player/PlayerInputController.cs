@@ -349,25 +349,33 @@ public class PlayerInputController : CharacterEventController
 
     private void UsePickAxe(PlayerEquipmentType pickAxe, Vector2 pos)
     {
-        isUseEnergy = true;
-
         if (natureObjectController.IsMining(targetSetting.selectCellPosition) == true)
         {
+            isUseEnergy = true;
             CallClickEvent(pickAxe, pos);
 
             natureObjectController.Mining(targetSetting.selectCellPosition);
+        }
+        else
+        {
+            isUseEnergy = true;
+            CallClickEvent(pickAxe, pos);
         }
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
     {
-        isUseEnergy = true;
-
         if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
         {
+            isUseEnergy = true;
             CallClickEvent(axe, pos);
 
             natureObjectController.Felling(targetSetting.selectCellPosition);
+        }
+        else
+        {
+            isUseEnergy = true;
+            CallClickEvent(axe, pos);
         }
         //DestroyGround(targetSetting.selectCellPosition);
     }
@@ -390,13 +398,17 @@ public class PlayerInputController : CharacterEventController
 
     private void UseWater(PlayerEquipmentType water, Vector2 pos)
     {
-        isUseEnergy = true;
-
         if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
         {
+            isUseEnergy = true;
             CallClickEvent(water, pos);
 
             tileManager.WaterAt(targetSetting.selectCellPosition);
+        }
+        else
+        {
+            isUseEnergy = true;
+            CallClickEvent(water, pos);
         }
     }
 
@@ -410,13 +422,17 @@ public class PlayerInputController : CharacterEventController
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)
     {
-        isUseEnergy = true;
-
         if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
         {
+            isUseEnergy = true;
             CallClickEvent(type, pos);
 
             tileManager.TillAt(targetSetting.selectCellPosition);
+        }
+        else
+        {
+            isUseEnergy = true;
+            CallClickEvent(type, pos);
         }
     }
 

@@ -40,13 +40,14 @@ public class UIManager : Manager
         main = Camera.main;
 
         player = gameManager.Player;
-        inventoryUI.Init(gameManager, this, player);
 
         maxEnergy = player.playerMaxEnergy;
         energyText = energyBar.GetComponentInChildren<TMP_Text>();
         EnengyBarSetting();
 
         playerImage = playerObj.GetComponent<RectTransform>();
+
+        inventoryUI.Init(gameManager, this, player);
     }
 
     public void EquipIconChange(PlayerEquipmentType type)
