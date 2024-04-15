@@ -9,9 +9,10 @@ using UnityEngine.UI;
 // 슬롯 초기화
 // 슬롯 창 위에서 마우스 움직임 제어 (해당 슬롯에 있는 것 정보 띄우기)
 
-public class InventorySlotUI : ScrollSlotUI
+public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitHandler
 {
     public Inventory inventory;
+    public InventoryUI inventoryUI;
     public Image icon;
     public Item _item;
     public TextMeshProUGUI quantity; 
@@ -21,6 +22,7 @@ public class InventorySlotUI : ScrollSlotUI
     {
         base.Init();
         inventory = GameManager.Instance.Player.Inventory;
+        inventoryUI = inventory.inventoryUI;
     }
 
     public override void SetIndex(int idx)
@@ -44,19 +46,19 @@ public class InventorySlotUI : ScrollSlotUI
     }
 
     // 아이템에 마우스를 올렸을 때
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        // 아이템이 존재하지 않을 때
-        if (_item == null)
-        {
-            Debug.Log("null");
-            return;
-        }
-        Debug.Log(_item.ItemInfo.Name);
+    //public override void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    // 아이템이 존재하지 않을 때
+    //    if (_item == null)
+    //    {
+    //        Debug.Log("null");
+    //        return;
+    //    }
+    //    Debug.Log(_item.ItemInfo.Name);
 
-        inventory.SelectItem(this);
-        _itemInfoUI.SetActive(true);
-    }
+    //    inventory.SelectItem(this);
+    //    _itemInfoUI.SetActive(true);
+    //}
     #endregion // ScrollSlotUI 오버라이드
 
     //[SerializeField] private GameObject _itemInfoUI;
@@ -90,27 +92,42 @@ public class InventorySlotUI : ScrollSlotUI
         icon.gameObject.SetActive(false);
         quantity.text = string.Empty;
     }
-    //// 아이템에서 마우스를 치웠을 때
-    //public void OnPointerExit(PointerEventData eventData)
-    //{
-    //    _itemInfoUI.SetActive(false);
-    //}
 
-    //// 아이템에 마우스를 올렸을 때
-    //public void OnPointerEnter(PointerEventData eventData)
-    //{
-    //    // 아이템이 존재하지 않을 때
-    //    //if (GameManager.Instance.UIManager.inventoryUI.slots[index].iteminstance == null)
-    //    //    return;
+    // 아이템에서 마우스를 치웠을 때
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //inventoryUI._itemInfoUI.SetActive(false);
+        inventoryUI.InfoHide();
+    }
 
-    //    //GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
-    //    //itemInfoUI.SetActive(true);
-    //}
+    // 아이템에 마우스를 올렸을 때
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // 아이템이 존재하지 않을 때
+        if (_item == null)
+        {
+            Debug.Log("null");
+            return;
+        }
+        Debug.Log(_item.ItemInfo.Name);
 
-    //// 아이템 설명창 업데이트
-    //public void UpdateItemInfo(string displayName, string description)
-    //{
-    //    _selectedItemName.text = displayName;
-    //    _selectedItemDescription.text = description;
-    //}
+        inventory.SelectItem(this);
+        //inventoryUI._itemInfoUI.transform.position = Input.mousePosition;
+        //inventoryUI._itemInfoUI.SetActive(true);
+        inventoryUI.InfoShow(this);
+
+        // 아이템이 존재하지 않을 때
+        //if (GameManager.Instance.UIManager.inventoryUI.slots[index].iteminstance == null)
+        //    return;
+
+        //GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
+        //itemInfoUI.SetActive(true);
+    }
+
+    // 아이템 설명창 업데이트
+    public void UpdateItemInfo(string displayName, string description)
+    {
+        inventoryUI._selectedItemName.text = displayName;
+        inventoryUI._selectedItemDescription.text = description;
+    }
 }
