@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,14 +28,54 @@ namespace Constants
 
     public enum MapTriggerType
     {
-        FarmToTown,
-        TownToFarm,
+        Farm_FarmRoad,
+        FarmRoad_Town,
+        Town_FarmRoad,
+        FarmRoad_Farm,
+
+        Farm_ForestRoad,
+        ForestRoad_Forest,
+        Forest_ForestRoad,
+        ForestRoad_Farm,
+
+        Forest_BossRoom,
+        BossRoom_Forest,
+
+        Town_TownRoad,
+        TownRoad_Forest,
+        Forest_TownRoad,
+        TownRoad_Town,
+
+        Town_Beach,
+        Beach_Island,
+
+        Beach_BeachR,
+        BeachR_Quarry,
+        Quarry_Island,
+        Island_Quarry,
+        Quarry_BeachR,
+        BeachR_Beach,
+
+        Beach_BeachL,
+        BeachL_Beach,
+        BeachL_Forest,
+        Forest_Beach,
     }
     
     public enum PlayerMap
     {
         Farm,
+        FarmRoad,
         Town,
+        TownRoad,
+        Forest,
+        ForestRoad,
+        Beach,
+        BeachR,
+        BeachL,
+        BossRoom,
+        Island,
+        Quarry,
         Home
     }
 
@@ -58,6 +99,7 @@ namespace Constants
 
     public enum PlayerEquipmentType
     {
+        Hand,
         PickUp,
         Hoe,
         Water,
@@ -65,6 +107,8 @@ namespace Constants
         PickAxe,
         Sword,
         FishingRod,
+        Carry,
+        Seed,
     }
 
     public enum UpgradeEquipmentStep
@@ -80,12 +124,43 @@ namespace Constants
     public enum NeedUpdateObject
     {
         None,
-        Need
+        Need,
     }
 
     public enum TreeInteractable
     {
         None,
         Can
+    }
+
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Fall,
+        Winter
+    }
+
+    public enum SpawnType
+    {
+        NaturePoint,
+        TreePoint,
+        StonePoint,       
+        Quarry,
+        MapNature,
+        UpForest,
+        DownForest,
+        Farm,
+    }
+
+    public enum SFXSound
+    {
+      
+    }
+
+    public enum DropItemType
+    {
+        Wood = 4001,
+        Stone = 4002,
     }
 }

@@ -39,8 +39,7 @@ public class AnimationController : AnimationBase
 
         pickupItem = Instantiate(pickupItemPrefab);        
         pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
-        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
-        
+        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();        
     }
 
     //private void Update()
@@ -179,7 +178,7 @@ public class AnimationController : AnimationBase
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsDeath, value);
-        }
+        }        
     }
 
     public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)

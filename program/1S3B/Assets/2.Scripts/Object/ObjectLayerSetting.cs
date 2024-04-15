@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class ObjectLayerSetting : MonoBehaviour
 {
-    private SpriteRenderer objectSR;
+    private SpriteRenderer objectSR = null;
 
     private float time;
     private float fadeTime = 1f;
@@ -17,7 +18,7 @@ public class ObjectLayerSetting : MonoBehaviour
 
     private void Start()
     {
-        objectSR = GetComponent<SpriteRenderer>();        
+        objectSR = GetComponent<SpriteRenderer>();
         objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
@@ -27,28 +28,12 @@ public class ObjectLayerSetting : MonoBehaviour
             objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
-    private bool ObjectSortingOrderCheck(Collider2D other)
-    {
-        SpriteRenderer[] otherSR = other.GetComponentsInChildren<SpriteRenderer>();
-
-        foreach (SpriteRenderer sr in otherSR)
-        {
-            if (sr.sortingOrder > objectSR.sortingOrder)
-                return false;
-        }
-
-        return true;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (ObjectSortingOrderCheck(other) == true)//other == player
-            {
-                StopCoroutine("PlusAlpha");
-                MinusAlphaStart();
-            }
+            StopCoroutine("PlusAlpha");
+            MinusAlphaStart();
         }
     }
 

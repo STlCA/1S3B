@@ -64,7 +64,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0060647726, y: 0.7673204}
+  m_Offset: {x: -0.0020446777, y: 0.21254557}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -75,7 +75,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4806468, y: 1.5146408}
+  m_Size: {x: 0.9419522, y: 0.40509117}
   m_EdgeRadius: 0
 --- !u!1 &4959406970568200107
 GameObject:
@@ -88,6 +88,9 @@ GameObject:
   - component: {fileID: 1157823866598655482}
   - component: {fileID: 7158811008613981792}
   - component: {fileID: 5973458357618842922}
+  - component: {fileID: -5517252004395889968}
+  - component: {fileID: -6770164086336340568}
+  - component: {fileID: -7622538645397790796}
   m_Layer: 0
   m_Name: Bush2
   m_TagString: Untagged
@@ -176,3 +179,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!114 &-5517252004395889968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959406970568200107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 66c0d384ed8e50e46b45c228fd6ef578, type: 3}
+--- !u!114 &-6770164086336340568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959406970568200107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 488141108
+--- !u!114 &-7622538645397790796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959406970568200107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec21f15df8094d9489cf969396337a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -54,7 +54,7 @@ public class TargetSetting : MonoBehaviour
 
     public bool TargetUI()
     {
-        if (tileManager.IisInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
+        if (tileManager.IsInteractable(selectCellPosition) == false)//밭을 갈수있는 맵이 아니면
         {
             targetSR.color = new Color(1, 1, 1, 0);
             return false;

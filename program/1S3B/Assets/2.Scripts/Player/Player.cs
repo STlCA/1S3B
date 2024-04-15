@@ -33,12 +33,14 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
+
+    public PlayerEquipmentType currentSelect { get; set; }
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
     public int playerGold { get; private set; }
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
-    private int playerEnergy;
+    [SerializeField]private int playerEnergy;//나중에지우기
 
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
     private string[] skillName;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
 
+    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
     private void Awake()
     {
@@ -109,11 +112,10 @@ public class Player : MonoBehaviour
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
         {
-            playerState = PlayerState.BLACKOUT;
             animationController.DeathAnimation(true);
-            Invoke("DeathSleep", 1f);
+            //Invoke("DeathSleep", 1f);
 
-            //DeathSleep();
+            DeathSleep();
 
             playerGold -= GoldRange(10, 20);
         }
@@ -121,10 +123,11 @@ public class Player : MonoBehaviour
 
     public void EnergyReset(bool status = false)
     {
+        playerState = PlayerState.IDLE;
+        playerSpeed = 7f;
+
         if (status == true)
         {
-            playerState = PlayerState.IDLE;
-            playerSpeed = 10f;
             playerEnergy = playerMaxEnergy / 2;
             uiManager.EnergyBarUpdate(playerEnergy);
             uiManager.TiredIconOnOff(false);
@@ -161,7 +164,7 @@ public class Player : MonoBehaviour
 
     private void DeathSleep()
     {
-        gameManager.SleepOfDay();
+        StartCoroutine(gameManager.SleepOfDay());
     }
 
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)

@@ -9,6 +9,7 @@ public class MapTrigger : MonoBehaviour
     private GameManager gameManager;
     private Player player;
     private SceneChangeManager sceneChangeManager;
+    private UIManager uiManager;
 
     [Header("Type")]
     public MapTriggerType type;
@@ -22,6 +23,7 @@ public class MapTrigger : MonoBehaviour
         gameManager = GameManager.Instance;
         sceneChangeManager = gameManager.SceneChangeManager;
         player = gameManager.Player;
+        uiManager = gameManager.UIManager;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,20 +32,115 @@ public class MapTrigger : MonoBehaviour
         {
             switch (type)
             {
-                case MapTriggerType.FarmToTown:
-                    player.playerPosition = new Vector3(-88f, -12f, 0f);
-                    gameManager.playerMap = PlayerMap.Town;
+                case MapTriggerType.Farm_FarmRoad:
+                    player.playerPosition = new Vector3(-23.5f, 1f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.FarmRoad);
                     break;
-                case MapTriggerType.TownToFarm:
-                    player.playerPosition = new Vector3(-41f, -3.5f, 0f);
-                    gameManager.playerMap = PlayerMap.Farm;
+                case MapTriggerType.FarmRoad_Town:
+                    player.playerPosition = new Vector3(45.6f, 1f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Town);
                     break;
+                case MapTriggerType.Town_FarmRoad:
+                    player.playerPosition = new Vector3(-41.5f, 1f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.FarmRoad);
+                    break;
+                case MapTriggerType.FarmRoad_Farm:
+                    player.playerPosition = new Vector3(-19f, 0.7f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Farm);
+                    break;
+                case MapTriggerType.Farm_ForestRoad:
+                    player.playerPosition = new Vector3(-13.95f, 30.6f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.ForestRoad);
+                    break;
+                case MapTriggerType.ForestRoad_Forest:
+                    player.playerPosition = new Vector3(-144f, 25.5f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Forest);
+                    break;
+                case MapTriggerType.Forest_ForestRoad:
+                    player.playerPosition = new Vector3(-57.5f, 30.5f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.ForestRoad);
+                    break;
+                case MapTriggerType.ForestRoad_Farm:
+                    player.playerPosition = new Vector3(-13.95f, 24.4f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Farm);
+                    break;
+                case MapTriggerType.Forest_BossRoom:
+                    player.playerPosition = new Vector3(-195.5f, 9.55f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.BossRoom);
+                    break;
+                case MapTriggerType.BossRoom_Forest:
+                    player.playerPosition = new Vector3(-190f, 9f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Forest);
+                    break;
+                case MapTriggerType.Town_TownRoad:
+                    player.playerPosition = new Vector3(-108f, -4.3f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.TownRoad);
+                    break;
+                case MapTriggerType.TownRoad_Forest:
+                    player.playerPosition = new Vector3(-134.77f, -3.67f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Forest);
+                    break;
+                case MapTriggerType.Forest_TownRoad:
+                    player.playerPosition = new Vector3(-129f, -4.5f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.TownRoad);
+                    break;
+                case MapTriggerType.TownRoad_Town:
+                    player.playerPosition = new Vector3(-102f, -4f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Town);
+                    break;
+                case MapTriggerType.Town_Beach:
+                    player.playerPosition = new Vector3(-75f, -49.5f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Beach);
+                    break;
+                case MapTriggerType.Beach_Island:
+                    player.playerPosition = new Vector3(-88.67f, -109.25f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Island);
+                    break;
+                case MapTriggerType.Beach_BeachR:
+                    player.playerPosition = new Vector3(-36.73f, -65.85f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.BeachR);
+                    break;
+                case MapTriggerType.BeachR_Quarry:
+                    player.playerPosition = new Vector3(-6.52f, -99.45f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Quarry);
+                    break;
+                case MapTriggerType.Quarry_Island:
+                    player.playerPosition = new Vector3(-46.09f, -112.96f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Island);
+                    break;
+                case MapTriggerType.Island_Quarry:
+                    player.playerPosition = new Vector3(-37f, -112.82f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Quarry);
+                    break;
+                case MapTriggerType.Quarry_BeachR:
+                    player.playerPosition = new Vector3(0f, -91f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.BeachR);
+                    break;
+                case MapTriggerType.BeachR_Beach:
+                    player.playerPosition = new Vector3(-46f, -65f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Beach);
+                    break;
+                case MapTriggerType.Beach_BeachL:
+                    player.playerPosition = new Vector3(-135.18f, -61.54f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.BeachL);
+                    break;
+                case MapTriggerType.BeachL_Beach:
+                    player.playerPosition = new Vector3(-101.95f, -63.94f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Beach);
+                    break;
+                case MapTriggerType.BeachL_Forest:
+                    player.playerPosition = new Vector3(-164.4f, -41.03f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Forest);
+                    break;
+                case MapTriggerType.Forest_Beach:
+                    player.playerPosition = new Vector3(-164.4f, -46f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Beach);
+                    break;
+
             }
 
-
-            //SceneChangeManager.isMapChage = true;
             sceneChangeManager.CallMapChangeEvent(true);
-            sceneChangeManager.MapChangeSetting(startCam, endCam,0.5f,1f);
+            sceneChangeManager.MapChangeSetting(startCam, endCam, 0.5f, 1f);
         }
     }
 }

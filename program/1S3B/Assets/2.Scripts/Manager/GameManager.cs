@@ -35,10 +35,12 @@ public class GameManager : MonoBehaviour
     private AnimationController animationController;
 
     //========================Inspector
-    [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;//임시위치
 
     [Header("Time")]
     public TMP_Text TimeText;
+
+    [Header("Day")]
+    public TMP_Text DayText;
 
     [Header("Talk")]
     public TMP_Text talkText;
@@ -82,6 +84,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        DayText.text = DayCycleHandler.GetDayAsString();
+    }
+
     private void Update()
     {
         if (DayCycleHandler != null)
@@ -91,29 +98,41 @@ public class GameManager : MonoBehaviour
 
             TimeText.text = DayCycleHandler.GetTimeAsString();
         //시간텍스트 바꾸기
+
+
     }
 
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        SleepOfDay();
+        StartCoroutine(SleepOfDay());
     }
 
-    public void SleepOfDay()
+    public IEnumerator SleepOfDay()
     {
+        bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
 
-        StartCoroutine(SceneChangeManager.SleepFadeInOut());
+        yield return StartCoroutine(SceneChangeManager.SleepFadeIn());
+
+        player.EnergyReset(isTired);
+
         TileManager.Sleep();
 
-        player.EnergyReset(player.playerState == PlayerState.TIRED);
-
         DayCycleHandler.ResetDayTime();
-        WeatherSystem.RandomChangeWeather();
+        WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
+
         natureObjectController.SpawnNature();
         natureObjectController.PointSpawnTree();
-        natureObjectController.RangeSpawnTree(10);
-        natureObjectController.RangeSpawnStone(10);
+
+        natureObjectController.RangeSpawnTree(1, SpawnType.UpForest);
+        natureObjectController.RangeSpawnTree(1, SpawnType.DownForest);
+        natureObjectController.RangeSpawnStone(1, SpawnType.Quarry);
+
+        dayCycleHandler.ChangeDate();
+        DayText.text = DayCycleHandler.GetDayAsString();
+
+        yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
     public void TalkAction(GameObject scanObj)
