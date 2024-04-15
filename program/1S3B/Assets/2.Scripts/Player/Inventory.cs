@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     UIManager uiManager;
 
     // Script
-    InventoryUI inventoryUI;
+    public InventoryUI inventoryUI;
     Player player;
 
     [SerializeField] List<Item> items = new();
@@ -93,7 +93,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i] == item && items[i].quantity < item.ItemInfo.Stack)
+            if (items[i].ItemInfo.ID == item.ItemInfo.ID && items[i].quantity < item.ItemInfo.Stack)
             {
                 return items[i];
             }
