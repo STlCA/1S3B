@@ -369,6 +369,7 @@ public class PlayerInputController : CharacterEventController
 
             natureObjectController.Felling(targetSetting.selectCellPosition);
         }
+        //DestroyGround(targetSetting.selectCellPosition);
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
