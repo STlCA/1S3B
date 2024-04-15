@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TmpInvenBtn : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private InventoryUI inventoryUI;
     GameManager gameManager;
     UIManager uiManager;
     DataManager dataManager;
@@ -20,7 +20,7 @@ public class TmpInvenBtn : MonoBehaviour
 
     public void OnClickInvenBtn()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        inventoryUI.InventoryEnable();
     }
 
     public void OnClickAddItem()

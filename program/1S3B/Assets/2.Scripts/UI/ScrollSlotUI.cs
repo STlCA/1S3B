@@ -4,15 +4,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ScrollSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ScrollSlotUI : MonoBehaviour
 {
     //private ScrollViewUI scrollViewUI;
 
     //private RectTransform rectTransform;
     //[HideInInspector] public float paddingHeight;
-    [SerializeField] public GameObject _itemInfoUI;
-    [SerializeField] private TextMeshProUGUI _selectedItemName;
-    [SerializeField] private TextMeshProUGUI _selectedItemDescription;
+    //[SerializeField] public GameObject _itemInfoUI;
+    //[SerializeField] private TextMeshProUGUI _selectedItemName;
+    //[SerializeField] private TextMeshProUGUI _selectedItemDescription;
 
     public int index;
 
@@ -34,26 +34,26 @@ public class ScrollSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     //}
 
     // 아이템에서 마우스를 치웠을 때
-    public virtual void OnPointerExit(PointerEventData eventData)
-    {
-        _itemInfoUI.SetActive(false);
-    }
+    //public virtual void OnPointerExit(PointerEventData eventData)
+    //{
+    //    _itemInfoUI.SetActive(false);
+    //}
 
     // 아이템에 마우스를 올렸을 때
-    public virtual void OnPointerEnter(PointerEventData eventData)
-    {
+    //public virtual void OnPointerEnter(PointerEventData eventData)
+    //{
         // 아이템이 존재하지 않을 때
         //if (GameManager.Instance.UIManager.inventoryUI.slots[index].iteminstance == null)
         //    return;
 
         //GameManager.Instance.UIManager.inventoryUI.SelectItem(index);
         //itemInfoUI.SetActive(true);
-    }
+    //}
 
     // 아이템 설명창 업데이트
-    public virtual void UpdateItemInfo(string displayName, string description)
-    {
-        _selectedItemName.text = displayName;
-        _selectedItemDescription.text = description;
-    }
+    //public virtual void UpdateItemInfo(string displayName, string description)
+    //{
+    //    _selectedItemName.text = displayName;
+    //    _selectedItemDescription.text = description;
+    //}
 }

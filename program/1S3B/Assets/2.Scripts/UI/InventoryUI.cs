@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -26,6 +27,13 @@ public class InventoryUI : MonoBehaviour
     Inventory inventory;
     ScrollViewUI scrollViewUI;
     InventorySlotUI inventorySlotUI;
+
+    // Item Info
+    [SerializeField] public GameObject _itemInfoUI;
+    [SerializeField] public TextMeshProUGUI _selectedItemName;
+    [SerializeField] public TextMeshProUGUI _selectedItemDescription;
+    public float itemInfoWidthHalf;
+    public float itemInfoHeightHalf;
 
     // public ItemSlotUI itemSlotPrefab;
     //public List<ItemSlotUI> uiSlots;
@@ -81,7 +89,31 @@ public class InventoryUI : MonoBehaviour
 
         // scrollViewUI.Init(50);
 
+        itemInfoWidthHalf = _itemInfoUI.GetComponent<RectTransform>().rect.width / 2;
+        itemInfoHeightHalf = _itemInfoUI.GetComponent<RectTransform>().rect.height / 2;
+
         gameObject.SetActive(false);
+    }
+
+    // 인벤토리 ui 활성화
+    public void InventoryEnable()
+    {
+        //Refresh();
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    // 설명창 활성화
+    public void InfoShow(InventorySlotUI slot)
+    {
+        //_itemInfoUI.transform.position = slot.transform.position + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
+        _itemInfoUI.transform.position = Input.mousePosition + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
+        _itemInfoUI.SetActive(true);
+    }
+
+    // 설명창 비활성화
+    public void InfoHide()
+    {
+        _itemInfoUI.SetActive(false);
     }
 
     public void Refresh()
