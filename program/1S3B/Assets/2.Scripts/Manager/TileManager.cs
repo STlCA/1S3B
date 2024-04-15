@@ -90,7 +90,7 @@ public class TileManager : Manager
     }
 
     //내가한거
-    public bool IisInteractable(Vector3Int target)//상호작용할수있는땅
+    public bool IsInteractable(Vector3Int target)//상호작용할수있는땅
     {
         return interactableTileMap.GetTile(target) != null;
     }

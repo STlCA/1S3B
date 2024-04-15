@@ -99,6 +99,7 @@ namespace Constants
 
     public enum PlayerEquipmentType
     {
+        Hand,
         PickUp,
         Hoe,
         Water,
@@ -106,6 +107,8 @@ namespace Constants
         PickAxe,
         Sword,
         FishingRod,
+        Carry,
+        Seed,
     }
 
     public enum UpgradeEquipmentStep
