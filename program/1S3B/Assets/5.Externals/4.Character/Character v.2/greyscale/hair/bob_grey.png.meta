@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -132,7 +132,226 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bob_grey_0: 795005217
+      bob_grey_1: 882280213
+      bob_grey_10: -494645021
+      bob_grey_100: 1100647544
+      bob_grey_101: -615318196
+      bob_grey_102: 1607841860
+      bob_grey_103: -1118725409
+      bob_grey_104: 768742621
+      bob_grey_105: -577948102
+      bob_grey_106: -1252029746
+      bob_grey_107: -1139500618
+      bob_grey_108: 249890287
+      bob_grey_109: -44184043
+      bob_grey_11: -2130934641
+      bob_grey_110: -1222339493
+      bob_grey_111: 323211665
+      bob_grey_112: 1407576272
+      bob_grey_113: 261622613
+      bob_grey_114: 576974799
+      bob_grey_115: -20411846
+      bob_grey_116: -873706516
+      bob_grey_117: 576250028
+      bob_grey_118: 273436823
+      bob_grey_119: 1157149072
+      bob_grey_12: -1838691576
+      bob_grey_120: 1398525038
+      bob_grey_121: -517178765
+      bob_grey_122: 494107755
+      bob_grey_123: -1238886930
+      bob_grey_124: -1178784825
+      bob_grey_125: 701430419
+      bob_grey_126: -336896351
+      bob_grey_127: 1800529498
+      bob_grey_128: -269180968
+      bob_grey_129: -459483639
+      bob_grey_13: 1693742269
+      bob_grey_130: 1277424917
+      bob_grey_131: 431854284
+      bob_grey_132: 554851715
+      bob_grey_133: 1261654673
+      bob_grey_134: -283095605
+      bob_grey_135: 20385413
+      bob_grey_136: -1925774625
+      bob_grey_137: 309752441
+      bob_grey_138: 2142802508
+      bob_grey_139: -2032137036
+      bob_grey_14: -1177368548
+      bob_grey_140: 347001298
+      bob_grey_141: 2027686651
+      bob_grey_142: 540115840
+      bob_grey_143: -2103126961
+      bob_grey_144: 2016452398
+      bob_grey_145: -7525130
+      bob_grey_146: -150922812
+      bob_grey_147: -673306323
+      bob_grey_148: 1062847569
+      bob_grey_149: 1956649330
+      bob_grey_15: -1777374234
+      bob_grey_150: -1361454903
+      bob_grey_151: 1063951453
+      bob_grey_152: 592724687
+      bob_grey_153: -934481490
+      bob_grey_154: 1084799395
+      bob_grey_155: 1358095253
+      bob_grey_156: -1161134056
+      bob_grey_157: -384441973
+      bob_grey_158: 1324141617
+      bob_grey_159: -1519732358
+      bob_grey_16: -2141339020
+      bob_grey_160: 749089983
+      bob_grey_161: -662436757
+      bob_grey_162: 1796725106
+      bob_grey_163: -1679649516
+      bob_grey_164: -1686465847
+      bob_grey_165: -659090472
+      bob_grey_166: -567946939
+      bob_grey_167: -484580107
+      bob_grey_168: 225842668
+      bob_grey_169: 165641547
+      bob_grey_17: -636131114
+      bob_grey_170: 226104290
+      bob_grey_171: 1671824586
+      bob_grey_172: 1549310025
+      bob_grey_173: 1404801448
+      bob_grey_174: 1041737832
+      bob_grey_175: -273249061
+      bob_grey_176: 1557008836
+      bob_grey_177: -1535562055
+      bob_grey_178: -288898722
+      bob_grey_179: -1058426406
+      bob_grey_18: 1789059777
+      bob_grey_180: 1746059198
+      bob_grey_181: -277162447
+      bob_grey_182: -553880611
+      bob_grey_183: 1947157369
+      bob_grey_184: -2097950242
+      bob_grey_185: -1404106799
+      bob_grey_186: 1455207033
+      bob_grey_187: 1251249761
+      bob_grey_188: 553447964
+      bob_grey_189: -952050763
+      bob_grey_19: 311742308
+      bob_grey_190: -626676943
+      bob_grey_191: -43398161
+      bob_grey_192: 1405034642
+      bob_grey_193: 549425907
+      bob_grey_194: -1950475547
+      bob_grey_195: -1276029443
+      bob_grey_196: 1693130549
+      bob_grey_197: 911620468
+      bob_grey_198: 322789400
+      bob_grey_199: -867132083
+      bob_grey_2: -2006006447
+      bob_grey_20: 1799829490
+      bob_grey_200: -639862002
+      bob_grey_201: 1673040834
+      bob_grey_202: 294988554
+      bob_grey_203: -1713817530
+      bob_grey_204: -855741944
+      bob_grey_205: 909106294
+      bob_grey_206: -219702394
+      bob_grey_207: 292911997
+      bob_grey_208: -1152164726
+      bob_grey_209: 1329939925
+      bob_grey_21: -683437130
+      bob_grey_210: 1277913004
+      bob_grey_211: -1709778913
+      bob_grey_212: 62809834
+      bob_grey_213: -109275716
+      bob_grey_214: -317050838
+      bob_grey_215: -1063773544
+      bob_grey_216: 152284617
+      bob_grey_217: 717233880
+      bob_grey_218: 692974129
+      bob_grey_22: 2128251386
+      bob_grey_23: -693018096
+      bob_grey_24: -757625214
+      bob_grey_25: 630676453
+      bob_grey_26: 71456090
+      bob_grey_27: 1756332795
+      bob_grey_28: -634288339
+      bob_grey_29: -2040895934
+      bob_grey_3: -1329654566
+      bob_grey_30: -1817414768
+      bob_grey_31: 1999017165
+      bob_grey_32: 1775721557
+      bob_grey_33: -462980270
+      bob_grey_34: 1281115269
+      bob_grey_35: -1168074777
+      bob_grey_36: 402949082
+      bob_grey_37: 2034554510
+      bob_grey_38: 397848301
+      bob_grey_39: 1908162492
+      bob_grey_4: 526218932
+      bob_grey_40: 1492146142
+      bob_grey_41: -863178113
+      bob_grey_42: -1653170243
+      bob_grey_43: -2050258914
+      bob_grey_44: -1895868423
+      bob_grey_45: -2021752921
+      bob_grey_46: 939533688
+      bob_grey_47: -1498080549
+      bob_grey_48: -1634578728
+      bob_grey_49: 424921744
+      bob_grey_5: -326599980
+      bob_grey_50: 623328218
+      bob_grey_51: 466977354
+      bob_grey_52: -314539062
+      bob_grey_53: -540458660
+      bob_grey_54: 1034402188
+      bob_grey_55: -1689042157
+      bob_grey_56: -1630301605
+      bob_grey_57: 1610386867
+      bob_grey_58: 1859218186
+      bob_grey_59: -1468017802
+      bob_grey_6: -1060852678
+      bob_grey_60: 983780563
+      bob_grey_61: 1427762389
+      bob_grey_62: -1958549287
+      bob_grey_63: 2139284378
+      bob_grey_64: -636731403
+      bob_grey_65: -1013207385
+      bob_grey_66: 561184696
+      bob_grey_67: 1943222206
+      bob_grey_68: -109173951
+      bob_grey_69: 1394323557
+      bob_grey_7: 243381534
+      bob_grey_70: -1146347117
+      bob_grey_71: 23067603
+      bob_grey_72: 2055870235
+      bob_grey_73: 1135331644
+      bob_grey_74: -1000284551
+      bob_grey_75: 1830073245
+      bob_grey_76: -695039060
+      bob_grey_77: 528479906
+      bob_grey_78: 1927696711
+      bob_grey_79: -825280065
+      bob_grey_8: -844619018
+      bob_grey_80: -547101278
+      bob_grey_81: 1151246683
+      bob_grey_82: -459421831
+      bob_grey_83: 606319148
+      bob_grey_84: -65078007
+      bob_grey_85: 1321380341
+      bob_grey_86: 1216009885
+      bob_grey_87: 2084834203
+      bob_grey_88: -774461847
+      bob_grey_89: 549994557
+      bob_grey_9: 1317331725
+      bob_grey_90: 1652201118
+      bob_grey_91: -740014248
+      bob_grey_92: 650318397
+      bob_grey_93: -60404810
+      bob_grey_94: 828847789
+      bob_grey_95: -2114072422
+      bob_grey_96: 1399028362
+      bob_grey_97: 1650179211
+      bob_grey_98: -1183659438
+      bob_grey_99: -1946594253
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
