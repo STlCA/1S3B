@@ -48,12 +48,14 @@ public class Player : MonoBehaviour
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
     private string[] skillName;
 
-    public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[7];
+    public PlayerEquimentLevel[] equipmentsLevel = new PlayerEquimentLevel[10];
 
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
+
+    public GameObject equipment;//게임시작전에 얼굴가려짐
 
     private void Awake()
     {
@@ -74,6 +76,8 @@ public class Player : MonoBehaviour
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
         weatherSystem.IsRainAction += UseEnergyAmount;
+
+        equipment.SetActive(true);
     }
 
     private void Init()
@@ -90,7 +94,7 @@ public class Player : MonoBehaviour
             equipmentsLevel[i].equimentType = ((PlayerEquipmentType)i);
             equipmentsLevel[i].level = 1;
             equipmentsLevel[i].exp = 0;
-            equipmentsLevel[i].count = 0; ;
+            equipmentsLevel[i].count = 0;
             equipmentsLevel[i].step = UpgradeEquipmentStep.None;
 
         }

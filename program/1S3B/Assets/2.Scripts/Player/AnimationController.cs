@@ -53,6 +53,14 @@ public class AnimationController : AnimationBase
 
     public void CarryAnimation(bool isCarry)
     {
+        if (animator[0].GetBool(ConstantsString.IsStart) == false)
+        {
+            foreach (var anim in animator)
+            {
+                anim.SetBool(ConstantsString.IsStart, true);
+            }
+        }
+
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsCarry, isCarry);
