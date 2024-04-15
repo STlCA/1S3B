@@ -47,7 +47,7 @@ public class ScrollViewUI : MonoBehaviour
         //slotPrefab.SetSlotSize(out _slotPrefabWidth, _slotPrefabHeight);
         // 슬롯 프리팹의 크기 설정
         RectTransform rectTransform = slotPrefab.GetComponent<RectTransform>();
-        _slotPrefabWidth = rectTransform.rect.width;
+        _slotPrefabWidth = rectTransform.rect.width + _padding;
         _slotPrefabHeight = rectTransform.rect.height + _padding;
 
         CreateSlots();
@@ -59,7 +59,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         uiSlots = new List<ScrollSlotUI>();
 
-        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scrollRect.rect.width / _slotPrefabWidth);
+        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scroll.content.rect.width / _slotPrefabWidth);
 
         for (int i = 0; i < itemCount; i++)
         {

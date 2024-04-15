@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -147,7 +147,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: inventory_00
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 208
+        width: 204
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fde53356dc6c4749a1f5e0e9cd3d3ae
+      internalID: -1737842513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slot_00
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 182
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89038215d6390fc4cbae579e9c7c40a6
+      internalID: 1333321792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_02
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 166
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229e85cd223702a43bbeab3a50bbecba
+      internalID: 426292234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_BG_00
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 130
+        width: 192
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8398e58595d9b3047a5a6691e5135a54
+      internalID: 540549116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slot_01
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 153
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21eb2a6df4bf38b43893aae2c2577c12
+      internalID: -1832727850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_01
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 112
+        width: 74
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe5d27686af9f54895c72a78f5a53b2
+      internalID: -1349008307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inventory_info_00
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 147
+        width: 56
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 041995dbb7487ca48bc2252205686cf3
+      internalID: 2031828427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +305,96 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      inventory_00: -1737842513
+      inventory_01: -1349008307
+      inventory_02: 426292234
+      inventory_BG_00: 540549116
+      inventory_chopped_10: 1463930166
+      inventory_chopped_11: -979161031
+      inventory_chopped_12: 1980243941
+      inventory_chopped_14: 1435440820
+      inventory_chopped_15: -606338
+      inventory_chopped_16: -1638090279
+      inventory_chopped_17: 1777515447
+      inventory_chopped_18: 1191448326
+      inventory_chopped_19: -643799759
+      inventory_chopped_2: -69603753
+      inventory_chopped_20: 1015463065
+      inventory_chopped_21: 355943991
+      inventory_chopped_22: -1066063251
+      inventory_chopped_23: -171895006
+      inventory_chopped_24: 184275479
+      inventory_chopped_25: -24593815
+      inventory_chopped_26: 883305586
+      inventory_chopped_27: 1485563928
+      inventory_chopped_28: 1501783651
+      inventory_chopped_29: -696227043
+      inventory_chopped_30: 404643497
+      inventory_chopped_31: 2041609823
+      inventory_chopped_32: 1270212585
+      inventory_chopped_33: 1587295459
+      inventory_chopped_34: -939736856
+      inventory_chopped_35: 1431208173
+      inventory_chopped_36: 406224975
+      inventory_chopped_37: -624892875
+      inventory_chopped_38: 117878977
+      inventory_chopped_39: 1228621981
+      inventory_chopped_40: 1736995081
+      inventory_chopped_41: 2044863000
+      inventory_chopped_42: -1822085640
+      inventory_chopped_43: 1204825818
+      inventory_chopped_44: 1253350589
+      inventory_chopped_45: 1099260808
+      inventory_chopped_46: -1704002264
+      inventory_chopped_47: 305026983
+      inventory_chopped_48: -433439047
+      inventory_chopped_49: -11449981
+      inventory_chopped_50: 1975140102
+      inventory_chopped_51: 971653795
+      inventory_chopped_52: 1119535562
+      inventory_chopped_53: -139483014
+      inventory_chopped_54: -193397437
+      inventory_chopped_55: -1531817462
+      inventory_chopped_56: -989459471
+      inventory_chopped_57: 2098120905
+      inventory_chopped_58: 297934738
+      inventory_chopped_59: 836454657
+      inventory_chopped_6: -652419557
+      inventory_chopped_60: 1368225722
+      inventory_chopped_61: 1955672788
+      inventory_chopped_62: -1974707250
+      inventory_chopped_63: -416534709
+      inventory_chopped_64: 1414998664
+      inventory_chopped_65: -408451913
+      inventory_chopped_66: 1340668364
+      inventory_chopped_67: 713727074
+      inventory_chopped_68: -895462893
+      inventory_chopped_69: 948344747
+      inventory_chopped_70: -395060244
+      inventory_chopped_71: -845563095
+      inventory_chopped_72: -321533418
+      inventory_chopped_73: -1037277399
+      inventory_chopped_74: -1878741502
+      inventory_chopped_75: 1077839302
+      inventory_chopped_76: 1003287079
+      inventory_chopped_77: -354865851
+      inventory_chopped_78: -1893301017
+      inventory_chopped_79: -1163250621
+      inventory_chopped_8: 82925053
+      inventory_chopped_80: 1202233670
+      inventory_chopped_81: 1992250471
+      inventory_chopped_82: 585792287
+      inventory_chopped_83: -212157260
+      inventory_chopped_84: -2059164356
+      inventory_chopped_85: 34853434
+      inventory_chopped_86: -1422679746
+      inventory_chopped_87: -811880247
+      inventory_chopped_88: 1801644921
+      inventory_chopped_9: -441444470
+      inventory_info_00: 2031828427
+      slot_00: 1333321792
+      slot_01: -1832727850
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -64,7 +64,7 @@ public class InventoryUI : MonoBehaviour
         dataManager = gameManager.DataManager;
 
         itemDatabase = dataManager.itemDatabase;
-        scrollViewUI = GetComponent<ScrollViewUI>();
+        scrollViewUI = GetComponentInChildren<ScrollViewUI>();
 
         //inventorySlotUIPrefab.inventory = inventory;
         scrollViewUI.Init(inventorySlotUIPrefab); // TODO
