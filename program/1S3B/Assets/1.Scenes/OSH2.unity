@@ -20963,7 +20963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6817577242802481361, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000047683716
+      value: -0.00004863739
       objectReference: {fileID: 0}
     - target: {fileID: 7199552488979354152, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: inventorySlotUIPrefab
@@ -122376,7 +122376,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 867621173
-  m_SortingLayer: -4
+  m_SortingLayer: -6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -127724,6 +127724,7 @@ MonoBehaviour:
   tilledTile: {fileID: 11400000, guid: fff5fb8dde7085745ace49421afcd433, type: 2}
   wateredTile: {fileID: 11400000, guid: eb9d285ca81638745b7afa549ff6e778, type: 2}
   cropGoPrefabs: {fileID: 694015475153660488, guid: 05390414908ea9942b9060b6d3a88b25, type: 3}
+  deathCrop: {fileID: 0}
 --- !u!156049354 &1953640888
 Grid:
   m_ObjectHideFlags: 0
@@ -128016,7 +128017,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 867621173
-  m_SortingLayer: -4
+  m_SortingLayer: -6
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -128718,7 +128719,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7792754854552026555, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6753704676732962649}
   m_SourcePrefab: {fileID: 100100000, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
 --- !u!212 &803007580016603653
 SpriteRenderer:
@@ -129278,6 +129282,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7792754854552026555, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
   m_PrefabInstance: {fileID: 802942271254580525}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6753704676732962649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753704676732962640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86aa9c93fcc4baa45ac110381dc37469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6771332148031637051
 GameObject:
   m_ObjectHideFlags: 0
