@@ -99,6 +99,7 @@ namespace Constants
 
     public enum PlayerEquipmentType
     {
+        Hand,
         PickUp,
         Hoe,
         Water,
