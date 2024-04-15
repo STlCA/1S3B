@@ -10,6 +10,7 @@ namespace Constants
         //AnimationController
         public static string IsStart = "isStart";
         public static string IsWalking = "isWalking";
+        public static string IsCarry = "isCarry";
         public static string IsDeath = "isDeath";
 
         public static string InputX = "inputX";

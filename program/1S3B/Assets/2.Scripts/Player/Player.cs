@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 {
     private GameManager gameManager;
     private UIManager uiManager;
+    private WeatherSystem weatherSystem;
 
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
     [SerializeField]private int playerEnergy;//나중에지우기
+    private int useEnergyAmount = 2;
+    
 
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
     private string[] skillName;
@@ -63,12 +66,14 @@ public class Player : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
+        weatherSystem = gameManager.WeatherSystem;
         Init();        
 
         playerState = PlayerState.IDLE;
 
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
+        weatherSystem.IsRainAction += UseEnergyAmount;
     }
 
     private void Init()
@@ -99,9 +104,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void UseEnergyAmount(bool isRain)
+    {
+        if (isRain == true)
+            useEnergyAmount = 4;
+        else
+            useEnergyAmount = 2;        
+    }
+
     public void UseEnergy()
     {
-        playerEnergy -= 2;
+        playerEnergy -= useEnergyAmount;
         uiManager.EnergyBarUpdate(playerEnergy);
 
         if (playerEnergy <= 0 && playerEnergy > -20)
@@ -113,7 +126,6 @@ public class Player : MonoBehaviour
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
         {
             animationController.DeathAnimation(true);
-            //Invoke("DeathSleep", 1f);
 
             DeathSleep();
 

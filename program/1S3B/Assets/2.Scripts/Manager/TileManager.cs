@@ -48,6 +48,7 @@ public class TileManager : Manager
     private AnimationController animationController;
     private TargetSetting targetSetting;
     private DayCycleHandler dayCycleHandler;
+    private WeatherSystem weatherSystem;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -79,8 +80,11 @@ public class TileManager : Manager
         animationController = gameManager.AnimationController;
         targetSetting = gameManager.TargetSetting;
         dayCycleHandler = gameManager.DayCycleHandler;
+        weatherSystem = gameManager.WeatherSystem;
 
         cropDatabase = gameManager.DataManager.cropDatabase;
+
+        weatherSystem.IsRainAction += IsRain;
     }
 
     //샘플
@@ -243,7 +247,6 @@ public class TileManager : Manager
         }
 
         waterTilemap.ClearAllTiles();
-
     }
 
     public void DestroyCropData(Vector3Int target)

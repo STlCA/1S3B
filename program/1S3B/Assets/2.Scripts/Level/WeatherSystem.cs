@@ -22,6 +22,8 @@ public class WeatherSystem : Manager
     //현재 날씨 타입
     private List<WeatherSystemElement> elements = new List<WeatherSystemElement>();
 
+    public Action<bool> IsRainAction;
+
     void Start()
     {
         tileManager = gameManager.TileManager;
@@ -31,7 +33,7 @@ public class WeatherSystem : Manager
     }
     public static void UnregisterElement(WeatherSystemElement element)
     {
-            GameManager.Instance?.WeatherSystem?.elements.Remove(element);
+        GameManager.Instance?.WeatherSystem?.elements.Remove(element);
 
     }
     public void ChangeWeather(WeatherType newType)
@@ -58,19 +60,22 @@ public class WeatherSystem : Manager
 
     public void RandomChangeWeather()
     {
-        int num = UnityEngine.Random.Range(0,3);
+        int num = UnityEngine.Random.Range(0, 3);
         switch (num)
         {
-            case 0 :
+            case 0:
                 currentWeatherType = WeatherType.Sun;
+                IsRainAction?.Invoke(false);
                 break;
             case 1:
-                currentWeatherType = WeatherType.Rain;                
+                currentWeatherType = WeatherType.Rain;
+                IsRainAction?.Invoke(true);
                 break;
             case 2:
                 currentWeatherType = WeatherType.Snow;
+                IsRainAction?.Invoke(false);
                 break;
-            
+
         }
         tileManager.IsRain(currentWeatherType == WeatherType.Rain);
         SwitchAllElementsToCurrentWeather();

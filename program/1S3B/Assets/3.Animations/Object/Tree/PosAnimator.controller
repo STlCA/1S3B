@@ -14,6 +14,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: inputY
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isFelling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7651276961320583175}
   m_Solo: 0
@@ -22,7 +25,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -80,6 +83,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: inputY
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isFelling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7488236603787060318}
   m_Solo: 0
@@ -88,7 +94,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -198,6 +204,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: inputY
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isFelling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4968257340444926842}
   m_Solo: 0
@@ -206,7 +215,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -226,6 +235,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: inputY
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isFelling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2124116609317323860}
   m_Solo: 0
@@ -234,7 +246,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
