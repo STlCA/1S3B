@@ -59,7 +59,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         uiSlots = new List<ScrollSlotUI>();
 
-        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scroll.content.rect.width / _slotPrefabWidth);
+        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scrollRect.rect.width / _slotPrefabWidth);
 
         for (int i = 0; i < itemCount; i++)
         {
