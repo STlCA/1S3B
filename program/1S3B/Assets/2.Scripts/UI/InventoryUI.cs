@@ -118,8 +118,18 @@ public class InventoryUI : MonoBehaviour
 
     public void Refresh()
     {
+
+
+        // 전체 슬롯 최신화
         scrollViewUI?.Refresh();
 
+
+        // 아이템이 10 있다가 8개가 되었다.
+        // 끝에 2개가 최신화 가 안됨
+        // 이전의 최신화 했던 슬롯의 카운트를 인지
+        // 오차범위는 클리어 한다
+
+        // 아이템 기반 최신화
         //for (int i = 0; i < inventory.Items.Count; i++)
         //{
         //    //Item item = inventory.Items[i];
