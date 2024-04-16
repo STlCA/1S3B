@@ -111,19 +111,19 @@ public class Npc : MonoBehaviour, ITalk
         else
         {
             gameManager.talkPanel.SetActive(true);
-            for (int i = 0; i < talkInfo.npcDialogue.Count; i++)
-            {
-                Debug.Log(talkInfo.npcDialogue[i]);
-                gameManager.npcNameText.text = npcInfo.npcName;
-                gameManager.talkText.text = talkInfo.npcDialogue[i];
-            }
+            StartCoroutine("PrintDialogue");
         }
     }
 
-    IEnumerator NextContentTalk()
+    IEnumerator PrintDialogue()
     {
-        // 일정 시간이 지나면 다음 내용 출력
-        yield return new WaitForSeconds(10f);
+        for (int i = 0; i < talkInfo.npcDialogue.Count; i++)
+        {
+            Debug.Log(talkInfo.npcDialogue[i]);
+            gameManager.npcNameText.text = npcInfo.npcName;
+            gameManager.talkText.text = talkInfo.npcDialogue[i];
+            yield return new WaitForSeconds(3f);
+        }
     }
 
     public void CloseTalkPanel()

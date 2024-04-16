@@ -223,7 +223,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -250, y: 460}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 235.19, y: 80.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &167218891
 MonoBehaviour:
@@ -889,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &665669958
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +993,7 @@ MonoBehaviour:
     walkParameterName: IsWalk
   <npcData>k__BackingField: {fileID: 11400000, guid: e4f2347cf78d9a948bb7cf5a2dae7c2f, type: 2}
   npcRenderer: {fileID: 741220746}
-  npcId: 2
+  npcId: 1
 --- !u!50 &694044499
 Rigidbody2D:
   serializedVersion: 4
@@ -2952,6 +2952,10 @@ PrefabInstance:
       propertyPath: m_CategoryHash
       value: 6.963852e-32
       objectReference: {fileID: 0}
+    - target: {fileID: 1902690550936604420, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1903591057233554650, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_labelHash
       value: 4.151498e-12
@@ -2992,6 +2996,10 @@ PrefabInstance:
       propertyPath: m_CategoryHash
       value: 2.0925628e-17
       objectReference: {fileID: 0}
+    - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 674647444}
     - target: {fileID: 2231234388447994465, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_labelHash
       value: 4.151498e-12
