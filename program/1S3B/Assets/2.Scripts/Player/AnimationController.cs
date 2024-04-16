@@ -37,21 +37,46 @@ public class AnimationController : AnimationBase
         controller.OnClickEvent += UseAnimation;
         sceneChangeManager.mapChangeAction += StopAnimation;
 
-        pickupItem = Instantiate(pickupItemPrefab);        
+        pickupItem = Instantiate(pickupItemPrefab);
         pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
-        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();        
+        pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
     }
 
-    //private void Update()
-    //{
-    //    if (GameManager.Instance.SceneChangeManager.isMapChange == true)
-    //        StopAnimation(true);
-    //
-    //    if (GameManager.Instance.SceneChangeManager.isMapChange == false && GameManager.Instance.SceneChangeManager.isReAnim == true)
-    //        StopAnimation(false);
-    //}
+    /*    //private void Update()
+        //{
+        //    if (GameManager.Instance.SceneChangeManager.isMapChange == true)
+        //        StopAnimation(true);
+        //
+        //    if (GameManager.Instance.SceneChangeManager.isMapChange == false && GameManager.Instance.SceneChangeManager.isReAnim == true)
+        //        StopAnimation(false);
+        //}*/
 
-    public void MoveAnimation(Vector2 direction, bool isUse = false)
+    public void CarryAnimation(bool isCarry)
+    {
+        if (animator[0].GetBool(ConstantsString.IsStart) == false)
+        {
+            foreach (var anim in animator)
+            {
+                anim.SetBool(ConstantsString.IsStart, true);
+            }
+        }
+
+        foreach (var anim in animator)
+        {
+            anim.SetBool(ConstantsString.IsCarry, isCarry);
+
+            if (anim.GetFloat(ConstantsString.InputX) == 0 && anim.GetFloat(ConstantsString.InputY) == 0)
+            {
+                if (anim.GetFloat(ConstantsString.SaveX) == 0 && anim.GetFloat(ConstantsString.SaveY) == 0)
+                {
+                    pickItemAnim.SetFloat(ConstantsString.SaveY, -1);
+                    anim.SetFloat(ConstantsString.SaveY, -1);
+                }
+            }
+        }
+    }
+
+    public void MoveAnimation(Vector2 direction, bool isUse = false, bool isCarry = false)
     {
         if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
@@ -75,6 +100,10 @@ public class AnimationController : AnimationBase
             anim.SetFloat(ConstantsString.InputX, direction.x);
             anim.SetFloat(ConstantsString.InputY, direction.y);
 
+            if (isCarry == true)
+            {
+                anim.SetBool(ConstantsString.IsCarry, true);
+            }
             anim.SetBool(ConstantsString.IsWalking, direction.magnitude > 0f);
         }
     }
@@ -178,7 +207,7 @@ public class AnimationController : AnimationBase
         foreach (var anim in animator)
         {
             anim.SetBool(ConstantsString.IsDeath, value);
-        }        
+        }
     }
 
     public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
@@ -186,7 +215,7 @@ public class AnimationController : AnimationBase
         SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
 
         if (pos.y > 0.71)
-            pickupItemSR.sortingOrder = sr.sortingOrder - 1;
+            pickupItemSR.sortingOrder = sr.sortingOrder - 5;
         else if (pos.y <= 0.71)
             pickupItemSR.sortingOrder = sr.sortingOrder + 10;
 

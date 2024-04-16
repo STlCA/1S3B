@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.ReloadAttribute;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -65,7 +66,7 @@ public class PlayerInputController : CharacterEventController
     {
         isUseAnim = value;
 
-        if (value == false)
+        if (value == false)//장비사용중에 이동키를 누르고있으면 애니메이션이 끝나자마자 이동하게
         {
             if (saveDirection != Vector2.zero)
                 CallMoveEvent(saveDirection, true);
@@ -100,7 +101,7 @@ public class PlayerInputController : CharacterEventController
     }
 
     public bool MoveException(Vector2 moveInput)
-    {
+    {     
         if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
             return false;
         if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
@@ -145,7 +146,11 @@ public class PlayerInputController : CharacterEventController
         if (MoveException(moveInput) == false)
             return;
 
-        CallMoveEvent(moveInput);
+        if (player.currentSelect == PlayerEquipmentType.Carry)
+            CallMoveEvent(moveInput,false, true);
+        else
+            CallMoveEvent(moveInput);
+
         TargetCheck(moveInput);
     }
 
@@ -165,41 +170,57 @@ public class PlayerInputController : CharacterEventController
     {
         player.currentSelect = PlayerEquipmentType.Hand;
         uiManager.EquipIconChange(PlayerEquipmentType.Hand);
+
+        animController.CarryAnimation(false);
     }
     public void OnHoe(InputValue value)//1
     {
         player.currentSelect = PlayerEquipmentType.Hoe;
         uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
+
+        animController.CarryAnimation(false);
     }
     public void OnWater(InputValue value)//2
     {
         player.currentSelect = PlayerEquipmentType.Water;
         uiManager.EquipIconChange(PlayerEquipmentType.Water);
+
+        animController.CarryAnimation(false);
     }
     public void OnAxe(InputValue value)//3
     {
         player.currentSelect = PlayerEquipmentType.Axe;
         uiManager.EquipIconChange(PlayerEquipmentType.Axe);
+
+        animController.CarryAnimation(false);
     }
     public void OnPickAxe(InputValue value)//4
     {
         player.currentSelect = PlayerEquipmentType.PickAxe;
         uiManager.EquipIconChange(PlayerEquipmentType.PickAxe);
+
+        animController.CarryAnimation(false);
     }
     public void OnSword(InputValue value)//5
     {
         player.currentSelect = PlayerEquipmentType.Sword;
         uiManager.EquipIconChange(PlayerEquipmentType.Sword);
+
+        animController.CarryAnimation(false);
     }
     public void OnSeed(InputValue value)//6
     {
         player.currentSelect = PlayerEquipmentType.Seed;
         uiManager.EquipIconChange(PlayerEquipmentType.Seed);
+
+        animController.CarryAnimation(false);
     }
     public void OnCarry(InputValue value)//7
     {
         player.currentSelect = PlayerEquipmentType.Carry;
         uiManager.EquipIconChange(PlayerEquipmentType.Carry);
+
+        animController.CarryAnimation(true);
     }
 
     public void OnUse(InputValue value)
@@ -237,7 +258,6 @@ public class PlayerInputController : CharacterEventController
         switch (player.currentSelect)
         {
             case PlayerEquipmentType.Hand:
-            case PlayerEquipmentType.PickUp://맨손상태 만들기//오른쪽클릭
                 UsePickUp(PlayerEquipmentType.PickUp, pos);
                 break;
             case PlayerEquipmentType.Hoe:
@@ -255,9 +275,9 @@ public class PlayerInputController : CharacterEventController
             case PlayerEquipmentType.PickAxe:
                 UsePickAxe(PlayerEquipmentType.PickAxe, pos);
                 break;
-            case PlayerEquipmentType.Sword:
-                break;
             case PlayerEquipmentType.Carry://언젠간 버리는모션도
+                break;
+            case PlayerEquipmentType.Sword:
                 break;
             default:
                 break;
@@ -349,41 +369,42 @@ public class PlayerInputController : CharacterEventController
 
     private void UsePickAxe(PlayerEquipmentType pickAxe, Vector2 pos)
     {
+        Vector3Int target = targetSetting.selectCellPosition;
+
         isUseEnergy = true;
+        CallClickEvent(pickAxe, pos);
 
-        if (natureObjectController.IsMining(targetSetting.selectCellPosition) == true)
-        {
-            CallClickEvent(pickAxe, pos);
+        if (natureObjectController.IsMining(target) == true)
+            natureObjectController.Mining(target);
 
-            natureObjectController.Mining(targetSetting.selectCellPosition);
-        }
+        else if (tileManager.IsPlant(target) == true)
+            tileManager.DestroyCropData(target);//작물파괴
+
+        else if (tileManager.IsPlantable(target) == true)
+            tileManager.DestroyGroundData(target);//땅파괴
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
     {
         isUseEnergy = true;
+        CallClickEvent(axe, pos);
 
         if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
-        {
-            CallClickEvent(axe, pos);
-
             natureObjectController.Felling(targetSetting.selectCellPosition);
-        }
-        //DestroyGround(targetSetting.selectCellPosition);
+        else
+            CallClickEvent(axe, pos);
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
-    {
+    {      
         if (tileManager.IsHarvest(targetSetting.selectCellPosition) == true)//그자리에 작물이 없으면 오류뜰수도
         {
-            CallClickEvent(pickUp, pos);
-
+            CallClickEvent(pickUp, pos);//PickUp은 callClick이 안으로 들어와야 아무것도 없을떄 행동 안함
             tileManager.Harvest(targetSetting.selectCellPosition, pos);
         }
         else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
         {
             CallClickEvent(pickUp, pos);
-
             natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
         }
     }
@@ -391,33 +412,25 @@ public class PlayerInputController : CharacterEventController
     private void UseWater(PlayerEquipmentType water, Vector2 pos)
     {
         isUseEnergy = true;
+        CallClickEvent(water, pos);
 
         if (tileManager.IsTilled(targetSetting.selectCellPosition) == true)
-        {
-            CallClickEvent(water, pos);
-
             tileManager.WaterAt(targetSetting.selectCellPosition);
-        }
     }
 
     private void UseSeed(PlayerEquipmentType seed, Vector2 pos)
     {
         if (tileManager.IsPlantable(targetSetting.selectCellPosition) == true)
-        {
             tileManager.PlantAt(targetSetting.selectCellPosition);
-        }
     }
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)
     {
         isUseEnergy = true;
+        CallClickEvent(type, pos);
 
         if (tileManager.IsTilled(targetSetting.selectCellPosition) == false)
-        {
-            CallClickEvent(type, pos);
-
             tileManager.TillAt(targetSetting.selectCellPosition);
-        }
     }
 
     public void OnCommunication()
