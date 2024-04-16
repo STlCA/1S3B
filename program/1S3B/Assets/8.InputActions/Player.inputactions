@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "EquipPickUp",
+                    "type": "Button",
+                    "id": "aade7704-41be-4b75-bcf0-79e5a9f41313",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -381,6 +390,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Carry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cb0658c-69b6-4397-95df-9f9b3dfea2c2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipPickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

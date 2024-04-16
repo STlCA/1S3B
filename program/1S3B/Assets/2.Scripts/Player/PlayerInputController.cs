@@ -367,6 +367,25 @@ public class PlayerInputController : CharacterEventController
             player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
+    public void OnEquipPickUp(InputValue value)
+    {
+        if (UseException() == false)
+            return;
+
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        playerPos = transform.position;
+        Vector2 pos = new Vector2();
+
+        pos.x = (mousePos.x - playerPos.x);
+        pos.y = (mousePos.y - playerPos.y);
+
+        pos = pos.normalized;
+
+        isUseEnergy = false;
+
+        UsePickUp(PlayerEquipmentType.PickUp, pos);
+    }
+
     private void UsePickAxe(PlayerEquipmentType pickAxe, Vector2 pos)
     {
         Vector3Int target = targetSetting.selectCellPosition;
