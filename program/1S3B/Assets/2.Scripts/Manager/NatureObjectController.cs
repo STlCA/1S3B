@@ -205,7 +205,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempdData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint <= percentage)
@@ -268,7 +268,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.croptData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -323,7 +323,7 @@ public class NatureObjectController : Manager
             return false;
         if (treeData.ContainsKey(target) == true)
             return false;
-        if (tileManager.croptData.ContainsKey(target) == true)
+        if (tileManager.cropData.ContainsKey(target) == true)
             return false;
         if (natureData.ContainsKey(target) == true)
             return false;
@@ -525,7 +525,9 @@ public class NatureObjectController : Manager
         {
             if (stoneData[saveTarget].count >= stoneData[saveTarget].maxCount)
             {
-                DropItem(stoneData[saveTarget].stoneObj.transform.position, 5, (int)DropItemType.Stone);
+                int random = Random.Range(1, 4);
+
+                DropItem(stoneData[saveTarget].stoneObj.transform.position, random, (int)DropItemType.Stone);
                 Destroy(stoneData[saveTarget].stoneObj);
                 stoneData.Remove(saveTarget);
 

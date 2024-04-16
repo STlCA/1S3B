@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class DataManager : Manager
-{
+public class DataManager : Manager { 
+
     public CropDatabase cropDatabase;
     public ItemDatabase itemDatabase;
     public NpcDataBese npcDatabese;

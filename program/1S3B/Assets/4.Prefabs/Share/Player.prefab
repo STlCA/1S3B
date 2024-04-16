@@ -14834,7 +14834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7490208217715649292
 Transform:
   m_ObjectHideFlags: 0
@@ -14912,15 +14912,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -598841217, guid: abffb71285da76a4b97c06819a174aad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3622181871685524149
@@ -15530,6 +15530,7 @@ GameObject:
   - component: {fileID: 8501629701385653685}
   - component: {fileID: 7453903779605040904}
   - component: {fileID: 4367807579858029979}
+  - component: {fileID: 3191887758952838506}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15779,6 +15780,7 @@ MonoBehaviour:
     count: 0
     step: 0
   playerMap: 0
+  equipment: {fileID: 3395553085000603999}
 --- !u!114 &5599563813641429076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15830,3 +15832,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75b43e58df11e24086501a43ef9cb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3191887758952838506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792754854552026555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86aa9c93fcc4baa45ac110381dc37469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}

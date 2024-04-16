@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TmpInvenBtn : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private InventoryUI inventoryUI;
     GameManager gameManager;
     UIManager uiManager;
     DataManager dataManager;
@@ -20,18 +20,23 @@ public class TmpInvenBtn : MonoBehaviour
 
     public void OnClickInvenBtn()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        inventoryUI.InventoryEnable();
     }
 
     public void OnClickAddItem()
     {
         // dataManager.itemDatabase.ItemData[Random.Range(0, dataManager.itemDatabase.ItemData.Count)]
-        // Å×½ºÆ® ¾ÆÀÌÅÛ ¸¸µé±â
+        // ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         Item item = dataManager.itemDatabase.Gacha();
+        Debug.Log(item.ItemInfo.Name);
+
         if (!inventory.AddItem(item))
         {
-            // ½ÇÆĞ
+            Debug.Log("ì„¤ë§ˆ ì´ê±°..?");
+            return;
         }      
+        inventory.AddItem(item);
+        Debug.Log(item.ItemInfo.Name);
 
     }
 }
