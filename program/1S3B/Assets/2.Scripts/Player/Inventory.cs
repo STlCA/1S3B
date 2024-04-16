@@ -46,8 +46,8 @@ public class Inventory : MonoBehaviour
             if (slotToStackTo != null)
             {
                 slotToStackTo.quantity++;
-                //UpdateUI();
-                inventoryUI.Refresh();
+                // UpdateUI();
+                // inventoryUI.Refresh();
                 return true;
             }
             AddNewItem(item);

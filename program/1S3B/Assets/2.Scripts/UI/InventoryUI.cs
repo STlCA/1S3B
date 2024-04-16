@@ -118,21 +118,23 @@ public class InventoryUI : MonoBehaviour
 
     public void Refresh()
     {
-        for (int i = 0; i < inventory.Items.Count; i++)
-        {
-            Item item = inventory.Items[i];
+        scrollViewUI?.Refresh();
 
-            if (item != null)
-            {
-                inventorySlotUIPrefab.Set(item);
-            }
-            else
-            {
-                inventorySlotUIPrefab.Clear();
-            }
+        //for (int i = 0; i < inventory.Items.Count; i++)
+        //{
+        //    //Item item = inventory.Items[i];
 
-            // 슬롯 셋팅
-            // scrollViewUI.SetSlot(i, item);
-        }
+        //    //if (item != null)
+        //    //{
+        //    //    inventorySlotUIPrefab.Set(item);
+        //    //}
+        //    //else
+        //    //{
+        //    //    inventorySlotUIPrefab.Clear();
+        //    //}
+
+        //    // 슬롯 셋팅
+        //    scrollViewUI.SetSlot(i);
+        //}
     }
 }

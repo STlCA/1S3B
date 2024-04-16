@@ -131,6 +131,21 @@ public class ScrollViewUI : MonoBehaviour
 
     }
 
+    public void SetSlot(int i)
+    {
+
+        uiSlots[i].SetIndex(i);
+    }
+
+
+    public void Refresh()
+    {
+        for(int i = 0; i < uiSlots.Count; i++)
+        {
+            uiSlots[i].SetIndex(i);
+        }
+    }
+
     //private void SetData(ScrollSlotUI item, int idx)
     //{
     //    if (idx < 0 || idx >= dataList.Count)
