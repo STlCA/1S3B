@@ -46,7 +46,7 @@ public class StoneData
     public float count = 0;
     public int maxCount = 3;
     public bool isSpawn = false;
-    public bool itemDrop = false;
+    public bool isPoint = false;
 }
 
 public class NatureObjectController : Manager
@@ -129,11 +129,30 @@ public class NatureObjectController : Manager
         {
             foreach (Transform go in naturePoint)
             {
+                if (go.position == Vector3.zero)
+                    continue;
+
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 NatureData tempData = new NatureData();
 
                 natureData.Add(goCellPos, tempData);
+            }
+        }
+
+        if (stonePoint != null)
+        {
+            foreach (Transform go in stonePoint)
+            {
+                if (go.position == Vector3.zero)
+                    continue;
+
+                Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
+
+                StoneData tempData = new StoneData();
+                tempData.isPoint = true;
+
+                stoneData.Add(goCellPos, tempData);
             }
         }
 
@@ -205,7 +224,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempdData.isSpawn == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint <= percentage)
@@ -214,8 +233,8 @@ public class NatureObjectController : Manager
                     tempdData.isSpawn = true;
                     tempdData.natureObj = Instantiate(naturePrefab);
                     tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempdData.natureRenderer = tempdData.natureObj.GetComponent<SpriteRenderer>();
-                    tempdData.natureResolver = tempdData.natureObj.GetComponent<SpriteResolver>();
+                    tempdData.natureRenderer = tempdData.natureObj.GetComponentInChildren<SpriteRenderer>();
+                    tempdData.natureResolver = tempdData.natureObj.GetComponentInChildren<SpriteResolver>();
 
                     string season = dayCycleHandler.currentSeason.ToString();
 
@@ -268,7 +287,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -403,7 +422,7 @@ public class NatureObjectController : Manager
         return natureData.ContainsKey(target) && natureData[target].isSpawn == true;
     }
 
-    public void PickUpNature(Vector3Int target, Vector2 pos)
+    public void PickUpNature(Vector3Int target, Vector2 pos)//플레이어가 마우스를바라보는 방향
     {
         Sprite pickUpSprite = natureData[target].natureRenderer.sprite;
         animationController.PickUpAnim(target, pos, pickUpSprite);
