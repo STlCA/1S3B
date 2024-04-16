@@ -190,7 +190,7 @@ public class NatureObjectController : Manager
 
     private void SeasonSpawn(Season season)
     {
-        if(season == Season.Spring)
+        if (season == Season.Spring)
         {
             RangeSpawnTree(20, SpawnType.Farm);
             RangeSpawnStone(20, SpawnType.Farm);
@@ -406,9 +406,13 @@ public class NatureObjectController : Manager
                 newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
 
-                int random = Random.Range(1, 6);
-                newStone.type = (StoneType)int.Parse("401" + Random.Range(1, 6).ToString());
-                //newStone.stoneObj.GetComponent<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)newStone.type).ToString());
+                int random = Random.Range(1, 11);
+                if (random <= 2)
+                    newStone.type = StoneType.RANDOMSTONE;
+                else
+                    newStone.type = StoneType.STONE;
+
+                newStone.stoneObj.GetComponentInChildren<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)newStone.type).ToString());
 
                 stoneData.Add(randomPos, newStone);
                 ++i;
@@ -518,7 +522,7 @@ public class NatureObjectController : Manager
                 else if (spawItemPos.x > 0)
                     dropPos.x = -1f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, (int)WoodType.Wood);
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, (int)DropItemType.Wood);
             }
         }
     }
@@ -529,7 +533,7 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
             {
-                DropItem(treeData[saveTarget].treeObj.transform.position, 5, (int)WoodType.Wood);
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5, (int)DropItemType.Wood);
                 Destroy(treeData[saveTarget].treeObj);
                 treeData[saveTarget].isSpawn = false;
                 treeData[saveTarget].itemDrop = false;
@@ -549,9 +553,13 @@ public class NatureObjectController : Manager
         {
             if (stoneData[saveTarget].count >= stoneData[saveTarget].maxCount)
             {
-                int random = Random.Range(1, 4);
+                int count = Random.Range(1, 4);
 
-                DropItem(stoneData[saveTarget].stoneObj.transform.position, random, (int)StoneType.Stone);
+                if (stoneData[saveTarget].type == StoneType.STONE)
+                    DropItem(stoneData[saveTarget].stoneObj.transform.position, count, (int)DropItemType.Stone);
+                else
+                    DropItem(stoneData[saveTarget].stoneObj.transform.position, count, DropItemType.Stone);
+
                 Destroy(stoneData[saveTarget].stoneObj);
                 stoneData.Remove(saveTarget);
 
@@ -568,6 +576,59 @@ public class NatureObjectController : Manager
             go.GetComponentInChildren<SpriteRenderer>().sprite = itemDatabase.GetItemByKey(ID).SpriteList[0];
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
+    }
+    private void DropItem(Vector3 target, int count, DropItemType type)
+    {
+        for (int i = 0; i < count; ++i)
+        {
+            ItemInfo item = RandomItem(type);
+
+            GameObject go = Instantiate(dropItemPrefab);
+            go.GetComponentInChildren<SpriteRenderer>().sprite = item.SpriteList[0];
+            go.transform.position = new Vector3(target.x, target.y + 0.5f);
+        }
+    }
+    private ItemInfo RandomItem(DropItemType type)
+    {
+        ItemInfo[] spawnItem;
+
+        switch (type)
+        {
+            case DropItemType.Stone:
+            default:
+                spawnItem = new ItemInfo[5];//돌추가되면 갯수바까야함
+                for (int i = 0; i < spawnItem.Length; ++i)
+                {
+                    spawnItem[i] = itemDatabase.GetItemByKey(int.Parse("401" + (i + 1).ToString()));
+                }
+                break;
+        }
+
+        int dropIndex = 0;
+        float total = 0;
+        float[] itemPercent = new float[spawnItem.Length];
+
+        for (int i = 0; i < spawnItem.Length; i++)
+        {
+            float percent = spawnItem[i].DropPercent;
+            itemPercent[i] = percent;
+            total += percent;
+        }
+
+        float randomPoint = Random.value * total;
+
+        for (int i = 0; i < itemPercent.Length; i++)
+        {
+            if (randomPoint <= itemPercent[i])
+            {
+                dropIndex = i;
+                break;
+            }
+            else
+                randomPoint -= itemPercent[i];
+        }
+
+        return spawnItem[dropIndex];
     }
 
     public void SpriteChange(Season current)

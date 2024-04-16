@@ -353,6 +353,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: stone
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 69
+        width: 9
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3953d7f62143e074a85044f13f6f0c10
+      internalID: 1121952220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cooper
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 84
+        width: 8
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8915d55ddc7a20419f8b399cf18bcd2
+      internalID: 1491644419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iron
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 85
+        width: 9
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 117eb6879407340418b370bb7d5584de
+      internalID: 1048221846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gold
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 84
+        width: 8
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225bce7800dfd584c981039d8af55ad9
+      internalID: -839455042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diamond
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 83
+        width: 12
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d24a39d6f3b2474083382a887de963e
+      internalID: 1797789840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -375,6 +480,10 @@ TextureImporter:
       Tomato6: -1831292113
       Watermelon6: 1849710329
       Wheat6: -1734314447
+      cooper: 1491644419
+      diamond: 1797789840
+      gold: -839455042
+      iron: 1048221846
       item_carry_11: 2081595718
       item_carry_12: -1908830726
       item_carry_13: 674403266
@@ -462,6 +571,7 @@ TextureImporter:
       item_carry_95: -1666315384
       item_carry_96: -1463276942
       item_carry_97: -530761372
+      stone: 1121952220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

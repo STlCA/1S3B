@@ -101,7 +101,7 @@ public class PlayerInputController : CharacterEventController
     }
 
     public bool MoveException(Vector2 moveInput)
-    {     
+    {
         if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
             return false;
         if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
@@ -147,7 +147,7 @@ public class PlayerInputController : CharacterEventController
             return;
 
         if (player.currentSelect == PlayerEquipmentType.Carry)
-            CallMoveEvent(moveInput,false, true);
+            CallMoveEvent(moveInput, false, true);
         else
             CallMoveEvent(moveInput);
 
@@ -179,6 +179,9 @@ public class PlayerInputController : CharacterEventController
         uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
 
         animController.CarryAnimation(false);
+
+        /*ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
+          player.currentSelectItemId = iteminfo.ID;*/
     }
     public void OnWater(InputValue value)//2
     {
@@ -415,7 +418,7 @@ public class PlayerInputController : CharacterEventController
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
-    {      
+    {
         if (tileManager.IsHarvest(targetSetting.selectCellPosition) == true)//그자리에 작물이 없으면 오류뜰수도
         {
             CallClickEvent(pickUp, pos);//PickUp은 callClick이 안으로 들어와야 아무것도 없을떄 행동 안함
