@@ -98,7 +98,7 @@ public class InventoryUI : MonoBehaviour
     // 인벤토리 ui 활성화
     public void InventoryEnable()
     {
-        //Refresh();
+        Refresh();
         gameObject.SetActive(!gameObject.activeSelf);
     }
 
