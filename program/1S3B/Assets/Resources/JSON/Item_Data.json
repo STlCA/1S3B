@@ -290,7 +290,7 @@
 			]
 		},
 		{
-			"ID": 4002,
+			"ID": 4011,
 			"Name": "돌",
 			"Description": [
 				"돌을 캐서 나온 돌조각. 건물을 짓거나 제작할 때 사용된다."
@@ -304,6 +304,74 @@
 			"Path": "Item",
 			"SpriteName": [
 				"stone"
+			]
+		},
+		{
+			"ID": 4012,
+			"Name": "구리",
+			"Description": [
+				"구리광석을 캐서 나온 구리조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"cooper"
+			]
+		},
+		{
+			"ID": 4013,
+			"Name": "철",
+			"Description": [
+				"철광석을 캐서 나온 철조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"iron"
+			]
+		},
+		{
+			"ID": 4014,
+			"Name": "금",
+			"Description": [
+				"금광석을 캐서 나온 금조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"gold"
+			]
+		},
+		{
+			"ID": 4015,
+			"Name": "다이아몬드",
+			"Description": [
+				"다이아몬드광석을 캐서 나온 다이아몬드조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"diamond"
 			]
 		},
 		{

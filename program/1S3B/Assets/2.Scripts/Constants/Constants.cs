@@ -159,9 +159,16 @@ namespace Constants
       
     }
 
-    public enum DropItemType
+    public enum WoodType
     {
         Wood = 4001,
-        Stone = 4002,
+    }
+    public enum StoneType
+    {
+        Stone = 4011,
+        Cooper,
+        Iron,
+        Gold,
+        Diamond,
     }
 }

@@ -47,6 +47,7 @@ public class StoneData
     public int maxCount = 3;
     public bool isSpawn = false;
     public bool isPoint = false;
+    public StoneType type;
 }
 
 public class NatureObjectController : Manager
@@ -405,6 +406,10 @@ public class NatureObjectController : Manager
                 newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
 
+                int random = Random.Range(1, 6);
+                newStone.type = (StoneType)int.Parse("401" + Random.Range(1, 6).ToString());
+                //newStone.stoneObj.GetComponent<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)newStone.type).ToString());
+
                 stoneData.Add(randomPos, newStone);
                 ++i;
             }
@@ -513,7 +518,7 @@ public class NatureObjectController : Manager
                 else if (spawItemPos.x > 0)
                     dropPos.x = -1f;
 
-                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, (int)DropItemType.Wood);
+                DropItem(treeData[saveTarget].treeObj.transform.position + dropPos, 10, (int)WoodType.Wood);
             }
         }
     }
@@ -524,7 +529,7 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].count >= treeData[saveTarget].maxCount)
             {
-                DropItem(treeData[saveTarget].treeObj.transform.position, 5, (int)DropItemType.Wood);
+                DropItem(treeData[saveTarget].treeObj.transform.position, 5, (int)WoodType.Wood);
                 Destroy(treeData[saveTarget].treeObj);
                 treeData[saveTarget].isSpawn = false;
                 treeData[saveTarget].itemDrop = false;
@@ -546,7 +551,7 @@ public class NatureObjectController : Manager
             {
                 int random = Random.Range(1, 4);
 
-                DropItem(stoneData[saveTarget].stoneObj.transform.position, random, (int)DropItemType.Stone);
+                DropItem(stoneData[saveTarget].stoneObj.transform.position, random, (int)StoneType.Stone);
                 Destroy(stoneData[saveTarget].stoneObj);
                 stoneData.Remove(saveTarget);
 
