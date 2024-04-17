@@ -29,10 +29,10 @@ namespace Constants
 
     public enum MapTriggerType
     {
-        Farm_FarmRoad,
-        FarmRoad_Town,
-        Town_FarmRoad,
-        FarmRoad_Farm,
+        Farm_FarmToTown,
+        FarmToTown_Town,
+        Town_FarmToTown,
+        FarmToTown_Farm,
 
         Farm_ForestRoad,
         ForestRoad_Forest,
@@ -62,15 +62,15 @@ namespace Constants
         BeachL_Forest,
         Forest_Beach,
     }
-    
+
     public enum PlayerMap
     {
         Farm,
-        FarmRoad,
+        FarmToTown,
         Town,
-        TownRoad,
+        TownToForest,
         Forest,
-        ForestRoad,
+        FarmToForest,
         Beach,
         BeachR,
         BeachL,
@@ -146,7 +146,7 @@ namespace Constants
     {
         NaturePoint,
         TreePoint,
-        StonePoint,       
+        StonePoint,
         Quarry,
         MapNature,
         UpForest,
@@ -156,12 +156,17 @@ namespace Constants
 
     public enum SFXSound
     {
-      
+
     }
 
     public enum DropItemType
     {
         Wood = 4001,
-        Stone = 4002,
+        Stone = 4011,
+    }
+    public enum StoneType
+    {
+        STONE = 0,
+        RANDOMSTONE,
     }
 }

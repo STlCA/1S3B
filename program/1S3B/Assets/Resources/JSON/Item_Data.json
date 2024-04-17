@@ -15,7 +15,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Hoe1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 1002,
@@ -32,7 +33,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Water1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 1003,
@@ -49,7 +51,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"PickAxe1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 1004,
@@ -66,7 +69,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Axe1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 1005,
@@ -83,7 +87,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Sword1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2001,
@@ -100,7 +105,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"CarrotSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2002,
@@ -117,7 +123,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"PumpkinSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2003,
@@ -134,7 +141,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"PotatoSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2004,
@@ -151,7 +159,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"WatermelonSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2005,
@@ -168,7 +177,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"RadishSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2006,
@@ -185,7 +195,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"LettuceSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2007,
@@ -202,7 +213,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"WheatSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3001,
@@ -219,7 +231,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"EggplantSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3002,
@@ -236,7 +249,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"CornSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3003,
@@ -253,7 +267,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"TomatoSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3004,
@@ -270,7 +285,8 @@
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"StrawberrySeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 4001,
@@ -287,10 +303,11 @@
 			"Path": "Item",
 			"SpriteName": [
 				"wood"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
-			"ID": 4002,
+			"ID": 4011,
 			"Name": "돌",
 			"Description": [
 				"돌을 캐서 나온 돌조각. 건물을 짓거나 제작할 때 사용된다."
@@ -304,7 +321,80 @@
 			"Path": "Item",
 			"SpriteName": [
 				"stone"
-			]
+			],
+			"DropPercent": 50
+		},
+		{
+			"ID": 4012,
+			"Name": "구리",
+			"Description": [
+				"구리광석을 캐서 나온 구리조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"cooper"
+			],
+			"DropPercent": 20
+		},
+		{
+			"ID": 4013,
+			"Name": "철",
+			"Description": [
+				"철광석을 캐서 나온 철조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"iron"
+			],
+			"DropPercent": 15
+		},
+		{
+			"ID": 4014,
+			"Name": "금",
+			"Description": [
+				"금광석을 캐서 나온 금조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"gold"
+			],
+			"DropPercent": 10
+		},
+		{
+			"ID": 4015,
+			"Name": "다이아몬드",
+			"Description": [
+				"다이아몬드광석을 캐서 나온 다이아몬드조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"diamond"
+			],
+			"DropPercent": 5
 		},
 		{
 			"ID": 5001,
@@ -321,7 +411,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5002,
@@ -338,7 +429,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring2"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5003,
@@ -355,7 +447,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring3"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5004,
@@ -372,7 +465,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring4"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5005,
@@ -389,7 +483,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring5"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5006,
@@ -406,7 +501,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring6"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5007,
@@ -423,7 +519,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"spring7"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5101,
@@ -440,7 +537,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5102,
@@ -457,7 +555,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer2"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5103,
@@ -474,7 +573,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer3"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5104,
@@ -491,7 +591,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer4"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5105,
@@ -508,7 +609,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer5"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5106,
@@ -525,7 +627,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"summer6"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5201,
@@ -542,7 +645,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5202,
@@ -559,7 +663,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall2"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5203,
@@ -576,7 +681,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall3"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5204,
@@ -593,7 +699,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall4"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5205,
@@ -610,7 +717,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall5"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5206,
@@ -627,7 +735,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"fall6"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5301,
@@ -644,7 +753,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"winter1"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5302,
@@ -661,7 +771,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"winter2"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5303,
@@ -678,7 +789,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"winter3"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5304,
@@ -695,7 +807,8 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"winter4"
-			]
+			],
+			"DropPercent": -1
 		}
 	]
 }

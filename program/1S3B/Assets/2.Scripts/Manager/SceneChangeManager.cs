@@ -166,8 +166,8 @@ public class SceneChangeManager : Manager
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
-            fadeCount += 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
+            fadeCount += 0.02f;
+            yield return new WaitForSecondsRealtime(0.0001f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
@@ -183,8 +183,8 @@ public class SceneChangeManager : Manager
 
         while (fadeCount >= 0f)
         {
-            fadeCount -= 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
+            fadeCount -= 0.02f;
+            yield return new WaitForSecondsRealtime(0.0001f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 

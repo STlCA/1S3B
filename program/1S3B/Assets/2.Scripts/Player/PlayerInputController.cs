@@ -101,7 +101,7 @@ public class PlayerInputController : CharacterEventController
     }
 
     public bool MoveException(Vector2 moveInput)
-    {     
+    {
         if (Keyboard.current.aKey.isPressed == true && Keyboard.current.dKey.isPressed == true)
             return false;
         if (Keyboard.current.wKey.isPressed == true && Keyboard.current.sKey.isPressed == true)
@@ -147,7 +147,7 @@ public class PlayerInputController : CharacterEventController
             return;
 
         if (player.currentSelect == PlayerEquipmentType.Carry)
-            CallMoveEvent(moveInput,false, true);
+            CallMoveEvent(moveInput, false, true);
         else
             CallMoveEvent(moveInput);
 
@@ -179,6 +179,9 @@ public class PlayerInputController : CharacterEventController
         uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
 
         animController.CarryAnimation(false);
+
+        /*ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
+          player.currentSelectItemId = iteminfo.ID;*/
     }
     public void OnWater(InputValue value)//2
     {
@@ -367,6 +370,25 @@ public class PlayerInputController : CharacterEventController
             player.UseEnergy();//씨앗심을때만 빼고 + 장비를 들고있을때만. // 위로올리면 탈진할때 타일에 작용한거 적용이안됨
     }
 
+    public void OnEquipPickUp(InputValue value)
+    {
+        if (UseException() == false)
+            return;
+
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        playerPos = transform.position;
+        Vector2 pos = new Vector2();
+
+        pos.x = (mousePos.x - playerPos.x);
+        pos.y = (mousePos.y - playerPos.y);
+
+        pos = pos.normalized;
+
+        isUseEnergy = false;
+
+        UsePickUp(PlayerEquipmentType.PickUp, pos);
+    }
+
     private void UsePickAxe(PlayerEquipmentType pickAxe, Vector2 pos)
     {
         Vector3Int target = targetSetting.selectCellPosition;
@@ -396,7 +418,7 @@ public class PlayerInputController : CharacterEventController
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
-    {      
+    {
         if (tileManager.IsHarvest(targetSetting.selectCellPosition) == true)//그자리에 작물이 없으면 오류뜰수도
         {
             CallClickEvent(pickUp, pos);//PickUp은 callClick이 안으로 들어와야 아무것도 없을떄 행동 안함

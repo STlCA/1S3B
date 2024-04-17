@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 using UnityEngine.U2D.Animation;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 using static UnityEngine.Rendering.ReloadAttribute;
@@ -212,11 +213,13 @@ public class AnimationController : AnimationBase
 
     public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
     {
-        SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
+        SortingGroup sr = player.GetComponentInChildren<SortingGroup>();
 
-        if (pos.y > 0.71)
+        Debug.Log(pos.y);
+
+        if (pos.y > 0.5)
             pickupItemSR.sortingOrder = sr.sortingOrder - 5;
-        else if (pos.y <= 0.71)
+        else if (pos.y <= 0.5)
             pickupItemSR.sortingOrder = sr.sortingOrder + 10;
 
         Vector3 position = player.transform.position;

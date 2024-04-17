@@ -17,6 +17,7 @@ public class ItemInfo
     public int Stack;
     public string Path;
     public List<string> SpriteName;
+    public int DropPercent;
 
     public List<Sprite> SpriteList;
     public bool canStack;

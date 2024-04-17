@@ -100,8 +100,6 @@ public class GameManager : MonoBehaviour
 
             TimeText.text = DayCycleHandler.GetTimeAsString();
         //시간텍스트 바꾸기
-
-
     }
 
     public void DayOverTime()

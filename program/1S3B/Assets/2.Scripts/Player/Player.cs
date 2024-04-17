@@ -55,8 +55,6 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    public GameObject equipment;//게임시작전에 얼굴가려짐
-
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -76,8 +74,6 @@ public class Player : MonoBehaviour
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
         weatherSystem.IsRainAction += UseEnergyAmount;
-
-        equipment.SetActive(true);
     }
 
     private void Init()

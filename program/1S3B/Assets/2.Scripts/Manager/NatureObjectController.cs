@@ -46,7 +46,8 @@ public class StoneData
     public float count = 0;
     public int maxCount = 3;
     public bool isSpawn = false;
-    public bool itemDrop = false;
+    public bool isPoint = false;
+    public StoneType type;
 }
 
 public class NatureObjectController : Manager
@@ -129,11 +130,30 @@ public class NatureObjectController : Manager
         {
             foreach (Transform go in naturePoint)
             {
+                if (go.position == Vector3.zero)
+                    continue;
+
                 Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
 
                 NatureData tempData = new NatureData();
 
                 natureData.Add(goCellPos, tempData);
+            }
+        }
+
+        if (stonePoint != null)
+        {
+            foreach (Transform go in stonePoint)
+            {
+                if (go.position == Vector3.zero)
+                    continue;
+
+                Vector3Int goCellPos = tileManager.baseGrid.WorldToCell(go.position);
+
+                StoneData tempData = new StoneData();
+                tempData.isPoint = true;
+
+                stoneData.Add(goCellPos, tempData);
             }
         }
 
@@ -170,7 +190,7 @@ public class NatureObjectController : Manager
 
     private void SeasonSpawn(Season season)
     {
-        if(season == Season.Spring)
+        if (season == Season.Spring)
         {
             RangeSpawnTree(20, SpawnType.Farm);
             RangeSpawnStone(20, SpawnType.Farm);
@@ -205,7 +225,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempdData) in natureData)
         {
-            if (tempdData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && treeData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempdData.isSpawn == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint <= percentage)
@@ -214,8 +234,8 @@ public class NatureObjectController : Manager
                     tempdData.isSpawn = true;
                     tempdData.natureObj = Instantiate(naturePrefab);
                     tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempdData.natureRenderer = tempdData.natureObj.GetComponent<SpriteRenderer>();
-                    tempdData.natureResolver = tempdData.natureObj.GetComponent<SpriteResolver>();
+                    tempdData.natureRenderer = tempdData.natureObj.GetComponentInChildren<SpriteRenderer>();
+                    tempdData.natureResolver = tempdData.natureObj.GetComponentInChildren<SpriteResolver>();
 
                     string season = dayCycleHandler.currentSeason.ToString();
 
@@ -268,7 +288,7 @@ public class NatureObjectController : Manager
 
         foreach (var (cell, tempData) in treeData)
         {
-            if (tempData.isSpawn == false && tileManager.cropData.ContainsKey(cell) == false && natureData.ContainsKey(cell) == false && stoneData.ContainsKey(cell) == false)
+            if (tempData.isSpawn == false)
             {
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
@@ -386,6 +406,14 @@ public class NatureObjectController : Manager
                 newStone.stoneObj.transform.position = (Vector3)randomPos + new Vector3(0.5f, 0.2f, 0);
                 newStone.animator = newStone.stoneObj.GetComponentInChildren<Animator>();
 
+                int random = Random.Range(1, 11);
+                if (random <= 2)
+                    newStone.type = StoneType.RANDOMSTONE;
+                else
+                    newStone.type = StoneType.STONE;
+
+                newStone.stoneObj.GetComponentInChildren<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)newStone.type).ToString());
+
                 stoneData.Add(randomPos, newStone);
                 ++i;
             }
@@ -403,7 +431,7 @@ public class NatureObjectController : Manager
         return natureData.ContainsKey(target) && natureData[target].isSpawn == true;
     }
 
-    public void PickUpNature(Vector3Int target, Vector2 pos)
+    public void PickUpNature(Vector3Int target, Vector2 pos)//플레이어가 마우스를바라보는 방향
     {
         Sprite pickUpSprite = natureData[target].natureRenderer.sprite;
         animationController.PickUpAnim(target, pos, pickUpSprite);
@@ -525,9 +553,13 @@ public class NatureObjectController : Manager
         {
             if (stoneData[saveTarget].count >= stoneData[saveTarget].maxCount)
             {
-                int random = Random.Range(1, 4);
+                int count = Random.Range(1, 4);
 
-                DropItem(stoneData[saveTarget].stoneObj.transform.position, random, (int)DropItemType.Stone);
+                if (stoneData[saveTarget].type == StoneType.STONE)
+                    DropItem(stoneData[saveTarget].stoneObj.transform.position, count, (int)DropItemType.Stone);
+                else
+                    DropItem(stoneData[saveTarget].stoneObj.transform.position, count, DropItemType.Stone);
+
                 Destroy(stoneData[saveTarget].stoneObj);
                 stoneData.Remove(saveTarget);
 
@@ -544,6 +576,59 @@ public class NatureObjectController : Manager
             go.GetComponentInChildren<SpriteRenderer>().sprite = itemDatabase.GetItemByKey(ID).SpriteList[0];
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
+    }
+    private void DropItem(Vector3 target, int count, DropItemType type)
+    {
+        for (int i = 0; i < count; ++i)
+        {
+            ItemInfo item = RandomItem(type);
+
+            GameObject go = Instantiate(dropItemPrefab);
+            go.GetComponentInChildren<SpriteRenderer>().sprite = item.SpriteList[0];
+            go.transform.position = new Vector3(target.x, target.y + 0.5f);
+        }
+    }
+    private ItemInfo RandomItem(DropItemType type)
+    {
+        ItemInfo[] spawnItem;
+
+        switch (type)
+        {
+            case DropItemType.Stone:
+            default:
+                spawnItem = new ItemInfo[5];//돌추가되면 갯수바까야함
+                for (int i = 0; i < spawnItem.Length; ++i)
+                {
+                    spawnItem[i] = itemDatabase.GetItemByKey(int.Parse("401" + (i + 1).ToString()));
+                }
+                break;
+        }
+
+        int dropIndex = 0;
+        float total = 0;
+        float[] itemPercent = new float[spawnItem.Length];
+
+        for (int i = 0; i < spawnItem.Length; i++)
+        {
+            float percent = spawnItem[i].DropPercent;
+            itemPercent[i] = percent;
+            total += percent;
+        }
+
+        float randomPoint = Random.value * total;
+
+        for (int i = 0; i < itemPercent.Length; i++)
+        {
+            if (randomPoint <= itemPercent[i])
+            {
+                dropIndex = i;
+                break;
+            }
+            else
+                randomPoint -= itemPercent[i];
+        }
+
+        return spawnItem[dropIndex];
     }
 
     public void SpriteChange(Season current)

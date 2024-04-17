@@ -46,6 +46,7 @@ public class UIManager : Manager
         EnengyBarSetting();
 
         playerImage = playerObj.GetComponent<RectTransform>();
+        playerImage.anchoredPosition = new Vector2(528, 186);//시작할때 위치 나중에 저장해서
 
         inventoryUI.Init(gameManager, this, player);
     }
@@ -64,20 +65,20 @@ public class UIManager : Manager
             case PlayerMap.Farm:
                 playerImage.anchoredPosition = new Vector2(528, 186);
                 break;
-            case PlayerMap.FarmRoad:
-                playerImage.anchoredPosition = new Vector2(29, 359);
+            case PlayerMap.FarmToTown:
+                playerImage.anchoredPosition = new Vector2(267, 134);
                 break;
             case PlayerMap.Town:
                 playerImage.anchoredPosition = new Vector2(50, 134);
                 break;
-            case PlayerMap.TownRoad:
-                playerImage.anchoredPosition = new Vector2(267, 134);
+            case PlayerMap.TownToForest:
+                playerImage.anchoredPosition = new Vector2(-176, 138);
                 break;
             case PlayerMap.Forest:
                 playerImage.anchoredPosition = new Vector2(-501, 151);
                 break;
-            case PlayerMap.ForestRoad:
-                playerImage.anchoredPosition = new Vector2(-176, 138);
+            case PlayerMap.FarmToForest:
+                playerImage.anchoredPosition = new Vector2(29, 359);
                 break;
             case PlayerMap.Beach:
                 playerImage.anchoredPosition = new Vector2(37, -129);
