@@ -182,6 +182,7 @@ public class PlayerInputController : CharacterEventController
 
         /*ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
           player.currentSelectItemId = iteminfo.ID;*/
+        //슬롯선택 선택을했을때 그 슬롯의 아이템인포를 가져와야함
     }
     public void OnWater(InputValue value)//2
     {
