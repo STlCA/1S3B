@@ -176,6 +176,9 @@ public class NatureObjectController : Manager
 
     private void StartSpawn()
     {
+        PointSpawnTree(100);
+        PointSpawnStone(100);
+
         RangeSpawnTree(20, SpawnType.Farm);
         RangeSpawnStone(20, SpawnType.Farm);
 
@@ -281,9 +284,9 @@ public class NatureObjectController : Manager
     }
 
 
-    public void PointSpawnTree()
+    public void PointSpawnTree(float percent)
     {
-        float percentage = 50;
+        float percentage = percent;
         float randomPoint;
 
         foreach (var (cell, tempData) in treeData)
@@ -301,6 +304,36 @@ public class NatureObjectController : Manager
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
 
                     ChangeCategoryLabel(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
+                }
+            }
+        }
+    }
+
+    public void PointSpawnStone(float percent)
+    {
+        float percentage = percent;
+        float randomPoint;
+
+        foreach (var (cell, tempData) in stoneData)
+        {
+            if (tempData.isSpawn == false)
+            {
+                randomPoint = Random.Range(0, 101);
+                if (randomPoint < percentage)
+                {
+                    tempData.stoneObj = RandomTree();
+
+                    tempData.isSpawn = true;
+                    tempData.stoneObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
+                    tempData.animator = tempData.stoneObj.GetComponentInChildren<Animator>();
+
+                    int random = Random.Range(1, 11);
+                    if (random <= 2)
+                        tempData.type = StoneType.RANDOMSTONE;
+                    else
+                        tempData.type = StoneType.STONE;
+
+                    tempData.stoneObj.GetComponentInChildren<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)tempData.type).ToString());
                 }
             }
         }

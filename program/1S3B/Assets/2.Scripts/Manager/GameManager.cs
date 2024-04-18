@@ -123,7 +123,8 @@ public class GameManager : MonoBehaviour
         WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
 
         natureObjectController.SpawnNature();
-        natureObjectController.PointSpawnTree();
+        natureObjectController.PointSpawnTree(50);
+        natureObjectController.PointSpawnStone(50);
 
         natureObjectController.RangeSpawnTree(1, SpawnType.UpForest);
         natureObjectController.RangeSpawnTree(1, SpawnType.DownForest);
