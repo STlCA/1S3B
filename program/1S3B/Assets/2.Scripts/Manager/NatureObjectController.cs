@@ -321,8 +321,7 @@ public class NatureObjectController : Manager
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint < percentage)
                 {
-                    tempData.stoneObj = RandomTree();
-
+                    tempData.stoneObj = Instantiate(stonePrefab);
                     tempData.isSpawn = true;
                     tempData.stoneObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
                     tempData.animator = tempData.stoneObj.GetComponentInChildren<Animator>();
