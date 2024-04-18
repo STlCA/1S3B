@@ -1,6 +1,24 @@
 {
 	"ItemData": [
 		{
+			"ID": 1000,
+			"Name": "손",
+			"Description": [
+				"기본 상태"
+			],
+			"Type": "Equip",
+			"EquipType": "Hand",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 1,
+			"Path": "Equip",
+			"SpriteName": [
+				"Hand"
+			],
+			"DropPercent": 0
+		},
+		{
 			"ID": 1001,
 			"Name": "괭이",
 			"Description": [
@@ -16,7 +34,7 @@
 			"SpriteName": [
 				"Hoe1"
 			],
-			"DropPercent": -1
+			"DropPercent": 0
 		},
 		{
 			"ID": 1002,
@@ -34,7 +52,7 @@
 			"SpriteName": [
 				"Water1"
 			],
-			"DropPercent": -1
+			"DropPercent": 0
 		},
 		{
 			"ID": 1003,
@@ -52,7 +70,7 @@
 			"SpriteName": [
 				"PickAxe1"
 			],
-			"DropPercent": -1
+			"DropPercent": 0
 		},
 		{
 			"ID": 1004,
@@ -70,7 +88,7 @@
 			"SpriteName": [
 				"Axe1"
 			],
-			"DropPercent": -1
+			"DropPercent": 0
 		},
 		{
 			"ID": 1005,
@@ -88,7 +106,7 @@
 			"SpriteName": [
 				"Sword1"
 			],
-			"DropPercent": -1
+			"DropPercent": 0
 		},
 		{
 			"ID": 2001,

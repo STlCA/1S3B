@@ -34,8 +34,6 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
-
-    public PlayerEquipmentType currentSelectType { get; set; }
     public ItemInfo selectItem { get; set; }
 
     public Vector3 playerPosition { get; set; }
