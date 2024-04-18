@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
 
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
+    //public QuickSlotUI QuickSlot { get { return quickSlotUI; } }
+    //private QuickSlotUI quickSlotUI;
+    
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
@@ -60,6 +63,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
+        inventory.Init();
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
     }

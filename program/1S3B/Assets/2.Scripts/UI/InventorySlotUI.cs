@@ -9,7 +9,7 @@ using UnityEngine.UI;
 // 슬롯 초기화
 // 슬롯 창 위에서 마우스 움직임 제어 (해당 슬롯에 있는 것 정보 띄우기)
 
-public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Inventory inventory;
     public InventoryUI inventoryUI;
@@ -129,5 +129,16 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     {
         inventoryUI._selectedItemName.text = displayName;
         inventoryUI._selectedItemDescription.text = description;
+    }
+
+    // 아이템 클릭했을 때
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(_item == null)
+        {
+            return;
+        }
+
+        inventory.UseItem(this, _item);
     }
 }

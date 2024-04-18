@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     private InventorySlotUI _selectedItem;
     private int _selectedItemIndex;
 
-    private void Start()
+    public void Init()
     {
         player = GetComponent<Player>();
         gameManager = GameManager.Instance;
@@ -116,21 +116,6 @@ public class Inventory : MonoBehaviour
         return items[items.Count + 1];
     }
 
-    // 아이템 제거
-    private void RemoveSelectedItem(Item item)
-    {
-        items.Remove(item);
-
-        //_selectedItem.quantity--;
-
-        //    if (_selectedItem.quantity <= 0)
-        //    {
-        //        _selectedItem.iteminstance.item = null;
-        //    }
-
-        //    UpdateUI();
-    }
-
     // 아이템 선택
     public Item GetItem(int idx)
     {
@@ -144,10 +129,10 @@ public class Inventory : MonoBehaviour
     }
 
     // 아이템 선택
-    public void SelectItem(InventorySlotUI _item)
+    public void SelectItem(InventorySlotUI item)
     {
-        _selectedItem = _item;
-        _selectedItemIndex = _item.index;
+        _selectedItem = item;
+        _selectedItemIndex = item.index;
 
         string infoString = "";
 
@@ -157,5 +142,48 @@ public class Inventory : MonoBehaviour
         }
 
         _selectedItem.UpdateItemInfo(_selectedItem._item.ItemInfo.Name, infoString);
+    }
+
+    // 아이템 사용
+    public void UseItem(InventorySlotUI slot, Item item)
+    {
+        //_selectedItem = item;
+        //_selectedItemIndex = item.index;
+
+        // 아이템이 장착 아이템이라면
+        if (item.ItemInfo.Type == "Equip")
+        {
+            EquipItem();
+            return;
+        }
+
+        item.quantity--;
+
+        if (item.quantity <= 0)
+        {
+            RemoveSelectedItem(slot, item);
+        }
+    }
+
+    // 아이템 장착
+    public void EquipItem()
+    {
+
+    }
+
+    // 아이템 제거
+    private void RemoveSelectedItem(InventorySlotUI slot, Item item)
+    {
+        items.Remove(item);
+        slot.Clear();
+
+        //_selectedItem.quantity--;
+
+        //    if (_selectedItem.quantity <= 0)
+        //    {
+        //        _selectedItem.iteminstance.item = null;
+        //    }
+
+        //    UpdateUI();
     }
 }
