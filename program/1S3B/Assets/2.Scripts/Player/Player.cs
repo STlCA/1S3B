@@ -60,8 +60,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        inventory = GetComponent<Inventory>();
-        inventory.Init();
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
     }
@@ -74,6 +72,9 @@ public class Player : MonoBehaviour
         Init();        
 
         playerState = PlayerState.IDLE;
+
+        inventory = GetComponent<Inventory>();
+        inventory.Init(gameManager);
 
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
