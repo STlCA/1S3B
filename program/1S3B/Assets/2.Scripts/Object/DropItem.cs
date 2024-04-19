@@ -16,7 +16,7 @@ public class DropItem : MonoBehaviour
 
     //Drop
     private int maxBounce = 3;
-    private float xForce = 5;
+    private float xForce = 3;
     private float yForce = 7;
     private float gravity = 25;
 

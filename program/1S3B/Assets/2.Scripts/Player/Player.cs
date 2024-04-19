@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
+    public ItemInfo selectItem { get; set; }
 
-    public PlayerEquipmentType currentSelect { get; set; }
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
     public int playerGold { get; private set; }
@@ -58,8 +58,6 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    public GameObject equipment;//게임시작전에 얼굴가려짐
-
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -80,8 +78,6 @@ public class Player : MonoBehaviour
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
         weatherSystem.IsRainAction += UseEnergyAmount;
-
-        equipment.SetActive(true);
     }
 
     private void Init()

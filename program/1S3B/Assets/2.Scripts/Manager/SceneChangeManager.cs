@@ -16,6 +16,9 @@ public class SceneChangeManager : Manager
     private GameObject startCam;
     private GameObject endCam;
 
+    private Vector3 playerPos;
+    private string changeSceneName;
+
     private float fadeTime = 1f;
     private float waitTime = 1f;
     private float time = 0f;
@@ -166,8 +169,8 @@ public class SceneChangeManager : Manager
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
-            fadeCount += 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
+            fadeCount += 0.02f;
+            yield return new WaitForSecondsRealtime(0.0001f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
@@ -183,8 +186,8 @@ public class SceneChangeManager : Manager
 
         while (fadeCount >= 0f)
         {
-            fadeCount -= 0.01f;
-            yield return new WaitForSecondsRealtime(0.005f);
+            fadeCount -= 0.02f;
+            yield return new WaitForSecondsRealtime(0.0001f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
 
@@ -248,4 +251,60 @@ public class SceneChangeManager : Manager
     }
 
 
+
+    public void SceneChangeSetting(string sceneName,Vector3 playerPos)
+    {
+        changeSceneName = sceneName;
+        this.playerPos = playerPos;
+
+        StartCoroutine("LoadingScene");        
+    }
+
+    private IEnumerator LoadingScene()
+    {
+        yield return StartCoroutine("SceneChangeFadeIn");
+
+        AsyncOperation loading = SceneManager.LoadSceneAsync(changeSceneName);//,LoadSceneMode.Additive        
+
+        while (!loading.isDone) //씬 로딩 완료시 로딩완료시 완료된다.
+        {
+            yield return null;
+        } 
+
+        player.playerPosition = playerPos;
+        player.ChangePosition();
+
+        yield return StartCoroutine("SceneChangeFadeOut");
+    }
+    private IEnumerator SceneChangeFadeIn()
+    {
+        fadeImage.gameObject.SetActive(true);
+
+        Color alpha = fadeImage.color;
+        time = 0f;
+
+        while (alpha.a < 1f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(0, 1, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        time = 0f;
+    }
+    public IEnumerator SceneChangeFadeOut()
+    {
+        Color alpha = fadeImage.color;
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / fadeTime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadeImage.color = alpha;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false);
+    }
 }

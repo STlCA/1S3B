@@ -21,6 +21,15 @@ public class Npc : MonoBehaviour, ITalk
 
     private NpcStateMachine npcStateMachine;
 
+    GameManager gameManager;
+    DataManager dataManager;  
+    NpcDataBese npcDataBese;
+    TalksDatabese talksDatabese;
+
+    NpcInfo npcInfo;
+    TalkInfo talkInfo;
+
+    public int npcId;
 
     //[SerializeField] public Transform[] wayPoints;
 
@@ -41,6 +50,14 @@ public class Npc : MonoBehaviour, ITalk
 
         RandomStartState();
         StartPosition();
+        gameManager = GameManager.Instance;
+        dataManager = gameManager.DataManager;
+
+        npcDataBese = dataManager.npcDatabese;
+        talksDatabese = dataManager.talksDatabese;
+
+        npcInfo = npcDataBese.GetNpcByKey(npcId);
+        talkInfo = talksDatabese.GetTalkByKey(npcInfo.talk_Id);
     }
 
     private void StartPosition()
@@ -86,5 +103,31 @@ public class Npc : MonoBehaviour, ITalk
     {
         // 대화 진행
         Debug.Log("대화 시도");
+
+        if(talkInfo.npcDialogue == null)
+        {
+            gameManager.talkPanel.SetActive(false);
+        }
+        else
+        {
+            gameManager.talkPanel.SetActive(true);
+            StartCoroutine("PrintDialogue");
+        }
+    }
+
+    IEnumerator PrintDialogue()
+    {
+        for (int i = 0; i < talkInfo.npcDialogue.Count; i++)
+        {
+            Debug.Log(talkInfo.npcDialogue[i]);
+            gameManager.npcNameText.text = npcInfo.npcName;
+            gameManager.talkText.text = talkInfo.npcDialogue[i];
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
+    public void CloseTalkPanel()
+    {
+        gameManager.talkPanel.SetActive(false);
     }
 }

@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hand",
+                    "type": "Button",
+                    "id": "b88adb4d-96f6-4545-8c29-1d384aeb109a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Hoe",
                     "type": "Button",
                     "id": "42748b62-f544-48f6-8119-2c17ccc7d7c0",
@@ -135,6 +144,15 @@
                     "name": "Carry",
                     "type": "Button",
                     "id": "4323f895-7034-48a3-b1aa-23303102e51e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipPickUp",
+                    "type": "Button",
+                    "id": "aade7704-41be-4b75-bcf0-79e5a9f41313",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -381,6 +399,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Carry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cb0658c-69b6-4397-95df-9f9b3dfea2c2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipPickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e6121d2-78b7-471c-a325-fa9eef86b61f",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

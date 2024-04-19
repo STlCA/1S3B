@@ -43,8 +43,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text DayText;
 
     [Header("Talk")]
+    public GameObject talkPanel;
     public TMP_Text talkText;
-    public GameObject scanObject;
+    public TMP_Text npcNameText;
 
     //============================================
     public T GetManager<T>() where T : Manager
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -98,8 +100,6 @@ public class GameManager : MonoBehaviour
 
             TimeText.text = DayCycleHandler.GetTimeAsString();
         //시간텍스트 바꾸기
-
-
     }
 
     public void DayOverTime()
@@ -123,11 +123,12 @@ public class GameManager : MonoBehaviour
         WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
 
         natureObjectController.SpawnNature();
-        natureObjectController.PointSpawnTree();
+        natureObjectController.PointSpawnTree(50);
+        natureObjectController.PointSpawnStone(50);
 
-        natureObjectController.RangeSpawnTree(1, SpawnType.UpForest);
-        natureObjectController.RangeSpawnTree(1, SpawnType.DownForest);
-        natureObjectController.RangeSpawnStone(1, SpawnType.Quarry);
+        natureObjectController.RangeSpawnTree(1, SpawnPlace.UpForest);
+        natureObjectController.RangeSpawnTree(1, SpawnPlace.DownForest);
+        natureObjectController.RangeSpawnStone(2, SpawnPlace.Quarry);
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
@@ -135,9 +136,4 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
-    public void TalkAction(GameObject scanObj)
-    {
-        scanObject = scanObj;
-        talkText.text = "이것의 이름은 : " + scanObject.name + "이라고 한다.";
-    }
 }

@@ -9,6 +9,8 @@ public class TalkManager : MonoBehaviour
     private Dictionary<int, string> npcName;
     //public Sprite[] portraitArr;
 
+    public TalksDatabese talksDatabese;
+
     private void Awake()
     {
         talkData = new Dictionary<int, string[]>();
@@ -26,17 +28,4 @@ public class TalkManager : MonoBehaviour
             return talkData[id][talkIndex];
         }
     }
-
-    /*public Sprite GetPortrait(int id, int portraitIndex)
-    {
-        return portraitData[id + portraitIndex];
-    }*/
-
-    public string GetNpcName(int id)
-    {
-        npcName.Add(1000, "¿œπ›¿Œ");
-
-        return npcName[id];
-    }
-   
 }

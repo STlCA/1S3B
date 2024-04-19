@@ -32,25 +32,25 @@ public class MapTrigger : MonoBehaviour
         {
             switch (type)
             {
-                case MapTriggerType.Farm_FarmRoad:
+                case MapTriggerType.Farm_FarmToTown:
                     player.playerPosition = new Vector3(-23.5f, 1f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.FarmRoad);
+                    uiManager.MiniMapPosition(PlayerMap.FarmToTown);
                     break;
-                case MapTriggerType.FarmRoad_Town:
-                    player.playerPosition = new Vector3(45.6f, 1f, 0f);
+                case MapTriggerType.FarmToTown_Town:
+                    player.playerPosition = new Vector3(-45.6f, 1f, 0f);
                     uiManager.MiniMapPosition(PlayerMap.Town);
                     break;
-                case MapTriggerType.Town_FarmRoad:
+                case MapTriggerType.Town_FarmToTown:
                     player.playerPosition = new Vector3(-41.5f, 1f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.FarmRoad);
+                    uiManager.MiniMapPosition(PlayerMap.FarmToTown);
                     break;
-                case MapTriggerType.FarmRoad_Farm:
+                case MapTriggerType.FarmToTown_Farm:
                     player.playerPosition = new Vector3(-19f, 0.7f, 0f);
                     uiManager.MiniMapPosition(PlayerMap.Farm);
                     break;
                 case MapTriggerType.Farm_ForestRoad:
                     player.playerPosition = new Vector3(-13.95f, 30.6f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.ForestRoad);
+                    uiManager.MiniMapPosition(PlayerMap.FarmToForest);
                     break;
                 case MapTriggerType.ForestRoad_Forest:
                     player.playerPosition = new Vector3(-144f, 25.5f, 0f);
@@ -58,7 +58,7 @@ public class MapTrigger : MonoBehaviour
                     break;
                 case MapTriggerType.Forest_ForestRoad:
                     player.playerPosition = new Vector3(-57.5f, 30.5f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.ForestRoad);
+                    uiManager.MiniMapPosition(PlayerMap.FarmToForest);
                     break;
                 case MapTriggerType.ForestRoad_Farm:
                     player.playerPosition = new Vector3(-13.95f, 24.4f, 0f);
@@ -74,7 +74,7 @@ public class MapTrigger : MonoBehaviour
                     break;
                 case MapTriggerType.Town_TownRoad:
                     player.playerPosition = new Vector3(-108f, -4.3f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.TownRoad);
+                    uiManager.MiniMapPosition(PlayerMap.TownToForest);
                     break;
                 case MapTriggerType.TownRoad_Forest:
                     player.playerPosition = new Vector3(-134.77f, -3.67f, 0f);
@@ -82,7 +82,7 @@ public class MapTrigger : MonoBehaviour
                     break;
                 case MapTriggerType.Forest_TownRoad:
                     player.playerPosition = new Vector3(-129f, -4.5f, 0f);
-                    uiManager.MiniMapPosition(PlayerMap.TownRoad);
+                    uiManager.MiniMapPosition(PlayerMap.TownToForest);
                     break;
                 case MapTriggerType.TownRoad_Town:
                     player.playerPosition = new Vector3(-102f, -4f, 0f);
@@ -140,7 +140,7 @@ public class MapTrigger : MonoBehaviour
             }
 
             sceneChangeManager.CallMapChangeEvent(true);
-            sceneChangeManager.MapChangeSetting(startCam, endCam, 0.5f, 1f);
+            sceneChangeManager.MapChangeSetting(startCam, endCam, 0.0001f, 0.1f);
         }
     }
 }

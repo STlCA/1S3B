@@ -59,4 +59,36 @@ Found object mark: '#ItemData[{}]'
  Key: Path at 10
 [Item_Data.xlsx(Sheet1): ROW 1]
  Key: SpriteName[] at 11
+[Item_Data.xlsx(Sheet1): ROW 1]
+ Key: DropPercent at 12
+Parsing Array Object Table...
+
+Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Npc_Data.xlsx
+Parse sheet: Sheet1
+Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Npc_Data.xlsx.$$$\Sheet1.csv
+Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Npc_Data.xlsx
+------------------------------------------------------------------------------
+[Npc_Data.xlsx(Sheet1): ROW 1]
+Found object mark: '#NpcData[{}]'
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcId at 1
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcName at 2
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: npcSprite_path at 3
+[Npc_Data.xlsx(Sheet1): ROW 1]
+ Key: talk_Id at 4
+Parsing Array Object Table...
+
+Loading: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Talk_Data.xlsx
+Parse sheet: TalkDataFile2
+Parsing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Talk_Data.xlsx.$$$\TalkDataFile2.csv
+Closing: E:\Programming\STIKA\Unity\1S3B\program\1S3B\RawData\Talk_Data.xlsx
+------------------------------------------------------------------------------
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+Found object mark: '#TalkData[{}]'
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+ Key: Id at 1
+[Talk_Data.xlsx(TalkDataFile2): ROW 1]
+ Key: npcDialogue[] at 2
 Parsing Array Object Table...
