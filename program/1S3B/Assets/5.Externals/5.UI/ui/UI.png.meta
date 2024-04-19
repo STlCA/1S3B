@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -147,7 +147,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: cash_00
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 58
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 3, z: 3, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c24fe28353821e944989e5d9ae08b5cf
+      internalID: -2084460665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quickSlot_00
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 206
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 4, z: 7, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1849eed9382ccc4ebf6ffd0188186c5
+      internalID: -1191125423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +200,119 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_0: -667889063
+      UI_1: -248371593
+      UI_10: -466868197
+      UI_100: -103350749
+      UI_101: 497446963
+      UI_102: 2089958302
+      UI_103: -757592571
+      UI_104: 650042994
+      UI_105: -1816895316
+      UI_106: 654473300
+      UI_107: 2095696603
+      UI_108: -1310515152
+      UI_109: 1995178318
+      UI_11: -1914576100
+      UI_110: -1463484694
+      UI_12: -1412147768
+      UI_13: -1348564648
+      UI_14: -1734353877
+      UI_15: 734006891
+      UI_16: -1199635598
+      UI_17: 1874248733
+      UI_18: 1565688500
+      UI_19: -1210275366
+      UI_2: 1019270761
+      UI_20: -1683862578
+      UI_21: 1927767178
+      UI_22: -1773104486
+      UI_23: 1389686451
+      UI_24: 2144468452
+      UI_25: -1116463364
+      UI_26: 876326522
+      UI_27: 106416222
+      UI_28: 1138115810
+      UI_29: 1581769414
+      UI_3: 1319896037
+      UI_30: 86364808
+      UI_31: -1035367094
+      UI_32: -237801682
+      UI_33: 1397985083
+      UI_34: -1755846681
+      UI_35: -738457000
+      UI_36: 314403304
+      UI_37: -1217499856
+      UI_38: -1185066123
+      UI_39: -1088005539
+      UI_4: -1204179448
+      UI_40: -1154569646
+      UI_41: 645986363
+      UI_42: -1200562166
+      UI_43: -260241421
+      UI_44: -847196741
+      UI_45: -1861042574
+      UI_46: -2067927605
+      UI_47: -866333301
+      UI_48: -1358388125
+      UI_49: 1197363660
+      UI_5: 276863049
+      UI_50: 773768517
+      UI_51: 752077516
+      UI_52: 1200008910
+      UI_53: 168997191
+      UI_54: -1252751822
+      UI_55: 1308830366
+      UI_56: 1438392805
+      UI_57: 108152372
+      UI_58: -1456625189
+      UI_59: 484761137
+      UI_6: 1848427791
+      UI_60: 1871625040
+      UI_61: -174157832
+      UI_62: 355728381
+      UI_63: -1790329643
+      UI_64: -1476625716
+      UI_65: 193663380
+      UI_66: -1738968103
+      UI_67: -2105587869
+      UI_68: -1478224083
+      UI_69: -1057241338
+      UI_7: 1280316520
+      UI_70: -208789682
+      UI_71: 59787898
+      UI_72: -371765265
+      UI_73: 1227809935
+      UI_74: 1887112004
+      UI_76: 1402932935
+      UI_77: 1940302027
+      UI_78: -1838996584
+      UI_79: -1705837328
+      UI_8: -1018757281
+      UI_80: -1775589328
+      UI_81: -961392130
+      UI_82: -299482259
+      UI_83: -554106542
+      UI_84: 1153948660
+      UI_85: -235846552
+      UI_86: 469350424
+      UI_87: -1626656029
+      UI_88: -1568393291
+      UI_89: -2086068643
+      UI_9: 286194957
+      UI_90: 748662515
+      UI_91: -922793384
+      UI_92: 1267979223
+      UI_93: -504988888
+      UI_94: 161060811
+      UI_95: -1732340566
+      UI_96: 344378908
+      UI_97: 473606715
+      UI_98: -639547773
+      UI_99: -75153900
+      cash_00: -2084460665
+      quickSlot_00: -1191125423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
