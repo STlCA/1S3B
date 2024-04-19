@@ -173,5 +173,6 @@ namespace Constants
     public enum SceneChangeType
     {
         Home,
+        Shop,
     }
 }

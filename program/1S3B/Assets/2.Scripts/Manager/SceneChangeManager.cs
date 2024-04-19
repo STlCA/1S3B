@@ -269,7 +269,10 @@ public class SceneChangeManager : Manager
         while (!loading.isDone) //씬 로딩 완료시 로딩완료시 완료된다.
         {
             yield return null;
-        }
+        } 
+
+        player.playerPosition = playerPos;
+        player.ChangePosition();
 
         yield return StartCoroutine("SceneChangeFadeOut");
     }
