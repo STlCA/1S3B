@@ -186,4 +186,12 @@ public class Inventory : MonoBehaviour
 
         //    UpdateUI();
     }
+
+    // 아이템 퀵슬롯에 장착
+    public void InputQuickSlot(InventorySlotUI slot, Item item)
+    {
+        //Item tmpItem = item;
+        RemoveSelectedItem(slot, item);
+        //return tmpItem;
+    }
 }

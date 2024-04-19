@@ -139,6 +139,13 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
             return;
         }
 
-        inventory.UseItem(this, _item);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            inventory.UseItem(this, _item);
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            inventory.InputQuickSlot(this, _item);
+        }
     }
 }
