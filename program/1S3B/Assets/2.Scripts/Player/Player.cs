@@ -60,12 +60,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        animationController = GetComponent<AnimationController>();
-        characterEventController = GetComponent<CharacterEventController>();
     }
 
     public void Init(GameManager gameManager)
     {
+        animationController = GetComponent<AnimationController>();
+        characterEventController = GetComponent<CharacterEventController>();
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
