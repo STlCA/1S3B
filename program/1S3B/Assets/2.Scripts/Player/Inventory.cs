@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     private InventorySlotUI _selectedItem;
     private int _selectedItemIndex;
 
-    public void Init()
+    public void Init(GameManager gameManager)
     {
         player = GetComponent<Player>();
         gameManager = GameManager.Instance;
