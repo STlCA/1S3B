@@ -58,14 +58,11 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    private void Awake()
-    {
-    }
-
     public void Init(GameManager gameManager)
     {
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
+
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
