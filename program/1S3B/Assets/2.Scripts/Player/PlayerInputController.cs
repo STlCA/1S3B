@@ -146,7 +146,8 @@ public class PlayerInputController : CharacterEventController
         if (MoveException(moveInput) == false)
             return;
 
-        if (player.currentSelect == PlayerEquipmentType.Carry)
+        //if (player.currentSelectType == PlayerEquipmentType.Carry)
+        if (player.selectItem != null && (player.selectItem.Type == "Item" || player.selectItem.Type == "Crop"))
             CallMoveEvent(moveInput, false, true);
         else
             CallMoveEvent(moveInput);
@@ -168,62 +169,75 @@ public class PlayerInputController : CharacterEventController
     }
     public void OnHand(InputValue value)//0
     {
-        player.currentSelect = PlayerEquipmentType.Hand;
         uiManager.EquipIconChange(PlayerEquipmentType.Hand);
 
         animController.CarryAnimation(false);
+
+        player.selectItem = null;
     }
     public void OnHoe(InputValue value)//1
     {
-        player.currentSelect = PlayerEquipmentType.Hoe;
         uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
 
         animController.CarryAnimation(false);
 
-        /*ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
-          player.currentSelectItemId = iteminfo.ID;*/
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
+        player.selectItem = iteminfo;
+        //슬롯선택 선택을했을때 그 슬롯의 아이템인포를 가져와야
     }
     public void OnWater(InputValue value)//2
     {
-        player.currentSelect = PlayerEquipmentType.Water;
         uiManager.EquipIconChange(PlayerEquipmentType.Water);
 
         animController.CarryAnimation(false);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
+        player.selectItem = iteminfo;
     }
     public void OnAxe(InputValue value)//3
     {
-        player.currentSelect = PlayerEquipmentType.Axe;
         uiManager.EquipIconChange(PlayerEquipmentType.Axe);
 
         animController.CarryAnimation(false);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1004);
+        player.selectItem = iteminfo;
     }
     public void OnPickAxe(InputValue value)//4
     {
-        player.currentSelect = PlayerEquipmentType.PickAxe;
         uiManager.EquipIconChange(PlayerEquipmentType.PickAxe);
 
         animController.CarryAnimation(false);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1003);
+        player.selectItem = iteminfo;
     }
     public void OnSword(InputValue value)//5
     {
-        player.currentSelect = PlayerEquipmentType.Sword;
         uiManager.EquipIconChange(PlayerEquipmentType.Sword);
 
         animController.CarryAnimation(false);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1005);
+        player.selectItem = iteminfo;
     }
     public void OnSeed(InputValue value)//6
     {
-        player.currentSelect = PlayerEquipmentType.Seed;
         uiManager.EquipIconChange(PlayerEquipmentType.Seed);
 
         animController.CarryAnimation(false);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(2001);
+        player.selectItem = iteminfo;
     }
     public void OnCarry(InputValue value)//7
     {
-        player.currentSelect = PlayerEquipmentType.Carry;
         uiManager.EquipIconChange(PlayerEquipmentType.Carry);
 
         animController.CarryAnimation(true);
+
+        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(5002);
+        player.selectItem = iteminfo;
     }
 
     public void OnUse(InputValue value)
@@ -258,33 +272,48 @@ public class PlayerInputController : CharacterEventController
 
         isUseEnergy = false;
 
-        switch (player.currentSelect)
+        if (player.selectItem != null)
         {
-            case PlayerEquipmentType.Hand:
-                UsePickUp(PlayerEquipmentType.PickUp, pos);
-                break;
-            case PlayerEquipmentType.Hoe:
-                UseHoe(PlayerEquipmentType.Hoe, pos);
-                break;
-            case PlayerEquipmentType.Seed:
-                UseSeed(PlayerEquipmentType.Seed, pos);
-                break;
-            case PlayerEquipmentType.Water:
-                UseWater(PlayerEquipmentType.Water, pos);
-                break;
-            case PlayerEquipmentType.Axe:
-                UseAxe(PlayerEquipmentType.Axe, pos);
-                break;
-            case PlayerEquipmentType.PickAxe:
-                UsePickAxe(PlayerEquipmentType.PickAxe, pos);
-                break;
-            case PlayerEquipmentType.Carry://언젠간 버리는모션도
-                break;
-            case PlayerEquipmentType.Sword:
-                break;
-            default:
-                break;
+            switch (player.selectItem.Type)
+            {
+                case "Crop":
+                    UseSeed(PlayerEquipmentType.Seed, pos);
+                    break;
+
+                case "Equip":
+                    switch (player.selectItem.EquipType)
+                    {
+                        case "Hoe":
+                            UseHoe(PlayerEquipmentType.Hoe, pos);
+                            break;
+                        case "Water":
+                            UseWater(PlayerEquipmentType.Water, pos);
+                            break;
+                        case "Axe":
+                            UseAxe(PlayerEquipmentType.Axe, pos);
+                            break;
+                        case "PickAxe":
+                            UsePickAxe(PlayerEquipmentType.PickAxe, pos);
+                            break;
+                    }
+                    break;
+
+                    /*case PlayerEquipmentType.Water:
+
+                    case PlayerEquipmentType.Axe:
+
+                    case PlayerEquipmentType.PickAxe:
+
+                    case PlayerEquipmentType.Carry://언젠간 버리는모션도
+                        break;
+                    case PlayerEquipmentType.Sword:
+                        break;
+                    default:
+                        break;*/
+            }
         }
+        else
+            UsePickUp(PlayerEquipmentType.PickUp, pos);
 
         /*if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
         {

@@ -142,7 +142,7 @@ namespace Constants
         Winter
     }
 
-    public enum SpawnType
+    public enum SpawnPlace
     {
         NaturePoint,
         TreePoint,
@@ -168,5 +168,11 @@ namespace Constants
     {
         STONE = 0,
         RANDOMSTONE,
+    }
+
+    public enum SceneChangeType
+    {
+        Home,
+        Shop,
     }
 }
