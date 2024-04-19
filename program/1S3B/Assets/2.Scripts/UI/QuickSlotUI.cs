@@ -4,34 +4,41 @@ using UnityEngine;
 
 public class QuickSlotUI : MonoBehaviour
 {
-    // Manager, Data
-    GameManager gameManager;
-    UIManager uiManager;
-    DataManager dataManager;
-    ItemDatabase itemDatabase;
+    //// Manager, Data
+    //GameManager gameManager;
+    //UIManager uiManager;
+    //DataManager dataManager;
+    //ItemDatabase itemDatabase;
 
-    // Script
-    Player player;
-    Inventory inventory;
-    SlotUI slotUI;
+    //// Script
+    //Player player;
+    //Inventory inventory;
+    //SlotUI slotUI;
 
-    [SerializeField] private SlotUI[] slots;
-
-    public void Init(GameManager gameManager, UIManager uiManager, Player player)
+    public void Init()
     {
-        this.player = player;
-        inventory = player.Inventory;
+        //this.player = player;
+        //inventory = player.Inventory;
 
-        this.gameManager = gameManager;
-        this.uiManager = uiManager;
-        dataManager = gameManager.DataManager;
+        //this.gameManager = gameManager;
+        //this.uiManager = uiManager;
+        //dataManager = gameManager.DataManager;
 
-        itemDatabase = dataManager.itemDatabase;
+        //itemDatabase = dataManager.itemDatabase;
 
-        // 퀵 슬롯 길이 초기화
-        slots = new SlotUI[9];
+        QuickSlotEnable();
+    }
 
+    // 퀵 슬롯 활성화
+    public void QuickSlotEnable()
+    {
         gameObject.SetActive(true);
+    }
+
+    // 퀵 슬롯 비활성화
+    public void QuickSlotDisable()
+    {
+        gameObject.SetActive(false);
     }
 
     void Start()
