@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hand",
+                    "type": "Button",
+                    "id": "b88adb4d-96f6-4545-8c29-1d384aeb109a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Hoe",
                     "type": "Button",
                     "id": "42748b62-f544-48f6-8119-2c17ccc7d7c0",
@@ -401,6 +410,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "EquipPickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e6121d2-78b7-471c-a325-fa9eef86b61f",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

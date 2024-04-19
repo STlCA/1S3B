@@ -176,44 +176,47 @@ public class NatureObjectController : Manager
 
     private void StartSpawn()
     {
-        RangeSpawnTree(20, SpawnType.Farm);
-        RangeSpawnStone(20, SpawnType.Farm);
+        PointSpawnTree(100);
+        PointSpawnStone(100);
 
-        RangeSpawnTree(40, SpawnType.UpForest);
-        RangeSpawnStone(20, SpawnType.UpForest);
+        RangeSpawnTree(20, SpawnPlace.Farm);
+        RangeSpawnStone(20, SpawnPlace.Farm);
 
-        RangeSpawnTree(40, SpawnType.DownForest);
-        RangeSpawnStone(20, SpawnType.DownForest);
+        RangeSpawnTree(40, SpawnPlace.UpForest);
+        RangeSpawnStone(20, SpawnPlace.UpForest);
 
-        RangeSpawnStone(40, SpawnType.Quarry);
+        RangeSpawnTree(40, SpawnPlace.DownForest);
+        RangeSpawnStone(20, SpawnPlace.DownForest);
+
+        RangeSpawnStone(40, SpawnPlace.Quarry);
     }
 
     private void SeasonSpawn(Season season)
     {
         if (season == Season.Spring)
         {
-            RangeSpawnTree(20, SpawnType.Farm);
-            RangeSpawnStone(20, SpawnType.Farm);
+            RangeSpawnTree(20, SpawnPlace.Farm);
+            RangeSpawnStone(20, SpawnPlace.Farm);
 
-            RangeSpawnTree(40, SpawnType.UpForest);
-            RangeSpawnStone(20, SpawnType.UpForest);
+            RangeSpawnTree(40, SpawnPlace.UpForest);
+            RangeSpawnStone(20, SpawnPlace.UpForest);
 
-            RangeSpawnTree(40, SpawnType.DownForest);
-            RangeSpawnStone(20, SpawnType.DownForest);
+            RangeSpawnTree(40, SpawnPlace.DownForest);
+            RangeSpawnStone(20, SpawnPlace.DownForest);
 
-            RangeSpawnStone(40, SpawnType.Quarry);
+            RangeSpawnStone(40, SpawnPlace.Quarry);
         }
 
-        RangeSpawnTree(10, SpawnType.Farm);
-        RangeSpawnStone(10, SpawnType.Farm);
+        RangeSpawnTree(10, SpawnPlace.Farm);
+        RangeSpawnStone(10, SpawnPlace.Farm);
 
-        RangeSpawnTree(20, SpawnType.UpForest);
-        RangeSpawnStone(10, SpawnType.UpForest);
+        RangeSpawnTree(20, SpawnPlace.UpForest);
+        RangeSpawnStone(10, SpawnPlace.UpForest);
 
-        RangeSpawnTree(20, SpawnType.DownForest);
-        RangeSpawnStone(10, SpawnType.DownForest);
+        RangeSpawnTree(20, SpawnPlace.DownForest);
+        RangeSpawnStone(10, SpawnPlace.DownForest);
 
-        RangeSpawnStone(20, SpawnType.Quarry);
+        RangeSpawnStone(20, SpawnPlace.Quarry);
     }
 
 
@@ -281,9 +284,9 @@ public class NatureObjectController : Manager
     }
 
 
-    public void PointSpawnTree()
+    public void PointSpawnTree(float percent)
     {
-        float percentage = 50;
+        float percentage = percent;
         float randomPoint;
 
         foreach (var (cell, tempData) in treeData)
@@ -306,27 +309,56 @@ public class NatureObjectController : Manager
         }
     }
 
-    private Vector3 RandomXY(SpawnType type)
+    public void PointSpawnStone(float percent)
+    {
+        float percentage = percent;
+        float randomPoint;
+
+        foreach (var (cell, tempData) in stoneData)
+        {
+            if (tempData.isSpawn == false)
+            {
+                randomPoint = Random.Range(0, 101);
+                if (randomPoint < percentage)
+                {
+                    tempData.stoneObj = Instantiate(stonePrefab);
+                    tempData.isSpawn = true;
+                    tempData.stoneObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
+                    tempData.animator = tempData.stoneObj.GetComponentInChildren<Animator>();
+
+                    int random = Random.Range(1, 11);
+                    if (random <= 2)
+                        tempData.type = StoneType.RANDOMSTONE;
+                    else
+                        tempData.type = StoneType.STONE;
+
+                    tempData.stoneObj.GetComponentInChildren<SpriteResolver>().SetCategoryAndLabel("Stone", ((int)tempData.type).ToString());
+                }
+            }
+        }
+    }
+
+    private Vector3 RandomXY(SpawnPlace type)
     {
         float randomX;
         float randomY;
 
-        if (type == SpawnType.UpForest)
+        if (type == SpawnPlace.UpForest)
         {
             randomX = Random.Range(forestRange[0].position.x, forestRange[1].position.x);
             randomY = Random.Range(forestRange[0].position.y, forestRange[1].position.y);
         }
-        else if (type == SpawnType.DownForest)
+        else if (type == SpawnPlace.DownForest)
         {
             randomX = Random.Range(forestRange[2].position.x, forestRange[3].position.x);
             randomY = Random.Range(forestRange[2].position.y, forestRange[3].position.y);
         }
-        else if (type == SpawnType.Farm)
+        else if (type == SpawnPlace.Farm)
         {
             randomX = Random.Range(farmRange[0].position.x, farmRange[1].position.x);
             randomY = Random.Range(farmRange[0].position.y, farmRange[1].position.y);
         }
-        else if (type == SpawnType.Quarry)
+        else if (type == SpawnPlace.Quarry)
         {
             randomX = Random.Range(quarryRange[0].position.x, quarryRange[1].position.x);
             randomY = Random.Range(quarryRange[0].position.y, quarryRange[1].position.y);
@@ -356,7 +388,7 @@ public class NatureObjectController : Manager
         return true;
     }
 
-    public void RangeSpawnTree(int spawnCount, SpawnType type)
+    public void RangeSpawnTree(int spawnCount, SpawnPlace type)
     {
         Vector3Int randomPos;
 
@@ -387,13 +419,13 @@ public class NatureObjectController : Manager
         }
     }
 
-    public void RangeSpawnStone(int spawnCount, SpawnType type)
+    public void RangeSpawnStone(int spawnCount, SpawnPlace type)
     {
         Vector3Int randomPos;
 
         for (int i = 0; i < spawnCount;)
         {
-            if (stoneData.Count >= 150)
+            if (stoneData.Count >= 200)
                 return;
 
             randomPos = tileManager.baseGrid.WorldToCell(RandomXY(type));
