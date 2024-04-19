@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
         uIManager = GetManager<UIManager>();
 
         player = GetFind<Player>();
+        player.Init(this);
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 

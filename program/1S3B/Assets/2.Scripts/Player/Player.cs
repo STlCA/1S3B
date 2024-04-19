@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         characterEventController = GetComponent<CharacterEventController>();
     }
 
-    private void Start()
+    public void Init(GameManager gameManager)
     {
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
