@@ -15531,6 +15531,7 @@ GameObject:
   - component: {fileID: 7453903779605040904}
   - component: {fileID: 4367807579858029979}
   - component: {fileID: 3191887758952838506}
+  - component: {fileID: 1133043583582441821}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -15554,7 +15555,7 @@ Transform:
   - {fileID: 7601692133921047798}
   - {fileID: 7352419799003553816}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6090136625704993183
 BoxCollider2D:
@@ -15844,3 +15845,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
+  quickSlotUI: {fileID: 0}
+--- !u!114 &1133043583582441821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792754854552026555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33777bdb9a08bb0438827f12208c9ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quickSlotUI: {fileID: 0}
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
