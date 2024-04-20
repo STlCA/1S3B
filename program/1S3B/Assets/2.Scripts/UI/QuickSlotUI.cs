@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class QuickSlotUI : MonoBehaviour
 {
-    //// Manager, Data
-    //GameManager gameManager;
-    //UIManager uiManager;
+    // Manager, Data
+    GameManager gameManager;
+    UIManager uiManager;
     //DataManager dataManager;
     //ItemDatabase itemDatabase;
 
-    //// Script
-    //Player player;
+    // Script
+    Player player;
     //Inventory inventory;
-    //SlotUI slotUI;
+    QuickSlot quickSlot;
+    SlotUI slotUI;
 
-    public void Init()
+    public void Init(GameManager gameManager, UIManager uiManager, Player player)
     {
-        //this.player = player;
-        //inventory = player.Inventory;
+        this.player = player;
+        quickSlot = player.QuickSlot;
 
-        //this.gameManager = gameManager;
-        //this.uiManager = uiManager;
+        this.gameManager = gameManager;
+        this.uiManager = uiManager;
         //dataManager = gameManager.DataManager;
 
         //itemDatabase = dataManager.itemDatabase;
+
+        //slotUI.Init();
 
         QuickSlotEnable();
     }
@@ -41,13 +44,19 @@ public class QuickSlotUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Start()
+    // UI 업데이트
+    public void UpdateUI()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        for (int i = 0; i < quickSlot.items.Length; i++)
+        {
+            if (quickSlot.items[i] != null)
+            {
+                quickSlot.slots[i].Set();
+            }
+            else
+            {
+                quickSlot.slots[i].Clear();
+            }
+        }
     }
 }

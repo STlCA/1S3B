@@ -19,6 +19,7 @@ public class UIManager : Manager
 
     [Header("Image")]
     public GameObject sleepInfoUI;
+    public QuickSlotUI quickSlotUI;
     public InventoryUI inventoryUI;
     public Image equipIcon;
     public SpriteLibraryAsset libraryAsset;
@@ -30,7 +31,7 @@ public class UIManager : Manager
 
     [Header("MiniMap")]
     public Image miniMap;
-    public GameObject playerObj;//¿ÖÀÎÁö RectTransformÀ¸·Î Á÷Á¢ÇÒ´çÇÏ¸é ¾ÈµÊ
+    public GameObject playerObj;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RectTransformï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò´ï¿½ï¿½Ï¸ï¿½ ï¿½Èµï¿½
     private RectTransform playerImage;
 
     private int maxEnergy;
@@ -46,8 +47,9 @@ public class UIManager : Manager
         EnengyBarSetting();
 
         playerImage = playerObj.GetComponent<RectTransform>();
-        playerImage.anchoredPosition = new Vector2(528, 186);//½ÃÀÛÇÒ¶§ À§Ä¡ ³ªÁß¿¡ ÀúÀåÇØ¼­
+        playerImage.anchoredPosition = new Vector2(528, 186);//ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½
 
+        quickSlotUI.Init(gameManager, this, player);
         inventoryUI.Init(gameManager, this, player);
     }
 

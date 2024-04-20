@@ -15,7 +15,10 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     public InventoryUI inventoryUI;
     public Image icon;
     public Item _item;
-    public TextMeshProUGUI quantity; 
+    public TextMeshProUGUI quantityTxt; 
+    public GameObject quickApplyTxt;
+    private Outline outline;
+    //[HideInInspector] public bool QSymbolActive = false;
 
     #region ScrollSlotUI 오버라이드
     public override void Init()
@@ -23,6 +26,7 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
         base.Init();
         inventory = GameManager.Instance.Player.Inventory;
         inventoryUI = inventory.inventoryUI;
+        outline = GetComponent<Outline>();
     }
 
     public override void SetIndex(int idx)
@@ -82,7 +86,8 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     {
         icon.gameObject.SetActive(true);
         icon.sprite = item.ItemInfo.SpriteList[0]; // ***** TODO : 사용할 스프라이트 인덱스 확인하기!!!
-        quantity.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
+        quantityTxt.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
+        SymbolSetActive();
     }
 
     // 슬롯 창 초기화
@@ -90,7 +95,9 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     {
         _item = null;
         icon.gameObject.SetActive(false);
-        quantity.text = string.Empty;
+        quantityTxt.text = string.Empty;
+        //quickApplyTxt.SetActive(false);
+        SymbolSetActive();
     }
 
     // 아이템에서 마우스를 치웠을 때
@@ -139,13 +146,42 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
             return;
         }
 
-        if (eventData.button == PointerEventData.InputButton.Left)
+        OutlineEnable();
+        //inventory.UseItem(this, _item);
+        //inventory.OnClickButtonQuickApply(this, _item);
+        inventory.SelectSlot(this);
+
+        //if (eventData.button == PointerEventData.InputButton.Left)
+        //{
+        //    inventory.UseItem(this, _item);
+        //}
+        //else if (eventData.button == PointerEventData.InputButton.Right)
+        //{
+        //    inventory.InputQuickSlot(this, _item);
+        //}
+    }
+
+    // 아이템 선택
+    public void OutlineEnable()
+    {
+        outline.enabled = true;
+    }
+
+    // 아이템 선택 해제
+    public void OutlineDisable()
+    {
+        outline.enabled = false;
+    }
+
+    // 아이템이 퀵 슬롯에 들어있는지 나타내는 마크 활성/비활성
+    public void SymbolSetActive()
+    {
+        if(_item == null)
         {
-            inventory.UseItem(this, _item);
+            quickApplyTxt.SetActive(false);
+            return;
         }
-        else if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            inventory.InputQuickSlot(this, _item);
-        }
+
+        quickApplyTxt.SetActive(_item.QSymbolActive);
     }
 }
