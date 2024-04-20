@@ -37,7 +37,9 @@ public class NpcStateMachine : StateMachine
 
         // way point
         //wayPointIdx = wayPoint.GetNearIndex(this.targetPlayer.transform);
-        wayPointIdx = wayPoint.GetNearIndex(this._npc.transform);
+        //wayPointIdx = wayPoint.GetNearIndex(this._npc.transform);
+        wayPointIdx = 0;
         destinationWay = wayPoint.GetPoint(wayPointIdx);
+        npc.transform.position = destinationWay.position;
     }
 }

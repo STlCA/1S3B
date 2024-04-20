@@ -49,7 +49,6 @@ public class Npc : MonoBehaviour, ITalk
         npcStateMachine = new NpcStateMachine(this, wayPointManager);
 
         RandomStartState();
-        StartPosition();
         gameManager = GameManager.Instance;
         dataManager = gameManager.DataManager;
 
@@ -60,18 +59,10 @@ public class Npc : MonoBehaviour, ITalk
         talkInfo = talksDatabese.GetTalkByKey(npcInfo.talk_Id);
     }
 
-    private void StartPosition()
-    {
-        int positionX = Random.Range(0, 12);
-        int positionY = Random.Range(0, 4);
-        this.transform.position = new Vector3(positionX, positionY);
-    }
-
     private void RandomStartState()
     {
         //int randomStartInt = Random.Range(1, 3);
         int randomStartInt = 2;
-        Debug.Log(randomStartInt);
         RandomStart(randomStartInt);
     }
 
