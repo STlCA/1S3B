@@ -160,8 +160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5556608607220842443}
   - component: {fileID: 8312652605811139977}
-  - component: {fileID: 5545188168689042705}
+  - component: {fileID: 3052795979791062436}
   - component: {fileID: 930737396884046709}
+  - component: {fileID: 5545188168689042705}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -189,7 +190,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -645, y: -10}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8312652605811139977
 CanvasRenderer:
@@ -199,7 +200,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129362669357344539}
   m_CullTransparentMesh: 1
---- !u!114 &5545188168689042705
+--- !u!114 &3052795979791062436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,11 +209,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8129362669357344539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf30b9fdc32afc4d87592b3ba6e627b, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 254442913913555147}
-  quantity: {fileID: 3150756481337013480}
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6666667, g: 0.5372549, b: 0.3647059, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &930737396884046709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,9 +242,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 1, g: 0.38461545, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &5545188168689042705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129362669357344539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf30b9fdc32afc4d87592b3ba6e627b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quickSlot: {fileID: 0}
+  quickSlotUI: {fileID: 0}
+  icon: {fileID: 254442913913555147}
+  quantityTxt: {fileID: 3150756481337013480}
+  index: 0
 --- !u!1 &8444876093525717728
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +273,6 @@ GameObject:
   - component: {fileID: 4101827195582699503}
   - component: {fileID: 9131061519697035223}
   - component: {fileID: 254442913913555147}
-  - component: {fileID: 6163318101930915145}
   m_Layer: 5
   m_Name: SlotBG
   m_TagString: Untagged
@@ -288,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -305,17 +338,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6163318101930915145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444876093525717728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf30b9fdc32afc4d87592b3ba6e627b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  quantity: {fileID: 0}

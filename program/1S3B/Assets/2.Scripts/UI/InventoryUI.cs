@@ -118,8 +118,6 @@ public class InventoryUI : MonoBehaviour
 
     public void Refresh()
     {
-
-
         // 전체 슬롯 최신화
         scrollViewUI?.Refresh();
 

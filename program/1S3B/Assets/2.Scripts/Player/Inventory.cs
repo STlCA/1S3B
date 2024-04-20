@@ -16,9 +16,12 @@ public class Inventory : MonoBehaviour
     // Script
     public InventoryUI inventoryUI;
     Player player;
+    QuickSlot quickSlot;
 
     [SerializeField] List<Item> items = new();
     public List<Item> Items { get { return items; } }
+
+    [SerializeField] private QuickSlotUI quickSlotUI;
 
     [Header("Selected Item")]
     private InventorySlotUI _selectedItem;
@@ -30,6 +33,7 @@ public class Inventory : MonoBehaviour
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
         inventoryUI = uiManager.inventoryUI;
+        quickSlot = player.QuickSlot;
     }
 
     // 아이템 추가
@@ -48,19 +52,22 @@ public class Inventory : MonoBehaviour
                 slotToStackTo.quantity++;
                 // UpdateUI();
                 // inventoryUI.Refresh();
+                quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
                 return true;
             }
             AddNewItem(item);
+            quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
             return true;
         }
         else
         {
             AddNewItem(item);
 
-
+            quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
             return true;
         }
 
+        quickSlotUI.UpdateUI();
         //Item emptySlot = GetEmptySlot();
         // 스택이 안되는 아이템이거나 새로운 아이템
         //if(emptySlot != null)
@@ -163,6 +170,46 @@ public class Inventory : MonoBehaviour
         {
             RemoveSelectedItem(slot, item);
         }
+    }
+
+    // 아이템을 퀵 슬롯에 할당
+    //public void OnClickButtonQuickApply(InventorySlotUI slot, Item item)
+    //{
+    //    if(item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Crop")
+    //    {
+    //        quickSlot.AddItem(item);
+    //    }
+    //}
+
+    InventorySlotUI selectedSlotUI;
+    public void SelectSlot(InventorySlotUI slot)
+    {
+        if(selectedSlotUI != null)
+        {
+            // 이전 슬롯 아웃라인 비활성화
+            selectedSlotUI.OutlineDisable();
+        }
+
+        selectedSlotUI = slot;
+    }
+
+    // 퀵 슬롯에 넣는 버튼
+    public void OnClickApplyBtn()
+    {
+        if(selectedSlotUI == null)
+        {
+            return;
+        }
+
+        Item item = selectedSlotUI._item;
+
+        if (item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Crop")
+        {
+            quickSlot.AddItem(item);
+            item.QSymbolActive = true;
+        }
+
+        inventoryUI.Refresh();
     }
 
     // 아이템 장착

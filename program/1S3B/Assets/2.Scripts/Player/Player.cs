@@ -52,9 +52,9 @@ public class Player : MonoBehaviour
 
     public Inventory Inventory { get { return inventory; } }
     private Inventory inventory;
-    //public QuickSlotUI QuickSlot { get { return quickSlotUI; } }
-    //private QuickSlotUI quickSlotUI;
-    
+    public QuickSlot QuickSlot { get { return quickSlot; } }
+    private QuickSlot quickSlot;
+
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
 
         playerState = PlayerState.IDLE;
 
+        quickSlot = GetComponent<QuickSlot>();
+        quickSlot.Init(gameManager);
         inventory = GetComponent<Inventory>();
         inventory.Init(gameManager);
 

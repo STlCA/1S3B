@@ -2,20 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SlotUI : MonoBehaviour
+public class SlotUI : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Image icon;
-    [SerializeField] private TextMeshProUGUI quantity;
+    public QuickSlot quickSlot;
+    public QuickSlotUI quickSlotUI;
 
-    public void Set(Item item)
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI quantityTxt;
+    private Outline outline;
+
+    public Item item;
+    public int index;
+
+    public void Start()
     {
-        quantity.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
+        quickSlot = GameManager.Instance.Player.QuickSlot;
+        quickSlotUI = quickSlot.quickSlotUI;
+        outline = GetComponent<Outline>();
+    }
+
+    public void Set()
+    {
+        icon.gameObject.SetActive(true);
+        icon.sprite = item.ItemInfo.SpriteList[0];
+        quantityTxt.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
     }
 
     public void Clear()
     {
-        quantity.text = string.Empty;
+        item = null;
+        icon.gameObject.SetActive(false);
+        quantityTxt.text = string.Empty;
+    }
+
+    // 아이템 클릭 했을 때
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+        OutlineEnable();
+        //inventory.UseItem(this, item);
+    }
+
+    // 아이템 선택
+    public void OutlineEnable()
+    {
+        outline.enabled = true;
+    }
+
+    // 아이템 선택 해제
+    public void OutlineDisable()
+    {
+        outline.enabled = false;
     }
 }
