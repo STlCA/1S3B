@@ -205,7 +205,10 @@ public class Inventory : MonoBehaviour
 
         if (item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Crop")
         {
-            quickSlot.AddItem(item);
+            if (!quickSlot.AddItem(item))
+            {
+                return;
+            }
             item.QSymbolActive = true;
         }
 
