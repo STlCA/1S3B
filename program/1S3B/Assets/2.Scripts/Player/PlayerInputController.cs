@@ -177,12 +177,14 @@ public class PlayerInputController : CharacterEventController
     }
     public void OnHoe(InputValue value)//1
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
-
-        animController.CarryAnimation(false);
-
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
+        ItemInfo iteminfo= player.QuickSlot.slots[0].item.ItemInfo;
         player.selectItem = iteminfo;
+
+        animController.CarryAnimation(iteminfo.Type != "Equip");
+
+        //uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
+        //ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
+        //player.selectItem = iteminfo;
         //슬롯선택 선택을했을때 그 슬롯의 아이템인포를 가져와야
     }
     public void OnWater(InputValue value)//2

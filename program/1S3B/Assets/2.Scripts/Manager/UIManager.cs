@@ -57,6 +57,10 @@ public class UIManager : Manager
     {
         equipIcon.sprite = libraryAsset.GetSprite("Equip", type.ToString());
     }
+    public void EquipIconChange(string type)
+    {
+        equipIcon.sprite = libraryAsset.GetSprite("Equip", type);
+    }
 
     public void MiniMapPosition(PlayerMap map)
     {
