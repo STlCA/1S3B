@@ -474,7 +474,7 @@ public class PlayerInputController : CharacterEventController
     private void UseSeed(PlayerEquipmentType seed, Vector2 pos)
     {
         if (tileManager.IsPlantable(targetSetting.selectCellPosition) == true)
-            tileManager.PlantAt(targetSetting.selectCellPosition);
+            tileManager.PlantAt(targetSetting.selectCellPosition,player.selectItem);
     }
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)

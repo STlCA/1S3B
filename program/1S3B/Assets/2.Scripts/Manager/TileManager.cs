@@ -130,7 +130,7 @@ public class TileManager : Manager
 
     }
 
-    public void PlantAt(Vector3Int target)
+    public void PlantAt(Vector3Int target,ItemInfo iteminfo)
     {
         if (targetSetting.TargetUI() == false)
             return;
@@ -138,9 +138,10 @@ public class TileManager : Manager
         CropData tempcropData = new CropData();
 
         //임시 
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 101, 102, 103, 104 };
-        int index = Random.Range(0, 11);
-        int cropID = arr[index];
+        //int[] arr = { 1, 2, 3, 4, 5, 6, 7, 101, 102, 103, 104 };
+        //int index = Random.Range(0, 11);
+        //int cropID = arr[index];
+        int cropID = iteminfo.CropID;
 
         GameObject go = Instantiate(cropGoPrefabs);
         go.transform.position = baseGrid.GetCellCenterWorld(target);
