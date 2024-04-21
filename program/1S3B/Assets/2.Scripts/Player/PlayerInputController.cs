@@ -181,6 +181,7 @@ public class PlayerInputController : CharacterEventController
         if(player.QuickSlot.slots[index].item == null)
         {
             player.selectItem = null;
+            animController.CarryAnimation(false);
             return;
         }
 
