@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeatherSystem : Manager
 {
     private TileManager tileManager;
+    private Player player;
 
     [Flags]
     public enum WeatherType
@@ -30,6 +31,7 @@ public class WeatherSystem : Manager
     void Start()
     {
         tileManager = gameManager.TileManager;
+        player = gameManager.Player;
 
         SeasonSetting();
 
@@ -54,7 +56,7 @@ public class WeatherSystem : Manager
     {
         currentWeatherType = newType;
         //현재날씨를 저장
-        SwitchAllElementsToCurrentWeather();
+        SwitchAllElementsToOutdoor(false);
         //날씨효과들에게 가서 이거 날씨 바뀌어야된다고 말해줌
     }
 
@@ -64,11 +66,22 @@ public class WeatherSystem : Manager
         elements = new(GameObject.FindObjectsOfType<WeatherSystemElement>(true));
     }
 
-    void SwitchAllElementsToCurrentWeather()
+/*    void SwitchAllElementsToCurrentWeather()
     {
         foreach (var element in elements)
         {
             element.gameObject.SetActive(element.WeatherType.HasFlag(currentWeatherType));
+        }
+    }*/
+
+    public void SwitchAllElementsToOutdoor(bool isOutdoor)
+    {
+        foreach (var element in elements)
+        {
+            if (element.GetComponent<AudioSource>() != null)
+                element.gameObject.SetActive(element.WeatherType.HasFlag(currentWeatherType));
+            else
+                element.gameObject.SetActive(isOutdoor && element.WeatherType.HasFlag(currentWeatherType));
         }
     }
 
@@ -83,6 +96,6 @@ public class WeatherSystem : Manager
 
         IsRainAction?.Invoke(currentWeatherType == WeatherType.Rain);
         tileManager.IsRain(currentWeatherType == WeatherType.Rain);
-        SwitchAllElementsToCurrentWeather();
+        SwitchAllElementsToOutdoor(false);
     }
 }
