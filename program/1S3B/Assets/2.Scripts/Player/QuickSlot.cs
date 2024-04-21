@@ -38,26 +38,27 @@ public class QuickSlot : MonoBehaviour
     // 퀵 슬롯에 아이템 추가
     public bool AddItem(Item item)
     {
-        bool isOwn = IsOwn(item);
+        //bool isOwn = IsOwn(item);
 
         SlotUI emptySlot = GetEmptySlot();
 
         //if (!isOwn)
-        //{        
-        if (emptySlot != null)
+        if(item.QSymbolActive == false)
         {
-            int idx = emptySlot.index;
-            emptySlot.item = item;
-            items[idx] = item;
-            quickSlotUI.UpdateUI();
-            return true;
+            if (emptySlot != null)
+            {
+                int idx = emptySlot.index;
+                emptySlot.item = item;
+                items[idx] = item;
+                quickSlotUI.UpdateUI();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
-
-        //}
+        return false;
     }
 
     // 퀵 슬롯에 넣으려고 하는 아이템이 이미 존재하는 아이템인지 확인
