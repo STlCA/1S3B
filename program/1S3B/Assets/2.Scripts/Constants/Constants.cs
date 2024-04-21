@@ -61,6 +61,12 @@ namespace Constants
         BeachL_Beach,
         BeachL_Forest,
         Forest_Beach,
+
+        Farm_Home,
+        Home_Farm,
+
+        Town_Shop,
+        Shop_Town,
     }
 
     public enum PlayerMap
@@ -77,7 +83,8 @@ namespace Constants
         BossRoom,
         Island,
         Quarry,
-        Home
+        Home,
+        Shop,
     }
 
     public enum PlayerState
