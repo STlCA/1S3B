@@ -23,8 +23,8 @@ public class QuickSlot : MonoBehaviour
         quickSlotUI = uiManager.quickSlotUI;
 
         // 퀵 슬롯 길이 초기화
-        items = new Item[slots.Length];
         slots = quickSlotUI.GetComponentsInChildren<SlotUI>();
+        items = new Item[slots.Length];
 
         for(int i = 0; i < items.Length; i++)
         {
@@ -43,7 +43,7 @@ public class QuickSlot : MonoBehaviour
         SlotUI emptySlot = GetEmptySlot();
 
         //if (!isOwn)
-        //{
+        //{        
         if (emptySlot != null)
         {
             int idx = emptySlot.index;

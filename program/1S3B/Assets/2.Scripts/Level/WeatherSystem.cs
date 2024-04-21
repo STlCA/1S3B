@@ -22,7 +22,7 @@ public class WeatherSystem : Manager
     private WeatherType currentWeatherType;
     //현재 날씨 타입
     private List<WeatherSystemElement> elements = new List<WeatherSystemElement>();
-    private Dictionary<Season, List<WeatherType>> seasonWeather;
+    private Dictionary<Season, List<WeatherType>> seasonWeather = new();
 
     public Action<bool> IsRainAction;
 

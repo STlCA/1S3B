@@ -53,14 +53,14 @@ public class UIManager : Manager
         inventoryUI.Init(gameManager, this, player);
     }
 
-    public void EquipIconChange(PlayerEquipmentType type)
-    {
-        equipIcon.sprite = libraryAsset.GetSprite("Equip", type.ToString());
-    }
-    public void EquipIconChange(string type)
-    {
-        equipIcon.sprite = libraryAsset.GetSprite("Equip", type);
-    }
+    //public void EquipIconChange(PlayerEquipmentType type)
+    //{
+    //    equipIcon.sprite = libraryAsset.GetSprite("Equip", type.ToString());
+    //}
+    //public void EquipIconChange(string type)
+    //{
+    //    equipIcon.sprite = libraryAsset.GetSprite("Equip", type);
+    //}
 
     public void MiniMapPosition(PlayerMap map)
     {
