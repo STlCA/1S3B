@@ -24,6 +24,7 @@ public class QuickSlot : MonoBehaviour
 
         // 퀵 슬롯 길이 초기화
         items = new Item[slots.Length];
+        slots = quickSlotUI.GetComponentsInChildren<SlotUI>();
 
         for(int i = 0; i < items.Length; i++)
         {
@@ -91,7 +92,7 @@ public class QuickSlot : MonoBehaviour
     // 퀵 슬롯에 아이템 제거
     public void DeleteItem()
     {
-
+        quickSlotUI.UpdateUI();
     }
 
     //// UI 업데이트
