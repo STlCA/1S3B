@@ -69,7 +69,7 @@ public class UIManager : Manager
         switch (map)
         {
             case PlayerMap.Farm:
-                playerImage.anchoredPosition = new Vector2(528, 186);
+                playerImage.anchoredPosition = new Vector2(620, 200);
                 break;
             case PlayerMap.FarmToTown:
                 playerImage.anchoredPosition = new Vector2(267, 134);
@@ -104,7 +104,9 @@ public class UIManager : Manager
             case PlayerMap.Quarry:
                 playerImage.anchoredPosition = new Vector2(693, -296);
                 break;
-
+            case PlayerMap.Home:
+                playerImage.anchoredPosition = new Vector2(470, 130);
+                break;
         }
     }
 

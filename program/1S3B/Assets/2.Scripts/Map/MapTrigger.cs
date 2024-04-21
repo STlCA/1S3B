@@ -136,6 +136,22 @@ public class MapTrigger : MonoBehaviour
                     player.playerPosition = new Vector3(-164.4f, -46f, 0f);
                     uiManager.MiniMapPosition(PlayerMap.Beach);
                     break;
+                case MapTriggerType.Farm_Home:
+                    player.playerPosition = new Vector3(54.43f, 0.26f, 0);
+                    uiManager.MiniMapPosition(PlayerMap.Home);
+                    break;
+                case MapTriggerType.Home_Farm:
+                    player.playerPosition = new Vector3(-0.04f, 5.41f, 0);
+                    uiManager.MiniMapPosition(PlayerMap.Farm);
+                    break;
+                case MapTriggerType.Town_Shop:
+                    player.playerPosition = new Vector3(84.35f, 0.6f, 0);
+                    uiManager.MiniMapPosition(PlayerMap.Shop);
+                    break;
+                case MapTriggerType.Shop_Town:
+                    player.playerPosition = new Vector3(-74.49f, 6.94f, 0);
+                    uiManager.MiniMapPosition(PlayerMap.Town);
+                    break;
 
             }
 
