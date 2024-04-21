@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
-    public ItemInfo selectItem { get; set; }
+    public Item selectItem { get; set; }
 
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
@@ -58,14 +58,11 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    private void Awake()
-    {
-    }
-
     public void Init(GameManager gameManager)
     {
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
+
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;

@@ -1,3 +1,4 @@
+using Constants;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class WeatherSystem : Manager
 {
     private TileManager tileManager;
+    private Player player;
 
     [Flags]
     public enum WeatherType
@@ -21,16 +23,30 @@ public class WeatherSystem : Manager
     private WeatherType currentWeatherType;
     //현재 날씨 타입
     private List<WeatherSystemElement> elements = new List<WeatherSystemElement>();
+    private Dictionary<Season, List<WeatherType>> seasonWeather = new();
 
     public Action<bool> IsRainAction;
+
 
     void Start()
     {
         tileManager = gameManager.TileManager;
+        player = gameManager.Player;
+
+        SeasonSetting();
 
         FindAllElements();
         ChangeWeather(startingWeather);
     }
+
+    private void SeasonSetting()
+    {
+        seasonWeather[Season.Spring] = new List<WeatherType>() { WeatherType.Sun, WeatherType.Sun, WeatherType.Sun, WeatherType.Rain, WeatherType.Rain };
+        seasonWeather[Season.Summer] = new List<WeatherType>() { WeatherType.Sun, WeatherType.Sun, WeatherType.Rain, WeatherType.Rain, WeatherType.Rain };
+        seasonWeather[Season.Fall] = new List<WeatherType>() { WeatherType.Sun, WeatherType.Sun, WeatherType.Sun, WeatherType.Rain, WeatherType.Rain };
+        seasonWeather[Season.Winter] = new List<WeatherType>() { WeatherType.Sun, WeatherType.Sun, WeatherType.Snow, WeatherType.Snow, WeatherType.Snow };
+    }
+
     public static void UnregisterElement(WeatherSystemElement element)
     {
         GameManager.Instance?.WeatherSystem?.elements.Remove(element);
@@ -40,7 +56,7 @@ public class WeatherSystem : Manager
     {
         currentWeatherType = newType;
         //현재날씨를 저장
-        SwitchAllElementsToCurrentWeather();
+        SwitchAllElementsToOutdoor(false);
         //날씨효과들에게 가서 이거 날씨 바뀌어야된다고 말해줌
     }
 
@@ -50,34 +66,36 @@ public class WeatherSystem : Manager
         elements = new(GameObject.FindObjectsOfType<WeatherSystemElement>(true));
     }
 
-    void SwitchAllElementsToCurrentWeather()
+/*    void SwitchAllElementsToCurrentWeather()
     {
         foreach (var element in elements)
         {
             element.gameObject.SetActive(element.WeatherType.HasFlag(currentWeatherType));
         }
+    }*/
+
+    public void SwitchAllElementsToOutdoor(bool isOutdoor)
+    {
+        foreach (var element in elements)
+        {
+            if (element.GetComponent<AudioSource>() != null)
+                element.gameObject.SetActive(element.WeatherType.HasFlag(currentWeatherType));
+            else
+                element.gameObject.SetActive(isOutdoor && element.WeatherType.HasFlag(currentWeatherType));
+        }
     }
 
-    public void RandomChangeWeather()
+    public void RandomChangeWeather(Season season)
     {
-        int num = UnityEngine.Random.Range(0, 3);
-        switch (num)
-        {
-            case 0:
-                currentWeatherType = WeatherType.Sun;
-                IsRainAction?.Invoke(false);
-                break;
-            case 1:
-                currentWeatherType = WeatherType.Rain;
-                IsRainAction?.Invoke(true);
-                break;
-            case 2:
-                currentWeatherType = WeatherType.Snow;
-                IsRainAction?.Invoke(false);
-                break;
+        List<WeatherType> temp = seasonWeather[season];
 
-        }
+        int num = UnityEngine.Random.Range(0, temp.Count);
+
+        WeatherType weatherType = temp[num];
+        currentWeatherType = weatherType;
+
+        IsRainAction?.Invoke(currentWeatherType == WeatherType.Rain);
         tileManager.IsRain(currentWeatherType == WeatherType.Rain);
-        SwitchAllElementsToCurrentWeather();
+        SwitchAllElementsToOutdoor(false);
     }
 }
