@@ -138,7 +138,10 @@ public class TileManager : Manager
         if (targetSetting.TargetUI() == false)
             return;
 
-        player.selectItem.quantity--;             
+        if (item.quantity <= 0)
+            return;
+
+        player.selectItem.quantity--;
 
         CropData tempcropData = new CropData();
 

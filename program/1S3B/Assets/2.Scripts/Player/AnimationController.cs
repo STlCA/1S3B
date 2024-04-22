@@ -59,6 +59,14 @@ public class AnimationController : AnimationBase
         //        StopAnimation(false);
         //}*/
 
+    public void AnimationSpeedChange(float speed)
+    {
+        foreach (var anim in animator)
+        {
+            anim.speed = speed;
+        }
+    }
+
     public void CarrySpriteChange(bool isCarry)
     {
         if (isCarry == true)

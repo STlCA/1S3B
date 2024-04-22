@@ -1,0 +1,307 @@
+fileFormatVersion: 2
+guid: 1200910bac1e6b14180b4df0a874c778
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WidthBar
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 293
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6736b8a6bb6641c49b26cc223c6b4722
+      internalID: 2101236635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeightBar
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 217
+        width: 6
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ce6fcbb0a10f84aa491613e8f0d9ee
+      internalID: -1738054674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ExitBtn: 1914177363
+      HeightBar: -1738054674
+      Question: 1352796233
+      WidthBar: 2101236635
+      button_00: 1050723394
+      inventory_00: -1737842513
+      inventory_01: -1349008307
+      inventory_02: 426292234
+      inventory_BG_00: 540549116
+      inventory_chopped_10: 1463930166
+      inventory_chopped_11: -979161031
+      inventory_chopped_12: 1980243941
+      inventory_chopped_14: 1435440820
+      inventory_chopped_15: -606338
+      inventory_chopped_16: -1638090279
+      inventory_chopped_17: 1777515447
+      inventory_chopped_18: 1191448326
+      inventory_chopped_19: -643799759
+      inventory_chopped_2: -69603753
+      inventory_chopped_20: 1015463065
+      inventory_chopped_21: 355943991
+      inventory_chopped_22: -1066063251
+      inventory_chopped_23: -171895006
+      inventory_chopped_24: 184275479
+      inventory_chopped_25: -24593815
+      inventory_chopped_26: 883305586
+      inventory_chopped_27: 1485563928
+      inventory_chopped_28: 1501783651
+      inventory_chopped_29: -696227043
+      inventory_chopped_30: 404643497
+      inventory_chopped_31: 2041609823
+      inventory_chopped_32: 1270212585
+      inventory_chopped_33: 1587295459
+      inventory_chopped_34: -939736856
+      inventory_chopped_35: 1431208173
+      inventory_chopped_36: 406224975
+      inventory_chopped_37: -624892875
+      inventory_chopped_38: 117878977
+      inventory_chopped_39: 1228621981
+      inventory_chopped_40: 1736995081
+      inventory_chopped_41: 2044863000
+      inventory_chopped_42: -1822085640
+      inventory_chopped_43: 1204825818
+      inventory_chopped_44: 1253350589
+      inventory_chopped_45: 1099260808
+      inventory_chopped_46: -1704002264
+      inventory_chopped_47: 305026983
+      inventory_chopped_48: -433439047
+      inventory_chopped_49: -11449981
+      inventory_chopped_50: 1975140102
+      inventory_chopped_51: 971653795
+      inventory_chopped_52: 1119535562
+      inventory_chopped_53: -139483014
+      inventory_chopped_54: -193397437
+      inventory_chopped_55: -1531817462
+      inventory_chopped_56: -989459471
+      inventory_chopped_57: 2098120905
+      inventory_chopped_58: 297934738
+      inventory_chopped_59: 836454657
+      inventory_chopped_6: -652419557
+      inventory_chopped_60: 1368225722
+      inventory_chopped_61: 1955672788
+      inventory_chopped_62: -1974707250
+      inventory_chopped_63: -416534709
+      inventory_chopped_64: 1414998664
+      inventory_chopped_65: -408451913
+      inventory_chopped_66: 1340668364
+      inventory_chopped_67: 713727074
+      inventory_chopped_68: -895462893
+      inventory_chopped_69: 948344747
+      inventory_chopped_70: -395060244
+      inventory_chopped_71: -845563095
+      inventory_chopped_72: -321533418
+      inventory_chopped_73: -1037277399
+      inventory_chopped_74: -1878741502
+      inventory_chopped_75: 1077839302
+      inventory_chopped_76: 1003287079
+      inventory_chopped_77: -354865851
+      inventory_chopped_78: -1893301017
+      inventory_chopped_79: -1163250621
+      inventory_chopped_8: 82925053
+      inventory_chopped_80: 1202233670
+      inventory_chopped_81: 1992250471
+      inventory_chopped_82: 585792287
+      inventory_chopped_83: -212157260
+      inventory_chopped_84: -2059164356
+      inventory_chopped_85: 34853434
+      inventory_chopped_86: -1422679746
+      inventory_chopped_87: -811880247
+      inventory_chopped_88: 1801644921
+      inventory_chopped_9: -441444470
+      inventory_info_00: 2031828427
+      panel0: 1656880534
+      sell_Btn_00: -426569844
+      setting: -639629226
+      slot_00: 1333321792
+      slot_01: -1832727850
+      slot_02: 421056921
+      slot_03: -819520554
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -4406,7 +4406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8076804696577566412, guid: 10a26f0439addfa4984d48c9031f4d04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5311,6 +5311,14 @@ PrefabInstance:
     - target: {fileID: 1605864814987294933, guid: b38f06d589a9e9c4f8a082c5bb45507b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226407238473766333, guid: b38f06d589a9e9c4f8a082c5bb45507b, type: 3}
+      propertyPath: m_DecelerationRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226407238473766333, guid: b38f06d589a9e9c4f8a082c5bb45507b, type: 3}
+      propertyPath: m_ScrollSensitivity
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6627431046193418543, guid: b38f06d589a9e9c4f8a082c5bb45507b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
