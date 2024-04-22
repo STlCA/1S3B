@@ -423,9 +423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sleepInfoUI: {fileID: 0}
+  quickSlotUI: {fileID: 0}
   inventoryUI: {fileID: 0}
-  equipIcon: {fileID: 0}
-  libraryAsset: {fileID: 7108339969198208228, guid: c396b04d0b21fcc429d6c64b988c693f, type: 3}
   tired: {fileID: 0}
   energyBar: {fileID: 0}
   miniMap: {fileID: 0}
@@ -1221,7 +1220,7 @@ Transform:
   - {fileID: 7928393487947242448}
   - {fileID: 3739488588529866447}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3290743570505607305
 MonoBehaviour:
@@ -1302,6 +1301,88 @@ Transform:
   m_Father: {fileID: 6305530102188731258}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6018812810321728047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514573929955401880}
+  - component: {fileID: 1302019796862538012}
+  m_Layer: 0
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514573929955401880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018812810321728047}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 358, y: 3.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6225472458907741582}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1302019796862538012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018812810321728047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.455
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 35d9b63377ba8dffbde65fbd65cd9ebbf5cdd22423a1f928000000003f20b6a9
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 25.6
+  m_PointLightOuterRadius: 25.6
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &6179816174076658118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1655,7 @@ Transform:
   - {fileID: 5461207437475875158}
   - {fileID: 4215642863696360402}
   - {fileID: 3544173363061214557}
+  - {fileID: 1514573929955401880}
   m_Father: {fileID: 6831678841190217088}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1952,8 +2034,8 @@ MonoBehaviour:
   ambientLightGradient:
     serializedVersion: 2
     key0: {r: 0.3260057, g: 0.35832477, b: 0.6226415, a: 1}
-    key1: {r: 1, g: 0.98872524, b: 0.7688679, a: 1}
-    key2: {r: 0.9811321, g: 0.9507725, b: 0.7913849, a: 0}
+    key1: {r: 0.7830189, g: 0.7768922, b: 0.62419903, a: 1}
+    key2: {r: 0.9339623, g: 0.90031236, b: 0.73571557, a: 0}
     key3: {r: 0.3254902, g: 0.35686275, b: 0.62352943, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}

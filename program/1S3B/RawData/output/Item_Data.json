@@ -1,10 +1,28 @@
 {
 	"ItemData": [
 		{
+			"ID": 1000,
+			"Name": "손",
+			"Description": [
+				"기본 상태"
+			],
+			"Type": "Equip",
+			"EquipType": "Hand",
+			"CropID": -1,
+			"SellGold": 0,
+			"BuyGold": 0,
+			"Stack": 1,
+			"Path": "Equip",
+			"SpriteName": [
+				"Hand"
+			],
+			"DropPercent": 0
+		},
+		{
 			"ID": 1001,
 			"Name": "괭이",
 			"Description": [
-				"땅을 개간\ufffd\ufffd때 사용한다."
+				"땅을 개간할때 사용한다."
 			],
 			"Type": "Equip",
 			"EquipType": "Hoe",
@@ -15,7 +33,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Hoe1"
-			]
+			],
+			"DropPercent": 0
 		},
 		{
 			"ID": 1002,
@@ -32,13 +51,14 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Water1"
-			]
+			],
+			"DropPercent": 0
 		},
 		{
 			"ID": 1003,
 			"Name": "곡괭이",
 			"Description": [
-				"돌을 깰 때 사용한다."
+				"돌을 깰 때 사용\ufffd\ufffd다."
 			],
 			"Type": "Equip",
 			"EquipType": "PickAxe",
@@ -49,13 +69,14 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"PickAxe1"
-			]
+			],
+			"DropPercent": 0
 		},
 		{
 			"ID": 1004,
 			"Name": "도끼",
 			"Description": [
-				"나무를 벨 \ufffd\ufffd 사용한다."
+				"나무를 벨 때 사용한다."
 			],
 			"Type": "Equip",
 			"EquipType": "Axe",
@@ -66,7 +87,8 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Axe1"
-			]
+			],
+			"DropPercent": 0
 		},
 		{
 			"ID": 1005,
@@ -83,58 +105,62 @@
 			"Path": "Equip",
 			"SpriteName": [
 				"Sword1"
-			]
+			],
+			"DropPercent": 0
 		},
 		{
 			"ID": 2001,
 			"Name": "당근씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON 작물로 자라\ufffd\ufffd\ufffd데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"CarrotSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2002,
 			"Name": "호박씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON 작물로 자\ufffd\ufffd는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 2,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"PumpkinSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2003,
 			"Name": "감자씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON 작물로 \ufffd\ufffd라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 3,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"PotatoSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2004,
@@ -145,183 +171,266 @@
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 4,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"WatermelonSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2005,
 			"Name": "무씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON 작물\ufffd\ufffd\ufffd 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 5,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"RadishSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2006,
-			"Name": "\ufffd\ufffd배추씨앗",
+			"Name": "양배추씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON \ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 6,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"LettuceSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 2007,
-			"Name": "\ufffd\ufffd\ufffd씨앗",
+			"Name": "밀씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON \ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 7,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"WheatSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3001,
-			"Name": "가지\ufffd\ufffd앗",
+			"Name": "가지씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"SEASON \ufffd\ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 101,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"EggplantSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3002,
-			"Name": "옥수\ufffd\ufffd\ufffd씨앗",
+			"Name": "옥수수씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 102,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"CornSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3003,
-			"Name": "토마\ufffd\ufffd\ufffd씨앗",
+			"Name": "토마토\ufffd\ufffd\ufffd앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 103,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"TomatoSeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 3004,
-			"Name": "딸\ufffd\ufffd씨앗",
+			"Name": "딸기씨앗",
 			"Description": [
 				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
 			],
 			"Type": "Crop",
 			"EquipType": -1,
 			"CropID": 104,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 10,
+			"BuyGold": 30,
 			"Stack": 100,
 			"Path": "Crops/Seeds",
 			"SpriteName": [
 				"StrawberrySeed"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 4001,
-			"Name": "\ufffd\ufffd무",
+			"Name": "나무",
 			"Description": [
 				"나무를 베서 나온 나무조각. 건물을 짓거나 제작할 때 사용된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 5,
+			"BuyGold": 15,
 			"Stack": 100,
 			"Path": "Item",
 			"SpriteName": [
 				"wood"
-			]
+			],
+			"DropPercent": -1
 		},
 		{
-			"ID": 4002,
-			"Name": "\ufffd\ufffd\ufffd",
+			"ID": 4011,
+			"Name": "돌",
 			"Description": [
 				"돌을 캐서 나온 돌조각. 건물을 짓거나 제작할 때 사용된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 2,
+			"BuyGold": 5,
 			"Stack": 100,
 			"Path": "Item",
 			"SpriteName": [
 				"stone"
-			]
+			],
+			"DropPercent": 50
+		},
+		{
+			"ID": 4012,
+			"Name": "구리",
+			"Description": [
+				"구리광석을 캐서 나온 구리조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"cooper"
+			],
+			"DropPercent": 20
+		},
+		{
+			"ID": 4013,
+			"Name": "철",
+			"Description": [
+				"철광석을 캐서 나온 철조각. 장비를 업그레이드하거나 제작할 때 \ufffd\ufffd용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 20,
+			"BuyGold": 75,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"iron"
+			],
+			"DropPercent": 15
+		},
+		{
+			"ID": 4014,
+			"Name": "금",
+			"Description": [
+				"금광석을 캐서 나온 금조각. 장비를 업그레이드하거\ufffd\ufffd 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 30,
+			"BuyGold": 100,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"gold"
+			],
+			"DropPercent": 10
+		},
+		{
+			"ID": 4015,
+			"Name": "다이아몬드",
+			"Description": [
+				"다이아몬드광석을 캐서 나온 \ufffd\ufffd\ufffd이아몬드조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+			],
+			"Type": "Item",
+			"EquipType": -1,
+			"CropID": -1,
+			"SellGold": 100,
+			"BuyGold": 150,
+			"Stack": 100,
+			"Path": "Item",
+			"SpriteName": [
+				"diamond"
+			],
+			"DropPercent": 5
 		},
 		{
 			"ID": 5001,
-			"Name": "식용\ufffd\ufffd섯",
+			"Name": "식용버섯",
 			"Description": [
 				"봄 버섯"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				1
-			]
+				"spring1"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5002,
@@ -332,13 +441,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				2
-			]
+				"spring2"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5003,
@@ -349,13 +459,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				3
-			]
+				"spring3"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5004,
@@ -366,13 +477,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				4
-			]
+				"spring4"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5005,
@@ -383,13 +495,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				5
-			]
+				"spring5"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5006,
@@ -400,13 +513,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				6
-			]
+				"spring6"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5007,
@@ -417,13 +531,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/spring",
+			"Path": "Nature",
 			"SpriteName": [
-				7
-			]
+				"spring7"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5101,
@@ -434,30 +549,32 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				1
-			]
+				"summer1"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5102,
-			"Name": "식용꽃",
+			"Name": "식용\ufffd\ufffd\ufffd",
 			"Description": [
 				"여름"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				2
-			]
+				"summer2"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5103,
@@ -468,30 +585,32 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				3
-			]
+				"summer3"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5104,
 			"Name": "꽃",
 			"Description": [
-				"여름"
+				"여\ufffd\ufffd"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				4
-			]
+				"summer4"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5105,
@@ -502,13 +621,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				5
-			]
+				"summer5"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5106,
@@ -519,13 +639,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/summer",
+			"Path": "Nature",
 			"SpriteName": [
-				6
-			]
+				"summer6"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5201,
@@ -536,13 +657,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				1
-			]
+				"fall1"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5202,
@@ -553,13 +675,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				2
-			]
+				"fall2"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5203,
@@ -570,13 +693,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				3
-			]
+				"fall3"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5204,
@@ -587,13 +711,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				4
-			]
+				"fall4"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5205,
@@ -604,30 +729,32 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				5
-			]
+				"fall5"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5206,
-			"Name": "독버\ufffd\ufffd\ufffd",
+			"Name": "독버섯",
 			"Description": [
 				"독 버섯"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/fall",
+			"Path": "Nature",
 			"SpriteName": [
-				6
-			]
+				"fall6"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5301,
@@ -638,30 +765,32 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 50,
+			"BuyGold": 120,
 			"Stack": 100,
-			"Path": "Nature/winter",
+			"Path": "Nature",
 			"SpriteName": [
-				1
-			]
+				"winter1"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5302,
-			"Name": "\ufffd\ufffd",
+			"Name": "꽃",
 			"Description": [
 				"겨울"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/winter",
+			"Path": "Nature",
 			"SpriteName": [
-				2
-			]
+				"winter2"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5303,
@@ -672,13 +801,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/winter",
+			"Path": "Nature",
 			"SpriteName": [
-				3
-			]
+				"winter3"
+			],
+			"DropPercent": -1
 		},
 		{
 			"ID": 5304,
@@ -689,13 +819,14 @@
 			"Type": "Nature",
 			"EquipType": -1,
 			"CropID": -1,
-			"SellGold": 0,
-			"BuyGold": 0,
+			"SellGold": 40,
+			"BuyGold": 100,
 			"Stack": 100,
-			"Path": "Nature/winter",
+			"Path": "Nature",
 			"SpriteName": [
-				4
-			]
+				"winter4"
+			],
+			"DropPercent": -1
 		}
 	]
 }
