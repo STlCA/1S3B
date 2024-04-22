@@ -263,14 +263,14 @@ public class Player : MonoBehaviour
     }
 
     // 입금 
-    public void Deposit(int gold)
+    public void Deposit(int gold, int quantity)
     {
-        playerGold += gold;
+        playerGold += gold * quantity;
     }
 
     // 출금
-    public void Withdraw(int gold)
+    public void Withdraw(int gold, int quantity)
     {
-        playerGold -= gold;
+        playerGold -= gold * quantity;
     }
 }
