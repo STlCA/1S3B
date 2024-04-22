@@ -197,17 +197,6 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 8693534611016036597, guid: 8d478f064521645efac5910a114f75f3, type: 3}
   m_PrefabInstance: {fileID: 1439673562609298646}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &794274575 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 930089073448899289, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
-  m_PrefabInstance: {fileID: 2512585822914671232}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &836842468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6282551813623938166, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
@@ -3497,7 +3486,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2172268493619429796, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
@@ -3682,7 +3672,7 @@ PrefabInstance:
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: equipIcon
       value: 
-      objectReference: {fileID: 794274575}
+      objectReference: {fileID: 0}
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: playerObj
       value: 
@@ -3826,6 +3816,10 @@ PrefabInstance:
       propertyPath: quickSlotUI
       value: 
       objectReference: {fileID: 1899911697}
+    - target: {fileID: 5675625262363848303, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1627281914, guid: 028654f6cd4f2ed49ac918b57632fcf0, type: 3}
     - target: {fileID: 7453903779605040904, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
       propertyPath: equipmentSR
       value: 

@@ -181,14 +181,16 @@ public class PlayerInputController : CharacterEventController
         if(player.QuickSlot.slots[index].item == null)
         {
             player.selectItem = null;
-            animController.CarryAnimation(false);
+            //animController.CarryAnimation(false);
+            animController.temp(false);
             return;
         }
 
         Item item = player.QuickSlot.slots[index].item;
         player.selectItem = item;
 
-        animController.CarryAnimation(item.ItemInfo.Type != "Equip");
+        //animController.CarryAnimation(item.ItemInfo.Type != "Equip");        
+        animController.temp(true);
     }
 
     public void OnOne(InputValue value)//1

@@ -55,16 +55,8 @@ public class AnimationController : AnimationBase
         //        StopAnimation(false);
         //}*/
 
-    public void CarryAnimation(bool isCarry)
+    public void temp(bool isCarry)
     {
-        if (animator[0].GetBool(ConstantsString.IsStart) == false)
-        {
-            foreach (var anim in animator)
-            {
-                anim.SetBool(ConstantsString.IsStart, true);
-            }
-        }
-
         if (isCarry == true)
         {
             foreach (var anim in animator)
@@ -73,6 +65,20 @@ public class AnimationController : AnimationBase
             }
 
             equipmentSR.sprite = player.selectItem.ItemInfo.SpriteList[0];
+        }
+
+        Invoke("CarryAnimation",2);
+    }
+
+    public void CarryAnimation()
+    {
+        bool isCarry = true;
+        if (animator[0].GetBool(ConstantsString.IsStart) == false)
+        {
+            foreach (var anim in animator)
+            {
+                anim.SetBool(ConstantsString.IsStart, true);
+            }
         }
 
         foreach (var anim in animator)
