@@ -346,7 +346,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -354,6 +354,27 @@ TextureImporter:
       bones: []
       spriteID: 6479e96bba7f8bb4eb850aea192ef7fd
       internalID: 1050723394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sell_Btn_00
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f791f0fde61ecb34dba997cc873dc8a2
+      internalID: -426569844
       vertices: []
       indices: 
       edges: []
@@ -457,6 +478,7 @@ TextureImporter:
       inventory_chopped_88: 1801644921
       inventory_chopped_9: -441444470
       inventory_info_00: 2031828427
+      sell_Btn_00: -426569844
       slot_00: 1333321792
       slot_01: -1832727850
       slot_02: 421056921
