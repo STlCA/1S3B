@@ -6387,7 +6387,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6414,12 +6414,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -1349315751, guid: 7f2010c4308308049a754925d46965fa, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -738214003, guid: 7f2010c4308308049a754925d46965fa, type: 3}
   m_TileMatrixArray:
@@ -7307,6 +7307,7 @@ GameObject:
   - component: {fileID: 748201498}
   - component: {fileID: 748201497}
   - component: {fileID: 748201500}
+  - component: {fileID: 748201501}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7432,6 +7433,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &748201501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748201496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bc45912de3dcc4e83958d01bba1100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 1
 --- !u!1001 &751585734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7807,6 +7821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814200284}
+  - component: {fileID: 814200285}
   m_Layer: 0
   m_Name: IntroCanvas
   m_TagString: Untagged
@@ -7830,6 +7845,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814200285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814200283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9808f8b250e8543bfbd7d1c7ecd9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &823244767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24767,7 +24794,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 37
+      m_TileSpriteIndex: 44
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -24777,7 +24804,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 36
+      m_TileSpriteIndex: 43
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -24974,24 +25001,24 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 46211437, guid: 7f2010c4308308049a754925d46965fa, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 758371679, guid: 7f2010c4308308049a754925d46965fa, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 22
     m_Data:
@@ -27299,7 +27326,6 @@ GameObject:
   - component: {fileID: 1646616768}
   - component: {fileID: 1646616767}
   - component: {fileID: 1646616766}
-  - component: {fileID: 1646616769}
   m_Layer: 0
   m_Name: LoadBtn
   m_TagString: Untagged
@@ -27372,7 +27398,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646616769}
+      - m_Target: {fileID: 814200285}
         m_TargetAssemblyTypeName: StartBtn, Assembly-CSharp
         m_MethodName: GameStart
         m_Mode: 1
@@ -27422,18 +27448,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646616764}
   m_CullTransparentMesh: 1
---- !u!114 &1646616769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646616764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9808f8b250e8543bfbd7d1c7ecd9ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1654909063
 PrefabInstance:
   m_ObjectHideFlags: 0
