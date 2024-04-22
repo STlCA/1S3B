@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         TileManager.Sleep();
 
         DayCycleHandler.ResetDayTime();
-        WeatherSystem.RandomChangeWeather();//TileManager Sleep보다 아래여야함
+        WeatherSystem.RandomChangeWeather(dayCycleHandler.currentSeason);//TileManager Sleep보다 아래여야함
 
         natureObjectController.SpawnNature();
         natureObjectController.PointSpawnTree(50);

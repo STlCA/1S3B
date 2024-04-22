@@ -10,6 +10,7 @@ public class MapTrigger : MonoBehaviour
     private Player player;
     private SceneChangeManager sceneChangeManager;
     private UIManager uiManager;
+    private WeatherSystem weatherSystem;
 
     [Header("Type")]
     public MapTriggerType type;
@@ -24,6 +25,7 @@ public class MapTrigger : MonoBehaviour
         sceneChangeManager = gameManager.SceneChangeManager;
         player = gameManager.Player;
         uiManager = gameManager.UIManager;
+        weatherSystem = gameManager.WeatherSystem;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -137,20 +139,24 @@ public class MapTrigger : MonoBehaviour
                     uiManager.MiniMapPosition(PlayerMap.Beach);
                     break;
                 case MapTriggerType.Farm_Home:
-                    player.playerPosition = new Vector3(54.43f, 0.26f, 0);
+                    player.playerPosition = new Vector3(54.43f + 290f, 0.26f, 0);
                     uiManager.MiniMapPosition(PlayerMap.Home);
+                    weatherSystem.SwitchAllElementsToOutdoor(false);
                     break;
                 case MapTriggerType.Home_Farm:
                     player.playerPosition = new Vector3(-0.04f, 5.41f, 0);
                     uiManager.MiniMapPosition(PlayerMap.Farm);
+                    weatherSystem.SwitchAllElementsToOutdoor(true);
                     break;
                 case MapTriggerType.Town_Shop:
-                    player.playerPosition = new Vector3(84.35f, 0.6f, 0);
+                    player.playerPosition = new Vector3(84.35f + 290f, 0.6f, 0);
                     uiManager.MiniMapPosition(PlayerMap.Shop);
+                    weatherSystem.SwitchAllElementsToOutdoor(false);
                     break;
                 case MapTriggerType.Shop_Town:
                     player.playerPosition = new Vector3(-74.49f, 6.94f, 0);
                     uiManager.MiniMapPosition(PlayerMap.Town);
+                    weatherSystem.SwitchAllElementsToOutdoor(true);
                     break;
 
             }

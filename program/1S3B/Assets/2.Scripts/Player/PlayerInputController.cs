@@ -147,7 +147,7 @@ public class PlayerInputController : CharacterEventController
             return;
 
         //if (player.currentSelectType == PlayerEquipmentType.Carry)
-        if (player.selectItem != null && (player.selectItem.Type == "Item" || player.selectItem.Type == "Crop"))
+        if (player.selectItem != null && (player.selectItem.ItemInfo.Type == "Item" || player.selectItem.ItemInfo.Type == "Crop"))
             CallMoveEvent(moveInput, false, true);
         else
             CallMoveEvent(moveInput);
@@ -167,80 +167,119 @@ public class PlayerInputController : CharacterEventController
 
         targetSetting.SetCellPosition(worldPos);
     }
-    public void OnHand(InputValue value)//0
+    //public void OnHand(InputValue value)//0
+    //{
+    //    uiManager.EquipIconChange(PlayerEquipmentType.Hand);
+    //
+    //    animController.CarryAnimation(false);
+    //
+    //    player.selectItem = null;
+    //}
+
+    private void QuickSlotItemCheck(int index)
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Hand);
+        if(player.QuickSlot.slots[index].item == null)
+        {
+            player.selectItem = null;
+            return;
+        }
 
-        animController.CarryAnimation(false);
+        Item item = player.QuickSlot.slots[index].item;
+        player.selectItem = item;
 
-        player.selectItem = null;
+        animController.CarryAnimation(item.ItemInfo.Type != "Equip");
     }
-    public void OnHoe(InputValue value)//1
-    {
-        ItemInfo iteminfo= player.QuickSlot.slots[0].item.ItemInfo;
-        player.selectItem = iteminfo;
 
-        animController.CarryAnimation(iteminfo.Type != "Equip");
+    public void OnOne(InputValue value)//1
+    {
+        QuickSlotItemCheck(0);        
 
         //uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
         //ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
         //player.selectItem = iteminfo;
         //슬롯선택 선택을했을때 그 슬롯의 아이템인포를 가져와야
     }
-    public void OnWater(InputValue value)//2
+    public void OnTwo(InputValue value)//2
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Water);
+        QuickSlotItemCheck(1);
+/*        uiManager.EquipIconChange(PlayerEquipmentType.Water);
 
         animController.CarryAnimation(false);
 
         ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
-        player.selectItem = iteminfo;
+        player.selectItem = iteminfo;*/
     }
-    public void OnAxe(InputValue value)//3
+    public void OnThree(InputValue value)//3
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Axe);
+        QuickSlotItemCheck(2);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Axe);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1004);
-        player.selectItem = iteminfo;
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1004);
+                player.selectItem = iteminfo;*/
     }
-    public void OnPickAxe(InputValue value)//4
+    public void OnFour(InputValue value)//4
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.PickAxe);
+        QuickSlotItemCheck(3);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.PickAxe);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1003);
-        player.selectItem = iteminfo;
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1003);
+                player.selectItem = iteminfo;*/
     }
-    public void OnSword(InputValue value)//5
+    public void OnFive(InputValue value)//5
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Sword);
+        QuickSlotItemCheck(4);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Sword);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1005);
-        player.selectItem = iteminfo;
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1005);
+                player.selectItem = iteminfo;*/
     }
-    public void OnSeed(InputValue value)//6
+    public void OnSix(InputValue value)//6
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Seed);
+        QuickSlotItemCheck(5);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Seed);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(2001);
-        player.selectItem = iteminfo;
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(2001);
+                player.selectItem = iteminfo;*/
     }
-    public void OnCarry(InputValue value)//7
+    public void OnSeven(InputValue value)//7
     {
-        uiManager.EquipIconChange(PlayerEquipmentType.Carry);
+        QuickSlotItemCheck(6);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Carry);
 
-        animController.CarryAnimation(true);
+                animController.CarryAnimation(true);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(5002);
-        player.selectItem = iteminfo;
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(5002);
+                player.selectItem = iteminfo;*/
     }
+    public void OnEight(InputValue value)//8
+    {
+        QuickSlotItemCheck(7);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Carry);
+
+                animController.CarryAnimation(true);
+
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(5002);
+                player.selectItem = iteminfo;*/
+    }
+    public void OnNine(InputValue value)//9
+    {
+        QuickSlotItemCheck(8);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Carry);
+
+                animController.CarryAnimation(true);
+
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(5002);
+                player.selectItem = iteminfo;*/
+    }
+
 
     public void OnUse(InputValue value)
     {
@@ -276,14 +315,14 @@ public class PlayerInputController : CharacterEventController
 
         if (player.selectItem != null)
         {
-            switch (player.selectItem.Type)
+            switch (player.selectItem.ItemInfo.Type)
             {
                 case "Crop":
                     UseSeed(PlayerEquipmentType.Seed, pos);
                     break;
 
                 case "Equip":
-                    switch (player.selectItem.EquipType)
+                    switch (player.selectItem.ItemInfo.EquipType)
                     {
                         case "Hoe":
                             UseHoe(PlayerEquipmentType.Hoe, pos);
@@ -474,7 +513,7 @@ public class PlayerInputController : CharacterEventController
     private void UseSeed(PlayerEquipmentType seed, Vector2 pos)
     {
         if (tileManager.IsPlantable(targetSetting.selectCellPosition) == true)
-            tileManager.PlantAt(targetSetting.selectCellPosition,player.selectItem);
+            tileManager.PlantAt(targetSetting.selectCellPosition,player.selectItem.ItemInfo);
     }
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)

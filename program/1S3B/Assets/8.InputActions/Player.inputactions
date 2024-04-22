@@ -78,16 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Hand",
-                    "type": "Button",
-                    "id": "b88adb4d-96f6-4545-8c29-1d384aeb109a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Hoe",
+                    "name": "One",
                     "type": "Button",
                     "id": "42748b62-f544-48f6-8119-2c17ccc7d7c0",
                     "expectedControlType": "Button",
@@ -96,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Water",
+                    "name": "Two",
                     "type": "Button",
                     "id": "b2c8b8fc-136c-4054-82d0-4df9977b760d",
                     "expectedControlType": "Button",
@@ -105,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Axe",
+                    "name": "Three",
                     "type": "Button",
                     "id": "fa615f3b-1acb-4dc7-ab5b-cd152621e967",
                     "expectedControlType": "Button",
@@ -114,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PickAxe",
+                    "name": "Four",
                     "type": "Button",
                     "id": "8060a002-c0f3-4b60-8c28-b6f407209668",
                     "expectedControlType": "Button",
@@ -123,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sword",
+                    "name": "Five",
                     "type": "Button",
                     "id": "db9696dc-403d-4efa-9501-7d5c3145e8d4",
                     "expectedControlType": "Button",
@@ -132,7 +123,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seed",
+                    "name": "Six",
                     "type": "Button",
                     "id": "303c1250-54bc-4546-8968-d4f96ad38dc0",
                     "expectedControlType": "Button",
@@ -141,9 +132,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Carry",
+                    "name": "Seven",
                     "type": "Button",
                     "id": "4323f895-7034-48a3-b1aa-23303102e51e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Eight",
+                    "type": "Button",
+                    "id": "b88adb4d-96f6-4545-8c29-1d384aeb109a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Nine",
+                    "type": "Button",
+                    "id": "d6c307a8-f2d6-429e-a373-f6134562ec16",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -332,7 +341,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hoe",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -343,7 +352,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Water",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -354,7 +363,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Axe",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -365,7 +374,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickAxe",
+                    "action": "Four",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -376,7 +385,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sword",
+                    "action": "Five",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -387,7 +396,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seed",
+                    "action": "Six",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -398,7 +407,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Carry",
+                    "action": "Seven",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -416,11 +425,22 @@
                 {
                     "name": "",
                     "id": "0e6121d2-78b7-471c-a325-fa9eef86b61f",
-                    "path": "<Keyboard>/0",
+                    "path": "<Keyboard>/8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hand",
+                    "action": "Eight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b133ee9f-ff05-42f0-ae93-c8ccd95c1831",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
