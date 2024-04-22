@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
 using UnityEngine.U2D.Animation;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
+using static UnityEditor.Progress;
 using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
@@ -29,7 +30,9 @@ public class AnimationController : AnimationBase
     private Animator pickItemAnim;
 
     [Header("Carry")]
-    public SpriteRenderer equipmentSR;
+    public GameObject itemGO;
+    private SpriteRenderer itemSR;
+    private Animator itemAnim;
 
     private void Start()
     {
@@ -44,6 +47,11 @@ public class AnimationController : AnimationBase
         pickupItem = Instantiate(pickupItemPrefab);
         pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
         pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
+
+        itemSR = itemGO.GetComponent<SpriteRenderer>();
+        itemAnim = itemGO.GetComponent<Animator>();
+        itemAnim.keepAnimatorStateOnDisable = true;
+        itemGO.SetActive(false);
     }
 
     /*    //private void Update()
@@ -55,24 +63,25 @@ public class AnimationController : AnimationBase
         //        StopAnimation(false);
         //}*/
 
-    public void temp(bool isCarry)
+    public void CarrySpriteChange(bool isCarry)
     {
         if (isCarry == true)
         {
+            itemGO.SetActive(true);
+
             foreach (var anim in animator)
             {
                 anim.enabled = false;
             }
 
-            equipmentSR.sprite = player.selectItem.ItemInfo.SpriteList[0];
+            itemSR.sprite = player.selectItem.ItemInfo.SpriteList[0];
         }
 
-        Invoke("CarryAnimation",2);
+        CarryAnimation(isCarry);
     }
 
-    public void CarryAnimation()
+    public void CarryAnimation(bool isCarry)
     {
-        bool isCarry = true;
         if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
             foreach (var anim in animator)
