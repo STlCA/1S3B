@@ -20,9 +20,7 @@ public class UIManager : Manager
     [Header("Image")]
     public GameObject sleepInfoUI;
     public QuickSlotUI quickSlotUI;
-    public InventoryUI inventoryUI;
-    public Image equipIcon;
-    public SpriteLibraryAsset libraryAsset;
+    public InventoryUI inventoryUI;        
 
     [Header("EnergyBar")]
     [SerializeField] private GameObject tired;
