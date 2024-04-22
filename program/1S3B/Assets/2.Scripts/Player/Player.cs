@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         playerEnergy = playerMaxEnergy;
         playerGold = 1500;
         playerSpeed = 7f;
+        transform.position = new Vector3(350, 4);
 
         skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
 

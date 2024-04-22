@@ -367,7 +367,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -375,6 +375,27 @@ TextureImporter:
       bones: []
       spriteID: f791f0fde61ecb34dba997cc873dc8a2
       internalID: -426569844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panel0
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 147
+        width: 32
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c41da40f48e7f14c94f9855ee935ca6
+      internalID: 1656880534
       vertices: []
       indices: 
       edges: []
@@ -478,6 +499,7 @@ TextureImporter:
       inventory_chopped_88: 1801644921
       inventory_chopped_9: -441444470
       inventory_info_00: 2031828427
+      panel0: 1656880534
       sell_Btn_00: -426569844
       slot_00: 1333321792
       slot_01: -1832727850
