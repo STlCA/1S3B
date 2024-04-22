@@ -261,4 +261,16 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Crop"))
             playerSpeed = 7f;
     }
+
+    // 입금 
+    public void Deposit(int gold)
+    {
+        playerGold += gold;
+    }
+
+    // 출금
+    public void Withdraw(int gold)
+    {
+        playerGold -= gold;
+    }
 }
