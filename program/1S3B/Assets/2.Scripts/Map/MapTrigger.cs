@@ -158,7 +158,9 @@ public class MapTrigger : MonoBehaviour
                     uiManager.MiniMapPosition(PlayerMap.Town);
                     weatherSystem.SwitchAllElementsToOutdoor(true);
                     break;
-
+                case MapTriggerType.KeepOut:
+                    uiManager.UIOn(uiManager.keepOutInfo);
+                    return;
             }
 
             sceneChangeManager.CallMapChangeEvent(true);

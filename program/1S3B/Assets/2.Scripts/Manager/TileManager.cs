@@ -6,6 +6,7 @@ using UnityEditor.PackageManager;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 
 [System.Serializable]
@@ -137,7 +138,7 @@ public class TileManager : Manager
         if (targetSetting.TargetUI() == false)
             return;
 
-        player.selectItem.quantity--;
+        player.selectItem.quantity--;             
 
         CropData tempcropData = new CropData();
 

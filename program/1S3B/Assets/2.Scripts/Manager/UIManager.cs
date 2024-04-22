@@ -20,7 +20,8 @@ public class UIManager : Manager
     [Header("Image")]
     public GameObject sleepInfoUI;
     public QuickSlotUI quickSlotUI;
-    public InventoryUI inventoryUI;        
+    public InventoryUI inventoryUI;
+    public GameObject keepOutInfo;
 
     [Header("EnergyBar")]
     [SerializeField] private GameObject tired;

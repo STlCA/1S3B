@@ -28,6 +28,7 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler
     {
         icon.gameObject.SetActive(true);
         icon.sprite = item.ItemInfo.SpriteList[0];
+        icon.SetNativeSize();
         quantityTxt.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
     }
 

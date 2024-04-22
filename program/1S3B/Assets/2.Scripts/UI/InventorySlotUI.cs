@@ -86,6 +86,7 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     {
         icon.gameObject.SetActive(true);
         icon.sprite = item.ItemInfo.SpriteList[0]; // ***** TODO : 사용할 스프라이트 인덱스 확인하기!!!
+        icon.SetNativeSize();
         quantityTxt.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
         SymbolSetActive();
     }

@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         playerEnergy = playerMaxEnergy;
         playerGold = 1500;
         playerSpeed = 7f;
-        transform.position = new Vector3(350, 4);
+        transform.position = new Vector3(349.5f, 4);
 
         skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
 
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
 
     private void DeathSleep()
     {
-        playerPosition = new Vector3(350, 4);
+        playerPosition = new Vector3(349.5f, 4);
         StartCoroutine(gameManager.SleepOfDay(true));
     }
 

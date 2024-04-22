@@ -67,6 +67,8 @@ namespace Constants
 
         Town_Shop,
         Shop_Town,
+
+        KeepOut,
     }
 
     public enum PlayerMap
