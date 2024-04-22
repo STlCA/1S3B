@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b4ddc8b5cccf946ae9151c7a5f2171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 5036887997668905959}
   moveSpeed: 5
   animator: {fileID: 1855979500}
   petRenderer: {fileID: 1855979498}
@@ -1763,6 +1763,9 @@ MonoBehaviour:
     walkParameterName: IsWalk
   <npcData>k__BackingField: {fileID: 11400000, guid: e4f2347cf78d9a948bb7cf5a2dae7c2f, type: 2}
   npcRenderer: {fileID: 2022146219}
+  npcHairRenderer: {fileID: 1048662515}
+  npcTopRenderer: {fileID: 1328471335}
+  npcBottomRenderer: {fileID: 248571920}
   npcId: 1
 --- !u!50 &1205918716
 Rigidbody2D:
@@ -2198,7 +2201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1205918715}
         m_TargetAssemblyTypeName: Npc, Assembly-CSharp
         m_MethodName: CloseTalkPanel
         m_Mode: 1
@@ -3606,7 +3609,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3191887758952838506, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
   m_PrefabInstance: {fileID: 5036887997668905956}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5036887997668905959}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86aa9c93fcc4baa45ac110381dc37469, type: 3}
@@ -3615,6 +3618,11 @@ MonoBehaviour:
 --- !u!4 &5036887997668905958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7781234041719440757, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
+  m_PrefabInstance: {fileID: 5036887997668905956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5036887997668905959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7792754854552026555, guid: 67e93454c5c336743a8e8b77036f58e4, type: 3}
   m_PrefabInstance: {fileID: 5036887997668905956}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5049699523788151241
@@ -3685,6 +3693,18 @@ PrefabInstance:
       propertyPath: TimeText
       value: 
       objectReference: {fileID: 3028435160398547277}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: talkText
+      value: 
+      objectReference: {fileID: 728303146}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: talkPanel
+      value: 
+      objectReference: {fileID: 204748275}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: npcNameText
+      value: 
+      objectReference: {fileID: 839961224}
     - target: {fileID: 5999763758169166763, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_Name
       value: GameManager

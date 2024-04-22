@@ -17,6 +17,9 @@ public class Npc : MonoBehaviour, ITalk
     public WayPointManager wayPointManager { get; private set; }
     public Animator animator { get; private set; }
     public SpriteRenderer npcRenderer;
+    public SpriteRenderer npcHairRenderer;
+    public SpriteRenderer npcTopRenderer;
+    public SpriteRenderer npcBottomRenderer;
     //public CharacterController characterController { get; private set; }
 
     private NpcStateMachine npcStateMachine;

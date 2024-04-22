@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class NpcAnimationData
 {
-    [SerializeField] private string idleParameterName = "Idel";
+    [SerializeField] private string idleParameterName = "Idle";
     [SerializeField] private string walkParameterName = "IsWalk";
 
     public int IdleParameterHash { get; private set; }

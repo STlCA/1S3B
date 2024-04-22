@@ -14,12 +14,14 @@ public class NpcMoveState : NpcBaseState
     {   
         base.Enter();
         StartAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
+        _npcStateMachine._npc.animator.SetBool("IsWalk", true);
     }
 
     public override void Exit()
     {
         base.Exit();
         StopAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
+        _npcStateMachine._npc.animator.SetBool("IsWalk", false);
     }
 
     public override void Update()
@@ -64,6 +66,9 @@ public class NpcMoveState : NpcBaseState
         Vector3 destinationWay = _npcStateMachine.destinationWay.position - _npcStateMachine._npc.transform.position;
         float rotateNpc = Mathf.Atan2(destinationWay.y, destinationWay.x) * Mathf.Rad2Deg;
         _npcStateMachine._npc.npcRenderer.flipX = Mathf.Abs(rotateNpc) > 90f;
+        _npcStateMachine._npc.npcHairRenderer.flipX = Mathf.Abs(rotateNpc) > 90f;
+        _npcStateMachine._npc.npcTopRenderer.flipX = Mathf.Abs(rotateNpc) > 90f;
+        _npcStateMachine._npc.npcBottomRenderer.flipX = Mathf.Abs(rotateNpc) > 90f;
     }
 
 }
