@@ -14912,7 +14912,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -598841217, guid: abffb71285da76a4b97c06819a174aad, type: 3}
+  m_Sprite: {fileID: -1627281914, guid: 028654f6cd4f2ed49ac918b57632fcf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15555,7 +15555,7 @@ Transform:
   - {fileID: 7601692133921047798}
   - {fileID: 7352419799003553816}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6090136625704993183
 BoxCollider2D:
@@ -15820,7 +15820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupItemPrefab: {fileID: 4931143099737641354, guid: a0cd23438507c7d499f741af5d8ee1aa, type: 3}
-  equipmentSR: {fileID: 0}
+  equipmentSR: {fileID: 5675625262363848303}
 --- !u!114 &4367807579858029979
 MonoBehaviour:
   m_ObjectHideFlags: 0

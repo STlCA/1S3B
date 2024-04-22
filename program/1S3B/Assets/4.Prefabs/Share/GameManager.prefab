@@ -423,9 +423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sleepInfoUI: {fileID: 0}
+  quickSlotUI: {fileID: 0}
   inventoryUI: {fileID: 0}
-  equipIcon: {fileID: 0}
-  libraryAsset: {fileID: 7108339969198208228, guid: c396b04d0b21fcc429d6c64b988c693f, type: 3}
   tired: {fileID: 0}
   energyBar: {fileID: 0}
   miniMap: {fileID: 0}
@@ -1221,7 +1220,7 @@ Transform:
   - {fileID: 7928393487947242448}
   - {fileID: 3739488588529866447}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3290743570505607305
 MonoBehaviour:
