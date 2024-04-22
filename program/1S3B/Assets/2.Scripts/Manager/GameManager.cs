@@ -106,10 +106,11 @@ public class GameManager : MonoBehaviour
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        StartCoroutine(SleepOfDay());
+        player.playerPosition = new Vector3(350, 4);
+        StartCoroutine(SleepOfDay(true));
     }
 
-    public IEnumerator SleepOfDay()
+    public IEnumerator SleepOfDay(bool isDeath)
     {
         bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
@@ -117,6 +118,9 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(SceneChangeManager.SleepFadeIn());
 
         player.EnergyReset(isTired);
+
+        if (isDeath == true)
+            player.ChangePosition();
 
         TileManager.Sleep();
 
