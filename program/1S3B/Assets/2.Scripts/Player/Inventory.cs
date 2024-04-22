@@ -172,6 +172,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    #region 퀵 슬롯 관련
     // 아이템을 퀵 슬롯에 할당
     //public void OnClickButtonQuickApply(InventorySlotUI slot, Item item)
     //{
@@ -203,13 +204,24 @@ public class Inventory : MonoBehaviour
 
         Item item = selectedSlotUI._item;
 
+        // 퀵슬롯에 넣을 수 있는 아이템인지 검사
         if (item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Crop")
         {
-            if (!quickSlot.AddItem(item))
+            // 넣으려고 하는 아이템이 퀵 슬롯에 없는 아이템이면
+            // 해당 아이템 퀵 슬롯에 추가
+            if (item.QSymbolActive != true)
             {
-                return;
+                if (!quickSlot.AddItem(item))
+                {
+                    return;
+                }
+                item.QSymbolActive = true;
             }
-            item.QSymbolActive = true;
+            // 해당 아이템 퀵 슬롯에서 제거
+            else
+            {
+
+            }
         }
 
         inventoryUI.Refresh();
@@ -244,4 +256,5 @@ public class Inventory : MonoBehaviour
         RemoveSelectedItem(slot, item);
         //return tmpItem;
     }
+    #endregion // 퀵 슬롯 관련
 }

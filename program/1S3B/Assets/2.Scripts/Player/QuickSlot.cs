@@ -26,7 +26,7 @@ public class QuickSlot : MonoBehaviour
         slots = quickSlotUI.GetComponentsInChildren<SlotUI>();
         items = new Item[slots.Length];
 
-        for(int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
             items[i] = new Item();
             slots[i].index = i;
@@ -43,45 +43,46 @@ public class QuickSlot : MonoBehaviour
         SlotUI emptySlot = GetEmptySlot();
 
         //if (!isOwn)
-        if(item.QSymbolActive == false)
+        // 넣으려고 하는 아이템이 이미 퀵 슬롯에 존재하는 아이템 아니면
+        //if (item.QSymbolActive == false)
+        //{
+        if (emptySlot != null)
         {
-            if (emptySlot != null)
-            {
-                int idx = emptySlot.index;
-                emptySlot.item = item;
-                items[idx] = item;
-                quickSlotUI.UpdateUI();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            int idx = emptySlot.index;
+            emptySlot.item = item;
+            items[idx] = item;
+            quickSlotUI.UpdateUI();
+            return true;
         }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         return false;
     }
 
-    // 퀵 슬롯에 넣으려고 하는 아이템이 이미 존재하는 아이템인지 확인
-    private bool IsOwn(Item item)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item == item)
-            {
-                return true;
-            }
-        }
+    //// 퀵 슬롯에 넣으려고 하는 아이템이 이미 존재하는 아이템인지 확인
+    //private bool IsOwn(Item item)
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (slots[i].item == item)
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
 
     // 비어있는 슬롯 확인
     public SlotUI GetEmptySlot()
     {
-        for(int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
-            if(slots[i].item == null)
+            if (slots[i].item == null)
             {
                 return slots[i];
             }
@@ -93,6 +94,8 @@ public class QuickSlot : MonoBehaviour
     // 퀵 슬롯에 아이템 제거
     public void DeleteItem()
     {
+
+
         quickSlotUI.UpdateUI();
     }
 
@@ -115,6 +118,6 @@ public class QuickSlot : MonoBehaviour
     // 아이템 사용
     private void UseItem()
     {
-        
+
     }
 }
