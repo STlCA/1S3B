@@ -220,7 +220,8 @@ public class Inventory : MonoBehaviour
             // 해당 아이템 퀵 슬롯에서 제거
             else
             {
-
+                quickSlot.DeleteItem(item);
+                item.QSymbolActive = false;
             }
         }
 
