@@ -23,9 +23,11 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private QuickSlotUI quickSlotUI;
 
-    [Header("Selected Item")]
+    [Header("Selected Item")] // 마우스가 가리키는 아이템
     private InventorySlotUI _selectedItem;
     private int _selectedItemIndex;
+
+    InventorySlotUI selectedSlotUI; // 클릭한 아이템
 
     public void Init(GameManager gameManager)
     {
@@ -151,26 +153,26 @@ public class Inventory : MonoBehaviour
         _selectedItem.UpdateItemInfo(_selectedItem._item.ItemInfo.Name, infoString);
     }
 
-    // 아이템 사용
-    public void UseItem(InventorySlotUI slot, Item item)
-    {
-        //_selectedItem = item;
-        //_selectedItemIndex = item.index;
+    //// 아이템 사용
+    //public void UseItem(InventorySlotUI slot, Item item)
+    //{
+    //    //_selectedItem = item;
+    //    //_selectedItemIndex = item.index;
 
-        // 아이템이 장착 아이템이라면
-        if (item.ItemInfo.Type == "Equip")
-        {
-            EquipItem();
-            return;
-        }
+    //    // 아이템이 장착 아이템이라면
+    //    if (item.ItemInfo.Type == "Equip")
+    //    {
+    //        EquipItem();
+    //        return;
+    //    }
 
-        item.quantity--;
+    //    item.quantity--;
 
-        if (item.quantity <= 0)
-        {
-            RemoveSelectedItem(slot, item);
-        }
-    }
+    //    if (item.quantity <= 0)
+    //    {
+    //        RemoveSelectedItem(slot, item);
+    //    }
+    //}
 
     #region 퀵 슬롯 관련
     // 아이템을 퀵 슬롯에 할당
@@ -182,7 +184,6 @@ public class Inventory : MonoBehaviour
     //    }
     //}
 
-    InventorySlotUI selectedSlotUI;
     public void SelectSlot(InventorySlotUI slot)
     {
         if(selectedSlotUI != null)
@@ -234,12 +235,42 @@ public class Inventory : MonoBehaviour
 
     }
 
+    //// 아이템 퀵슬롯에 장착
+    //public void InputQuickSlot(InventorySlotUI slot, Item item)
+    //{
+    //    //Item tmpItem = item;
+    //    RemoveSelectedItem(slot, item);
+    //    //return tmpItem;
+    //}
+    #endregion // 퀵 슬롯 관련
+
+    #region 아이템 판매 관련
+    // 선택한 아이템 판매
+    public void OnClickSellBtn()
+    {
+        if (selectedSlotUI == null)
+        {
+            return;
+        }
+
+        Item item = selectedSlotUI._item;
+
+        // 장착 아이템 제외 모든 아이템 판매 가능
+        if(item.ItemInfo.Type != "Equip")
+        {
+            player.Deposit(item.ItemInfo.SellGold, item.quantity);
+            RemoveSelectedItem(selectedSlotUI, item);
+        }
+
+    }
+
     // 아이템 제거
     private void RemoveSelectedItem(InventorySlotUI slot, Item item)
     {
         items.Remove(item);
         slot.Clear();
 
+        inventoryUI.Refresh();
         //_selectedItem.quantity--;
 
         //    if (_selectedItem.quantity <= 0)
@@ -249,13 +280,5 @@ public class Inventory : MonoBehaviour
 
         //    UpdateUI();
     }
-
-    // 아이템 퀵슬롯에 장착
-    public void InputQuickSlot(InventorySlotUI slot, Item item)
-    {
-        //Item tmpItem = item;
-        RemoveSelectedItem(slot, item);
-        //return tmpItem;
-    }
-    #endregion // 퀵 슬롯 관련
+    #endregion // 아이템 판매 관련
 }
