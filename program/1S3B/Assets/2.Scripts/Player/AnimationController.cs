@@ -32,7 +32,6 @@ public class AnimationController : AnimationBase
     [Header("Carry")]
     public GameObject itemGO;
     private SpriteRenderer itemSR;
-    private Animator itemAnim;
 
     private void Start()
     {
@@ -49,9 +48,6 @@ public class AnimationController : AnimationBase
         pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
 
         itemSR = itemGO.GetComponent<SpriteRenderer>();
-        itemAnim = itemGO.GetComponent<Animator>();
-        itemAnim.keepAnimatorStateOnDisable = true;
-        itemGO.SetActive(false);
     }
 
     /*    //private void Update()
