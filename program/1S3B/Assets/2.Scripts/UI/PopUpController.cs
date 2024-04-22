@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PopUpController : Manager 
-{
+{ 
     //ON OFF Change
     public void UIOnOff(GameObject ui)
     {
