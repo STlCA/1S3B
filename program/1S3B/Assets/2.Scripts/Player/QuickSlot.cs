@@ -99,6 +99,7 @@ public class QuickSlot : MonoBehaviour
             if (items[i] == item)
             {
                 slots[i].Clear();
+                items[i] = null;
                 return;
             }
         }
