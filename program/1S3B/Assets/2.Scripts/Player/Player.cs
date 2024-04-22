@@ -173,14 +173,15 @@ public class Player : MonoBehaviour
         uiManager.EnergyBarUpdate(playerEnergy);
     }
 
-    public void ChangePosition()
+    public void ChangePosition(Vector3 pos = default)
     {
         transform.position = playerPosition;
     }
 
     private void DeathSleep()
     {
-        StartCoroutine(gameManager.SleepOfDay());
+        playerPosition = new Vector3(350, 4);
+        StartCoroutine(gameManager.SleepOfDay(true));
     }
 
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)

@@ -28,6 +28,9 @@ public class AnimationController : AnimationBase
     private SpriteRenderer pickupItemSR;
     private Animator pickItemAnim;
 
+    [Header("Carry")]
+    public SpriteRenderer equipmentSR;
+
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -52,8 +55,24 @@ public class AnimationController : AnimationBase
         //        StopAnimation(false);
         //}*/
 
-    public void CarryAnimation(bool isCarry)
+    public void temp(bool isCarry)
     {
+        if (isCarry == true)
+        {
+            foreach (var anim in animator)
+            {
+                anim.enabled = false;
+            }
+
+            equipmentSR.sprite = player.selectItem.ItemInfo.SpriteList[0];
+        }
+
+        Invoke("CarryAnimation",2);
+    }
+
+    public void CarryAnimation()
+    {
+        bool isCarry = true;
         if (animator[0].GetBool(ConstantsString.IsStart) == false)
         {
             foreach (var anim in animator)
@@ -64,6 +83,8 @@ public class AnimationController : AnimationBase
 
         foreach (var anim in animator)
         {
+            anim.enabled = true;
+
             anim.SetBool(ConstantsString.IsCarry, isCarry);
 
             if (anim.GetFloat(ConstantsString.InputX) == 0 && anim.GetFloat(ConstantsString.InputY) == 0)
