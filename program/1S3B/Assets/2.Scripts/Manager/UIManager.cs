@@ -21,6 +21,7 @@ public class UIManager : Manager
     public GameObject sleepInfoUI;
     public QuickSlotUI quickSlotUI;
     public InventoryUI inventoryUI;
+    public ShopUI shopUI;
     public GameObject keepOutInfo;
 
     [Header("EnergyBar")]
@@ -50,6 +51,7 @@ public class UIManager : Manager
 
         quickSlotUI.Init(gameManager, this, player);
         inventoryUI.Init(gameManager, this, player);
+        shopUI.Init();
     }
 
     //public void EquipIconChange(PlayerEquipmentType type)
