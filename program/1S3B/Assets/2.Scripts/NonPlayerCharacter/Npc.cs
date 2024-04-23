@@ -107,6 +107,7 @@ public class Npc : MonoBehaviour, ITalk
         {
             gameManager.talkPanel.SetActive(true);
             StartCoroutine("PrintDialogue");
+            npcStateMachine.movementSpeedModifier = 0f;
         }
     }
 
@@ -124,5 +125,6 @@ public class Npc : MonoBehaviour, ITalk
     public void CloseTalkPanel()
     {
         gameManager.talkPanel.SetActive(false);
+        npcStateMachine.movementSpeedModifier = 1f;
     }
 }

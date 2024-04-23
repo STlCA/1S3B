@@ -293,6 +293,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef4fb1b48ee6224694a3f9c00ff59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &163034027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3392464175444433059, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
+  m_PrefabInstance: {fileID: 3028435160398547271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ec6457887328b49b4eee75acbe89a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &163161988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,6 +3656,10 @@ PrefabInstance:
       propertyPath: tired
       value: 
       objectReference: {fileID: 3028435160398547281}
+    - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: shopUI
+      value: 
+      objectReference: {fileID: 163034027}
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: miniMap
       value: 
