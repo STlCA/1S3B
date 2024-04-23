@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private DayCycleHandler dayCycleHandler;
     public WeatherSystem WeatherSystem { get { return weatherSystem; } }
     private WeatherSystem weatherSystem;
+    public PopUpController PopUpController { get { return popUpController; } }
+    private PopUpController popUpController;
 
     //========================Player
     public Player Player { get { return player; } }
@@ -77,12 +79,12 @@ public class GameManager : MonoBehaviour
         sceneChangeManager = GetManager<SceneChangeManager>();
         natureObjectController = GetManager<NatureObjectController>();
         uIManager = GetManager<UIManager>();
+        popUpController = GetManager<PopUpController>();
 
         player = GetFind<Player>();
         player.Init(this);
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
-
 
         DontDestroyOnLoad(gameObject);
     }
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        player.playerPosition = new Vector3(349.5f, 4);
+        player.playerPosition = new Vector3(351f, 4.3f);
         StartCoroutine(SleepOfDay(true));
     }
 
@@ -137,6 +139,8 @@ public class GameManager : MonoBehaviour
 
         dayCycleHandler.ChangeDate();
         DayText.text = DayCycleHandler.GetDayAsString();
+
+        animationController.AnimationSpeedChange(1);
 
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }

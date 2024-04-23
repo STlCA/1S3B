@@ -11,6 +11,7 @@ public class MapTrigger : MonoBehaviour
     private SceneChangeManager sceneChangeManager;
     private UIManager uiManager;
     private WeatherSystem weatherSystem;
+    private PopUpController popUpController;
 
     [Header("Type")]
     public MapTriggerType type;
@@ -26,6 +27,7 @@ public class MapTrigger : MonoBehaviour
         player = gameManager.Player;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
+        popUpController = gameManager.PopUpController;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -159,7 +161,7 @@ public class MapTrigger : MonoBehaviour
                     weatherSystem.SwitchAllElementsToOutdoor(true);
                     break;
                 case MapTriggerType.KeepOut:
-                    uiManager.UIOn(uiManager.keepOutInfo);
+                    popUpController.UIOn(uiManager.keepOutInfo);
                     return;
             }
 

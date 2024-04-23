@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterEventController _controller;
     private SceneChangeManager sceneChangeManager;
     private UIManager uiManager;
+    private PopUpController popUpController;
 
     public SortingGroup playerSprite;
     private Rigidbody2D _rigidbody2D;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         player = gameManager.Player;
         sceneChangeManager = gameManager.SceneChangeManager;
         uiManager = gameManager.UIManager;
+        popUpController = gameManager.PopUpController;
 
         _controller.OnMoveEvent += Move;
         sceneChangeManager.mapChangeAction += ChangeDirection;
@@ -74,11 +76,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "Bed")
         {
-            uiManager.UIOn(uiManager.sleepInfoUI);
+            popUpController.UIOn(uiManager.sleepInfoUI);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        uiManager.UIOff(uiManager.sleepInfoUI);
+        popUpController.UIOff(uiManager.sleepInfoUI);
     }
 }

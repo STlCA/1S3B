@@ -67,6 +67,7 @@ public class ItemDatabase
 {
     public List<ItemInfo> ItemData;
     public Dictionary<int, ItemInfo> itemDic = new();
+    public Dictionary<int, ItemInfo> cropIDDic = new();
 
     public void Initialize()
     {
@@ -74,6 +75,8 @@ public class ItemDatabase
         {
             item.Init();
             itemDic.Add(item.ID, item);
+            if(item.Type == "Crop")
+                cropIDDic.Add(item.CropID, item);
         }
     }
 
@@ -81,6 +84,15 @@ public class ItemDatabase
     {
         if (itemDic.ContainsKey(id))
             return itemDic[id];
+
+        return null;
+    }
+    public ItemInfo GetItemByCropID(int id)
+    {
+        if (cropIDDic.ContainsKey(id))
+            return cropIDDic[id];
+
+        Debug.Log("cropid id 못차즘" + id);
 
         return null;
     }

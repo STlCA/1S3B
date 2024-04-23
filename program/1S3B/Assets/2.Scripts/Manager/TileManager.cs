@@ -47,6 +47,7 @@ public class CropData
 public class TileManager : Manager
 {
     private Player player;
+    private Inventory inventory;
     private AnimationController animationController;
     private TargetSetting targetSetting;
     private DayCycleHandler dayCycleHandler;
@@ -75,6 +76,7 @@ public class TileManager : Manager
     public Dictionary<Vector3Int, CropData> cropData { get; private set; } = new();
 
     private CropDatabase cropDatabase;
+    private ItemDatabase itemDatabase;
     private bool isRain = false;
 
     private void Start()
@@ -84,8 +86,10 @@ public class TileManager : Manager
         dayCycleHandler = gameManager.DayCycleHandler;
         weatherSystem = gameManager.WeatherSystem;
         player = gameManager.Player;
+        inventory = player.Inventory;
 
         cropDatabase = gameManager.DataManager.cropDatabase;
+        itemDatabase = gameManager.DataManager.itemDatabase;
 
         weatherSystem.IsRainAction += IsRain;
     }
@@ -138,7 +142,10 @@ public class TileManager : Manager
         if (targetSetting.TargetUI() == false)
             return;
 
-        player.selectItem.quantity--;             
+        if (item.quantity <= 0)
+            return;
+
+        player.selectItem.quantity--;
 
         CropData tempcropData = new CropData();
 
@@ -184,25 +191,27 @@ public class TileManager : Manager
         if (targetSetting.TargetUI() == false)
             return;
 
-        Sprite pickUpSprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.SpriteList.Count - 2];
+        Sprite pickUpSprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.SpriteList.Count - 1];
         animationController.PickUpAnim(target, pos, pickUpSprite);
 
         if (cropData[target].plantCrop.StageAfterHarvest == 0)//바로삭제
         {
-            //인벤넣기
+            HarvestItem(target);
+
             DestroyCropData(target);
 
         }
         else//여러번수확
         {
-            //인벤넣기
+            HarvestItem(target);
+
             cropData[target].harvest++;
             cropData[target].currentStage = cropData[target].plantCrop.StageAfterHarvest;
             cropData[target].cropRenderer.sprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.StageAfterHarvest];
             cropData[target].cropObj.tag = "Crop";
         }
     }
-    public void Sleep()
+    public void Sleep() 
     {
         foreach (var (cell, tempPlantData) in cropData)
         {
@@ -284,5 +293,13 @@ public class TileManager : Manager
         }
 
         //땅 새로팔때도 지금은 데이터만 바꿨으니 물타일 넣어야하고 새로팔때도 넣어야하고 날씨가 끝나면 false로 바꿔야하고
+    }
+
+    private void HarvestItem(Vector3Int target)
+    {
+        ItemInfo itemInfo = itemDatabase.GetItemByCropID(cropData[target].plantCrop.ID);
+        Item item = new Item();
+        item.ItemInfo = itemInfo;
+        inventory.AddItem(item);
     }
 }

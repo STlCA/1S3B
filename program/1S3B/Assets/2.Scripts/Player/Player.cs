@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         playerEnergy = playerMaxEnergy;
         playerGold = 1500;
         playerSpeed = 7f;
-        transform.position = new Vector3(349.5f, 4);
+        transform.position = new Vector3(351f, 4.3f);
 
         skillName = new string[] { "농사", "벌목", "채광", "전투", "낚시" };
 
@@ -125,8 +125,9 @@ public class Player : MonoBehaviour
         if (playerEnergy <= 0 && playerEnergy > -20)
         {
             playerSpeed = 2f;
-            playerState = PlayerState.TIRED;
+            playerState = PlayerState.TIRED;            
             uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
+            animationController.AnimationSpeedChange(0.5f);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
         {
@@ -181,7 +182,7 @@ public class Player : MonoBehaviour
 
     private void DeathSleep()
     {
-        playerPosition = new Vector3(349.5f, 4);
+        playerPosition = new Vector3(351f, 4.3f);
         StartCoroutine(gameManager.SleepOfDay(true));
     }
 

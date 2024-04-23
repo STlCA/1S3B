@@ -318,7 +318,7 @@ public class PlayerInputController : CharacterEventController
         {
             switch (player.selectItem.ItemInfo.Type)
             {
-                case "Crop":
+                case "Seed":
                     UseSeed(PlayerEquipmentType.Seed, pos);
                     break;
 

@@ -6,6 +6,8 @@ public class DropItem : MonoBehaviour
 {
     private GameManager gameManager;
     private Player player;
+    private Inventory inventory;
+    private ItemDatabase itemDatabase;
 
     [Header("Drop")]
     public Transform sprite;
@@ -13,6 +15,9 @@ public class DropItem : MonoBehaviour
 
     [Header("Looting")]
     public CircleCollider2D circleCollider;
+
+    [HideInInspector]
+    public int id;
 
     //Drop
     private int maxBounce = 3;
@@ -39,6 +44,8 @@ public class DropItem : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         player = gameManager.Player;
+        inventory = player.Inventory;
+        itemDatabase = gameManager.DataManager.itemDatabase;
 
         circleCollider.radius = range;
 
@@ -108,6 +115,11 @@ public class DropItem : MonoBehaviour
 
         if (distance < 0.5f)
         {
+            ItemInfo itemInfo = itemDatabase.GetItemByKey(id);
+            Item item = new Item();
+            item.ItemInfo = itemInfo;
+            inventory.AddItem(item);
+
             Destroy(gameObject);
             isLooting = false;
         }
