@@ -33,6 +33,9 @@ public class ScrollViewUI : MonoBehaviour
     private float _slotPrefabWidth;
     private float _padding = 5;
 
+    private int _heightCount;
+    private bool isFit = false;
+
     // 스크롤뷰 초기화
     public void Init(ScrollSlotUI slot)
     {
@@ -49,6 +52,7 @@ public class ScrollViewUI : MonoBehaviour
         RectTransform rectTransform = slotPrefab.GetComponent<RectTransform>();
         _slotPrefabWidth = rectTransform.rect.width + _padding;
         _slotPrefabHeight = rectTransform.rect.height + _padding;
+        _heightCount = (int)(_scrollRect.rect.height / _slotPrefabHeight) + 3;
 
         CreateSlots();
         SetContentHeight();
@@ -59,7 +63,7 @@ public class ScrollViewUI : MonoBehaviour
     {
         uiSlots = new List<ScrollSlotUI>();
 
-        int itemCount = ((int)(_scrollRect.rect.height / _slotPrefabHeight) + 3) * (int)(_scrollRect.rect.width / _slotPrefabWidth);
+        int itemCount = _heightCount * (int)(_scrollRect.rect.width / _slotPrefabWidth);
 
         for (int i = 0; i < itemCount; i++)
         {
@@ -77,15 +81,34 @@ public class ScrollViewUI : MonoBehaviour
     // 전체 컨텐츠의 길이 세팅
     private void SetContentHeight()
     {
-        _scroll.content.sizeDelta = new Vector2(_scroll.content.sizeDelta.x, _slotPrefabHeight * 10); // y 값 data 길이에 따른 변수로 바꾸기!
+        _scroll.content.sizeDelta = new Vector2(_scroll.content.sizeDelta.x, _slotPrefabHeight * _heightCount); // y 값 data 길이에 따른 변수로 바꾸기!
+    }
+    
+    public void SetContentHeight(int heightCount)
+    {
+        if(heightCount >= _heightCount)
+        {
+            isFit = false;
+            return;
+        }
+
+        isFit = true;
+        //_scroll.content.transform.position = Vector3.zero;
+        _scroll.content.sizeDelta = new Vector2(_scroll.content.sizeDelta.x, _slotPrefabHeight * heightCount + _slotPrefabHeight/2f); 
     }
 
     private void Update()
     {
+        if (isFit)
+        {
+            return;
+        }
+
         float contentPositionY = _scroll.content.anchoredPosition.y;
         float scrollHeight = _scrollRect.rect.height;
         foreach (ScrollSlotUI slot in uiSlots)
         {
+            //if(slot.)
             bool isChanged = RelocationSlot(slot, contentPositionY, scrollHeight);
             // 슬롯 인덱스 설정
             if(isChanged)
@@ -122,6 +145,10 @@ public class ScrollViewUI : MonoBehaviour
     // 슬롯 인덱스 값 설정
     private void SetIndex(ScrollSlotUI slot, int idx)
     {
+        if(idx < 0)
+        {
+            return;
+        }
         slot.SetIndex(idx);
     }
 
