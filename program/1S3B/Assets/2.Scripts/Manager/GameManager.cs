@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     public void DayOverTime()
     {
         //EndTime넘어섯을때
-        player.playerPosition = new Vector3(349.5f, 4);
+        player.playerPosition = new Vector3(351f, 4.3f);
         StartCoroutine(SleepOfDay(true));
     }
 

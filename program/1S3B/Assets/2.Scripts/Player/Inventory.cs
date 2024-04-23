@@ -29,6 +29,8 @@ public class Inventory : MonoBehaviour
 
     InventorySlotUI selectedSlotUI; // 클릭한 아이템
 
+    ItemDatabase database;
+
     public void Init(GameManager gameManager)
     {
         player = GetComponent<Player>();
@@ -36,6 +38,35 @@ public class Inventory : MonoBehaviour
         uiManager = gameManager.UIManager;
         inventoryUI = uiManager.inventoryUI;
         quickSlot = player.QuickSlot;
+        database = gameManager.DataManager.itemDatabase;
+    }
+    private void Start()
+    {
+        
+        UseItemInit();
+    }
+
+    private void UseItemInit()
+    {
+        ItemInfo itemInfo = database.GetItemByKey(1001);
+        Item item = new Item();
+        item.ItemInfo = itemInfo;
+        AddItem(item);
+
+        itemInfo = database.GetItemByKey(1002);
+        item = new Item();
+        item.ItemInfo = itemInfo;
+        AddItem(item);
+
+        itemInfo = database.GetItemByKey(1003);
+        item = new Item();
+        item.ItemInfo = itemInfo;
+        AddItem(item);
+
+        itemInfo = database.GetItemByKey(1004);
+        item = new Item();
+        item.ItemInfo = itemInfo;
+        AddItem(item);
     }
 
     // 아이템 추가
@@ -206,7 +237,7 @@ public class Inventory : MonoBehaviour
         Item item = selectedSlotUI._item;
 
         // 퀵슬롯에 넣을 수 있는 아이템인지 검사
-        if (item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Crop")
+        if (item.ItemInfo.Type == "Equip" || item.ItemInfo.Type == "Seed")
         {
             // 넣으려고 하는 아이템이 퀵 슬롯에 없는 아이템이면
             // 해당 아이템 퀵 슬롯에 추가

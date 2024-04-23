@@ -53,10 +53,11 @@ public class StoneData
 public class NatureObjectController : Manager
 {
     private Player player;
+    private Inventory inventory;
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
-    private DayCycleHandler dayCycleHandler;
+    private DayCycleHandler dayCycleHandler;    
 
     [Header("Range")]
     public Tilemap interactableMap;
@@ -101,6 +102,7 @@ public class NatureObjectController : Manager
         targetSetting = gameManager.TargetSetting;
         animationController = gameManager.AnimationController;
         player = gameManager.Player;
+        inventory = player.Inventory;
         dayCycleHandler = gameManager.DayCycleHandler;
         itemDatabase = gameManager.DataManager.itemDatabase;
 
@@ -244,8 +246,8 @@ public class NatureObjectController : Manager
 
                     IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
 
-                    random = Random.Range(0, names.Count());
-                    string id = "5" + ((dayCycleHandler.currentDay / 28) % 4).ToString() + "0" + (random + 1).ToString();
+                    random = Random.Range(0, names.Count()) + 1;
+                    string id = "5" + ((dayCycleHandler.currentDay / 28) % 4).ToString() + "0" + (random).ToString();
                     tempdData.id = int.Parse(id);
 
                     tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
@@ -469,6 +471,12 @@ public class NatureObjectController : Manager
         animationController.PickUpAnim(target, pos, pickUpSprite);
 
         natureData[target].isSpawn = false;
+
+        ItemInfo itemInfo = itemDatabase.GetItemByKey(natureData[target].id);
+        Item item = new Item();
+        item.ItemInfo = itemInfo;
+        inventory.AddItem(item);
+
         Destroy(natureData[target].natureObj);
     }
 
@@ -606,6 +614,7 @@ public class NatureObjectController : Manager
         {
             GameObject go = Instantiate(dropItemPrefab);
             go.GetComponentInChildren<SpriteRenderer>().sprite = itemDatabase.GetItemByKey(ID).SpriteList[0];
+            go.GetComponent<DropItem>().id = ID;
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
     }
@@ -617,6 +626,7 @@ public class NatureObjectController : Manager
 
             GameObject go = Instantiate(dropItemPrefab);
             go.GetComponentInChildren<SpriteRenderer>().sprite = item.SpriteList[0];
+            go.GetComponent<DropItem>().id = (int)type;
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
     }
