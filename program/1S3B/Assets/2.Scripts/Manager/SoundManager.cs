@@ -1,57 +1,102 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
-using Constants;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : Manager
 {
-/*    [SerializeField][Range(0f, 1f)] private float musicVolume = 0.2f; // BGM 볼륨
-    [SerializeField][Range(0f, 1f)] private float sfxVolume = 0.5f; // SFX (효과음) 볼륨
+    [Header("AudioSource")]
+    public AudioSource BGMSource;
+    public AudioSource EffectSource;
+    public AudioSource GameEffectSource;
 
-    private AudioSource musicAudioSource; // 배경음악용 AudioSource
-    private AudioSource sfxAudioSource; // 효과음용 AudioSource
+    [Header("VolumeSlider")]
+    public Slider BGMSlider;
+    public Slider EffectSlider;
+    public Slider GameEffectSlider;
 
-    public List<AudioClip> musicClips; // BGM 클립 리스트
-    public List<AudioClip> sfxClips; // SFX 클립 리스트
+    [Header("AudioClipList")]
+    public List<AudioClip> AudioClipList;
 
-    private void Awake()
+    private float bgmVolume = 1;
+    private float effectVolume = 1;
+    private float gameEffectVolume = 1;
+
+    public void BGMSoundSlider(Image image)
     {
-        // BGM용 AudioSource 설정
-        musicAudioSource = gameObject.AddComponent<AudioSource>();
-        musicAudioSource.volume = musicVolume;
-        musicAudioSource.loop = true;
-
-        // SFX용 AudioSource 설정 ( loop 안함 )
-        sfxAudioSource = gameObject.AddComponent<AudioSource>();
-        sfxAudioSource.volume = sfxVolume; // SFX 볼륨 설정
+        if (BGMSource.volume == 0)
+            image.color = Color.gray;
+        else
+            image.color = Color.white;
+    }
+    public void EffectSoundSlider(Image image)
+    {
+        if (EffectSource.volume == 0)
+            image.color = Color.gray;
+        else
+            image.color = Color.white;
+    }
+    public void GameEffectSoundSlider(Image image)
+    {
+        if (GameEffectSource.volume == 0)
+            image.color = Color.gray;
+        else
+            image.color = Color.white;
+    }
+    public void BGMSoundOnOff(Image image)
+    {
+        if (BGMSource.volume == 0)
+        {
+            image.color = Color.white;
+            BGMSource.volume = bgmVolume;
+            BGMSlider.value = bgmVolume;
+        }
+        else
+        {
+            image.color = Color.gray;
+            bgmVolume = BGMSource.volume;
+            BGMSource.volume = 0;
+            BGMSlider.value = 0;
+        }
     }
 
-    // 낮 음악이 재생되고 있는지
-    public bool IsPlayingDayMusic()
+    public void EffectSoundOnOff(Image image)
     {
-        return musicAudioSource.clip == musicClips[0] && musicAudioSource.isPlaying;
+        if (EffectSource.volume == 0)
+        {
+            image.color = Color.white;
+            EffectSource.volume = effectVolume;
+            EffectSlider.value = effectVolume;
+        }
+        else
+        {
+            image.color = Color.gray;
+            effectVolume = EffectSource.volume;
+            EffectSource.volume = 0;
+            EffectSlider.value = 0;
+        }
     }
 
-    // 밤 음악이 재생되고 있는지
-    public bool IsPlayingNightMusic()
+    public void GameEffectSoundOnOff(Image image)
     {
-        return musicAudioSource.clip == musicClips[1] && musicAudioSource.isPlaying;
+        if (GameEffectSource.volume == 0)
+        {
+            image.color = Color.white;
+            GameEffectSource.volume = gameEffectVolume;
+            GameEffectSlider.value = gameEffectVolume;
+        }
+        else
+        {
+            image.color = Color.gray;
+            gameEffectVolume = GameEffectSource.volume;
+            GameEffectSource.volume = 0;
+            GameEffectSlider.value = 0;
+        }
     }
 
-    public void PlayMusic(int index)
+    public void AudioClipPlay(int index)
     {
-        musicAudioSource.clip = musicClips[index];
-        musicAudioSource.Play();
+        GameEffectSource.PlayOneShot(AudioClipList[index], 1);
     }
-
-    public void PlaySFX(SFXSound sfx)
-    {
-        //sfxAudioSource.PlayOneShot(sfxClips[(int)sfx], sfxVolume);
-    }
-
-    private void Start()
-    {
-        PlayMusic(0); // 낮 BGM 재생
-    }*/
-
 }

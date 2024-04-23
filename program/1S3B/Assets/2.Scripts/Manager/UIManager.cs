@@ -14,7 +14,6 @@ using UnityEngine.UI;
 
 public class UIManager : Manager
 {
-    private Camera main;
     private Player player;
 
     [Header("Image")]
@@ -38,8 +37,6 @@ public class UIManager : Manager
 
     private void Start()
     {
-        main = Camera.main;
-
         player = gameManager.Player;
 
         maxEnergy = player.playerMaxEnergy;

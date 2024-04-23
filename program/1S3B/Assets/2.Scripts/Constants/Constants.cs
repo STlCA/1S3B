@@ -192,4 +192,11 @@ namespace Constants
         MouseOver1,
         MouseOver2,
     }
+    public enum MainAudioClip
+    {
+        Click,
+        Close,
+        MouseOver1,
+        MouseOver2,
+    }
 }

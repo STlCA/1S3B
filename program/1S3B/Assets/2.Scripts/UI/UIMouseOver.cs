@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UIMouseOver : MonoBehaviour, IPointerEnterHandler
 {
-    public StartSoundManager startSoundManager;
+    public SoundManager startSoundManager;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
