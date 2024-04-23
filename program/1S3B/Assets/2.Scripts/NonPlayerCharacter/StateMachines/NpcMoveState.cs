@@ -14,14 +14,18 @@ public class NpcMoveState : NpcBaseState
     {   
         base.Enter();
         StartAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
-        _npcStateMachine._npc.animator.SetBool("IsWalk", true);
+        _npcStateMachine._npc.animator[1].SetBool("IsWalk", true);
+        _npcStateMachine._npc.animator[2].SetBool("IsWalk", true);
+        _npcStateMachine._npc.animator[3].SetBool("IsWalk", true);
     }
 
     public override void Exit()
     {
         base.Exit();
         StopAnimation(_npcStateMachine._npc.animationData.WalkParameterHash);
-        _npcStateMachine._npc.animator.SetBool("IsWalk", false);
+        _npcStateMachine._npc.animator[1].SetBool("IsWalk", false);
+        _npcStateMachine._npc.animator[2].SetBool("IsWalk", false);
+        _npcStateMachine._npc.animator[3].SetBool("IsWalk", false);
     }
 
     public override void Update()

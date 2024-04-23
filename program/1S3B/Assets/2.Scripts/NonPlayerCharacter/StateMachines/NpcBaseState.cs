@@ -39,11 +39,13 @@ public class NpcBaseState : IState
 
     protected void StartAnimation(int animationHash)
     {
-        _npcStateMachine._npc.animator.SetBool(animationHash, true);
+        _npcStateMachine._npc.animator[0].SetBool(animationHash, true);
+       
     }
 
     protected void StopAnimation(int animationHash)
     {
-        _npcStateMachine._npc.animator.SetBool(animationHash, false);
+        _npcStateMachine._npc.animator[0].SetBool(animationHash, false);
+        
     }
 }
