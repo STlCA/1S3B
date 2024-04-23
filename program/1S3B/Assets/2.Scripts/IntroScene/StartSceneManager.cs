@@ -27,11 +27,11 @@ public class StartSceneManager : MonoBehaviour
 
     public void GameExit()
     {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-    #else
+#else
         Application.Quit();
-    #endif
+#endif
     }
 
     private IEnumerator LoadingScene()
@@ -44,7 +44,11 @@ public class StartSceneManager : MonoBehaviour
 
         while (!loading.isDone) //씬 로딩 완료시 로딩완료시 완료된다.
         {
-            loadingSlider.value = loading.progress;
+            if (loading.progress >= 0.9f)
+                loadingSlider.value = 1f;
+            else
+                loadingSlider.value = loading.progress;
+
             yield return null;
         }
 

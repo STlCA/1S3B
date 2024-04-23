@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SoundManager : Manager
 {
-    [SerializeField][Range(0f, 1f)] private float musicVolume = 0.2f; // BGM 볼륨
+/*    [SerializeField][Range(0f, 1f)] private float musicVolume = 0.2f; // BGM 볼륨
     [SerializeField][Range(0f, 1f)] private float sfxVolume = 0.5f; // SFX (효과음) 볼륨
 
     private AudioSource musicAudioSource; // 배경음악용 AudioSource
@@ -46,12 +46,12 @@ public class SoundManager : Manager
 
     public void PlaySFX(SFXSound sfx)
     {
-        sfxAudioSource.PlayOneShot(sfxClips[(int)sfx], sfxVolume);
+        //sfxAudioSource.PlayOneShot(sfxClips[(int)sfx], sfxVolume);
     }
 
     private void Start()
     {
         PlayMusic(0); // 낮 BGM 재생
-    }
+    }*/
 
 }
