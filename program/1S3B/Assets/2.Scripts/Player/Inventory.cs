@@ -289,8 +289,18 @@ public class Inventory : MonoBehaviour
         // 장착 아이템 제외 모든 아이템 판매 가능
         if(item.ItemInfo.Type != "Equip")
         {
-            player.Deposit(item.ItemInfo.SellGold, item.quantity);
-            RemoveSelectedItem(selectedSlotUI, item);
+            // 수량 입력 창 만들면 주석 해제하고 밑에 있는 코드 삭제
+            //player.Deposit(item.ItemInfo.SellGold, item.quantity);
+            //RemoveSelectedItem(selectedSlotUI, item);
+            player.Deposit(item.ItemInfo.SellGold);
+            item.quantity--;
+
+            if(item.quantity <= 0)
+            {
+                RemoveSelectedItem(selectedSlotUI, item);
+                return;
+            }
+            inventoryUI.Refresh();
         }
 
     }
