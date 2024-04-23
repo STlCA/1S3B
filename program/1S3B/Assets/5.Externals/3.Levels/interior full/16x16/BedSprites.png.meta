@@ -410,7 +410,7 @@ TextureImporter:
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 23, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -21379,6 +21379,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: covers
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b586cc678a37351499d37e179821f25d
+      internalID: 1004908963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -22401,6 +22422,7 @@ TextureImporter:
       BedSprites_997: 1865696821
       BedSprites_998: -1985833878
       BedSprites_999: 363113860
+      covers: 1004908963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
