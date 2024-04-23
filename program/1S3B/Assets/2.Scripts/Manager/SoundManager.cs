@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Constants;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Manager
 {
-    public static SoundManager instance;
-
     [SerializeField][Range(0f, 1f)] private float musicVolume = 0.2f; // BGM 볼륨
     [SerializeField][Range(0f, 1f)] private float sfxVolume = 0.5f; // SFX (효과음) 볼륨
 
@@ -18,17 +16,6 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-        // 필요한 컴포넌트들 초기화
-
         // BGM용 AudioSource 설정
         musicAudioSource = gameObject.AddComponent<AudioSource>();
         musicAudioSource.volume = musicVolume;
@@ -37,7 +24,6 @@ public class SoundManager : MonoBehaviour
         // SFX용 AudioSource 설정 ( loop 안함 )
         sfxAudioSource = gameObject.AddComponent<AudioSource>();
         sfxAudioSource.volume = sfxVolume; // SFX 볼륨 설정
-
     }
 
     // 낮 음악이 재생되고 있는지

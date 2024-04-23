@@ -15,7 +15,7 @@ public class Npc : MonoBehaviour, ITalk
     public Rigidbody2D _rigidbody2D { get; private set; }
     public ForceReceiver forceReceiver { get; private set; }
     public WayPointManager wayPointManager { get; private set; }
-    public Animator animator { get; private set; }
+    public Animator[] animator { get; private set; }
     public SpriteRenderer npcRenderer;
     public SpriteRenderer npcHairRenderer;
     public SpriteRenderer npcTopRenderer;
@@ -38,8 +38,9 @@ public class Npc : MonoBehaviour, ITalk
 
     private void Awake()
     {
+        animator = new Animator[3];
         animationData.Initialize();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponentsInChildren<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         //characterController = GetComponent<CharacterController>();
         forceReceiver = GetComponent<ForceReceiver>();
@@ -106,6 +107,7 @@ public class Npc : MonoBehaviour, ITalk
         {
             gameManager.talkPanel.SetActive(true);
             StartCoroutine("PrintDialogue");
+            npcStateMachine.movementSpeedModifier = 0f;
         }
     }
 
@@ -123,5 +125,6 @@ public class Npc : MonoBehaviour, ITalk
     public void CloseTalkPanel()
     {
         gameManager.talkPanel.SetActive(false);
+        npcStateMachine.movementSpeedModifier = 1f;
     }
 }
