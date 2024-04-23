@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,6 @@ public class UIMouseOver : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        startSoundManager.AudioClipPlay(0);
+        startSoundManager.AudioClipPlay((int)StartSceneAudioClip.MouseOver1);
     }
 }

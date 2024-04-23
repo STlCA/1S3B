@@ -184,4 +184,12 @@ namespace Constants
         Home,
         Shop,
     }
+
+    public enum StartSceneAudioClip
+    {
+        Click,
+        Close,
+        MouseOver1,
+        MouseOver2,
+    }
 }
