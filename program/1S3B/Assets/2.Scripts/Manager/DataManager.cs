@@ -7,6 +7,7 @@ public class DataManager : Manager {
 
     public CropDatabase cropDatabase;
     public ItemDatabase itemDatabase;
+    public ShopDatabase shopDatabase;
     public NpcDataBese npcDatabese;
     public TalksDatabese talksDatabese;
 
@@ -14,6 +15,7 @@ public class DataManager : Manager {
     {
         CropAwake();
         ItemAwake();
+        ShopAwake();
         NpcAwake();
         TalkAwake();
     }
@@ -65,6 +67,22 @@ public class DataManager : Manager {
         else
         {
             Debug.LogError("Failed to load itemDatabase.json");
+        }
+    }
+
+    private void ShopAwake()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/Shop_Data");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+
+            shopDatabase = JsonUtility.FromJson<ShopDatabase>(json);
+            shopDatabase.Initialize();
+        }
+        else
+        {
+            Debug.LogError("Failed to load shopDatabase.json");
         }
     }
 
