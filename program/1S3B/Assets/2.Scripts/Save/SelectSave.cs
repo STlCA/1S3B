@@ -7,29 +7,29 @@ using UnityEngine.UI;
 
 public class SelectSave : MonoBehaviour
 {
-    public GameObject creat;	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½UI
-    public Text[] slotText;		// ï¿½ï¿½ï¿½Ô¹ï¿½Æ° ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Textï¿½ï¿½
-    public Text newPlayerName;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Âµï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
+    public GameObject creat;	// ÇÃ·¹ÀÌ¾î ´Ð³×ÀÓ ÀÔ·ÂUI
+    public Text[] slotText;		// ½½·Ô¹öÆ° ¾Æ·¡¿¡ Á¸ÀçÇÏ´Â Textµé
+    public Text newPlayerName;	// »õ·Î ÀÔ·ÂµÈ ÇÃ·¹ÀÌ¾îÀÇ ´Ð³×ÀÓ
 
     private bool[] savefile = new bool[3];
 
     void Start()
     {
-        // ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½.
+        // ½½·Ôº°·Î ÀúÀåµÈ µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏ´ÂÁö ÆÇ´Ü.
         for (int i = 0; i < 3; i++)
         {
-            if (File.Exists(SaveSystem.path + $"{i}"))	// ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
+            if (File.Exists(SaveSystem.path + $"{i}"))	// µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì
             {
                 savefile[i] = true;
                 SaveSystem.nowSlot = i;
                 SaveSystem.SlotDataLoad();
                 slotText[0].text = SaveSystem.slotData.Name;
-                slotText[1].text = SaveSystem.slotData.Gold.ToString()+"G";                
+                slotText[1].text = SaveSystem.slotData.Gold.ToString()+" G";                
             }
-            else	// ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            else	// µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì
             {
-                slotText[0].text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
-                slotText[1].text = "G";
+                slotText[0].text = "ºñ¾îÀÖÀ½";
+                slotText[1].text = " G";
             }
         }
 
@@ -40,29 +40,30 @@ public class SelectSave : MonoBehaviour
     {
         SaveSystem.nowSlot = number;
 
-        if (savefile[number])	//true = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½
+        if (savefile[number])	//true = µ¥ÀÌÅÍ Á¸ÀçÇÑ´Ù¸é
         {
-            SaveSystem.Load();	// ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Îµï¿½ï¿½Ï°ï¿½
-            GoGame();	// ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+            SaveSystem.Load();	// µ¥ÀÌÅÍ¸¦ ·ÎµåÇÏ°í
+            GoGame();	// °ÔÀÓ¾ÀÀ¸·Î ÀÌµ¿
         }
-        else	// bool ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¹ï¿½È£ï¿½ï¿½ falseï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½
+        else	// bool ¹è¿­¿¡¼­ ÇöÀç ½½·Ô¹øÈ£°¡ false¶ó¸é µ¥ÀÌÅÍ°¡ ¾ø´Ù´Â ¶æ
         {
-            Creat();	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ UI È°ï¿½ï¿½È­
+            Creat();	// ÇÃ·¹ÀÌ¾î ´Ð³×ÀÓ ÀÔ·Â UI È°¼ºÈ­
         }
     }
 
-    public void Creat()	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ UIï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
+    public void Creat()	// ÇÃ·¹ÀÌ¾î ´Ð³×ÀÓ ÀÔ·Â UI¸¦ È°¼ºÈ­ÇÏ´Â ¸Þ¼Òµå
     {
         creat.gameObject.SetActive(true);
     }
 
-    public void GoGame()	// ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+    public void GoGame()	// °ÔÀÓ¾ÀÀ¸·Î ÀÌµ¿
     {
-        if (!savefile[DataManager.instance.nowSlot])	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+        if (!savefile[SaveSystem.nowSlot])	// false = µ¥ÀÌÅÍ°¡ ¾ø´Ù¸é
         {
-            DataManager.instance.nowPlayer.name = newPlayerName.text; // ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½
-            DataManager.instance.SaveData(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+            SaveSystem.slotData.Name = newPlayerName.text; // ÀÔ·ÂÇÑ ÀÌ¸§À» º¹»çÇØ¿È
+            SaveSystem.Save(); // ÇöÀç Á¤º¸¸¦ ÀúÀåÇÔ.
         }
-        SceneManager.LoadScene(1); // ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+
+        SceneManager.LoadScene(1); // °ÔÀÓ¾ÀÀ¸·Î ÀÌµ¿
     }
 }*/

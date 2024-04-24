@@ -41,11 +41,14 @@ public class SaveSystem : MonoBehaviour
         slotData = SaveData.PlayerData;
     }
 
-    public static void Save()
+    public static void Save(string name, bool isNewData)
     {
         GameManager.Instance.Player.Save(ref SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Save(ref SaveData.TimeSaveData);
         //SaveSceneData();
+
+        if (isNewData)//true¸é
+            SaveData.PlayerData.Name = name;
 
         string data = JsonUtility.ToJson(SaveData);
         File.WriteAllText(path + nowSlot.ToString(), data);

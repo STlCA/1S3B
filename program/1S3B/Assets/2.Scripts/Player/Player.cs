@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Constants;
 using UnityEngine.Playables;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public struct PlayerSaveData
@@ -50,16 +51,18 @@ public class Player : MonoBehaviour
 
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
-    public int playerGold { get; private set; }
-    /*        public int Coins
+
+    public int PlayerGold
+    {
+        get => playerGold;
+        set
         {
-            get => m_Coins;
-            set
-            {
-                m_Coins = value;
-                UIHandler.UpdateCoins(Coins);
-            }
-        }*/
+            playerGold = value;
+            uiManager.UpdateGoldUI(PlayerGold);
+        }
+    }
+    private int playerGold;
+
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
     [SerializeField]private int playerEnergy;//나중에지우기
@@ -105,7 +108,7 @@ public class Player : MonoBehaviour
     private void Init()
     {
         playerEnergy = playerMaxEnergy;
-        playerGold = 1500;
+        PlayerGold = 1000;
         playerSpeed = 7f;
         transform.position = new Vector3(351f, 4.3f);
 
@@ -156,8 +159,8 @@ public class Player : MonoBehaviour
             animationController.DeathAnimation(true);
 
             DeathSleep();
-
-            playerGold -= GoldRange(10, 20);
+                        
+            PlayerGold -= GoldRange(10, 20);
         }
     }
 
@@ -183,8 +186,8 @@ public class Player : MonoBehaviour
     {
         int value;
 
-        int temp1 = playerGold / 100 * range1;
-        int temp2 = playerGold / 100 * range2;
+        int temp1 = PlayerGold / 100 * range1;
+        int temp2 = PlayerGold / 100 * range2;
 
         value = Random.Range(temp1, temp2 + 1);
 
@@ -290,26 +293,26 @@ public class Player : MonoBehaviour
     // 입금 
     //public void Deposit(int gold, int quantity)
     //{
-    //    playerGold += gold * quantity;
+    //    PlayerGold += gold * quantity;
     //}
     public void Deposit(int gold)
     {
-        playerGold += gold;
+        PlayerGold += gold;
     }
 
     // 출금
     //public void Withdraw(int gold, int quantity)
     //{
-    //    playerGold -= gold * quantity;
+    //    PlayerGold -= gold * quantity;
     //}
     public bool Withdraw(int gold)
     {
-        if(playerGold < gold)
+        if(PlayerGold < gold)
         {
             return false;
         }
         
-        playerGold -= gold;
+        PlayerGold -= gold;
         return true;
     }
 
@@ -317,14 +320,14 @@ public class Player : MonoBehaviour
 
     public void Save(ref PlayerSaveData data)
     {
-        data.Gold = playerGold;
+        data.Gold = PlayerGold;
         data.Energy = playerEnergy;
         data.Name = playerName;
     }
 
     public void Load(PlayerSaveData data)
     {
-        playerGold = data.Gold;
+        PlayerGold = data.Gold;
         playerEnergy = data.Energy;
         playerName = data.Name;
     }

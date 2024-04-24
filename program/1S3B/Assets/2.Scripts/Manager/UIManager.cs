@@ -16,6 +16,10 @@ public class UIManager : Manager
 {
     private Player player;
 
+    [Header("UI")]
+    public TMP_Text goldUIText;
+    public TMP_Text shopGoldText;
+
     [Header("Image")]
     public GameObject sleepInfoUI;
     public QuickSlotUI quickSlotUI;
@@ -129,5 +133,11 @@ public class UIManager : Manager
     public void TiredIconOnOff(bool value)
     {
         tired.SetActive(value);
-    }    
+    }
+
+    public void UpdateGoldUI(int playerGold)
+    {
+        goldUIText.text = playerGold.ToString();
+        shopGoldText.text = playerGold.ToString();
+    }
 }

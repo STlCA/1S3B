@@ -201,6 +201,7 @@ public class TileManager : Manager
             return;
 
         player.selectItem.quantity--;
+        inventory.UseRefresh(player.selectItem);
 
         CropData tempcropData = new CropData();
 
