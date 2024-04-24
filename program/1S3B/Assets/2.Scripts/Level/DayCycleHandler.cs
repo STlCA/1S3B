@@ -9,7 +9,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
 [System.Serializable]
-public struct DaySaveData
+public struct SaveDayData
 {
     public int Day;
 }
@@ -261,12 +261,12 @@ public class DayCycleHandler : Manager
 
     //============================================Save
 
-    public void Save(ref DaySaveData data)
+    public void Save(ref SaveDayData data)
     {
         data.Day = currentDay;
     }
 
-    public void Load(DaySaveData data)
+    public void Load(SaveDayData data)
     {
         currentDay = data.Day;
     }

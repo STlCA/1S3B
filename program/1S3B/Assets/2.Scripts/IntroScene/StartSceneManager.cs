@@ -1,26 +1,101 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartSceneManager : MonoBehaviour
 {
+    [Header("UIImage")]
     public Image fadeImage;
     public GameObject loadingSliderObj;
-    private Slider loadingSlider;
+    public Slider loadingSlider;
 
+    [Header("SlotUI")]
+    public GameObject slotUI;
+    public GameObject InputNameUI;
+    public TMP_InputField newPlayerName;
+    public GameObject[] slots;
+    private TMP_Text[][] slotText = new TMP_Text[3][];
+
+    private bool[] savefile = new bool[3];
     private string changeSceneName;
     private float time = 0f;
 
+    private bool isNewGame = false;
+
+    private Dictionary<GameObject, TMP_Text[]> slotsText;
+
     private void Start()
     {
-        loadingSlider = loadingSliderObj.GetComponent<Slider>();
+        for (int i = 0; i < 3; i++)
+        {
+            slotText[i] = slots[i].GetComponentsInChildren<TMP_Text>();
+        }
+
+        // 슬롯별로 저장된 데이터가 존재하는지 판단.
+        for (int i = 0; i < 3; i++)
+        {
+            if (File.Exists(SaveSystem.path + $"{i}"))// 데이터가 있는 경우
+            {
+                savefile[i] = true;
+                SaveSystem.SlotDataLoad();
+
+                slotText[i][0].text = SaveSystem.slotData.Name;
+                slotText[i][1].text = SaveSystem.slotData.Gold.ToString() + " G";
+            }
+            else// 데이터가 없는 경우
+            {
+                slotText[i][0].text = "비어있음";
+                slotText[i][1].text = "0 G";
+            }
+        }
+
+        SaveSystem.DataClear();
+    }
+
+    public void NewGameButton(bool isNew)
+    {
+        isNewGame = isNew;
+        slotUI.SetActive(true);
+    }
+
+    public void Slot(int number)
+    {
+        SaveSystem.nowSlot = number;
+
+        if (!isNewGame)//newGame이 아니라면
+        {
+            if (!savefile[number])
+            {
+                CreatSlot();
+                return;
+            }
+            SaveSystem.Load();
+            GameSceneChange();
+        }
+        else if (isNewGame) //데이터가 없다면
+        {
+            CreatSlot();
+        }
+    }
+
+    public void CreatSlot()	// 플레이어 닉네임 입력 UI를 활성화하는 메소드
+    {
+        InputNameUI.gameObject.SetActive(true);
+
+        //슬롯에서 적은 이름이 newPlayerName에들어가기
+        //슬롯에서 엔터치면 GameSceneChange()부르기
     }
 
     public void GameSceneChange()
     {
+        //print(newPlayerName.text);
+
         changeSceneName = "2.OutDoor";
         StartCoroutine("LoadingScene");
     }
@@ -34,15 +109,23 @@ public class StartSceneManager : MonoBehaviour
 #endif
     }
 
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SaveSystem.Save(newPlayerName.text, true);
+    }
+
     private IEnumerator LoadingScene()
     {
         yield return StartCoroutine("SceneChangeFadeIn");
 
-        AsyncOperation loading = SceneManager.LoadSceneAsync(changeSceneName);//,LoadSceneMode.Additive        
-
         loadingSliderObj.SetActive(true);
 
-        while (!loading.isDone) //씬 로딩 완료시 로딩완료시 완료된다.
+        if (savefile[SaveSystem.nowSlot] == false)
+            SceneManager.sceneLoaded += SceneLoaded;
+
+        AsyncOperation loading = SceneManager.LoadSceneAsync(changeSceneName);
+
+        while (!loading.isDone) //씬 로딩 완료시 while문이 나가짐
         {
             if (loading.progress >= 0.9f)
                 loadingSlider.value = 1f;
@@ -51,6 +134,9 @@ public class StartSceneManager : MonoBehaviour
 
             yield return null;
         }
+
+        if (savefile[SaveSystem.nowSlot] == false)
+            SceneManager.sceneLoaded -= SceneLoaded;
 
         yield return StartCoroutine("SceneChangeFadeOut");
     }

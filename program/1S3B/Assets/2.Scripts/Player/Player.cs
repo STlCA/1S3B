@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 
 [System.Serializable]
-public struct PlayerSaveData
+public struct SavePlayerData
 {
     public string Name;
     public int Gold;
@@ -318,14 +318,14 @@ public class Player : MonoBehaviour
 
     //==================================================Save
 
-    public void Save(ref PlayerSaveData data)
+    public void Save(ref SavePlayerData data)
     {
         data.Gold = PlayerGold;
         data.Energy = playerEnergy;
         data.Name = playerName;
     }
 
-    public void Load(PlayerSaveData data)
+    public void Load(SavePlayerData data)
     {
         PlayerGold = data.Gold;
         playerEnergy = data.Energy;
