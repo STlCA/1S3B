@@ -21,7 +21,8 @@ public struct SceneSaveData
 
 public class SaveSystem : MonoBehaviour
 {
-    private static string path; // 경로
+    public static PlayerSaveData slotData;
+    public static string path; // 경로
     public static int nowSlot; // 현재 슬롯번호
 
     private static SaveData SaveData = new();
@@ -31,6 +32,13 @@ public class SaveSystem : MonoBehaviour
     {
         path = Application.persistentDataPath + "/save";	// 경로 지정
         print(path);
+    }
+
+    public static void SlotDataLoad()
+    {
+        string data = File.ReadAllText(path + nowSlot.ToString());
+        SaveData = JsonUtility.FromJson<SaveData>(data);
+        slotData = SaveData.PlayerData;
     }
 
     public static void Save()
@@ -61,33 +69,34 @@ public class SaveSystem : MonoBehaviour
         SceneManager.sceneLoaded -= SceneLoaded;
     }
 
-   // public static void SaveSceneData()
-   // {
-   //     if (GameManager.Instance.TileManager != null)
-   //     {
-   //         var sceneName = GameManager.Instance.LoadedSceneData.UniqueSceneName;
-   //         var data = new SaveTileData();
-   //         GameManager.Instance.TileManager.Save(ref data);
-   //
-   //         s_ScenesDataLookup[sceneName] = new SceneSaveData()
-   //         {
-   //             SceneName = sceneName,
-   //             TerrainData = data
-   //         };
-   //     }
-   // }
+    // public static void SaveSceneData()
+    // {
+    //     if (GameManager.Instance.TileManager != null)
+    //     {
+    //         var sceneName = GameManager.Instance.LoadedSceneData.UniqueSceneName;
+    //         var data = new SaveTileData();
+    //         GameManager.Instance.TileManager.Save(ref data);
+    //
+    //         s_ScenesDataLookup[sceneName] = new SceneSaveData()
+    //         {
+    //             SceneName = sceneName,
+    //             TerrainData = data
+    //         };
+    //     }
+    // }
 
-   // public static void LoadSceneData()
-   // {
-   //     if (s_ScenesDataLookup.TryGetValue(GameManager.Instance.LoadedSceneData.UniqueSceneName, out var data))
-   //     {
-   //         GameManager.Instance.TileManager.Load(data.TerrainData);
-   //     }
-   // }
-   //
-   // public static void DataClear()
-   // {
-   //     nowSlot = -1;
-   //     SaveData = new();
-   // }   
+    // public static void LoadSceneData()
+    // {
+    //     if (s_ScenesDataLookup.TryGetValue(GameManager.Instance.LoadedSceneData.UniqueSceneName, out var data))
+    //     {
+    //         GameManager.Instance.TileManager.Load(data.TerrainData);
+    //     }
+    // }
+    //
+    public static void DataClear()
+    {
+        nowSlot = -1;
+        SaveData = new();
+        slotData = new();
+    }
 }
