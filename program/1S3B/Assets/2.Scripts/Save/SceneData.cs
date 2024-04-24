@@ -16,5 +16,4 @@ public class SceneData : MonoBehaviour
         if (GameManager.Instance?.LoadedSceneData == this)
             GameManager.Instance.LoadedSceneData = null;
     }
-}
-*/
+}*/
