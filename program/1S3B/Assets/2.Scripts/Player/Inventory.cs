@@ -229,6 +229,11 @@ public class Inventory : MonoBehaviour
 
     public void SelectSlot(InventorySlotUI slot)
     {
+        if(selectedSlotUI == slot)
+        {
+            return;
+        }
+
         if (selectedSlotUI != null)
         {
             // 이전 슬롯 아웃라인 비활성화
@@ -322,6 +327,7 @@ public class Inventory : MonoBehaviour
             if (item.quantity <= 0)
             {
                 RemoveSelectedItem(selectedSlotUI, item);
+                selectedSlotUI = null;
                 return;
             }
             inventoryUI.Refresh();
