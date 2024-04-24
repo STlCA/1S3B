@@ -99,6 +99,7 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
         quantityTxt.text = string.Empty;
         //quickApplyTxt.SetActive(false);
         SymbolSetActive();
+        OutlineDisable();
     }
 
     // 아이템에서 마우스를 치웠을 때

@@ -294,6 +294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TalkPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2661520586278029837, guid: dd3269553a56975428d7e9a3a5b96a1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4893492030763569998, guid: dd3269553a56975428d7e9a3a5b96a1d, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -345,6 +349,14 @@ PrefabInstance:
     - target: {fileID: 7680536515151054108, guid: dd3269553a56975428d7e9a3a5b96a1d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseTalkPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792627119272470690, guid: dd3269553a56975428d7e9a3a5b96a1d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 235.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792627119272470690, guid: dd3269553a56975428d7e9a3a5b96a1d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

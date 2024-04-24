@@ -5,7 +5,7 @@ using Constants;
 
 public class Shop : MonoBehaviour
 {
-    // Manager
+    // Manager, Data
     GameManager gameManager;
     DataManager dataManager;
     DayCycleHandler dayCycleHandler;
@@ -15,6 +15,8 @@ public class Shop : MonoBehaviour
 
     // Script
     [HideInInspector] public ShopUI shopUI;
+    private Player player;
+    private Inventory inventory;
 
     [SerializeField] List<ItemInfo> items = new();
     public List<ItemInfo> Items { get { return items; } }
@@ -35,6 +37,8 @@ public class Shop : MonoBehaviour
         gameManager = GameManager.Instance;
         dataManager = gameManager.DataManager;
         shopUI = GetComponent<ShopUI>();
+        player = gameManager.Player;
+        inventory = player.Inventory;
 
         dayCycleHandler = gameManager.DayCycleHandler;
         dayCycleHandler.changeSeasonAction += ChangeSeason;
@@ -118,8 +122,21 @@ public class Shop : MonoBehaviour
         _selectedItem.UpdateItemInfo(_selectedItem.item.Name, infoString);
     }
 
+    // 선택한 아이템 구매
     public void BuyItem(ShopSlotUI slot)
     {
-        selectedSlotUI = slot;
+        ItemInfo itemInfo = slot.item;
+
+        // 내가 가진 돈이 더 적으면
+        if (!player.Withdraw(itemInfo.BuyGold))
+        {
+            return;
+        }
+
+        Item item = new Item();
+        item.ItemInfo = itemInfo;
+        inventory.AddItem(item);
+
+        //selectedSlotUI.item.BuyGold
     }
 }
