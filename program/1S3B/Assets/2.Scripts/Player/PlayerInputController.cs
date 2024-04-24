@@ -20,7 +20,7 @@ public class PlayerInputController : CharacterEventController
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private UIManager uiManager;
-    private Player player;
+    private Player player;    
     private PlayerTalkController playerTalkController;
     private AnimationController animController;
     private NatureObjectController natureObjectController;
@@ -34,6 +34,8 @@ public class PlayerInputController : CharacterEventController
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
+
+    public int selectQuickSlotIndex { get; private set; }
 
     private void Start()
     {
@@ -49,6 +51,8 @@ public class PlayerInputController : CharacterEventController
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
         animController.useAnimEnd += AnimState;
+
+        player.Inventory.DeleteItemAction += QuickSlotItemCheck;
     }
 
     private void Update()
@@ -176,9 +180,14 @@ public class PlayerInputController : CharacterEventController
     //    player.selectItem = null;
     //}
 
-    private void QuickSlotItemCheck(int index)
+    public void QuickSlotItemCheck(int index,bool deleteItem = false)
     {
-        if(player.QuickSlot.slots[index].item == null)
+        if (deleteItem == true)
+            index = selectQuickSlotIndex;
+
+        selectQuickSlotIndex = index;
+
+        if (player.QuickSlot.slots[index].item == null)
         {
             player.selectItem = null;
             animController.CarrySpriteChange(false);
@@ -538,7 +547,7 @@ public class PlayerInputController : CharacterEventController
             onInventory = true;
             uiManager.inventoryUI.InventoryEnable();
         }
-        else if (onInventory == true)
+        else
         {
             onInventory = false;
             uiManager.inventoryUI.InventoryDisable();

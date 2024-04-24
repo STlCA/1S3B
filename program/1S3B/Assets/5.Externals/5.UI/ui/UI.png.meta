@@ -425,12 +425,12 @@ TextureImporter:
       name: Time
       rect:
         serializedVersion: 2
-        x: 127
+        x: 128
         y: 118
-        width: 45
+        width: 44
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -446,12 +446,12 @@ TextureImporter:
       name: Day
       rect:
         serializedVersion: 2
-        x: 127
+        x: 128
         y: 85
-        width: 61
+        width: 60
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -459,6 +459,48 @@ TextureImporter:
       bones: []
       spriteID: 93ee3fa1ff98ff64dad1c349a44857bd
       internalID: 2121460921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI00
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 118
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2158c904ccf33544938909f7be34c96
+      internalID: -267128751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 85
+        width: 60
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 6, z: 17, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68884d2a849454241a929e8ea6257147
+      internalID: -675493303
       vertices: []
       indices: 
       edges: []
@@ -487,6 +529,8 @@ TextureImporter:
       Num_08: 1280316520
       Num_09: -1018757281
       Time: -1192325700
+      UI00: -267128751
+      UI_0: -675493303
       UI_10: -466868197
       UI_100: -103350749
       UI_101: 497446963

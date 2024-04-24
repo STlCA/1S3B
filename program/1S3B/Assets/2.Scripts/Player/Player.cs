@@ -51,16 +51,18 @@ public class Player : MonoBehaviour
 
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
+
     public int PlayerGold
     {
         get => playerGold;
         set
         {
             playerGold = value;
-            //UIHandler.UpdateCoins(PlayerGold);
+            uiManager.UpdateGoldUI(PlayerGold);
         }
     }
     private int playerGold;
+
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
     [SerializeField]private int playerEnergy;//나중에지우기
@@ -106,7 +108,7 @@ public class Player : MonoBehaviour
     private void Init()
     {
         playerEnergy = playerMaxEnergy;
-        PlayerGold = 1500;
+        PlayerGold = 1000;
         playerSpeed = 7f;
         transform.position = new Vector3(351f, 4.3f);
 
@@ -157,7 +159,7 @@ public class Player : MonoBehaviour
             animationController.DeathAnimation(true);
 
             DeathSleep();
-
+                        
             PlayerGold -= GoldRange(10, 20);
         }
     }

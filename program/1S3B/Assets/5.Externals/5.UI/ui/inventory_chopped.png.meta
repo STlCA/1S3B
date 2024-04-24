@@ -463,6 +463,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spring
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 81
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25aeb6e75ba466e46807e1c29032ad08
+      internalID: 1178423960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summer
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 81
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78c7b28acc340143aa8fcc1589c2241
+      internalID: -1601804497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: winter
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 81
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9344241ee5eeb844827981fb36e13e9
+      internalID: -53128104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 81
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484234c846285b441a26162b732ca521
+      internalID: -1637248054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -477,10 +561,12 @@ TextureImporter:
       ExitBtn: 1914177363
       Question: 1352796233
       button_00: 1050723394
+      fall: -1637248054
       inventory_00: -1737842513
       inventory_01: -1349008307
       inventory_02: 426292234
       inventory_BG_00: 540549116
+      inventory_chopped_1: 1563138498
       inventory_chopped_10: 1463930166
       inventory_chopped_11: -979161031
       inventory_chopped_12: 1980243941
@@ -571,6 +657,9 @@ TextureImporter:
       slot_01: -1832727850
       slot_02: 421056921
       slot_03: -819520554
+      spring: 1178423960
+      summer: -1601804497
+      winter: -53128104
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
