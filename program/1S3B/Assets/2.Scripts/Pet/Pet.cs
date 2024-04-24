@@ -34,6 +34,11 @@ public class Pet : MonoBehaviour
         // 플레이어가 일정거리 밖에 있으면?
         if(direction.magnitude > 2)
         {
+            if (direction.magnitude > 10f)
+            {
+                transform.position = player.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle;
+            }
+
             // 2. 노멀벡터로 변환하기
             direction.Normalize(); 
             //normalized는 방향벡터가 안바뀜

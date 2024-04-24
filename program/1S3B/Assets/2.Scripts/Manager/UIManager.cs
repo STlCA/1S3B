@@ -44,7 +44,7 @@ public class UIManager : Manager
         EnengyBarSetting();
 
         playerImage = playerObj.GetComponent<RectTransform>();
-        playerImage.anchoredPosition = new Vector2(528, 186);//�����Ҷ� ��ġ ���߿� �����ؼ�
+        playerImage.anchoredPosition = new Vector2(470, 230);//�����Ҷ� ��ġ ���߿� �����ؼ�
 
         quickSlotUI.Init(gameManager, this, player);
         inventoryUI.Init(gameManager, this, player);
