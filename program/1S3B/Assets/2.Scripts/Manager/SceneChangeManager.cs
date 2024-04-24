@@ -160,7 +160,7 @@ public class SceneChangeManager : Manager
         fadeImage.gameObject.SetActive(false);
     }
 
-    public IEnumerator MapChange()
+    public IEnumerator MapChangeFadeIn()
     {
         fadeImage.gameObject.SetActive(true);
 
@@ -170,9 +170,30 @@ public class SceneChangeManager : Manager
         while (fadeCount < 1.0f)
         {
             fadeCount += 0.02f;
-            yield return new WaitForSecondsRealtime(0.0001f);
+            yield return new WaitForSecondsRealtime(0.0005f);
             fadeImage.color = new Color(0, 0, 0, fadeCount);
         }
+    }
+
+    public IEnumerator MapChangeFadeOut()
+    {
+        float fadeCount = 1;
+
+        while (fadeCount >= 0f)
+        {
+            fadeCount -= 0.02f;
+            yield return new WaitForSecondsRealtime(0.0005f);
+            fadeImage.color = new Color(0, 0, 0, fadeCount);
+        }
+
+        fadeImage.gameObject.SetActive(false);
+
+        CallMapChangeEvent(false);
+    }
+
+    public IEnumerator MapChange()
+    {
+        yield return StartCoroutine("MapChangeFadeIn");
 
         player.ChangePosition();
         endCam.SetActive(true);
@@ -180,20 +201,7 @@ public class SceneChangeManager : Manager
 
         Time.timeScale = 1;
 
-        yield return new WaitForSecondsRealtime(waitTime);
-
-        fadeCount = 1;
-
-        while (fadeCount >= 0f)
-        {
-            fadeCount -= 0.02f;
-            yield return new WaitForSecondsRealtime(0.0001f);
-            fadeImage.color = new Color(0, 0, 0, fadeCount);
-        }
-
-        fadeImage.gameObject.SetActive(false);
-
-        CallMapChangeEvent(false);
+        yield return StartCoroutine("MapChangeFadeOut");
     }
 
     public void CallMapChangeEvent(bool isChange)
