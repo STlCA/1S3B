@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        
+
         UseItemInit();
     }
 
@@ -91,23 +91,28 @@ public class Inventory : MonoBehaviour
             {
                 slotToStackTo.quantity++;
                 // UpdateUI();
-                // inventoryUI.Refresh();
-                quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
+                inventoryUI.Refresh();
+
+                //quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
+                // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+                UpdateQuickExistItem(slotToStackTo);
+
                 return true;
             }
-            AddNewItem(item);
-            quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
-            return true;
         }
-        else
-        {
-            AddNewItem(item);
+        AddNewItem(item);
+        inventoryUI.Refresh();
 
-            quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
-            return true;
-        }
+        //quickSlotUI.UpdateUI(); // **************** TODO : 임시로 만든 아이템 넣는 버튼 없앨 때 아랫 줄의 리턴과 함께 삭제
+        // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+        UpdateQuickExistItem(item);
 
-        quickSlotUI.UpdateUI();
+        return true;
+
+        //quickSlotUI.UpdateUI();
+        // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+        //UpdateQuickExistItem(item); // ***************TODO : 위의 업데이트 삭제시 활성화
+
         //Item emptySlot = GetEmptySlot();
         // 스택이 안되는 아이템이거나 새로운 아이템
         //if(emptySlot != null)
@@ -167,7 +172,7 @@ public class Inventory : MonoBehaviour
     public Item GetItem(int idx)
     {
         // 예외처리
-        if(items.Count <= idx)
+        if (items.Count <= idx)
         {
             return null;
         }
@@ -224,7 +229,7 @@ public class Inventory : MonoBehaviour
 
     public void SelectSlot(InventorySlotUI slot)
     {
-        if(selectedSlotUI != null)
+        if (selectedSlotUI != null)
         {
             // 이전 슬롯 아웃라인 비활성화
             selectedSlotUI.OutlineDisable();
@@ -236,7 +241,7 @@ public class Inventory : MonoBehaviour
     // 퀵 슬롯에 넣는 버튼
     public void OnClickApplyBtn()
     {
-        if(selectedSlotUI == null)
+        if (selectedSlotUI == null)
         {
             return;
         }
@@ -273,6 +278,15 @@ public class Inventory : MonoBehaviour
 
     }
 
+    // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+    private void UpdateQuickExistItem(Item item)
+    {
+        if (item.QSymbolActive == true)
+        {
+            quickSlotUI.UpdateUI();
+        }
+    }
+
     //// 아이템 퀵슬롯에 장착
     //public void InputQuickSlot(InventorySlotUI slot, Item item)
     //{
@@ -294,7 +308,7 @@ public class Inventory : MonoBehaviour
         Item item = selectedSlotUI._item;
 
         // 장착 아이템 제외 모든 아이템 판매 가능
-        if(item.ItemInfo.Type != "Equip")
+        if (item.ItemInfo.Type != "Equip")
         {
             // 수량 입력 창 만들면 주석 해제하고 밑에 있는 코드 삭제
             //player.Deposit(item.ItemInfo.SellGold, item.quantity);
@@ -302,7 +316,10 @@ public class Inventory : MonoBehaviour
             player.Deposit(item.ItemInfo.SellGold);
             item.quantity--;
 
-            if(item.quantity <= 0)
+            // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+            UpdateQuickExistItem(item);
+
+            if (item.quantity <= 0)
             {
                 RemoveSelectedItem(selectedSlotUI, item);
                 return;
@@ -319,6 +336,9 @@ public class Inventory : MonoBehaviour
         slot.Clear();
 
         inventoryUI.Refresh();
+        // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
+        quickSlot.DeleteItem(item);
+
         //_selectedItem.quantity--;
 
         //    if (_selectedItem.quantity <= 0)
