@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -11,36 +11,38 @@ public class SelectSave : MonoBehaviour
     public Text[] slotText;		// 슬롯버튼 아래에 존재하는 Text들
     public Text newPlayerName;	// 새로 입력된 플레이어의 닉네임
 
-    bool[] savefile = new bool[3];	// 세이브파일 존재유무 저장
+    private bool[] savefile = new bool[3];
 
     void Start()
     {
         // 슬롯별로 저장된 데이터가 존재하는지 판단.
         for (int i = 0; i < 3; i++)
         {
-            if (File.Exists(DataManager.instance.path + $"{i}"))	// 데이터가 있는 경우
+            if (File.Exists(SaveSystem.path + $"{i}"))	// 데이터가 있는 경우
             {
-                savefile[i] = true;			// 해당 슬롯 번호의 bool배열 true로 변환
-                DataManager.instance.nowSlot = i;	// 선택한 슬롯 번호 저장
-                DataManager.instance.LoadData();	// 해당 슬롯 데이터 불러옴
-                slotText[i].text = DataManager.instance.nowPlayer.name;	// 버튼에 닉네임 표시
+                savefile[i] = true;
+                SaveSystem.nowSlot = i;
+                SaveSystem.SlotDataLoad();
+                slotText[0].text = SaveSystem.slotData.Name;
+                slotText[1].text = SaveSystem.slotData.Gold.ToString()+"G";                
             }
             else	// 데이터가 없는 경우
             {
-                slotText[i].text = "비어있음";
+                slotText[0].text = "비어있음";
+                slotText[1].text = "G";
             }
         }
-        // 불러온 데이터를 초기화시킴.(버튼에 닉네임을 표현하기위함이었기 때문)
-        DataManager.instance.DataClear();
+
+        SaveSystem.DataClear();
     }
 
-    public void Slot(int number)	// 슬롯의 기능 구현
+    public void Slot(int number)
     {
-        DataManager.instance.nowSlot = number;	// 슬롯의 번호를 슬롯번호로 입력함.
+        SaveSystem.nowSlot = number;
 
-        if (savefile[number])	// bool 배열에서 현재 슬롯번호가 true라면 = 데이터 존재한다는 뜻
+        if (savefile[number])	//true = 데이터 존재한다면
         {
-            DataManager.instance.LoadData();	// 데이터를 로드하고
+            SaveSystem.Load();	// 데이터를 로드하고
             GoGame();	// 게임씬으로 이동
         }
         else	// bool 배열에서 현재 슬롯번호가 false라면 데이터가 없다는 뜻
@@ -64,4 +66,3 @@ public class SelectSave : MonoBehaviour
         SceneManager.LoadScene(1); // 게임씬으로 이동
     }
 }
-*/

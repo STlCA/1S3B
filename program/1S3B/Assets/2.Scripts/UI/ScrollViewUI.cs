@@ -70,8 +70,10 @@ public class ScrollViewUI : MonoBehaviour
             ScrollSlotUI item = Instantiate(slotPrefab, _scroll.content);
             item.Init();
             uiSlots.Add(item);
+            int y = i / (int)(_scrollRect.rect.width / _slotPrefabWidth);
+            int x = i % (int)(_scrollRect.rect.width / _slotPrefabWidth);
 
-            item.transform.localPosition = new Vector3(0, -i * _slotPrefabHeight);
+            item.transform.localPosition = new Vector3(x * _slotPrefabWidth+ _slotPrefabWidth/2, -y * _slotPrefabHeight- _slotPrefabHeight /2);
             SetIndex(item, i);
         }
 

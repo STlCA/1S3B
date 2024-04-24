@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 [System.Serializable]
 public struct PlayerSaveData
 {
+    public string Name;
     public int Gold;
     public int Energy;
 }
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement { get; private set; }
 
     public Item selectItem { get; set; }
+
+    public string playerName { get; private set; }
 
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
@@ -316,11 +319,13 @@ public class Player : MonoBehaviour
     {
         data.Gold = playerGold;
         data.Energy = playerEnergy;
+        data.Name = playerName;
     }
 
     public void Load(PlayerSaveData data)
     {
         playerGold = data.Gold;
         playerEnergy = data.Energy;
+        playerName = data.Name;
     }
 }
