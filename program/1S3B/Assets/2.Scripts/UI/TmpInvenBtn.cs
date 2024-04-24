@@ -20,7 +20,7 @@ public class TmpInvenBtn : MonoBehaviour
 
     public void OnClickInvenBtn()
     {
-        inventoryUI.InventoryEnable();
+        uiManager.inventoryUI.InventoryEnable();
     }
 
     public void OnClickAddItem()

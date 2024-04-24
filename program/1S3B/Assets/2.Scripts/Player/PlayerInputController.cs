@@ -30,10 +30,10 @@ public class PlayerInputController : CharacterEventController
     private bool isUseEnergy;
     private bool isUseAnim;
     private bool isUse;
+    private bool onInventory = false;
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
-
 
     private void Start()
     {
@@ -531,6 +531,17 @@ public class PlayerInputController : CharacterEventController
         playerTalkController.NearTalk();
     }
 
-
-
+    public void OnInventory(InputValue value)
+    {
+        if(onInventory == false)
+        {
+            onInventory = true;
+            uiManager.inventoryUI.InventoryEnable();
+        }
+        else if (onInventory == true)
+        {
+            onInventory = false;
+            uiManager.inventoryUI.InventoryDisable();
+        }
+    }
 }
