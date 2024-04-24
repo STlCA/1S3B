@@ -161,7 +161,7 @@ public class DayCycleHandler : Manager
             AmPm = "오후";
         }
 
-        return $"{hour}:{adjustedMinute:00} {AmPm}";
+        return $"{hour:00} : {adjustedMinute:00}{AmPm}";
     }
 
     public int GetHourFromRatio(float ratio)
@@ -202,7 +202,7 @@ public class DayCycleHandler : Manager
         int dayofWeek = currentDay % 7;
         int day = currentDay % 28 + 1;
 
-        return $"{week[dayofWeek]} | {day}";
+        return $"{week[dayofWeek]}  {day}";
     }
 
     public void DateTest()
