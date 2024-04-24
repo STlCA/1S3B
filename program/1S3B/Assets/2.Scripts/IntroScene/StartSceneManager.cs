@@ -63,7 +63,7 @@ public class StartSceneManager : MonoBehaviour
 
         while (alpha.a < 1f)
         {
-            time += Time.deltaTime / 2;
+            time += Time.deltaTime / 1;
             alpha.a = Mathf.Lerp(0, 1, time);
             fadeImage.color = alpha;
             yield return null;
@@ -77,7 +77,7 @@ public class StartSceneManager : MonoBehaviour
 
         while (alpha.a > 0f)
         {
-            time += Time.deltaTime / 2;
+            time += Time.deltaTime / 1;
             alpha.a = Mathf.Lerp(1, 0, time);
             fadeImage.color = alpha;
             yield return null;

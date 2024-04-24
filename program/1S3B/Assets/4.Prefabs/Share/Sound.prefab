@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4278202325970854360}
   - component: {fileID: 4988148424867730017}
-  - component: {fileID: 6919874922230517899}
   m_Layer: 0
   m_Name: GameEffectSource
   m_TagString: Untagged
@@ -129,19 +128,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6919874922230517899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158354363648055511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb73087f6b5564a189e3b44db5bd6cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeatherType: 2
 --- !u!1 &2304284608659564397
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +293,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6781077127463754915}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.24293666, y: -0.5685262, z: 0.000703007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -328,7 +314,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5092965961759910511}
   - component: {fileID: 7580675753326533374}
-  - component: {fileID: 1813506351881621104}
   m_Layer: 0
   m_Name: BGMSource
   m_TagString: Untagged
@@ -361,7 +346,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e95aaf8afa86f43aaa3376aad2de61a7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -447,16 +432,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1813506351881621104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8569288600894474198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb73087f6b5564a189e3b44db5bd6cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeatherType: 2
