@@ -7,6 +7,13 @@ using UnityEngine;
 // 데이터를 넣고/빼는 것 관리
 // 아이템이 스택 가능한지 확인
 
+[Serializable]
+public class InventorySaveData
+{
+    public int Amount;
+    public string ItemID;
+}
+
 public class Inventory : MonoBehaviour
 {
     // Manager
@@ -312,4 +319,5 @@ public class Inventory : MonoBehaviour
         //    UpdateUI();
     }
     #endregion // 아이템 판매 관련
+
 }

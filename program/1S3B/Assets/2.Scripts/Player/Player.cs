@@ -8,6 +8,13 @@ using UnityEngine.Playables;
 using UnityEngine.EventSystems;
 
 [System.Serializable]
+public struct PlayerSaveData
+{
+    public int Gold;
+    public int Energy;
+}
+
+[System.Serializable]
 public class PlayerSkill
 {
     public string skillName;
@@ -39,6 +46,15 @@ public class Player : MonoBehaviour
     public Vector3 playerPosition { get; set; }
     public PlayerState playerState {  get; private set; }
     public int playerGold { get; private set; }
+    /*        public int Coins
+        {
+            get => m_Coins;
+            set
+            {
+                m_Coins = value;
+                UIHandler.UpdateCoins(Coins);
+            }
+        }*/
     public float playerSpeed { get; private set; }    
     public int playerMaxEnergy { get; private set; } = 150;
     [SerializeField]private int playerEnergy;//나중에지우기
@@ -275,5 +291,19 @@ public class Player : MonoBehaviour
     public void Withdraw(int gold, int quantity)
     {
         playerGold -= gold * quantity;
+    }
+
+    //==================================================Save
+
+    public void Save(ref PlayerSaveData data)
+    {
+        data.Gold = playerGold;
+        data.Energy = playerEnergy;
+    }
+
+    public void Load(PlayerSaveData data)
+    {
+        playerGold = data.Gold;
+        playerEnergy = data.Energy;
     }
 }

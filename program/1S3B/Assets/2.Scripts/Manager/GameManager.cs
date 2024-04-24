@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     private WeatherSystem weatherSystem;
     public PopUpController PopUpController { get { return popUpController; } }
     private PopUpController popUpController;
-    public SaveLoadManager SaveLoadManager { get { return saveLoadManager; } }
-    private SaveLoadManager saveLoadManager;
     public SoundManager SoundManager { get { return soundManager; } }
     private SoundManager soundManager;
 
@@ -71,10 +69,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        #region 싱글톤
         if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+        #endregion
 
         tileManager = GetManager<TileManager>();
         dataManager = GetManager<DataManager>();
@@ -84,7 +86,6 @@ public class GameManager : MonoBehaviour
         natureObjectController = GetManager<NatureObjectController>();
         uIManager = GetManager<UIManager>();
         popUpController = GetManager<PopUpController>();
-        saveLoadManager = GetManager<SaveLoadManager>();
         soundManager = GetManager<SoundManager>();
 
         player = GetFind<Player>();
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     private void Start()

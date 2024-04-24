@@ -1,4 +1,5 @@
 using Constants;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -8,6 +9,26 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
+
+[System.Serializable]
+public struct SaveTileData
+{
+    public List<Vector3Int> GroundCellPos;
+    public List<GroundData> GroundDatas;
+
+    public List<Vector3Int> CropDataCellPos;
+    public List<SaveCropData> CropDatas;
+}
+
+[System.Serializable]
+public struct SaveCropData
+{
+    public int cropID;
+    public decimal currentStage;
+    public decimal growRatio;
+    public int harvest;
+    public int deathTimer;
+}
 
 [System.Serializable]
 public class GroundData
@@ -38,9 +59,43 @@ public class CropData
         cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
         cropRenderer.sortingLayerName = "Seed";
         deathTimer = plantCrop.DeathTimer - currentDay % 28;
+        cropID = plantCrop.ID;
 
         if (isWater == true)
             cropRenderer.color = Color.gray;
+    }
+
+    public void Save(ref SaveCropData data)
+    {
+        data.cropID = cropID;
+        data.currentStage = currentStage;
+        data.growRatio = growRatio;
+        data.harvest = harvest;
+        data.deathTimer = deathTimer;
+    }
+
+    public void Load(SaveCropData data, GameObject go, CropDatabase cropDatabase,Sprite deathCrop)
+    {
+        cropID = data.cropID;
+        currentStage = data.currentStage;
+        growRatio = data.growRatio;
+        harvest = data.harvest;
+        deathTimer = data.deathTimer;
+
+        plantCrop = cropDatabase.GetItemByKey(cropID);
+        cropObj = go;
+        cropRenderer = cropObj.GetComponentInChildren<SpriteRenderer>();
+        cropRenderer.sprite = plantCrop.SpriteList[(int)currentStage];
+        cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
+
+        if (currentStage < 1)
+            cropRenderer.sortingLayerName = "Seed";
+        else if (currentStage == -1)
+            cropRenderer.sprite = deathCrop;
+        else if (currentStage >= plantCrop.AllGrowthStage)
+            cropObj.tag = "Harvest";
+        else
+            cropObj.tag = "Crop";
     }
 }
 
@@ -183,7 +238,6 @@ public class TileManager : Manager
 
         if (rain == false && cropData.ContainsKey(target) == true)
             cropData[target].cropObj.GetComponent<ShapeCrop>().ShapeAnimation();
-
     }
 
     public void Harvest(Vector3Int target, Vector2 pos)
@@ -211,7 +265,7 @@ public class TileManager : Manager
             cropData[target].cropObj.tag = "Crop";
         }
     }
-    public void Sleep() 
+    public void Sleep()
     {
         foreach (var (cell, tempPlantData) in cropData)
         {
@@ -219,6 +273,7 @@ public class TileManager : Manager
 
             if (tempPlantData.deathTimer <= 0)
             {
+                tempPlantData.currentStage = -1;
                 tempPlantData.cropRenderer.sprite = deathCrop;
                 tempPlantData.cropRenderer.sortingLayerName = "Default";
                 tempPlantData.cropRenderer.color = Color.white;
@@ -291,15 +346,65 @@ public class TileManager : Manager
         {
             WaterAt(cell, true);
         }
-
         //땅 새로팔때도 지금은 데이터만 바꿨으니 물타일 넣어야하고 새로팔때도 넣어야하고 날씨가 끝나면 false로 바꿔야하고
     }
 
     private void HarvestItem(Vector3Int target)
     {
-        ItemInfo itemInfo = itemDatabase.GetItemByCropID(cropData[target].plantCrop.ID);
+        ItemInfo itemInfo = itemDatabase.GetItemByCropID(cropData[target].cropID);
         Item item = new Item();
         item.ItemInfo = itemInfo;
         inventory.AddItem(item);
+    }
+
+    //============================================================Save
+    public void Save(ref SaveTileData data)
+    {
+        data.GroundCellPos = new();
+        data.GroundDatas = new();
+
+        foreach (var _groundData in groundData)
+        {
+            data.GroundCellPos.Add(_groundData.Key);
+            data.GroundDatas.Add(_groundData.Value);
+        }
+
+        data.CropDataCellPos = new();
+        data.CropDatas = new();
+
+        foreach (var _cropData in cropData)
+        {
+            data.CropDataCellPos.Add(_cropData.Key);
+
+            SaveCropData saveData = new();
+            _cropData.Value.Save(ref saveData);
+            data.CropDatas.Add(saveData);
+        }
+    }
+
+    public void Load(SaveTileData data)
+    {
+        groundData = new();
+
+        for (int i = 0; i < data.GroundDatas.Count; ++i)
+        {
+            groundData.Add(data.GroundCellPos[i], data.GroundDatas[i]);
+            tilledTilemap.SetTile(data.GroundCellPos[i], tilledTile);
+        }
+
+        cropData = new();
+        for (int i = 0; i < data.CropDatas.Count; ++i)
+        {
+            GameObject go = Instantiate(cropGoPrefabs);
+            go.transform.position = baseGrid.GetCellCenterWorld(data.CropDataCellPos[i]);
+
+            CropData newData = new CropData();
+            newData.Load(data.CropDatas[i],go,cropDatabase,deathCrop);
+
+            cropData.Add(data.CropDataCellPos[i], newData);
+        }
+
+        if(isRain == true)
+            RainWatering();
     }
 }

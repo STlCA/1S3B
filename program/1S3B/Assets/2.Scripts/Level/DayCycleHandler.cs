@@ -8,6 +8,12 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
+[System.Serializable]
+public struct DaySaveData
+{
+    public int Day;
+}
+
 public class DayCycleHandler : Manager
 {
     private float currentTime;
@@ -246,4 +252,16 @@ public class DayCycleHandler : Manager
 
     }
 #endif
+
+    //============================================Save
+
+    public void Save(ref DaySaveData data)
+    {
+        data.Day = currentDay;
+    }
+
+    public void Load(DaySaveData data)
+    {
+        currentDay = data.Day;
+    }
 }
