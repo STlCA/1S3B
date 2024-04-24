@@ -1,18 +1,6 @@
 using Constants;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Playables;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.ReloadAttribute;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -30,7 +18,6 @@ public class PlayerInputController : CharacterEventController
     private bool isUseEnergy;
     private bool isUseAnim;
     private bool isUse;
-    private bool onInventory = false;
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
@@ -542,15 +529,9 @@ public class PlayerInputController : CharacterEventController
 
     public void OnInventory(InputValue value)
     {
-        if(onInventory == false)
-        {
-            onInventory = true;
+        if(uiManager.inventoryUI.onInventory == false)
             uiManager.inventoryUI.InventoryEnable();
-        }
         else
-        {
-            onInventory = false;
             uiManager.inventoryUI.InventoryDisable();
-        }
     }
 }

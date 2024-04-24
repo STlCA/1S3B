@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Constants;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
@@ -232,7 +230,7 @@ public class DayCycleHandler : Manager
 
             var root = new VisualElement();
 
-            InspectorElement.FillDefaultInspector(root, serializedObject, this);
+            UnityEditor.UIElements.InspectorElement.FillDefaultInspector(root, serializedObject, this);
 
             var slider = new Slider(0.0f, 1.0f);
             slider.label = "Test time 0:00";

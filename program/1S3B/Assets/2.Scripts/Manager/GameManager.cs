@@ -158,7 +158,17 @@ public class GameManager : MonoBehaviour
 
         animationController.AnimationSpeedChange(1);
 
+        SaveSystem.Save(player.playerName);
+
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
+    public void GameExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

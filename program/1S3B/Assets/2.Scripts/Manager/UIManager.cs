@@ -1,13 +1,5 @@
 using Constants;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Search;
-using UnityEditor.U2D;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
@@ -39,7 +31,7 @@ public class UIManager : Manager
     public GameObject playerObj;//������ RectTransform���� �����Ҵ��ϸ� �ȵ�
     private RectTransform playerImage;
 
-    private int maxEnergy;
+    private int maxEnergy;    
 
     private void Start()
     {

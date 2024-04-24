@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PopUpController : Manager 
-{ 
+{
+    private PlayerMovement playerMovement;
+
+    private void Start()
+    {
+        playerMovement = gameManager.Player.playerMovement;
+    }
+
     //ON OFF Change
     public void UIOnOff(GameObject ui)
     {
@@ -30,6 +37,8 @@ public class PopUpController : Manager
 
         ui.SetActive(false);
         Time.timeScale = 1.0f;
+
+        playerMovement.SwitchPlayerInputAction(false);
     }
     public void UIOffStopTime(GameObject ui)
     {

@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public class Crop

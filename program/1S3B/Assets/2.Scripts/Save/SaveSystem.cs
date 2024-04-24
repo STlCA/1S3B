@@ -43,7 +43,7 @@ public class SaveSystem : MonoBehaviour
         slotData = SaveData.PlayerData;
     }
 
-    public static void Save(string name, bool isNewData)
+    public static void Save(string name, bool isNewData = false)
     {
         GameManager.Instance.Player.Save(ref SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Save(ref SaveData.DayData);
