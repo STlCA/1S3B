@@ -112,9 +112,9 @@
 			"ID": 2001,
 			"Name": "당근씨앗",
 			"Description": [
-				"SEASON 작물로 자라\ufffd\ufffd\ufffd데에 GROWTHTIME일이 소요된다."
+				"가을 작물로 자라\ufffd\ufffd\ufffd데에 5일이 소요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 1,
 			"SellGold": 10,
@@ -130,9 +130,9 @@
 			"ID": 2002,
 			"Name": "호박씨앗",
 			"Description": [
-				"SEASON 작물로 자\ufffd\ufffd는데에 GROWTHTIME일이 소요된다."
+				"가을 작물로 자라는데\ufffd\ufffd 12일이 소요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 2,
 			"SellGold": 10,
@@ -148,9 +148,9 @@
 			"ID": 2003,
 			"Name": "감자씨앗",
 			"Description": [
-				"SEASON 작물로 \ufffd\ufffd라는데에 GROWTHTIME일이 소요된다."
+				"여름 작물로 자라는데에 8\ufffd\ufffd이 소요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 3,
 			"SellGold": 10,
@@ -166,9 +166,9 @@
 			"ID": 2004,
 			"Name": "수박씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"여름 작물로 자라는데에 10일이 \ufffd\ufffd\ufffd요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 4,
 			"SellGold": 10,
@@ -184,9 +184,9 @@
 			"ID": 2005,
 			"Name": "무씨앗",
 			"Description": [
-				"SEASON 작물\ufffd\ufffd\ufffd 자라는데에 GROWTHTIME일이 소요된다."
+				"봄 작물로 자라는데에 5일이 소요된\ufffd\ufffd\ufffd."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 5,
 			"SellGold": 10,
@@ -202,9 +202,9 @@
 			"ID": 2006,
 			"Name": "양배추씨앗",
 			"Description": [
-				"SEASON \ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
+				"봄 작물로 자라는데에 8일이 소요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 6,
 			"SellGold": 10,
@@ -220,9 +220,9 @@
 			"ID": 2007,
 			"Name": "밀씨앗",
 			"Description": [
-				"SEASON \ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
+				"가을 작물로 자라는데에 7일이 소요된다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 7,
 			"SellGold": 10,
@@ -238,9 +238,9 @@
 			"ID": 3001,
 			"Name": "가지씨앗",
 			"Description": [
-				"SEASON \ufffd\ufffd\ufffd물로 자라는데에 GROWTHTIME일이 소요된다."
+				"여름 작물로 자라는데에 6일이 소요된다. 여러번 수확 가능하다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 101,
 			"SellGold": 10,
@@ -256,9 +256,9 @@
 			"ID": 3002,
 			"Name": "옥수수씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"여름 작물로 자라는데에 7일이 소요된다. 여러번 수확 가능하다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 102,
 			"SellGold": 10,
@@ -272,11 +272,11 @@
 		},
 		{
 			"ID": 3003,
-			"Name": "토마토\ufffd\ufffd\ufffd앗",
+			"Name": "토마토씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"가을 작물로 자라는데에 7일이 소요된다. 여러번 수확 가능하다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 103,
 			"SellGold": 10,
@@ -290,11 +290,11 @@
 		},
 		{
 			"ID": 3004,
-			"Name": "딸기씨앗",
+			"Name": "딸\ufffd\ufffd\ufffd씨앗",
 			"Description": [
-				"SEASON 작물로 자라는데에 GROWTHTIME일이 소요된다."
+				"봄 작물로 자라는데에 8일이 소요된다. 여러번 수확 가능하다."
 			],
-			"Type": "Crop",
+			"Type": "Seed",
 			"EquipType": -1,
 			"CropID": 104,
 			"SellGold": 10,
@@ -346,7 +346,7 @@
 			"ID": 4012,
 			"Name": "구리",
 			"Description": [
-				"구리광석을 캐서 나온 구리조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+				"구리광석을 캐서 나온 구리조각. 장비를 업그레이드하거나 제작할 때 사\ufffd\ufffd\ufffd된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
@@ -364,7 +364,7 @@
 			"ID": 4013,
 			"Name": "철",
 			"Description": [
-				"철광석을 캐서 나온 철조각. 장비를 업그레이드하거나 제작할 때 \ufffd\ufffd용된다."
+				"철광석을 캐서 나온 철조각. 장비를 업그레이드하거\ufffd\ufffd 제작할 때 사용된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
@@ -382,7 +382,7 @@
 			"ID": 4014,
 			"Name": "금",
 			"Description": [
-				"금광석을 캐서 나온 금조각. 장비를 업그레이드하거\ufffd\ufffd 제작할 때 사용된다."
+				"금광석을 캐서 나온 금조각. 장비를 업\ufffd\ufffd레이드하거나 제작할 때 사용된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
@@ -400,7 +400,7 @@
 			"ID": 4015,
 			"Name": "다이아몬드",
 			"Description": [
-				"다이아몬드광석을 캐서 나온 \ufffd\ufffd\ufffd이아몬드조각. 장비를 업그레이드하거나 제작할 때 사용된다."
+				"다이아몬드광석\ufffd\ufffd\ufffd 캐서 나온 다이아몬드조각. 장비를 업그레이드하거나 제작할 때 사용된다."
 			],
 			"Type": "Item",
 			"EquipType": -1,
@@ -560,7 +560,7 @@
 		},
 		{
 			"ID": 5102,
-			"Name": "식용\ufffd\ufffd\ufffd",
+			"Name": "식용꽃",
 			"Description": [
 				"여름"
 			],
@@ -598,7 +598,7 @@
 			"ID": 5104,
 			"Name": "꽃",
 			"Description": [
-				"여\ufffd\ufffd"
+				"여름"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
@@ -706,7 +706,7 @@
 			"ID": 5204,
 			"Name": "꽃",
 			"Description": [
-				"가을"
+				"\ufffd\ufffd\ufffd을"
 			],
 			"Type": "Nature",
 			"EquipType": -1,
@@ -776,7 +776,7 @@
 		},
 		{
 			"ID": 5302,
-			"Name": "꽃",
+			"Name": "\ufffd\ufffd",
 			"Description": [
 				"겨울"
 			],
@@ -825,6 +825,204 @@
 			"Path": "Nature",
 			"SpriteName": [
 				"winter4"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6001,
+			"Name": "당근",
+			"Description": [
+				"가을 작물이다. 당근이다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 1,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Carrot",
+			"SpriteName": [
+				"Carrot7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6002,
+			"Name": "호박",
+			"Description": [
+				"가을 작물이다. 호박이다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 2,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Pumpkin",
+			"SpriteName": [
+				"Pumpkin7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6003,
+			"Name": "감자",
+			"Description": [
+				"여름 작\ufffd\ufffd\ufffd이다. 감자다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 3,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Potato",
+			"SpriteName": [
+				"Potato7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6004,
+			"Name": "수박",
+			"Description": [
+				"여름 작물이다. 수박이다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 4,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Watermelon",
+			"SpriteName": [
+				"Watermelon7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6005,
+			"Name": "무",
+			"Description": [
+				"봄 작물이다. 무다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 5,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Radish",
+			"SpriteName": [
+				"Radish7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6006,
+			"Name": "\ufffd\ufffd배추",
+			"Description": [
+				"봄 작물이다. 양배추다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 6,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Lettuce",
+			"SpriteName": [
+				"Lettuce7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 6007,
+			"Name": "밀",
+			"Description": [
+				"가을 작물이다. 밀이다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 7,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Wheat",
+			"SpriteName": [
+				"Wheat7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 7001,
+			"Name": "가지",
+			"Description": [
+				"여름 작물이다. 가지다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 101,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Eggplant",
+			"SpriteName": [
+				"Eggplant7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 7002,
+			"Name": "옥수수",
+			"Description": [
+				"여름 작물이다. 옥수수다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 102,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Corn",
+			"SpriteName": [
+				"Corn7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 7003,
+			"Name": "토마토",
+			"Description": [
+				"가을 작물이다. 토마토다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 103,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Tomato",
+			"SpriteName": [
+				"Tomato7"
+			],
+			"DropPercent": -1
+		},
+		{
+			"ID": 7004,
+			"Name": "딸기",
+			"Description": [
+				"봄 작물이다. 딸기다."
+			],
+			"Type": "Crop",
+			"EquipType": -1,
+			"CropID": 104,
+			"SellGold": 10,
+			"BuyGold": 30,
+			"Stack": 100,
+			"Path": "Crops/Strawberry",
+			"SpriteName": [
+				"Strawberry7"
 			],
 			"DropPercent": -1
 		}
