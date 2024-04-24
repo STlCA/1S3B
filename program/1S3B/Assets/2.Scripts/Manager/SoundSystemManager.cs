@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : Manager
+public class SoundSystemManager : Manager
 {
     [Header("AudioSource")]
     public AudioSource BGMSource;

@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
     private WeatherSystem weatherSystem;
     public PopUpController PopUpController { get { return popUpController; } }
     private PopUpController popUpController;
-    public SoundManager SoundManager { get { return soundManager; } }
-    private SoundManager soundManager;
+    public SoundSystemManager SoundManager { get { return soundManager; } }
+    private SoundSystemManager soundManager;
 
     //========================Player
     public Player Player { get { return player; } }
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         natureObjectController = GetManager<NatureObjectController>();
         uIManager = GetManager<UIManager>();
         popUpController = GetManager<PopUpController>();
-        soundManager = GetManager<SoundManager>();
+        soundManager = GetManager<SoundSystemManager>();
 
         player = GetFind<Player>();
         player.Init(this);
