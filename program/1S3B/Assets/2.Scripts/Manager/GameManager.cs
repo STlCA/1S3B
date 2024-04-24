@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.U2D.Animation;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,10 +42,12 @@ public class GameManager : MonoBehaviour
     //========================Inspector
 
     [Header("Time")]
-    public TMP_Text TimeText;
+    public TMP_Text TimeText1;
+    public TMP_Text TimeText2;
 
     [Header("Day")]
-    public TMP_Text DayText;
+    public TMP_Text DayText1;
+    public TMP_Text DayText2;
 
     [Header("Talk")]
     public GameObject talkPanel;
@@ -98,7 +101,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        DayText.text = DayCycleHandler.GetDayAsString();
+        DayText1.text = DayCycleHandler.GetDayAsString()[0];
+        DayText2.text = DayCycleHandler.GetDayAsString()[1];
     }
 
     private void Update()
@@ -106,9 +110,13 @@ public class GameManager : MonoBehaviour
         if (DayCycleHandler != null)
             DayCycleHandler.Tick();
 
-        if (TimeText != null)
+        if (TimeText1 != null && TimeText2 != null)
+        {
+            string[] temp = DayCycleHandler.GetTimeAsString();
+            TimeText1.text = temp[0];
+            TimeText2.text = temp[1];
+        }
 
-            TimeText.text = DayCycleHandler.GetTimeAsString();
         //시간텍스트 바꾸기
     }
 
@@ -145,7 +153,8 @@ public class GameManager : MonoBehaviour
         natureObjectController.RangeSpawnStone(2, SpawnPlace.Quarry);
 
         dayCycleHandler.ChangeDate();
-        DayText.text = DayCycleHandler.GetDayAsString();
+        DayText1.text = DayCycleHandler.GetDayAsString()[0];
+        DayText2.text = DayCycleHandler.GetDayAsString()[1];
 
         animationController.AnimationSpeedChange(1);
 

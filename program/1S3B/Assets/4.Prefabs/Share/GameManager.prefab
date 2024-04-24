@@ -506,6 +506,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldUIText: {fileID: 0}
   shopGoldText: {fileID: 0}
+  seasonImage: {fileID: 0}
+  spriteLibraryAsset: {fileID: 7108339969198208228, guid: 4720e0183d2054d498a2d68f02cf3444, type: 3}
   sleepInfoUI: {fileID: 0}
   quickSlotUI: {fileID: 0}
   inventoryUI: {fileID: 0}
@@ -1369,8 +1371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e92225edcc924bdfb35691dad7fada3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeText: {fileID: 0}
-  DayText: {fileID: 0}
+  TimeText1: {fileID: 0}
+  TimeText2: {fileID: 0}
+  DayText1: {fileID: 0}
+  DayText2: {fileID: 0}
   talkPanel: {fileID: 0}
   talkText: {fileID: 0}
   npcNameText: {fileID: 0}

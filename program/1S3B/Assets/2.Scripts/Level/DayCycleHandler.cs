@@ -135,12 +135,12 @@ public class DayCycleHandler : Manager
         Instance?.m_EventHandlers.Remove(handler);
     }
     */
-    public string GetTimeAsString()
+    public string[] GetTimeAsString()
     {
         return GetTimeAsString(currentDayRatio);
     }
 
-    public string GetTimeAsString(float ratio)
+    public string[] GetTimeAsString(float ratio)
     {//문자열로 시간 가져오기
         var hour = GetHourFromRatio(ratio);
         //시간
@@ -150,7 +150,7 @@ public class DayCycleHandler : Manager
         int adjustedMinute = (int)(minute / 10) * 10;
         //텍스트에서는 분이 10분 단위로 보이게
 
-        string AmPm;
+        string AmPm;            
 
         if (hour < 13)
             AmPm = "오전";
@@ -161,7 +161,10 @@ public class DayCycleHandler : Manager
             AmPm = "오후";
         }
 
-        return $"{hour:00} : {adjustedMinute:00}{AmPm}";
+        string[] returnArray = new string[] {AmPm,$"{hour:00} : {adjustedMinute:00}" };
+
+        //return $"{hour:00} : {adjustedMinute:00}{AmPm}";
+        return returnArray;
     }
 
     public int GetHourFromRatio(float ratio)
@@ -197,12 +200,15 @@ public class DayCycleHandler : Manager
         }
     }
 
-    public string GetDayAsString()
+    public string[] GetDayAsString()
     {//문자열로 날짜표시하기
         int dayofWeek = currentDay % 7;
         int day = currentDay % 28 + 1;
 
-        return $"{week[dayofWeek]}  {day}";
+        string[] returnArray = new string[] { week[dayofWeek], day.ToString() };
+
+        return returnArray;
+        //return $"{week[dayofWeek]}  {day}";
     }
 
     public void DateTest()

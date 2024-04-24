@@ -19,6 +19,8 @@ public class UIManager : Manager
     [Header("UI")]
     public TMP_Text goldUIText;
     public TMP_Text shopGoldText;
+    public Image seasonImage;
+    public SpriteLibraryAsset spriteLibraryAsset;
 
     [Header("Image")]
     public GameObject sleepInfoUI;
@@ -48,11 +50,13 @@ public class UIManager : Manager
         EnengyBarSetting();
 
         playerImage = playerObj.GetComponent<RectTransform>();
-        playerImage.anchoredPosition = new Vector2(470, 230);//�����Ҷ� ��ġ ���߿� �����ؼ�
+        playerImage.anchoredPosition = new Vector2(470, 130);//�����Ҷ� ��ġ ���߿� �����ؼ�
 
         quickSlotUI.Init(gameManager, this, player);
         inventoryUI.Init(gameManager, this, player);
         shopUI.Init();
+
+        GameManager.Instance.DayCycleHandler.changeSeasonAction += ChangeSeasonImage;
     }
 
     //public void EquipIconChange(PlayerEquipmentType type)
@@ -63,6 +67,11 @@ public class UIManager : Manager
     //{
     //    equipIcon.sprite = libraryAsset.GetSprite("Equip", type);
     //}
+
+    private void ChangeSeasonImage(Season season)
+    {
+        seasonImage.sprite = spriteLibraryAsset.GetSprite("Season", season.ToString());
+    }
 
     public void MiniMapPosition(PlayerMap map)
     {
