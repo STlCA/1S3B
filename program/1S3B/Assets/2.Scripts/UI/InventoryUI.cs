@@ -24,6 +24,7 @@ public class InventoryUI : MonoBehaviour
 
     // Script
     Player player;
+    PlayerMovement playerMovement;
     Inventory inventory;
     ScrollViewUI scrollViewUI;
     InventorySlotUI inventorySlotUI;
@@ -66,6 +67,7 @@ public class InventoryUI : MonoBehaviour
     {
         this.player = player;
         inventory = player.Inventory;
+        playerMovement = player.playerMovement;
 
         this.gameManager = gameManager;
         this.uiManager = uiManager;
@@ -99,7 +101,15 @@ public class InventoryUI : MonoBehaviour
     public void InventoryEnable()
     {
         Refresh();
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(true);
+        playerMovement.SwitchPlayerInputAction(true);
+    }
+    
+    // 인벤토리 ui 비활성화
+    public void InventoryDisable()
+    {
+        gameObject.SetActive(false);
+        playerMovement.SwitchPlayerInputAction(false);
     }
 
     // 설명창 활성화

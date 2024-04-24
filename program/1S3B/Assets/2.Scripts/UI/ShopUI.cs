@@ -6,15 +6,17 @@ using UnityEngine;
 public class ShopUI : MonoBehaviour
 {
     // Manager, Data
-    //GameManager gameManager;
-    //UIManager uiManager;
+    GameManager gameManager;
+    UIManager uiManager;
     //DataManager dataManager;
     //ShopDatabase shopDatabase;
     //ItemDatabase itemDatabase;
 
     // Script
     [HideInInspector] public Shop shop;
+    private QuickSlotUI quickSlotUI;
     ScrollViewUI scrollViewUI;
+    PlayerMovement playerMovement;
 
     // Item Info
     [SerializeField] public GameObject _itemInfoUI;
@@ -28,12 +30,13 @@ public class ShopUI : MonoBehaviour
     // 초기화
     public void Init()
     {
-        //this.gameManager = gameManager;
-        //this.uiManager = uiManager;
+        this.gameManager = GameManager.Instance;
+        this.uiManager = gameManager.UIManager;
         //dataManager = gameManager.DataManager;
 
         //itemDatabase = dataManager.itemDatabase;
         shop = GetComponent<Shop>();
+        quickSlotUI = uiManager.quickSlotUI;
 
         scrollViewUI = GetComponentInChildren<ScrollViewUI>();
 
@@ -41,16 +44,28 @@ public class ShopUI : MonoBehaviour
 
         shop.Init();
 
+        playerMovement = shop.player.playerMovement;
+
         itemInfoWidthHalf = _itemInfoUI.GetComponent<RectTransform>().rect.width / 2;
         itemInfoHeightHalf = _itemInfoUI.GetComponent<RectTransform>().rect.height / 2;
 
         gameObject.SetActive(false);
     }
 
-    // 상점 ui 활성화/비활성화
-    public void InventoryEnable()
+    // 상점 ui 활성화
+    public void ShopEnable()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(true);
+        quickSlotUI.QuickSlotDisable();
+        playerMovement.SwitchPlayerInputAction(true);
+    }
+    
+    // 상점 ui 비활성화
+    public void ShopDisable()
+    {
+        gameObject.SetActive(false);
+        quickSlotUI.QuickSlotEnable();
+        playerMovement.SwitchPlayerInputAction(false);
     }
 
     // 설명창 비활성화

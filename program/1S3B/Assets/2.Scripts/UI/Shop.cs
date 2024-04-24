@@ -15,7 +15,7 @@ public class Shop : MonoBehaviour
 
     // Script
     [HideInInspector] public ShopUI shopUI;
-    private Player player;
+    public Player player;
     private Inventory inventory;
 
     [SerializeField] List<ItemInfo> items = new();
@@ -56,7 +56,7 @@ public class Shop : MonoBehaviour
 
         ChangeSeason(season);
 
-        OpenShop(); // 나중에 
+        //OpenShop(); // 나중에 
     }
 
     // 상점 열기
@@ -69,7 +69,7 @@ public class Shop : MonoBehaviour
         }
 
         // 상점을 열어요~~
-        shopUI.InventoryEnable();
+        shopUI.ShopEnable();
     }
 
     // 시즌별 상품 최신화

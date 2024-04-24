@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movementDirection = Vector2.zero;
     private Vector2 _zeroDirection = Vector2.zero;
 
+    // UI가 켜졌을 때 플레이어의 움직임을 막기 위한 플레이어 InputAction
+    private PlayerInput _playerInput;
+
     private bool isChange = false;
 
     [SerializeField] private float speed;
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<CharacterEventController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -78,9 +82,28 @@ public class PlayerMovement : MonoBehaviour
         {
             popUpController.UIOn(uiManager.sleepInfoUI);
         }
+
+        if(other.tag == "Counter")
+        {
+            uiManager.shopUI.shop.OpenShop();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         popUpController.UIOff(uiManager.sleepInfoUI);
+    }
+
+    // UI가 켜졌을 때 플레이어의 움직임을 막기 위한 플레이어 InputAction
+    public void SwitchPlayerInputAction(bool isUI)
+    {
+        if (isUI)
+        {
+            // UI가 활성화 되면 플레이어의 움직임을 제한
+            _playerInput.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            _playerInput.SwitchCurrentActionMap("PlayerAction");
+        }
     }
 }

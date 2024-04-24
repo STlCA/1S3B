@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     public AnimationController animationController { get; private set; }
     public CharacterEventController characterEventController { get; private set; }
 
+    public PlayerMovement playerMovement { get; private set; }
+
     public Item selectItem { get; set; }
 
     public Vector3 playerPosition { get; set; }
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
     {
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
+        playerMovement = GetComponent<PlayerMovement>();
 
         gameManager = GameManager.Instance;
         uiManager = gameManager.UIManager;
