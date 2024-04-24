@@ -15,7 +15,7 @@ public class Shop : MonoBehaviour
 
     // Script
     [HideInInspector] public ShopUI shopUI;
-    private Player player;
+    public Player player;
     private Inventory inventory;
 
     [SerializeField] List<ItemInfo> items = new();

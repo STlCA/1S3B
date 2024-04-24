@@ -16,6 +16,7 @@ public class ShopUI : MonoBehaviour
     [HideInInspector] public Shop shop;
     private QuickSlotUI quickSlotUI;
     ScrollViewUI scrollViewUI;
+    PlayerMovement playerMovement;
 
     // Item Info
     [SerializeField] public GameObject _itemInfoUI;
@@ -43,6 +44,8 @@ public class ShopUI : MonoBehaviour
 
         shop.Init();
 
+        playerMovement = shop.player.playerMovement;
+
         itemInfoWidthHalf = _itemInfoUI.GetComponent<RectTransform>().rect.width / 2;
         itemInfoHeightHalf = _itemInfoUI.GetComponent<RectTransform>().rect.height / 2;
 
@@ -54,6 +57,7 @@ public class ShopUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         quickSlotUI.QuickSlotDisable();
+        playerMovement.SwitchPlayerInputAction(true);
     }
     
     // 상점 ui 비활성화
@@ -61,6 +65,7 @@ public class ShopUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         quickSlotUI.QuickSlotEnable();
+        playerMovement.SwitchPlayerInputAction(false);
     }
 
     // 설명창 비활성화
