@@ -69,7 +69,7 @@ public class Shop : MonoBehaviour
         }
 
         // 상점을 열어요~~
-        shopUI.InventoryEnable();
+        shopUI.ShopEnable();
     }
 
     // 시즌별 상품 최신화
