@@ -38,6 +38,8 @@ public class Inventory : MonoBehaviour
 
     ItemDatabase database;
 
+    public Action<int,bool> DeleteItemAction;
+
     public void Init(GameManager gameManager)
     {
         player = GetComponent<Player>();
@@ -196,21 +198,33 @@ public class Inventory : MonoBehaviour
         _selectedItem.UpdateItemInfo(_selectedItem._item.ItemInfo.Name, infoString);
     }
 
-    //// 아이템 사용
-    //public void UseItem(InventorySlotUI slot, Item item)
+    public void UseRefresh(Item item)
+    {
+        UpdateQuickExistItem(item);
+        if (item.quantity <= 0)
+        {
+            quickSlot.DeleteItem(item);
+            DeleteItemAction?.Invoke(0,true);
+            items.Remove(item);
+        }
+        inventoryUI.Refresh();
+    }
+
+    // 아이템 사용
+    //public void UseItem(InventorySlotUI slot, Item item)//퀵슬롯에서 사용해서 인벤업데이트
     //{
     //    //_selectedItem = item;
     //    //_selectedItemIndex = item.index;
-
+    //
     //    // 아이템이 장착 아이템이라면
     //    if (item.ItemInfo.Type == "Equip")
     //    {
     //        EquipItem();
     //        return;
     //    }
-
+    //
     //    item.quantity--;
-
+    //
     //    if (item.quantity <= 0)
     //    {
     //        RemoveSelectedItem(slot, item);
@@ -283,8 +297,8 @@ public class Inventory : MonoBehaviour
 
     }
 
-    // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데이트
-    private void UpdateQuickExistItem(Item item)
+    // 아이템이 퀵슬롯에 있는 아이템이면 퀵슬롯 업데 이트
+    public void UpdateQuickExistItem(Item item)
     {
         if (item.QSymbolActive == true)
         {

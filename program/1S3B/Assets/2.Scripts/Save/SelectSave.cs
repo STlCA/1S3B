@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -24,12 +24,12 @@ public class SelectSave : MonoBehaviour
                 SaveSystem.nowSlot = i;
                 SaveSystem.SlotDataLoad();
                 slotText[0].text = SaveSystem.slotData.Name;
-                slotText[1].text = SaveSystem.slotData.Gold.ToString()+"G";                
+                slotText[1].text = SaveSystem.slotData.Gold.ToString()+" G";                
             }
             else	// 데이터가 없는 경우
             {
                 slotText[0].text = "비어있음";
-                slotText[1].text = "G";
+                slotText[1].text = " G";
             }
         }
 
@@ -58,11 +58,12 @@ public class SelectSave : MonoBehaviour
 
     public void GoGame()	// 게임씬으로 이동
     {
-        if (!savefile[DataManager.instance.nowSlot])	// 현재 슬롯번호의 데이터가 없다면
+        if (!savefile[SaveSystem.nowSlot])	// false = 데이터가 없다면
         {
-            DataManager.instance.nowPlayer.name = newPlayerName.text; // 입력한 이름을 복사해옴
-            DataManager.instance.SaveData(); // 현재 정보를 저장함.
+            SaveSystem.slotData.Name = newPlayerName.text; // 입력한 이름을 복사해옴
+            SaveSystem.Save(); // 현재 정보를 저장함.
         }
+
         SceneManager.LoadScene(1); // 게임씬으로 이동
     }
-}
+}*/
