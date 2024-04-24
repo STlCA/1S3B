@@ -78,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
         {
             popUpController.UIOn(uiManager.sleepInfoUI);
         }
+
+        if(other.tag == "Counter")
+        {
+            uiManager.shopUI.shop.OpenShop();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -56,7 +56,7 @@ public class Shop : MonoBehaviour
 
         ChangeSeason(season);
 
-        OpenShop(); // 나중에 
+        //OpenShop(); // 나중에 
     }
 
     // 상점 열기
