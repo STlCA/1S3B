@@ -359,6 +359,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+--- !u!1 &1277278657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1595064763871794385, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+  m_PrefabInstance: {fileID: 1277278656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1277278658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 327672874844730229, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+  m_PrefabInstance: {fileID: 1277278656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1277278659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4763490237428680688, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
@@ -1631,6 +1647,14 @@ PrefabInstance:
       propertyPath: TimeText2
       value: 
       objectReference: {fileID: 1006875498124032644}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: talkPanel
+      value: 
+      objectReference: {fileID: 1277278657}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: npcNameText
+      value: 
+      objectReference: {fileID: 1277278658}
     - target: {fileID: 5999763758169166763, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_Name
       value: GameManager
