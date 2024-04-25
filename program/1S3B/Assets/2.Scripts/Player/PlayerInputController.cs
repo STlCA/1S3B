@@ -1,4 +1,5 @@
 using Constants;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,8 @@ public class PlayerInputController : CharacterEventController
         animController.useAnimEnd += AnimState;
 
         player.Inventory.DeleteItemAction += QuickSlotItemCheck;
+
+        OnMoveEvent += WalkSound;
     }
 
     private void Update()
@@ -145,6 +148,25 @@ public class PlayerInputController : CharacterEventController
             CallMoveEvent(moveInput);
 
         TargetCheck(moveInput);
+    }
+
+    private void WalkSound(Vector2 direction, bool isUse, bool isCarry)
+    {
+        if (direction != Vector2.zero)
+        {
+            if (!soundManager.EffectSource.isPlaying)
+            {
+                soundManager.EffectSource.loop = true;
+                soundManager.EffectSource.Play();
+                //soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.FarmRun);
+            }
+        }
+        else
+        {
+            soundManager.EffectSource.loop = false;
+            soundManager.EffectSource.Stop();
+        }
+
     }
 
     public void OnMouse(InputValue value)

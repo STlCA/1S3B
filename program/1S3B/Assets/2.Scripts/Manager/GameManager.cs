@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SleepOfDay(bool isDeath)
     {
+        soundManager.BGMSource.Stop();
+
         bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
 
@@ -160,6 +162,8 @@ public class GameManager : MonoBehaviour
 
         SaveSystem.Save(player.playerName);
 
+
+        soundManager.BGMSource.Play();
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }
 
