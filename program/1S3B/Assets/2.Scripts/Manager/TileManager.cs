@@ -128,8 +128,11 @@ public class TileManager : Manager
     private ItemDatabase itemDatabase;
     private bool isRain = false;
 
-    private void Start()
+    
+    public override void Init(GameManager gm)
     {
+        base.Init(gm);
+
         animationController = gameManager.AnimationController;
         targetSetting = gameManager.TargetSetting;
         dayCycleHandler = gameManager.DayCycleHandler;
@@ -222,10 +225,7 @@ public class TileManager : Manager
     }
 
     public void WaterAt(Vector3Int target, bool rain = false)
-    {
-        if(rain == false)
-            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);        
-
+    {   
         if (rain == false && targetSetting.TargetUI() == false)
             return;
 

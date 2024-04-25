@@ -557,6 +557,8 @@ public class PlayerInputController : CharacterEventController
 
     private void UseWater(PlayerEquipmentType water, Vector2 pos)
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);
+
         isUseEnergy = true;
         CallClickEvent(water, pos);
 
@@ -572,6 +574,8 @@ public class PlayerInputController : CharacterEventController
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+
         isUseEnergy = true;
         CallClickEvent(type, pos);
 

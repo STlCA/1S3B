@@ -93,7 +93,6 @@ namespace Constants
     {
         IDLE,
         TIRED,
-        BLACKOUT,
         MAPCHANGE,
         SLEEP,
     }

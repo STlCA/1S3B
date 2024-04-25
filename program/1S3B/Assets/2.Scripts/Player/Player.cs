@@ -88,10 +88,10 @@ public class Player : MonoBehaviour
         characterEventController = GetComponent<CharacterEventController>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        gameManager = GameManager.Instance;
+        this.gameManager = gameManager;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
-        Init();        
+        Init();
 
         playerState = PlayerState.IDLE;
 
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         {
             animationController.DeathAnimation(true);
 
-            DeathSleep();
+            gameManager.DayOverTime();
                         
             PlayerGold -= GoldRange(10, 20);
         }
@@ -203,12 +203,6 @@ public class Player : MonoBehaviour
     public void ChangePosition(Vector3 pos = default)
     {
         transform.position = playerPosition;
-    }
-
-    private void DeathSleep()
-    {
-        playerPosition = new Vector3(351f, 4.3f);
-        StartCoroutine(gameManager.SleepOfDay(true));
     }
 
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)

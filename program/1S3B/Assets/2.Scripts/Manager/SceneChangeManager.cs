@@ -210,7 +210,9 @@ public class SceneChangeManager : Manager
 
         if (isChange == true)
         {
-            previousState = player.playerState;
+            if (player.playerState != PlayerState.MAPCHANGE)
+                previousState = player.playerState;                
+
             player.PlayerStateChange(PlayerState.MAPCHANGE);
         }
         else
