@@ -399,11 +399,13 @@ public class NatureObjectController : Manager
     {
         int random;
 
-        random = Random.Range(1, 4);
-        treeType = random;
-
         if (isLoad)
             random = treeType;
+        else
+        {
+            random = Random.Range(1, 4);
+            treeType = random;
+        }
 
         switch (random)
         {
@@ -892,14 +894,20 @@ public class NatureObjectController : Manager
         treeData = new();
         for (int i = 0; i < data.TreeSaveData.Count; i++)
         {
+            TreeData newData = new();
+
             int temp = data.TreeSaveData[i].TreeType;
 
-            GameObject go = RandomTree(ref temp, true);
-            go.transform.position = data.TreeCellPos[i] + new Vector3(0.5f, 0.2f, 0);
-            //go.transform.position = gameManager.TileManager.baseGrid.WorldToCell(data.TreeCellPos[i]) + new Vector3(0.5f, 0.2f, 0);
+            if (data.TreeSaveData[i].IsSpawn == true)
+            {
+                GameObject go = RandomTree(ref temp, true);
+                go.transform.position = data.TreeCellPos[i] + new Vector3(0.5f, 0.2f, 0);
+                //go.transform.position = gameManager.TileManager.baseGrid.WorldToCell(data.TreeCellPos[i]) + new Vector3(0.5f, 0.2f, 0);
 
-            TreeData newData = new();
-            newData.Load(data.TreeSaveData[i], go, posAnimator);
+                newData.Load(data.TreeSaveData[i], go, posAnimator);
+            }
+            else
+                newData.isPoint = true;            
 
             treeData.Add(data.TreeCellPos[i], newData);
         }
@@ -907,11 +915,17 @@ public class NatureObjectController : Manager
         stoneData = new();
         for (int i = 0; i < data.StoneSaveData.Count; i++)
         {
-            GameObject go = Instantiate(stonePrefab);
-            go.transform.position = data.StoneCellPos[i] + new Vector3(0.5f, 0.2f, 0);
-
             StoneData newData = new();
-            newData.Load(data.StoneSaveData[i], go);
+
+            if (data.StoneSaveData[i].IsSpawn == true)
+            {
+                GameObject go = Instantiate(stonePrefab);
+                go.transform.position = data.StoneCellPos[i] + new Vector3(0.5f, 0.2f, 0);
+
+                newData.Load(data.StoneSaveData[i], go);
+            }
+            else
+                newData.isPoint = true;
 
             stoneData.Add(data.StoneCellPos[i], newData);
         }
