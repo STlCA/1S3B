@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
         animationController = player.GetComponent<AnimationController>();//물어보기
 
         //Init
-        tileManager.Init(this);
         dataManager.Init(this);
         dayCycleHandler.Init(this);
         weatherSystem.Init(this);
@@ -107,6 +106,7 @@ public class GameManager : MonoBehaviour
         popUpController.Init(this);
         soundManager.Init(this);
         player.Init(this);
+        tileManager.Init(this);
     }
 
     private void Start()

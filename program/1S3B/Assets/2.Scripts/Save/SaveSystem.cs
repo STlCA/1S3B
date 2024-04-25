@@ -10,6 +10,7 @@ public struct SaveData
     public SavePlayerData PlayerData;
     public SaveDayData DayData;
     public SaveTileData TileData;
+    public SaveSpawnData NatureData;
 
     //public SaveData[] ScenesData; indoor/outdoor³ª´­¶§
 }
@@ -51,6 +52,7 @@ public class SaveSystem : MonoBehaviour
         GameManager.Instance.Player.Save(ref SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Save(ref SaveData.DayData);
         GameManager.Instance.TileManager.Save(ref SaveData.TileData);
+        GameManager.Instance.NatureObjectController.Save(ref SaveData.NatureData);
         //SaveSceneData();
 
         string data = JsonUtility.ToJson(SaveData);
@@ -75,6 +77,7 @@ public class SaveSystem : MonoBehaviour
         GameManager.Instance.Player.Load(SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Load(SaveData.DayData);
         GameManager.Instance.TileManager.Load(SaveData.TileData);
+        GameManager.Instance.NatureObjectController.Load(SaveData.NatureData);
         //LoadSceneData();
 
         SceneManager.sceneLoaded -= SceneLoaded;

@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
     {
         /*PlayerSkill currentSkill = playerSkill[skillType];
         currentSkill.exp += 1 / currentSkill.level;
-        currentSkill.count++;
+        currentSkill.Count++;
 
         if(currentSkill.exp >= 100)
         {
