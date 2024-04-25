@@ -473,16 +473,16 @@ public class PlayerInputController : CharacterEventController
         }
         else if (tileManager.IsPlant(target) == true)
         {
-            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             tileManager.DestroyCropData(target);//작물파괴
         }
         else if (tileManager.IsPlantable(target) == true)
         {
-            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             tileManager.DestroyGroundData(target);//땅파괴
         }
         else
-            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
@@ -497,7 +497,7 @@ public class PlayerInputController : CharacterEventController
         }
         else
         {
-            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             CallClickEvent(axe, pos);
         }
     }

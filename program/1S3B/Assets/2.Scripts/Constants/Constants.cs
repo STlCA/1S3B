@@ -210,5 +210,7 @@ namespace Constants
         Axe,
         PickAxe,
         Seed,
+        Use,
+
     }
 }
