@@ -28,8 +28,6 @@ public class StartSceneManager : MonoBehaviour
 
     private bool isNewGame = false;
 
-    private Dictionary<GameObject, TMP_Text[]> slotsText;
-
     private void Start()
     {
         for (int i = 0; i < 3; i++)
@@ -43,7 +41,7 @@ public class StartSceneManager : MonoBehaviour
             if (File.Exists(SaveSystem.path + $"{i}"))// 데이터가 있는 경우
             {
                 savefile[i] = true;
-                SaveSystem.SlotDataLoad();
+                SaveSystem.SlotDataLoad(i);
 
                 slotText[i][0].text = SaveSystem.slotData.Name;
                 slotText[i][1].text = SaveSystem.slotData.Gold.ToString() + " G";

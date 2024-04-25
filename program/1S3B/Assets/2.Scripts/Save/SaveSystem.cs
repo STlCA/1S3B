@@ -36,9 +36,9 @@ public class SaveSystem : MonoBehaviour
         print(path);
     }
 
-    public static void SlotDataLoad()
+    public static void SlotDataLoad(int slot)
     {
-        string data = File.ReadAllText(path + nowSlot.ToString());
+        string data = File.ReadAllText(path + slot.ToString());
         SaveData = JsonUtility.FromJson<SaveData>(data);
         slotData = SaveData.PlayerData;
     }
@@ -54,6 +54,10 @@ public class SaveSystem : MonoBehaviour
             SaveData.PlayerData.Name = name;
 
         string data = JsonUtility.ToJson(SaveData);
+
+        if(File.Exists(path + nowSlot.ToString()))
+            File.Delete(path + nowSlot.ToString());
+
         File.WriteAllText(path + nowSlot.ToString(), data);
     }
 
