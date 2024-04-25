@@ -14,6 +14,7 @@ public class PlayerInputController : CharacterEventController
     private AnimationController animController;
     private NatureObjectController natureObjectController;
     private SoundSystemManager soundManager;
+    private SceneChangeManager sceneChangeManager;
 
     private Camera mainCamera;
     private bool isMove;
@@ -36,6 +37,7 @@ public class PlayerInputController : CharacterEventController
         player = gameManager.Player;
         natureObjectController = gameManager.NatureObjectController;
         soundManager = gameManager.SoundManager;
+        sceneChangeManager = gameManager.SceneChangeManager;
 
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
@@ -44,6 +46,7 @@ public class PlayerInputController : CharacterEventController
         player.Inventory.DeleteItemAction += QuickSlotItemCheck;
 
         OnMoveEvent += WalkSound;
+        sceneChangeManager.mapChangeAction += WalkSound;
     }
 
     private void Update()
@@ -165,6 +168,20 @@ public class PlayerInputController : CharacterEventController
         {
             soundManager.EffectSource.loop = false;
             soundManager.EffectSource.Stop();
+        }
+
+    }
+    private void WalkSound(bool isMapChange)
+    {
+        if (isMapChange)
+        {
+            soundManager.EffectSource.loop = false;
+            soundManager.EffectSource.Stop();
+        }
+        else
+        {
+            soundManager.EffectSource.loop = true;
+            soundManager.EffectSource.Play();
         }
 
     }
