@@ -27,6 +27,7 @@ public class StartSceneManager : MonoBehaviour
     private float time = 0f;
 
     private bool isNewGame = false;
+    private bool isCreate = false;
 
     private void Start()
     {
@@ -70,6 +71,7 @@ public class StartSceneManager : MonoBehaviour
         {
             if (!savefile[number])
             {
+                isCreate = true;
                 CreatSlot();
                 return;
             }
@@ -78,6 +80,7 @@ public class StartSceneManager : MonoBehaviour
         }
         else if (isNewGame) //데이터가 없다면
         {
+            isCreate = true;
             CreatSlot();
         }
     }
@@ -118,7 +121,7 @@ public class StartSceneManager : MonoBehaviour
 
         loadingSliderObj.SetActive(true);
 
-        if (savefile[SaveSystem.nowSlot] == false)
+        if (isCreate == true)
             SceneManager.sceneLoaded += SceneLoaded;
 
         AsyncOperation loading = SceneManager.LoadSceneAsync(changeSceneName);
