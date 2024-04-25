@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PopUpController : Manager 
 {    
-    private PlayerInput _playerInput;
+    public PlayerInput _playerInput;
 
     //ON OFF Change
     public void UIOnOff(GameObject ui)
