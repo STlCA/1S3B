@@ -318,6 +318,11 @@ public class Player : MonoBehaviour
 
     //==================================================Save
 
+    public void PlayerNameSetting(string name)
+    {
+        playerName = name;
+    }
+
     public void Save(ref SavePlayerData data)
     {
         data.Gold = PlayerGold;

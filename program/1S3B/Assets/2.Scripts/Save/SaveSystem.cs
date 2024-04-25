@@ -45,13 +45,13 @@ public class SaveSystem : MonoBehaviour
 
     public static void Save(string name, bool isNewData = false)
     {
+        if (isNewData)//true¸é
+            GameManager.Instance.Player.PlayerNameSetting(name);
+
         GameManager.Instance.Player.Save(ref SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Save(ref SaveData.DayData);
         GameManager.Instance.TileManager.Save(ref SaveData.TileData);
         //SaveSceneData();
-
-        if (isNewData)//true¸é
-            SaveData.PlayerData.Name = name;
 
         string data = JsonUtility.ToJson(SaveData);
 
