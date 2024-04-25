@@ -1,4 +1,5 @@
 using Constants;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -132,5 +133,15 @@ public class SoundSystemManager : Manager
     public void PlayerAudioClipPlay(int index)
     {
         EffectSource.PlayOneShot(playerAudioList[index], 1);
+    }
+
+    public void WalkSoundChange(bool isRun)
+    {
+        if (isRun)
+        {
+            EffectSource.clip = playerAudioList[(int)PlayerAudioClip.FarmRun];
+        }
+        else
+            EffectSource.clip = playerAudioList[(int)PlayerAudioClip.FarmWalk];
     }
 }

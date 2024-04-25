@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public T GetManager<T>() where T : Manager
     {
         T t = GetComponentInChildren<T>();
-        //t.Init(this);
+        //t.StateInit(this);
         return t;
     }
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
-        //Init
+        //StateInit
         dataManager.Init(this);
         dayCycleHandler.Init(this);
         weatherSystem.Init(this);
@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.Save(player.playerName);
 
         soundManager.BGMSource.Play();
+        soundManager.WalkSoundChange(true);
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
 
         popUpController.SwitchPlayerInputAction(false);

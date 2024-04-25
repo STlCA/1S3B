@@ -82,31 +82,39 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    public void Init(GameManager gameManager)
+    private void Awake()
     {
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
         playerMovement = GetComponent<PlayerMovement>();
+    }
 
+    public void Init(GameManager gameManager)
+    {
         this.gameManager = gameManager;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
-        Init();
-
-        playerState = PlayerState.IDLE;
 
         quickSlot = GetComponent<QuickSlot>();
-        quickSlot.Init(gameManager);
         inventory = GetComponent<Inventory>();
+
+        quickSlot.Init(gameManager);
         inventory.Init(gameManager);
+    }
+
+    private void Start()
+    {
+        StateInit();
 
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
         weatherSystem.IsRainAction += UseEnergyAmount;
     }
 
-    private void Init()
+    private void StateInit()
     {
+        playerState = PlayerState.IDLE;
+
         playerEnergy = playerMaxEnergy;
         PlayerGold = 1000;
         playerSpeed = 7f;
@@ -153,6 +161,7 @@ public class Player : MonoBehaviour
             playerState = PlayerState.TIRED;            
             uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
             animationController.AnimationSpeedChange(0.5f);
+            GameManager.Instance.SoundManager.WalkSoundChange(false);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
         {

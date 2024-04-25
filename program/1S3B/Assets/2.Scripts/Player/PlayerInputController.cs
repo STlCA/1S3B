@@ -46,7 +46,7 @@ public class PlayerInputController : CharacterEventController
         player.Inventory.DeleteItemAction += QuickSlotItemCheck;
 
         OnMoveEvent += WalkSound;
-        sceneChangeManager.mapChangeAction += WalkSound;
+        sceneChangeManager.mapChangeAction += MapChangeWalkSound;
     }
 
     private void Update()
@@ -171,7 +171,7 @@ public class PlayerInputController : CharacterEventController
         }
 
     }
-    private void WalkSound(bool isMapChange)
+    private void MapChangeWalkSound(bool isMapChange)
     {
         if (isMapChange)
         {

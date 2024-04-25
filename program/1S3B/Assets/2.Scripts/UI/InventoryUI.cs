@@ -49,7 +49,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        //Init();
+        //StateInit();
 
         //uiSlots = new ItemSlotUI[scrollViewUI._itemList.Count];
         //slots = new ItemSlot[uiSlots.Length];
@@ -91,7 +91,7 @@ public class InventoryUI : MonoBehaviour
         //    uiSlots[i].Clear();
         //}
 
-        // scrollViewUI.Init(50);
+        // scrollViewUI.StateInit(50);
 
         itemInfoWidthHalf = _itemInfoUI.GetComponent<RectTransform>().rect.width / 2;
         itemInfoHeightHalf = _itemInfoUI.GetComponent<RectTransform>().rect.height / 2;
