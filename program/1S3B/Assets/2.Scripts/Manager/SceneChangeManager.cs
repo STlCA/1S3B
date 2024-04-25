@@ -220,7 +220,7 @@ public class SceneChangeManager : Manager
     }
 
     public IEnumerator SleepFadeIn()
-    {
+    {  
         fadeTime = 2f;
 
         fadeImage.gameObject.SetActive(true);

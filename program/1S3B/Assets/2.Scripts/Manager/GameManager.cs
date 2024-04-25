@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SleepOfDay(bool isDeath)
     {
+        popUpController.SwitchPlayerInputAction(true);
+
         soundManager.BGMSource.Stop();
 
         bool isTired = player.playerState == PlayerState.TIRED;
@@ -164,6 +166,8 @@ public class GameManager : MonoBehaviour
 
         soundManager.BGMSource.Play();
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
+
+        popUpController.SwitchPlayerInputAction(false);
     }
 
     public void GameExit()
