@@ -43,7 +43,6 @@ public class SaveSystem : MonoBehaviour
         SaveData = JsonUtility.FromJson<SaveData>(data);
         slotData = SaveData.PlayerData;
     }
-
     public static void Save(string name, bool isNewData = false)
     {
         if (isNewData)//true면
@@ -52,12 +51,12 @@ public class SaveSystem : MonoBehaviour
         GameManager.Instance.Player.Save(ref SaveData.PlayerData);
         GameManager.Instance.DayCycleHandler.Save(ref SaveData.DayData);
         GameManager.Instance.TileManager.Save(ref SaveData.TileData);
-        GameManager.Instance.NatureObjectController.Save(ref SaveData.NatureData);
+        GameManager.Instance.NatureObjectController.Save(ref SaveData.NatureData, isNewData);
         //SaveSceneData();
 
         string data = JsonUtility.ToJson(SaveData);
 
-        if(File.Exists(path + nowSlot.ToString()))
+        if (File.Exists(path + nowSlot.ToString()))
             File.Delete(path + nowSlot.ToString());
 
         File.WriteAllText(path + nowSlot.ToString(), data);
@@ -84,30 +83,30 @@ public class SaveSystem : MonoBehaviour
     }
 
     #region Indoor/Outdoor나눌때
-     //public static void SaveSceneData()
-     //{
-     //    if (GameManager.Instance.TileManager != null)
-     //    {
-     //        var sceneName = GameManager.Instance.LoadedSceneData.UniqueSceneName;
-     //        var data = new SaveTileData();
-     //        GameManager.Instance.TileManager.Save(ref data);
-     //
-     //        s_ScenesDataLookup[sceneName] = new SceneSaveData()
-     //        {
-     //            SceneName = sceneName,
-     //            TerrainData = data
-     //        };
-     //    }
-     //}
-     //
-     //public static void LoadSceneData()
-     //{
-     //    if (s_ScenesDataLookup.TryGetValue(GameManager.Instance.LoadedSceneData.UniqueSceneName, out var data))
-     //    {
-     //        GameManager.Instance.TileManager.Load(data.TerrainData);
-     //    }
-     //}
-    
+    //public static void SaveSceneData()
+    //{
+    //    if (GameManager.Instance.TileManager != null)
+    //    {
+    //        var sceneName = GameManager.Instance.LoadedSceneData.UniqueSceneName;
+    //        var data = new SaveTileData();
+    //        GameManager.Instance.TileManager.Save(ref data);
+    //
+    //        s_ScenesDataLookup[sceneName] = new SceneSaveData()
+    //        {
+    //            SceneName = sceneName,
+    //            TerrainData = data
+    //        };
+    //    }
+    //}
+    //
+    //public static void LoadSceneData()
+    //{
+    //    if (s_ScenesDataLookup.TryGetValue(GameManager.Instance.LoadedSceneData.UniqueSceneName, out var data))
+    //    {
+    //        GameManager.Instance.TileManager.Load(data.TerrainData);
+    //    }
+    //}
+
     #endregion
 
 

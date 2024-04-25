@@ -112,8 +112,8 @@ public class TreeData
         isPoint = data.IsPoint;
 
         treeObj = go;
-        treeResolver = go.GetComponent<SpriteResolver>();
-        animator = go.GetComponent<Animator>();
+        treeResolver = go.GetComponentInChildren<SpriteResolver>();
+        animator = go.GetComponentInChildren<Animator>();
 
         if (data.ItemDrop == true)
         {
@@ -227,25 +227,32 @@ public class NatureObjectController : Manager
     private Vector3Int saveTarget = new();
     private ItemDatabase itemDatabase;
 
-    private bool isNewGame = true;
-
-    private void Start()
+    private void Awake()
     {
-        tileManager = gameManager.TileManager;
-        targetSetting = gameManager.TargetSetting;
-        animationController = gameManager.AnimationController;
-        player = gameManager.Player;
-        inventory = player.Inventory;
-        dayCycleHandler = gameManager.DayCycleHandler;
-        itemDatabase = gameManager.DataManager.itemDatabase;
-        soundManager = gameManager.SoundManager;
-
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
         if (treePointObject != null)
             treePoint = treePointObject.GetComponentsInChildren<Transform>();
         if (stonePointObject != null)
             stonePoint = stonePointObject.GetComponentsInChildren<Transform>();
+    }
+
+    public override void Init(GameManager gm)
+    {
+        base.Init(gm);
+
+        tileManager = gameManager.TileManager;
+        targetSetting = gameManager.TargetSetting;
+        animationController = gameManager.AnimationController;
+        player = gameManager.Player;
+        dayCycleHandler = gameManager.DayCycleHandler;
+        soundManager = gameManager.SoundManager;
+    }
+
+    private void Start()
+    {
+        inventory = player.Inventory;
+        itemDatabase = gameManager.DataManager.itemDatabase;
 
         animationController.useAnimEnd += CutTreeTime;
         animationController.useAnimEnd += DestroyTree;
@@ -254,12 +261,6 @@ public class NatureObjectController : Manager
         dayCycleHandler.changeSeasonAction += SpriteChange;
         dayCycleHandler.changeSeasonAction += ResetNature;
         dayCycleHandler.changeSeasonAction += SeasonSpawn;
-
-        if (isNewGame)
-        {
-            StartSetting();
-            StartSpawn();
-        }
     }
 
     private void StartSetting()
@@ -686,6 +687,7 @@ public class NatureObjectController : Manager
                 //treeData[target].animator.SetTrigger("isFellied");
                 treeData[saveTarget].itemDrop = true;
                 treeData[saveTarget].animator.runtimeAnimatorController = posAnimator;
+                treeData[saveTarget].currentLabel = "0";
 
                 ChangeCategoryLabel(ref treeData[saveTarget].animator, ref treeData[saveTarget].treeResolver, "0");
 
@@ -829,8 +831,14 @@ public class NatureObjectController : Manager
 
     //============================================================Save
 
-    public void Save(ref SaveSpawnData data)
+    public void Save(ref SaveSpawnData data, bool isNew = false)
     {
+        if(isNew)
+        {
+            StartSetting();
+            StartSpawn();
+        }
+
         data.NatureCellPos = new();
         data.NatureSaveData = new();
 
@@ -873,8 +881,6 @@ public class NatureObjectController : Manager
 
     public void Load(SaveSpawnData data)
     {
-        isNewGame = false;
-
         natureData = new();
         for (int i = 0; i < data.NatureSaveData.Count; i++)
         {

@@ -133,7 +133,7 @@ public class StartSceneManager : MonoBehaviour
             else
                 loadingSlider.value = loading.progress;
 
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
         }
 
         if (savefile[SaveSystem.nowSlot] == false)

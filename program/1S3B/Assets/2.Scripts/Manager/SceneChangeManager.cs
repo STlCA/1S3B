@@ -164,8 +164,6 @@ public class SceneChangeManager : Manager
     {
         fadeImage.gameObject.SetActive(true);
 
-        Time.timeScale = 0;
-
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
@@ -193,15 +191,17 @@ public class SceneChangeManager : Manager
 
     public IEnumerator MapChange()//input멈추기
     {
+        gameManager.PopUpController.SwitchPlayerInputAction(true);
+
         yield return StartCoroutine("MapChangeFadeIn");
 
         player.ChangePosition();
         endCam.SetActive(true);
-        startCam.SetActive(false);
-
-        Time.timeScale = 1;        
+        startCam.SetActive(false);   
 
         yield return StartCoroutine("MapChangeFadeOut");
+
+        gameManager.PopUpController.SwitchPlayerInputAction(false);
     }
 
     public void CallMapChangeEvent(bool isChange)
