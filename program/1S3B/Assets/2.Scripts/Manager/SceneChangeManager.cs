@@ -191,7 +191,7 @@ public class SceneChangeManager : Manager
         CallMapChangeEvent(false);
     }
 
-    public IEnumerator MapChange()
+    public IEnumerator MapChange()//input멈추기
     {
         yield return StartCoroutine("MapChangeFadeIn");
 
@@ -199,7 +199,7 @@ public class SceneChangeManager : Manager
         endCam.SetActive(true);
         startCam.SetActive(false);
 
-        Time.timeScale = 1;
+        Time.timeScale = 1;        
 
         yield return StartCoroutine("MapChangeFadeOut");
     }
