@@ -45,6 +45,8 @@ public class InventoryUI : MonoBehaviour
 
     public InventorySlotUI inventorySlotUIPrefab;
 
+    public bool onInventory { get; private set; } = false;
+
     private void Start()
     {
         //Init();
@@ -100,6 +102,7 @@ public class InventoryUI : MonoBehaviour
     // 인벤토리 ui 활성화
     public void InventoryEnable()
     {
+        onInventory = true;
         Refresh();
         gameObject.SetActive(true);
         playerMovement.SwitchPlayerInputAction(true);
@@ -108,6 +111,7 @@ public class InventoryUI : MonoBehaviour
     // 인벤토리 ui 비활성화
     public void InventoryDisable()
     {
+        onInventory = false;
         gameObject.SetActive(false);
         playerMovement.SwitchPlayerInputAction(false);
     }

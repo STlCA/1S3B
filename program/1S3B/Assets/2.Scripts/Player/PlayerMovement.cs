@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -81,16 +77,13 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Bed")
         {
             popUpController.UIOn(uiManager.sleepInfoUI);
+            SwitchPlayerInputAction(true);
         }
 
         if(other.tag == "Counter")
         {
             uiManager.shopUI.shop.OpenShop();
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        popUpController.UIOff(uiManager.sleepInfoUI);
     }
 
     // UI가 켜졌을 때 플레이어의 움직임을 막기 위한 플레이어 InputAction

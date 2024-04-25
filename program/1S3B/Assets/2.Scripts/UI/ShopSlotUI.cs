@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -103,6 +104,7 @@ public class ShopSlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitHandle
             return;
         }
 
+        GameManager.Instance.SoundManager.GameAudioClipPlay((int)MainAudioClip.Sell);
         shop.BuyItem(this);
     }
 }

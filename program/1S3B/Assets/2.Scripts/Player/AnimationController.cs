@@ -1,16 +1,8 @@
 using Constants;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
-using UnityEngine.U2D.Animation;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
-using static UnityEditor.Progress;
-using static UnityEngine.Rendering.ReloadAttribute;
 
 public class AnimationController : AnimationBase
 {

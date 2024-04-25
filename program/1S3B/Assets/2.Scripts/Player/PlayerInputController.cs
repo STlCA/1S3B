@@ -1,18 +1,7 @@
 using Constants;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Playables;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.ReloadAttribute;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -20,17 +9,18 @@ public class PlayerInputController : CharacterEventController
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private UIManager uiManager;
-    private Player player;    
+    private Player player;
     private PlayerTalkController playerTalkController;
     private AnimationController animController;
     private NatureObjectController natureObjectController;
+    private SoundSystemManager soundManager;
+    private SceneChangeManager sceneChangeManager;
 
     private Camera mainCamera;
     private bool isMove;
     private bool isUseEnergy;
     private bool isUseAnim;
     private bool isUse;
-    private bool onInventory = false;
 
     private Vector2 playerPos = new();
     private Vector2 saveDirection = Vector2.zero;
@@ -46,13 +36,17 @@ public class PlayerInputController : CharacterEventController
         uiManager = gameManager.UIManager;
         player = gameManager.Player;
         natureObjectController = gameManager.NatureObjectController;
-
+        soundManager = gameManager.SoundManager;
+        sceneChangeManager = gameManager.SceneChangeManager;
 
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
         animController.useAnimEnd += AnimState;
 
         player.Inventory.DeleteItemAction += QuickSlotItemCheck;
+
+        OnMoveEvent += WalkSound;
+        sceneChangeManager.mapChangeAction += WalkSound;
     }
 
     private void Update()
@@ -159,6 +153,38 @@ public class PlayerInputController : CharacterEventController
         TargetCheck(moveInput);
     }
 
+    private void WalkSound(Vector2 direction, bool isUse, bool isCarry)
+    {
+        if (direction != Vector2.zero)
+        {
+            if (!soundManager.EffectSource.isPlaying)
+            {
+                soundManager.EffectSource.loop = true;
+                soundManager.EffectSource.Play();
+                //soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.FarmRun);
+            }
+        }
+        else
+        {
+            soundManager.EffectSource.loop = false;
+            soundManager.EffectSource.Stop();
+        }
+
+    }
+    private void WalkSound(bool isMapChange)
+    {
+        if (isMapChange)
+        {
+            soundManager.EffectSource.loop = false;
+            soundManager.EffectSource.Stop();
+        }
+        else if(isMove)
+        {
+            soundManager.EffectSource.loop = true;
+            soundManager.EffectSource.Play();
+        }
+    }
+
     public void OnMouse(InputValue value)
     {
         if (mainCamera == null && targetSetting == null)
@@ -180,10 +206,12 @@ public class PlayerInputController : CharacterEventController
     //    player.selectItem = null;
     //}
 
-    public void QuickSlotItemCheck(int index,bool deleteItem = false)
+    public void QuickSlotItemCheck(int index, bool deleteItem = false)
     {
         if (deleteItem == true)
             index = selectQuickSlotIndex;
+        else
+            soundManager.GameAudioClipPlay((int)MainAudioClip.ItemSelect);
 
         selectQuickSlotIndex = index;
 
@@ -196,13 +224,13 @@ public class PlayerInputController : CharacterEventController
 
         Item item = player.QuickSlot.slots[index].item;
         player.selectItem = item;
-    
+
         animController.CarrySpriteChange(item.ItemInfo.Type != "Equip");
     }
 
     public void OnOne(InputValue value)//1
     {
-        QuickSlotItemCheck(0);        
+        QuickSlotItemCheck(0);
 
         //uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
         //ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
@@ -212,12 +240,12 @@ public class PlayerInputController : CharacterEventController
     public void OnTwo(InputValue value)//2
     {
         QuickSlotItemCheck(1);
-/*        uiManager.EquipIconChange(PlayerEquipmentType.Water);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Water);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
-        player.selectItem = iteminfo;*/
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
+                player.selectItem = iteminfo;*/
     }
     public void OnThree(InputValue value)//3
     {
@@ -477,13 +505,22 @@ public class PlayerInputController : CharacterEventController
         CallClickEvent(pickAxe, pos);
 
         if (natureObjectController.IsMining(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.PickAxe);
             natureObjectController.Mining(target);
-
+        }
         else if (tileManager.IsPlant(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             tileManager.DestroyCropData(target);//작물파괴
-
+        }
         else if (tileManager.IsPlantable(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             tileManager.DestroyGroundData(target);//땅파괴
+        }
+        else
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
@@ -492,9 +529,15 @@ public class PlayerInputController : CharacterEventController
         CallClickEvent(axe, pos);
 
         if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Axe);
             natureObjectController.Felling(targetSetting.selectCellPosition);
+        }
         else
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Use);
             CallClickEvent(axe, pos);
+        }
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
@@ -506,6 +549,7 @@ public class PlayerInputController : CharacterEventController
         }
         else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
         {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.PickUp);
             CallClickEvent(pickUp, pos);
             natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
         }
@@ -513,6 +557,8 @@ public class PlayerInputController : CharacterEventController
 
     private void UseWater(PlayerEquipmentType water, Vector2 pos)
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);
+
         isUseEnergy = true;
         CallClickEvent(water, pos);
 
@@ -528,6 +574,8 @@ public class PlayerInputController : CharacterEventController
 
     private void UseHoe(PlayerEquipmentType type, Vector2 pos)
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+
         isUseEnergy = true;
         CallClickEvent(type, pos);
 
@@ -537,20 +585,18 @@ public class PlayerInputController : CharacterEventController
 
     public void OnCommunication()
     {
+        soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+
         playerTalkController.NearTalk();
     }
 
     public void OnInventory(InputValue value)
     {
-        if(onInventory == false)
-        {
-            onInventory = true;
+        soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+
+        if (uiManager.inventoryUI.onInventory == false)
             uiManager.inventoryUI.InventoryEnable();
-        }
         else
-        {
-            onInventory = false;
             uiManager.inventoryUI.InventoryDisable();
-        }
     }
 }

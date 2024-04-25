@@ -151,7 +151,7 @@ public class MapTrigger : MonoBehaviour
                     weatherSystem.SwitchAllElementsToOutdoor(true);
                     break;
                 case MapTriggerType.Town_Shop:
-                    player.playerPosition = new Vector3(84.35f + 290f, 0.6f, 0);
+                    player.playerPosition = new Vector3(84.35f + 290f, 1f, 0);
                     uiManager.MiniMapPosition(PlayerMap.Shop);
                     weatherSystem.SwitchAllElementsToOutdoor(false);
                     break;

@@ -1,42 +1,112 @@
 using Constants;
-using System;
-using System.Collections;
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using TreeEditor;
-using UnityEditor.Animations;
-using UnityEditor.SceneManagement;
-using UnityEditor.ShaderGraph;
-using UnityEditorInternal;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
+using static UnityEngine.Rendering.DebugUI;
 using Random = UnityEngine.Random;
 
-
 [System.Serializable]
+public struct SaveSpawnData
+{
+    public List<Vector3Int> NatureCellPos;
+    public List<SaveNatureData> NatureSaveData;
+
+    public List<Vector3Int> TreeCellPos;
+    public List<SaveTreeData> TreeSaveData;
+
+    public List<Vector3Int> StoneCellPos;
+    public List<SaveStoneData> StoneSaveData;
+}
+
 public class NatureData
 {
     public GameObject natureObj;
     public SpriteRenderer natureRenderer;
     public SpriteResolver natureResolver;
-    public bool isSpawn = false;
     public int id;
+    public string category;
+    public string labelName;
+    public bool isSpawn = false;
+
+    public void Init(GameObject go, int id, string labelName, string season)
+    {
+        natureObj = go;
+        natureRenderer = go.GetComponentInChildren<SpriteRenderer>();
+        natureResolver = go.GetComponentInChildren<SpriteResolver>();
+
+        isSpawn = true;
+        this.labelName = labelName;
+        this.id = id;
+        category = season;
+
+        natureResolver.SetCategoryAndLabel(category, labelName);
+    }
+
+    public void Save(ref SaveNatureData data)
+    {
+        data.ID = id;
+        data.LabelName = labelName;
+        data.IsSpawn = isSpawn;
+        data.CategoryName = category;
+    }
+    public void Load(SaveNatureData data, GameObject go)
+    {
+        natureObj = go;
+        natureRenderer = go.GetComponentInChildren<SpriteRenderer>();
+        natureResolver = go.GetComponentInChildren<SpriteResolver>();
+
+        id = data.ID;
+        isSpawn = data.IsSpawn;
+
+        natureResolver.SetCategoryAndLabel(data.CategoryName, data.LabelName);
+    }
 }
+
+[System.Serializable]
+public struct SaveNatureData
+{
+    public int ID;
+    public string CategoryName;
+    public string LabelName;
+    public bool IsSpawn;
+}
+
 
 public class TreeData
 {
     public GameObject treeObj;
     public SpriteResolver treeResolver;
     public Animator animator;
+    public string treeType;
     public float count = 0;
     public int cutConut = 10;
     public int maxCount = 15;
     public bool isSpawn = false;
     public bool itemDrop = false;
     public bool isPoint = false;
+
+    public void Save(ref SaveTreeData data)
+    {
+        data.TreeType = treeType;
+        data.Count = count;
+        data.IsSpawn = isSpawn;
+        data.IsPoint = isPoint;
+        data.ItemDrop = itemDrop;
+    }
+}
+[System.Serializable]
+public struct SaveTreeData
+{
+    public string TreeType;
+    public float Count;
+    public bool IsSpawn;
+    public bool ItemDrop;
+    public bool IsPoint;
 }
 
 public class StoneData
@@ -48,7 +118,26 @@ public class StoneData
     public bool isSpawn = false;
     public bool isPoint = false;
     public StoneType type;
+
+    public void Save(ref SaveStoneData data)
+    {
+        data.Count = count;
+        data.IsSpawn = isSpawn;
+        data.IsPoint = isPoint;
+        data.Type = type.ToString();
+    }
 }
+
+[System.Serializable]
+public struct SaveStoneData
+{
+    public float Count;
+    public bool IsSpawn;
+    public bool IsPoint;
+    public string Type;
+}
+
+//=============================================^ Class Struct
 
 public class NatureObjectController : Manager
 {
@@ -57,7 +146,8 @@ public class NatureObjectController : Manager
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
-    private DayCycleHandler dayCycleHandler;    
+    private DayCycleHandler dayCycleHandler;
+    private SoundSystemManager soundManager;
 
     [Header("Range")]
     public Tilemap interactableMap;
@@ -105,6 +195,7 @@ public class NatureObjectController : Manager
         inventory = player.Inventory;
         dayCycleHandler = gameManager.DayCycleHandler;
         itemDatabase = gameManager.DataManager.itemDatabase;
+        soundManager = gameManager.SoundManager;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
@@ -235,22 +326,16 @@ public class NatureObjectController : Manager
                 randomPoint = Random.Range(0, 101);
                 if (randomPoint <= percentage)
                 {
-                    //Init()화하기
-                    tempdData.isSpawn = true;
-                    tempdData.natureObj = Instantiate(naturePrefab);
-                    tempdData.natureObj.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
-                    tempdData.natureRenderer = tempdData.natureObj.GetComponentInChildren<SpriteRenderer>();
-                    tempdData.natureResolver = tempdData.natureObj.GetComponentInChildren<SpriteResolver>();
+                    GameObject go = Instantiate(naturePrefab);
+                    go.transform.position = tileManager.baseGrid.GetCellCenterWorld(cell);
 
                     string season = dayCycleHandler.currentSeason.ToString();
-
                     IEnumerable<string> names = natureLibrary.GetCategoryLabelNames(season);
 
                     random = Random.Range(0, names.Count()) + 1;
                     string id = "5" + ((dayCycleHandler.currentDay / 28) % 4).ToString() + "0" + (random).ToString();
-                    tempdData.id = int.Parse(id);
 
-                    tempdData.natureResolver.SetCategoryAndLabel(season, random.ToString());
+                    tempdData.Init(go, int.Parse(id), random.ToString(), season);
                 }
             }
         }
@@ -264,7 +349,6 @@ public class NatureObjectController : Manager
             natureData[cell].isSpawn = false;
         }
     }
-
 
     private GameObject RandomTree()
     {
@@ -304,6 +388,8 @@ public class NatureObjectController : Manager
                     tempData.treeObj.transform.position = (Vector3)cell + new Vector3(0.5f, 0.2f, 0);
                     tempData.treeResolver = tempData.treeObj.GetComponentInChildren<SpriteResolver>();
                     tempData.animator = tempData.treeObj.GetComponentInChildren<Animator>();
+
+                    tempData.treeType = tempData.treeResolver.GetCategory();
 
                     ChangeCategoryLabel(ref tempData.treeResolver, dayCycleHandler.currentSeason.ToString());
                 }
@@ -545,6 +631,8 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].itemDrop == false && treeData[saveTarget].count >= treeData[saveTarget].cutConut)
             {
+                soundManager.GameAudioClipPlay((int)MainAudioClip.CutTree);
+
                 //treeData[target].animator.SetTrigger("isFellied");
                 treeData[saveTarget].itemDrop = true;
 
@@ -689,6 +777,72 @@ public class NatureObjectController : Manager
     {
         string category = resolver.GetCategory();
         resolver.SetCategoryAndLabel(category, current);
+    }
+
+    //============================================================Save
+
+    public void Save(ref SaveSpawnData data)
+    {
+        data.NatureCellPos = new();
+        data.NatureSaveData = new();
+
+        foreach (var (key, value) in natureData)
+        {
+            data.NatureCellPos.Add(key);
+
+            SaveNatureData saveData = new();
+            value.Save(ref saveData);
+
+            data.NatureSaveData.Add(saveData);
+        }
+
+        data.TreeCellPos = new();
+        data.TreeSaveData = new();
+
+        foreach (var (key, value) in treeData)
+        {
+            data.TreeCellPos.Add(key);
+
+            SaveTreeData saveData = new();
+            value.Save(ref saveData);
+
+            data.TreeSaveData.Add(saveData);
+        }
+
+        data.StoneCellPos = new();
+        data.StoneSaveData = new();
+
+        foreach (var (key, value) in stoneData)
+        {
+            data.StoneCellPos.Add(key);
+
+            SaveStoneData saveData = new();
+            value.Save(ref saveData);
+
+            data.StoneSaveData.Add(saveData);
+        }
+    }
+
+    public void Load(SaveSpawnData data)
+    {
+        natureData = new();
+        for (int i = 0; i < data.NatureSaveData.Count; i++)
+        {
+            GameObject go = Instantiate(naturePrefab);
+            go.transform.position = tileManager.baseGrid.GetCellCenterWorld(data.NatureCellPos[i]);
+
+            NatureData newData = new();
+            newData.Load(data.NatureSaveData[i], go);
+
+            natureData.Add(data.NatureCellPos[i], newData);
+        }
+
+        treeData = new();
+        for (int i = 0; i < data.TreeSaveData.Count; i++)
+        {
+            GameObject go;
+
+        }
     }
 }
 

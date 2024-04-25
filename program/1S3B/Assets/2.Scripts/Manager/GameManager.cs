@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.U2D.Animation;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,8 +28,8 @@ public class GameManager : MonoBehaviour
     private WeatherSystem weatherSystem;
     public PopUpController PopUpController { get { return popUpController; } }
     private PopUpController popUpController;
-    public SoundManager SoundManager { get { return soundManager; } }
-    private SoundManager soundManager;
+    public SoundSystemManager SoundManager { get { return soundManager; } }
+    private SoundSystemManager soundManager;
 
     //========================Player
     public Player Player { get { return player; } }
@@ -41,10 +42,12 @@ public class GameManager : MonoBehaviour
     //========================Inspector
 
     [Header("Time")]
-    public TMP_Text TimeText;
+    public TMP_Text TimeText1;
+    public TMP_Text TimeText2;
 
     [Header("Day")]
-    public TMP_Text DayText;
+    public TMP_Text DayText1;
+    public TMP_Text DayText2;
 
     [Header("Talk")]
     public GameObject talkPanel;
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
     public T GetManager<T>() where T : Manager
     {
         T t = GetComponentInChildren<T>();
-        t.Init(this);
+        //t.Init(this);
         return t;
     }
 
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         #endregion
 
+        //Find
         tileManager = GetManager<TileManager>();
         dataManager = GetManager<DataManager>();
         dayCycleHandler = GetManager<DayCycleHandler>();
@@ -86,19 +90,29 @@ public class GameManager : MonoBehaviour
         natureObjectController = GetManager<NatureObjectController>();
         uIManager = GetManager<UIManager>();
         popUpController = GetManager<PopUpController>();
-        soundManager = GetManager<SoundManager>();
+        soundManager = GetManager<SoundSystemManager>();
 
         player = GetFind<Player>();
-        player.Init(this);
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
-        
+        //Init
+        dataManager.Init(this);
+        dayCycleHandler.Init(this);
+        weatherSystem.Init(this);
+        sceneChangeManager.Init(this);
+        natureObjectController.Init(this);
+        uIManager.Init(this);
+        popUpController.Init(this);
+        soundManager.Init(this);
+        player.Init(this);
+        tileManager.Init(this);
     }
 
     private void Start()
     {
-        DayText.text = DayCycleHandler.GetDayAsString();
+        DayText1.text = DayCycleHandler.GetDayAsString()[0];
+        DayText2.text = DayCycleHandler.GetDayAsString()[1];
     }
 
     private void Update()
@@ -106,21 +120,36 @@ public class GameManager : MonoBehaviour
         if (DayCycleHandler != null)
             DayCycleHandler.Tick();
 
-        if (TimeText != null)
+        if (TimeText1 != null && TimeText2 != null)
+        {
+            string[] temp = DayCycleHandler.GetTimeAsString();
+            TimeText1.text = temp[0];
+            TimeText2.text = temp[1];
+        }
 
-            TimeText.text = DayCycleHandler.GetTimeAsString();
         //시간텍스트 바꾸기
     }
 
     public void DayOverTime()
     {
         //EndTime넘어섯을때
+        //체력다써서 기절했을때
         player.playerPosition = new Vector3(351f, 4.3f);
         StartCoroutine(SleepOfDay(true));
     }
 
+    public void SleepDayOver()
+    {
+        player.playerPosition = new Vector3(351f, 4.3f);
+        StartCoroutine(SleepOfDay(false));
+    }
+
     public IEnumerator SleepOfDay(bool isDeath)
     {
+        popUpController.SwitchPlayerInputAction(true);
+
+        soundManager.BGMSource.Stop();
+
         bool isTired = player.playerState == PlayerState.TIRED;
         player.PlayerStateChange(PlayerState.SLEEP);
 
@@ -128,10 +157,13 @@ public class GameManager : MonoBehaviour
 
         player.EnergyReset(isTired);
 
-        if (isDeath == true)
-            player.ChangePosition();
+        player.ChangePosition();
 
         TileManager.Sleep();
+
+        dayCycleHandler.ChangeDate();
+        DayText1.text = DayCycleHandler.GetDayAsString()[0];
+        DayText2.text = DayCycleHandler.GetDayAsString()[1];
 
         DayCycleHandler.ResetDayTime();
         WeatherSystem.RandomChangeWeather(dayCycleHandler.currentSeason);//TileManager Sleep보다 아래여야함
@@ -144,12 +176,22 @@ public class GameManager : MonoBehaviour
         natureObjectController.RangeSpawnTree(1, SpawnPlace.DownForest);
         natureObjectController.RangeSpawnStone(2, SpawnPlace.Quarry);
 
-        dayCycleHandler.ChangeDate();
-        DayText.text = DayCycleHandler.GetDayAsString();
-
         animationController.AnimationSpeedChange(1);
 
+        SaveSystem.Save(player.playerName);
+
+        soundManager.BGMSource.Play();
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
+
+        popUpController.SwitchPlayerInputAction(false);
     }
 
+    public void GameExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

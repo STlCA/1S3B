@@ -504,6 +504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8e46df8d87a34459b88a52f9360ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldUIText: {fileID: 0}
+  shopGoldText: {fileID: 0}
+  seasonImage: {fileID: 0}
+  spriteLibraryAsset: {fileID: 7108339969198208228, guid: 4720e0183d2054d498a2d68f02cf3444, type: 3}
   sleepInfoUI: {fileID: 0}
   quickSlotUI: {fileID: 0}
   inventoryUI: {fileID: 0}
@@ -588,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fede533922531df44b4ed3b6a5dc3159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 0}
 --- !u!1 &2442297258854611252
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,61 +970,6 @@ Transform:
   m_Father: {fileID: 1245805047144379634}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3573580247147320103
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4390803614141955152}
-  - component: {fileID: 7864148826782948300}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4390803614141955152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573580247147320103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7896672558279844322}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7864148826782948300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573580247147320103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a414d7e261f9e584db1e4cfa6291f30b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BGMSource: {fileID: 0}
-  EffectSource: {fileID: 0}
-  GameEffectSource: {fileID: 0}
-  BGMSlider: {fileID: 0}
-  EffectSlider: {fileID: 0}
-  GameEffectSlider: {fileID: 0}
-  AudioClipList:
-  - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
-  - {fileID: 8300000, guid: 0994c12e202f342459a4212e7287f7e8, type: 3}
-  - {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
 --- !u!1 &3756668351078686931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,10 +1355,10 @@ Transform:
   - {fileID: 7928393487947242448}
   - {fileID: 3739488588529866447}
   - {fileID: 5856003674624401712}
-  - {fileID: 4390803614141955152}
   - {fileID: 2641843899820523587}
+  - {fileID: 8594662320825540226}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3290743570505607305
 MonoBehaviour:
@@ -1422,8 +1372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e92225edcc924bdfb35691dad7fada3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeText: {fileID: 0}
-  DayText: {fileID: 0}
+  TimeText1: {fileID: 0}
+  TimeText2: {fileID: 0}
+  DayText1: {fileID: 0}
+  DayText2: {fileID: 0}
   talkPanel: {fileID: 0}
   talkText: {fileID: 0}
   npcNameText: {fileID: 0}
@@ -1551,6 +1503,76 @@ Transform:
   m_Father: {fileID: 5832048921450073111}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6461881964480298941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8594662320825540226}
+  - component: {fileID: 1521076703218188858}
+  m_Layer: 0
+  m_Name: SoundSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8594662320825540226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461881964480298941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7896672558279844322}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1521076703218188858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461881964480298941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0244605fbe6f04db15d1d7ff3db431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMSource: {fileID: 0}
+  WeatherSource: {fileID: 0}
+  EffectSource: {fileID: 0}
+  GameEffectSource: {fileID: 0}
+  BGMSlider: {fileID: 0}
+  WeatherSlider: {fileID: 0}
+  EffectSlider: {fileID: 0}
+  GameEffectSlider: {fileID: 0}
+  audioClipList:
+  - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
+  - {fileID: 8300000, guid: 0994c12e202f342459a4212e7287f7e8, type: 3}
+  - {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  - {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  - {fileID: 8300000, guid: 6637a58cddc97f34693f23a68214907a, type: 3}
+  - {fileID: 8300000, guid: 42b45ce1a6c35c7408d8ab24463999a3, type: 3}
+  playerAudioList:
+  - {fileID: 8300000, guid: 5b05cb32cf94f2842afc3546ff69cad1, type: 3}
+  - {fileID: 8300000, guid: 5c9599fa2e0471f42b6f5f75731f0249, type: 3}
+  - {fileID: 8300000, guid: 3becec1909f194046945d85ac1077772, type: 3}
+  - {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
+  - {fileID: 8300000, guid: 273ca2a310a25774e9a2e369550b715b, type: 3}
+  - {fileID: 8300000, guid: 9c63eaf630501ad46b9f1e57fcdc81a1, type: 3}
+  - {fileID: 8300000, guid: 2eaffe9361e75ac49a7a7bc5fdab079c, type: 3}
+  - {fileID: 8300000, guid: 2eaffe9361e75ac49a7a7bc5fdab079c, type: 3}
+  - {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
 --- !u!1 &6864798033168457009
 GameObject:
   m_ObjectHideFlags: 0

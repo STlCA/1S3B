@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 
 [System.Serializable]
-public struct PlayerSaveData
+public struct SavePlayerData
 {
     public string Name;
     public int Gold;
@@ -88,10 +88,10 @@ public class Player : MonoBehaviour
         characterEventController = GetComponent<CharacterEventController>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        gameManager = GameManager.Instance;
+        this.gameManager = gameManager;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
-        Init();        
+        Init();
 
         playerState = PlayerState.IDLE;
 
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         {
             animationController.DeathAnimation(true);
 
-            DeathSleep();
+            gameManager.DayOverTime();
                         
             PlayerGold -= GoldRange(10, 20);
         }
@@ -205,12 +205,6 @@ public class Player : MonoBehaviour
         transform.position = playerPosition;
     }
 
-    private void DeathSleep()
-    {
-        playerPosition = new Vector3(351f, 4.3f);
-        StartCoroutine(gameManager.SleepOfDay(true));
-    }
-
     public void PlusEquipmentExp(PlayerEquipmentType equipmentType, Vector2 pos)
     {
         int temp = (int)equipmentType;
@@ -230,7 +224,7 @@ public class Player : MonoBehaviour
     {
         /*PlayerSkill currentSkill = playerSkill[skillType];
         currentSkill.exp += 1 / currentSkill.level;
-        currentSkill.count++;
+        currentSkill.Count++;
 
         if(currentSkill.exp >= 100)
         {
@@ -318,14 +312,19 @@ public class Player : MonoBehaviour
 
     //==================================================Save
 
-    public void Save(ref PlayerSaveData data)
+    public void PlayerNameSetting(string name)
+    {
+        playerName = name;
+    }
+
+    public void Save(ref SavePlayerData data)
     {
         data.Gold = PlayerGold;
         data.Energy = playerEnergy;
         data.Name = playerName;
     }
 
-    public void Load(PlayerSaveData data)
+    public void Load(SavePlayerData data)
     {
         PlayerGold = data.Gold;
         playerEnergy = data.Energy;

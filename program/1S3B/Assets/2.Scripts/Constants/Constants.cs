@@ -93,7 +93,6 @@ namespace Constants
     {
         IDLE,
         TIRED,
-        BLACKOUT,
         MAPCHANGE,
         SLEEP,
     }
@@ -197,6 +196,21 @@ namespace Constants
         Click,
         Close,
         MouseOver1,
-        MouseOver2,
+        Inventory,
+        ItemSelect,
+        Sell,
+        CutTree,
+    }
+    public enum PlayerAudioClip
+    {
+        FarmRun,
+        PickUp,
+        Hoe,
+        Water,
+        Axe,
+        PickAxe,
+        Seed,
+        Use,
+        Get,
     }
 }
