@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class SceneChangeManager : Manager
 {
+    public GameObject homeCamera;
+
     private Player player;
 
     public Image fadeImage;
@@ -36,6 +38,12 @@ public class SceneChangeManager : Manager
     private void Start()
     {
         player = gameManager.Player;
+    }
+
+    public void DeathCamera()
+    {
+        homeCamera.SetActive(true);
+        endCam.SetActive(false);
     }
 
     public void MapChangeSetting(GameObject startCam, GameObject endCam, float fadeTime, float waitTime)
@@ -240,7 +248,7 @@ public class SceneChangeManager : Manager
 
         time = 0f;
 
-        player.animationController.DeathAnimation(false);
+        player.IsDeathAction?.Invoke(false);
 
         //yield return new WaitForSeconds(waitTime);
     }

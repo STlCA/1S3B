@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class UIManager : Manager
 {
     private Player player;
+    private PopUpController popUpController;
+    private SoundSystemManager soundManager;
 
     [Header("UI")]
     public TMP_Text goldUIText;
     public TMP_Text shopGoldText;
     public Image seasonImage;
-    public SpriteLibraryAsset spriteLibraryAsset;
+    public SpriteLibraryAsset spriteLibraryAsset;    
 
     [Header("Image")]
     public GameObject sleepInfoUI;
@@ -20,6 +22,7 @@ public class UIManager : Manager
     public InventoryUI inventoryUI;
     public ShopUI shopUI;
     public GameObject keepOutInfo;
+    public GameObject preferencesUI;
 
     [Header("EnergyBar")]
     [SerializeField] private GameObject tired;
@@ -36,6 +39,8 @@ public class UIManager : Manager
     private void Start()
     {
         player = gameManager.Player;
+        popUpController = gameManager.PopUpController;
+        soundManager = gameManager.SoundManager;
 
         maxEnergy = player.playerMaxEnergy;
         energyText = energyBar.GetComponentInChildren<TMP_Text>();
@@ -140,5 +145,19 @@ public class UIManager : Manager
     {
         goldUIText.text = playerGold.ToString();
         shopGoldText.text = playerGold.ToString();
+    }
+    
+    public void PreferencesUIOnOff()
+    {
+        if (!preferencesUI.activeSelf)
+        {
+            soundManager.GameAudioClipPlay((int)MainAudioClip.Click);
+            popUpController.UIOn(preferencesUI);
+        }
+        else
+        {
+            soundManager.GameAudioClipPlay((int)MainAudioClip.Close);
+            popUpController.UIOff(preferencesUI);
+        }
     }
 }

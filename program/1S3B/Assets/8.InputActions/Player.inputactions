@@ -166,6 +166,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "20fc1466-1cd0-4d82-af7f-dbc35ec2a764",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -421,6 +430,17 @@
                     "action": "Nine",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d8dd212-df0e-432d-9633-e1fc8ddc9f1f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -432,6 +452,15 @@
                     "name": "Inventory",
                     "type": "Button",
                     "id": "a8221a6d-0c3f-437a-b2ec-edfd769b2e06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "a0772692-960d-4bb1-a868-810126af658f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -522,6 +551,15 @@
                     "name": "Communication",
                     "type": "Button",
                     "id": "2a11dd36-e56c-44d3-8563-6be610e242af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuickSlot",
+                    "type": "Button",
+                    "id": "d181d936-3f76-4b5d-a256-e46added30ec",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -647,6 +685,28 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Communication",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c74c83e2-11b8-489c-a647-8e554f43bc1f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03e939b0-3c2e-4bcc-b7f8-8a30e80fd1f3",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickSlot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

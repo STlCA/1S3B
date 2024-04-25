@@ -7,6 +7,7 @@ using Constants;
 using UnityEngine.Playables;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System;
 
 [System.Serializable]
 public struct SavePlayerData
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
     public QuickSlot QuickSlot { get { return quickSlot; } }
     private QuickSlot quickSlot;
 
+    public Action<bool> IsDeathAction;
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
@@ -164,11 +166,9 @@ public class Player : MonoBehaviour
             GameManager.Instance.SoundManager.WalkSoundChange(false);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
-        {
-            animationController.DeathAnimation(true);
+        {                        
+            IsDeathAction?.Invoke(true);
 
-            gameManager.DayOverTime();
-                        
             PlayerGold -= GoldRange(10, 20);
         }
     }
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
         int temp1 = PlayerGold / 100 * range1;
         int temp2 = PlayerGold / 100 * range2;
 
-        value = Random.Range(temp1, temp2 + 1);
+        value = UnityEngine.Random.Range(temp1, temp2 + 1);
 
         return value;
     }

@@ -189,6 +189,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
+--- !u!1 &1161465761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4246740276509463916, guid: 7a2ec0174107a324da2a808451e5b315, type: 3}
+  m_PrefabInstance: {fileID: 2112159034636122657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1198807630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,6 +452,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93dd6cedb09ff24790cff848624080b, type: 3}
+--- !u!1 &1354274081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4549186156602762489, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
+  m_PrefabInstance: {fileID: 1006875498124032632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1752923574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7961882005798919021, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
@@ -627,7 +637,7 @@ PrefabInstance:
     - target: {fileID: 3589950449680065924, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1517291211151295583}
+      objectReference: {fileID: 872709564}
     - target: {fileID: 3589950449680065924, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1595,18 +1605,6 @@ PrefabInstance:
       propertyPath: GameEffectSource
       value: 
       objectReference: {fileID: 1517291211151295582}
-    - target: {fileID: 1521076703218188858, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
-      propertyPath: playerAudioList.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1521076703218188858, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
-      propertyPath: playerAudioList.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: f4e8b8a4437eaee458682af59b55c56a, type: 3}
-    - target: {fileID: 1521076703218188858, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
-      propertyPath: playerAudioList.Array.data[9]
-      value: 
-      objectReference: {fileID: 8300000, guid: 6b4fd67ae46f3f74191f1063b6f606bd, type: 3}
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: tired
       value: 
@@ -1655,6 +1653,10 @@ PrefabInstance:
       propertyPath: shopGoldText
       value: 
       objectReference: {fileID: 1006875498124032647}
+    - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: preferencesUI
+      value: 
+      objectReference: {fileID: 1354274081}
     - target: {fileID: 2398101165072404259, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: baseGrid
       value: 
@@ -1715,6 +1717,10 @@ PrefabInstance:
       propertyPath: fadeImage
       value: 
       objectReference: {fileID: 1006875498124032634}
+    - target: {fileID: 7640892652187606603, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: homeCamera
+      value: 
+      objectReference: {fileID: 1161465761}
     - target: {fileID: 7896672558279844322, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: m_RootOrder
       value: 0

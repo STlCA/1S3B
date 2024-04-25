@@ -47,6 +47,7 @@ public class PlayerInputController : CharacterEventController
 
         OnMoveEvent += WalkSound;
         sceneChangeManager.mapChangeAction += MapChangeWalkSound;
+        player.IsDeathAction += UseCancle;
     }
 
     private void Update()
@@ -178,7 +179,7 @@ public class PlayerInputController : CharacterEventController
             soundManager.EffectSource.loop = false;
             soundManager.EffectSource.Stop();
         }
-        else if(isMove)
+        else if (isMove)
         {
             soundManager.EffectSource.loop = true;
             soundManager.EffectSource.Play();
@@ -332,6 +333,12 @@ public class PlayerInputController : CharacterEventController
         if (value.isPressed == true)//press진입시간을 줄여서 탭으로만들면?
             isUse = true;
         else if (value.isPressed == false)
+            isUse = false;
+    }
+
+    public void UseCancle(bool isDeath)
+    {
+        if (isDeath)
             isUse = false;
     }
 
@@ -598,5 +605,16 @@ public class PlayerInputController : CharacterEventController
             uiManager.inventoryUI.InventoryEnable();
         else
             uiManager.inventoryUI.InventoryDisable();
+    }
+
+    public void OnEsc(InputValue value)
+    {
+        uiManager.PreferencesUIOnOff();
+    }
+
+    public void OnQuickSlot(InputValue value)
+    {
+        soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+        player.Inventory.OnClickApplyBtn();
     }
 }
