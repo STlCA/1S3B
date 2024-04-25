@@ -2567,6 +2567,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1157823866598655482, guid: 688e175d6e3c849c39a2134e79054564, type: 3}
   m_PrefabInstance: {fileID: 240341639}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &265838022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265838024}
+  - component: {fileID: 265838023}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &265838023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265838022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6a5314aa36e1d47bfd9dee718e1514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &265838024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265838022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 723.29974, y: 487.33276, z: 4.629377}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276053556
 GameObject:
   m_ObjectHideFlags: 0
@@ -11037,7 +11081,13 @@ MonoBehaviour:
   WeatherSlider: {fileID: 0}
   EffectSlider: {fileID: 8858014081713993167}
   GameEffectSlider: {fileID: 450294245989682532}
-  audioClipList: []
+  audioClipList:
+  - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
+  - {fileID: 8300000, guid: 0994c12e202f342459a4212e7287f7e8, type: 3}
+  - {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  - {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  - {fileID: 8300000, guid: 6637a58cddc97f34693f23a68214907a, type: 3}
   playerAudioList: []
 --- !u!1001 &1113070606
 PrefabInstance:
@@ -11831,7 +11881,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12252,7 +12302,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27137,7 +27187,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27356,7 +27406,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32293,7 +32343,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39200,7 +39250,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41816,7 +41866,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42350,7 +42400,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -43174,7 +43224,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -43405,7 +43455,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44496,7 +44546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -360}
+  m_AnchoredPosition: {x: 0, y: -391}
   m_SizeDelta: {x: 178.7502, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4149454079447972826
@@ -45334,7 +45384,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -46362,7 +46412,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47258,7 +47308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093934118}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48203,7 +48253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10.656952}
+  m_AnchoredPosition: {x: 0, y: 11.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &7742790205061028534

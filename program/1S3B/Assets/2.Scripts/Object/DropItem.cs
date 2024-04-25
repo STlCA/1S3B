@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class DropItem : MonoBehaviour
     private Player player;
     private Inventory inventory;
     private ItemDatabase itemDatabase;
+    private SoundSystemManager soundManager;
 
     [Header("Drop")]
     public Transform sprite;
@@ -46,6 +48,7 @@ public class DropItem : MonoBehaviour
         player = gameManager.Player;
         inventory = player.Inventory;
         itemDatabase = gameManager.DataManager.itemDatabase;
+        soundManager = gameManager.SoundManager;
 
         circleCollider.radius = range;
 
@@ -119,6 +122,8 @@ public class DropItem : MonoBehaviour
             Item item = new Item();
             item.ItemInfo = itemInfo;
             inventory.AddItem(item);
+
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Get);
 
             Destroy(gameObject);
             isLooting = false;

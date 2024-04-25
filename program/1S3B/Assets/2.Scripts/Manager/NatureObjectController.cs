@@ -48,7 +48,8 @@ public class NatureObjectController : Manager
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private AnimationController animationController;
-    private DayCycleHandler dayCycleHandler;    
+    private DayCycleHandler dayCycleHandler;
+    private SoundSystemManager soundManager;
 
     [Header("Range")]
     public Tilemap interactableMap;
@@ -96,6 +97,7 @@ public class NatureObjectController : Manager
         inventory = player.Inventory;
         dayCycleHandler = gameManager.DayCycleHandler;
         itemDatabase = gameManager.DataManager.itemDatabase;
+        soundManager = gameManager.SoundManager;
 
         if (naturePointObject != null)
             naturePoint = naturePointObject.GetComponentsInChildren<Transform>();
@@ -536,6 +538,8 @@ public class NatureObjectController : Manager
         {
             if (treeData[saveTarget].itemDrop == false && treeData[saveTarget].count >= treeData[saveTarget].cutConut)
             {
+                soundManager.GameAudioClipPlay((int)MainAudioClip.CutTree);
+
                 //treeData[target].animator.SetTrigger("isFellied");
                 treeData[saveTarget].itemDrop = true;
 

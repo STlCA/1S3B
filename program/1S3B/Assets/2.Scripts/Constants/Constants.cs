@@ -200,6 +200,7 @@ namespace Constants
         Inventory,
         ItemSelect,
         Sell,
+        CutTree,
     }
     public enum PlayerAudioClip
     {
@@ -211,6 +212,6 @@ namespace Constants
         PickAxe,
         Seed,
         Use,
-
+        Get,
     }
 }
