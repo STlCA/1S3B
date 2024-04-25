@@ -162,7 +162,6 @@ public class GameManager : MonoBehaviour
 
         SaveSystem.Save(player.playerName);
 
-
         soundManager.BGMSource.Play();
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
     }

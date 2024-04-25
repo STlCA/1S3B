@@ -178,12 +178,11 @@ public class PlayerInputController : CharacterEventController
             soundManager.EffectSource.loop = false;
             soundManager.EffectSource.Stop();
         }
-        else
+        else if(isMove)
         {
             soundManager.EffectSource.loop = true;
             soundManager.EffectSource.Play();
         }
-
     }
 
     public void OnMouse(InputValue value)

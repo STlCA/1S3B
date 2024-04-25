@@ -223,7 +223,8 @@ public class TileManager : Manager
 
     public void WaterAt(Vector3Int target, bool rain = false)
     {
-        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);
+        if(rain == false)
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);        
 
         if (rain == false && targetSetting.TargetUI() == false)
             return;
