@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -99,6 +100,7 @@ public class TileManager : Manager
     private TargetSetting targetSetting;
     private DayCycleHandler dayCycleHandler;
     private WeatherSystem weatherSystem;
+    private SoundSystemManager soundManager;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -132,6 +134,7 @@ public class TileManager : Manager
         targetSetting = gameManager.TargetSetting;
         dayCycleHandler = gameManager.DayCycleHandler;
         weatherSystem = gameManager.WeatherSystem;
+        soundManager = gameManager.SoundManager;
         player = gameManager.Player;
         inventory = player.Inventory;
 
@@ -171,6 +174,8 @@ public class TileManager : Manager
 
     public void TillAt(Vector3Int target)//밭 가는 작업
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
+
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
         if (targetSetting.TargetUI() == false)
             return;
@@ -191,6 +196,8 @@ public class TileManager : Manager
 
         if (item.quantity <= 0)
             return;
+
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Seed);
 
         player.selectItem.quantity--;
         inventory.UseRefresh(player.selectItem);
@@ -216,6 +223,8 @@ public class TileManager : Manager
 
     public void WaterAt(Vector3Int target, bool rain = false)
     {
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Water);
+
         if (rain == false && targetSetting.TargetUI() == false)
             return;
 
@@ -237,6 +246,8 @@ public class TileManager : Manager
     {
         if (targetSetting.TargetUI() == false)
             return;
+
+        soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.PickUp);
 
         Sprite pickUpSprite = cropData[target].plantCrop.SpriteList[cropData[target].plantCrop.SpriteList.Count - 1];
         animationController.PickUpAnim(target, pos, pickUpSprite);

@@ -10,6 +10,6 @@ public class UIMouseOver : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        startSoundManager.AudioClipPlay((int)StartSceneAudioClip.MouseOver1);
+        startSoundManager.GameAudioClipPlay((int)StartSceneAudioClip.MouseOver1);
     }
 }

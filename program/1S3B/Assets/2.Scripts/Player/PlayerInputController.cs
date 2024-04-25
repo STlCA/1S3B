@@ -8,10 +8,11 @@ public class PlayerInputController : CharacterEventController
     private TileManager tileManager;
     private TargetSetting targetSetting;
     private UIManager uiManager;
-    private Player player;    
+    private Player player;
     private PlayerTalkController playerTalkController;
     private AnimationController animController;
     private NatureObjectController natureObjectController;
+    private SoundSystemManager soundManager;
 
     private Camera mainCamera;
     private bool isMove;
@@ -33,7 +34,7 @@ public class PlayerInputController : CharacterEventController
         uiManager = gameManager.UIManager;
         player = gameManager.Player;
         natureObjectController = gameManager.NatureObjectController;
-
+        soundManager = gameManager.SoundManager;
 
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
@@ -167,10 +168,12 @@ public class PlayerInputController : CharacterEventController
     //    player.selectItem = null;
     //}
 
-    public void QuickSlotItemCheck(int index,bool deleteItem = false)
+    public void QuickSlotItemCheck(int index, bool deleteItem = false)
     {
         if (deleteItem == true)
             index = selectQuickSlotIndex;
+        else
+            soundManager.GameAudioClipPlay((int)MainAudioClip.ItemSelect);
 
         selectQuickSlotIndex = index;
 
@@ -183,13 +186,13 @@ public class PlayerInputController : CharacterEventController
 
         Item item = player.QuickSlot.slots[index].item;
         player.selectItem = item;
-    
+
         animController.CarrySpriteChange(item.ItemInfo.Type != "Equip");
     }
 
     public void OnOne(InputValue value)//1
     {
-        QuickSlotItemCheck(0);        
+        QuickSlotItemCheck(0);
 
         //uiManager.EquipIconChange(PlayerEquipmentType.Hoe);
         //ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1001);
@@ -199,12 +202,12 @@ public class PlayerInputController : CharacterEventController
     public void OnTwo(InputValue value)//2
     {
         QuickSlotItemCheck(1);
-/*        uiManager.EquipIconChange(PlayerEquipmentType.Water);
+        /*        uiManager.EquipIconChange(PlayerEquipmentType.Water);
 
-        animController.CarryAnimation(false);
+                animController.CarryAnimation(false);
 
-        ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
-        player.selectItem = iteminfo;*/
+                ItemInfo iteminfo = gameManager.DataManager.itemDatabase.GetItemByKey(1002);
+                player.selectItem = iteminfo;*/
     }
     public void OnThree(InputValue value)//3
     {
@@ -464,13 +467,22 @@ public class PlayerInputController : CharacterEventController
         CallClickEvent(pickAxe, pos);
 
         if (natureObjectController.IsMining(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.PickAxe);
             natureObjectController.Mining(target);
-
+        }
         else if (tileManager.IsPlant(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
             tileManager.DestroyCropData(target);//작물파괴
-
+        }
         else if (tileManager.IsPlantable(target) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
             tileManager.DestroyGroundData(target);//땅파괴
+        }
+        else
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
     }
 
     private void UseAxe(PlayerEquipmentType axe, Vector2 pos)
@@ -479,9 +491,15 @@ public class PlayerInputController : CharacterEventController
         CallClickEvent(axe, pos);
 
         if (natureObjectController.IsFelling(targetSetting.selectCellPosition) == true)
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Axe);
             natureObjectController.Felling(targetSetting.selectCellPosition);
+        }
         else
+        {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.Hoe);
             CallClickEvent(axe, pos);
+        }
     }
 
     private void UsePickUp(PlayerEquipmentType pickUp, Vector2 pos)
@@ -493,6 +511,7 @@ public class PlayerInputController : CharacterEventController
         }
         else if (natureObjectController.IsPickUpNature(targetSetting.selectCellPosition) == true)
         {
+            soundManager.PlayerAudioClipPlay((int)PlayerAudioClip.PickUp);
             CallClickEvent(pickUp, pos);
             natureObjectController.PickUpNature(targetSetting.selectCellPosition, pos);
         }
@@ -524,12 +543,16 @@ public class PlayerInputController : CharacterEventController
 
     public void OnCommunication()
     {
+        soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+
         playerTalkController.NearTalk();
     }
 
     public void OnInventory(InputValue value)
     {
-        if(uiManager.inventoryUI.onInventory == false)
+        soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+
+        if (uiManager.inventoryUI.onInventory == false)
             uiManager.inventoryUI.InventoryEnable();
         else
             uiManager.inventoryUI.InventoryDisable();

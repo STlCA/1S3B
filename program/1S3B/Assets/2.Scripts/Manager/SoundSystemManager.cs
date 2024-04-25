@@ -8,24 +8,37 @@ public class SoundSystemManager : Manager
 {
     [Header("AudioSource")]
     public AudioSource BGMSource;
+    public AudioSource WeatherSource;
     public AudioSource EffectSource;
     public AudioSource GameEffectSource;
 
     [Header("VolumeSlider")]
     public Slider BGMSlider;
+    public Slider WeatherSlider;
     public Slider EffectSlider;
     public Slider GameEffectSlider;
 
     [Header("AudioClipList")]
-    public List<AudioClip> AudioClipList;
+    public List<AudioClip> audioClipList;
+
+    [Header("PlayerAudioClip")]
+    public List<AudioClip> playerAudioList;
 
     private float bgmVolume = 1;
+    private float weatherVolume = 1;
     private float effectVolume = 1;
     private float gameEffectVolume = 1;
 
     public void BGMSoundSlider(Image image)
     {
         if (BGMSource.volume == 0)
+            image.color = Color.gray;
+        else
+            image.color = Color.white;
+    }
+    public void WeatherSoundSlider(Image image)
+    {
+        if (WeatherSource.volume == 0)
             image.color = Color.gray;
         else
             image.color = Color.white;
@@ -58,6 +71,23 @@ public class SoundSystemManager : Manager
             bgmVolume = BGMSource.volume;
             BGMSource.volume = 0;
             BGMSlider.value = 0;
+        }
+    }
+
+    public void WeatherSoundOnOff(Image image)
+    {
+        if (WeatherSource.volume == 0)
+        {
+            image.color = Color.white;
+            WeatherSource.volume = weatherVolume;
+            WeatherSlider.value = weatherVolume;
+        }
+        else
+        {
+            image.color = Color.gray;
+            weatherVolume = WeatherSource.volume;
+            WeatherSource.volume = 0;
+            WeatherSlider.value = 0;
         }
     }
 
@@ -95,8 +125,12 @@ public class SoundSystemManager : Manager
         }
     }
 
-    public void AudioClipPlay(int index)
+    public void GameAudioClipPlay(int index)
     {
-        GameEffectSource.PlayOneShot(AudioClipList[index], 1);
+        GameEffectSource.PlayOneShot(audioClipList[index], 1);
+    }
+    public void PlayerAudioClipPlay(int index)
+    {
+        EffectSource.PlayOneShot(playerAudioList[index], 1);
     }
 }

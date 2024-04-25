@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: sleepInfoUI
       value: 
-      objectReference: {fileID: 8114158607453703456}
+      objectReference: {fileID: 0}
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: shopGoldText
       value: 
@@ -783,11 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8114158607453703456 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4150818241146250831, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
-  m_PrefabInstance: {fileID: 5260735916612201327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8330624595951382998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4223727322942888633, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}

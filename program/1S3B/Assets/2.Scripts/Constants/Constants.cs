@@ -197,6 +197,18 @@ namespace Constants
         Click,
         Close,
         MouseOver1,
-        MouseOver2,
+        Inventory,
+        ItemSelect,
+        Sell,
+    }
+    public enum PlayerAudioClip
+    {
+        FarmRun,
+        PickUp,
+        Hoe,
+        Water,
+        Axe,
+        PickAxe,
+        Seed,
     }
 }

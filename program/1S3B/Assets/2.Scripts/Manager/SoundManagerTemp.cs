@@ -156,7 +156,7 @@ public class SoundManagerTemp : Manager
             }
         }
 
-        public void AudioClipPlay(int index)
+        public void GameAudioClipPlay(int index)
         {
             GameEffectSource.PlayOneShot(AudioClipList[index], 1);
         }

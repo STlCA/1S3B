@@ -1357,7 +1357,7 @@ Transform:
   - {fileID: 2641843899820523587}
   - {fileID: 8594662320825540226}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3290743570505607305
 MonoBehaviour:
@@ -1552,11 +1552,27 @@ MonoBehaviour:
   BGMSlider: {fileID: 0}
   EffectSlider: {fileID: 0}
   GameEffectSlider: {fileID: 0}
-  AudioClipList:
+  audioClipList:
   - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
   - {fileID: 8300000, guid: 0994c12e202f342459a4212e7287f7e8, type: 3}
   - {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  playerAudioList:
+  - {fileID: 8300000, guid: 273ca2a310a25774e9a2e369550b715b, type: 3}
+  - {fileID: 8300000, guid: 9c63eaf630501ad46b9f1e57fcdc81a1, type: 3}
+  - {fileID: 8300000, guid: 2eaffe9361e75ac49a7a7bc5fdab079c, type: 3}
+  - {fileID: 8300000, guid: baecc218dfd0a35448b0679044411619, type: 3}
+  - {fileID: 8300000, guid: 42b45ce1a6c35c7408d8ab24463999a3, type: 3}
+  - {fileID: 8300000, guid: 5c9599fa2e0471f42b6f5f75731f0249, type: 3}
+  - {fileID: 8300000, guid: 0e5dfa22dccb7b94b9af51f10d5e24d3, type: 3}
+  - {fileID: 8300000, guid: be7fc24ef4b77cf48b2895b656d7b329, type: 3}
+  - {fileID: 8300000, guid: 11d3a482f3c06424ba61d6a01dfd8b2a, type: 3}
+  - {fileID: 8300000, guid: 20a12ef023469c141b513689967bac07, type: 3}
+  - {fileID: 8300000, guid: 26b0dde9a9d01de4b824ebc4a036a4e8, type: 3}
+  - {fileID: 8300000, guid: bfabc0009b9547140a9e5d432bbfa801, type: 3}
+  - {fileID: 8300000, guid: bb37f169b2db7884887e27c708cacc14, type: 3}
+  - {fileID: 8300000, guid: 5b05cb32cf94f2842afc3546ff69cad1, type: 3}
+  - {fileID: 8300000, guid: 6b4fd67ae46f3f74191f1063b6f606bd, type: 3}
 --- !u!1 &6864798033168457009
 GameObject:
   m_ObjectHideFlags: 0
