@@ -253,7 +253,7 @@ public class SceneChangeManager : Manager
 
         player.animationController.DeathAnimation(false);
 
-        //yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(1);//DeathAnimation이 끝나서 일어나고나서 화면이 밝아지게끔 나중에 저걸 코루틴으로?
     }
 
     public IEnumerator SleepFadeOut()

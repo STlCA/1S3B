@@ -34,18 +34,23 @@ public class UIManager : Manager
     public GameObject playerObj;//������ RectTransform���� �����Ҵ��ϸ� �ȵ�
     private RectTransform playerImage;
 
-    private int maxEnergy;    
+    private int maxEnergy;
 
-    private void Start()
+    public override void Init(GameManager gm)
     {
+        base.Init(gm);
+
         player = gameManager.Player;
         popUpController = gameManager.PopUpController;
         soundManager = gameManager.SoundManager;
 
-        maxEnergy = player.playerMaxEnergy;
         energyText = energyBar.GetComponentInChildren<TMP_Text>();
+        maxEnergy = player.playerMaxEnergy;
         EnengyBarSetting();
+    }
 
+    private void Start()
+    {        
         playerImage = playerObj.GetComponent<RectTransform>();
         playerImage.anchoredPosition = new Vector2(470, 130);//�����Ҷ� ��ġ ���߿� �����ؼ�
 

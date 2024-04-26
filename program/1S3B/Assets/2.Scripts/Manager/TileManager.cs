@@ -81,11 +81,11 @@ public class CropData
         cropRenderer.sprite = plantCrop.SpriteList[(int)currentStage];
         cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
 
-        if (currentStage < 1)
+        if ((int)currentStage < 1)
             cropRenderer.sortingLayerName = "Seed";
-        else if (currentStage == -1)
+        else if ((int)currentStage == -1)
             cropRenderer.sprite = deathCrop;
-        else if (currentStage >= plantCrop.AllGrowthStage)
+        else if ((int)currentStage >= plantCrop.AllGrowthStage)
             cropObj.tag = "Harvest";
         else
             cropObj.tag = "Crop";
