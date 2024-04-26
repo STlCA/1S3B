@@ -189,6 +189,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
+--- !u!114 &1114364284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7494654209581109280, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+  m_PrefabInstance: {fileID: 1277278656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1161465761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4246740276509463916, guid: 7a2ec0174107a324da2a808451e5b315, type: 3}
@@ -267,6 +278,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 110036645848717014, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110036645848717014, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 165864285674887885, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -355,10 +374,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: TalkCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1595064763871794385, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1752923574}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5419521340871999120}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseTalkPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Npc, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987202714141724940, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494654209581109280, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d163854592bcd8649977f7f8a3dc4706, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1690,6 +1745,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1006875498124032642}
     - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: Portrait
+      value: 
+      objectReference: {fileID: 1114364284}
+    - target: {fileID: 3290743570505607305, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: talkText
       value: 
       objectReference: {fileID: 1277278659}
@@ -1898,6 +1957,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074fbce9d1d40db4086def74d7bdf13f, type: 3}
+--- !u!114 &5419521340871999120 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4982125784694966220, guid: 074fbce9d1d40db4086def74d7bdf13f, type: 3}
+  m_PrefabInstance: {fileID: 5419521340871999119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb091f61cfb77d14690f446a11b5bb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8600805605415966549
 MonoBehaviour:
   m_ObjectHideFlags: 0
