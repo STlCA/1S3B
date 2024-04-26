@@ -102,10 +102,7 @@ public class Player : MonoBehaviour
 
         quickSlot.Init(gameManager);
         inventory.Init(gameManager);
-    }
 
-    private void Start()
-    {
         StateInit();
 
         characterEventController.OnClickEvent += PlusExp;
@@ -161,15 +158,17 @@ public class Player : MonoBehaviour
         {
             playerSpeed = 2f;
             playerState = PlayerState.TIRED;            
-            uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
+            uiManager.TiredIconOnOff(playerState == PlayerState.TIRED);
             animationController.AnimationSpeedChange(0.5f);
             GameManager.Instance.SoundManager.WalkSoundChange(false);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
-        {                        
-            IsDeathAction?.Invoke(true);
+        {
+            PlayerGold -= GoldRange(10, 20);//골드세팅되고 sleep불러야함
 
-            PlayerGold -= GoldRange(10, 20);
+            GameManager.Instance.PopUpController.SwitchPlayerInputAction(true);
+
+            IsDeathAction?.Invoke(true);
         }
     }
 

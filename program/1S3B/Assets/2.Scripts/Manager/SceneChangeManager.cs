@@ -217,7 +217,7 @@ public class SceneChangeManager : Manager
 
     public void CallMapChangeEvent(bool isChange)
     {
-        PlayerState previousState = new();
+/*        PlayerState previousState = new();
 
         if (isChange == true)
         {
@@ -227,7 +227,7 @@ public class SceneChangeManager : Manager
             player.PlayerStateChange(PlayerState.MAPCHANGE);
         }
         else
-            player.PlayerStateChange(previousState);
+            player.PlayerStateChange(previousState);*/
 
         mapChangeAction?.Invoke(isChange);
     }
@@ -251,7 +251,7 @@ public class SceneChangeManager : Manager
 
         time = 0f;
 
-        player.IsDeathAction?.Invoke(false);
+        player.animationController.DeathAnimation(false);
 
         //yield return new WaitForSeconds(waitTime);
     }

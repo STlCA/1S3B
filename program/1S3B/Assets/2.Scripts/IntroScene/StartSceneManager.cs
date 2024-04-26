@@ -119,8 +119,6 @@ public class StartSceneManager : MonoBehaviour
     {
         yield return StartCoroutine("SceneChangeFadeIn");
 
-        loadingSliderObj.SetActive(true);
-
         if (isCreate == true)
             SceneManager.sceneLoaded += SceneLoaded;
 
@@ -155,6 +153,8 @@ public class StartSceneManager : MonoBehaviour
             fadeImage.color = alpha;
             yield return null;
         }
+
+        loadingSliderObj.SetActive(true);
 
         time = 0f;
     }

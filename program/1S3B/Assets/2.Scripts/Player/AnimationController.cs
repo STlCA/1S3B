@@ -1,6 +1,7 @@
 using Constants;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -24,6 +25,8 @@ public class AnimationController : AnimationBase
     [Header("Carry")]
     public GameObject itemGO;
     private SpriteRenderer itemSR;
+
+    private float currentSpeed;
 
     private void Start()
     {
@@ -153,6 +156,7 @@ public class AnimationController : AnimationBase
             {
                 anim.SetBool(ConstantsString.IsWalking, false);
 
+                currentSpeed = anim.speed;
                 anim.speed = 0;
 
                 anim.SetFloat(ConstantsString.SaveX, saveDirection.x);
@@ -165,7 +169,7 @@ public class AnimationController : AnimationBase
 
             foreach (var anim in animator)
             {
-                anim.speed = 1;
+                anim.speed = currentSpeed;
             }
 
             if (animator[0].GetFloat(ConstantsString.InputX) != 0 || animator[0].GetFloat(ConstantsString.InputY) != 0)
@@ -216,10 +220,10 @@ public class AnimationController : AnimationBase
             }
         }
 
-        StartCoroutine("StateDelay");
+        StartCoroutine(StateDelay(true,false));
     }
 
-    IEnumerator StateDelay()
+    IEnumerator StateDelay(bool useType,bool deathTime)
     {
         yield return new WaitForSeconds(0.1f);
 
@@ -227,16 +231,23 @@ public class AnimationController : AnimationBase
 
         yield return new WaitForSeconds(curAnimationTime);
 
-        useAnimEnd?.Invoke(false);
+        if (useType)
+            useAnimEnd?.Invoke(false);
+        else if(deathTime)
+            gameManager.DayOverTime(true);
+        //else if(!deathTime)
+        //    DeathAnimation
     }
-
 
     public void DeathAnimation(bool value)
     {
         foreach (var anim in animator)
         {
-            anim.SetBool(ConstantsString.IsDeath, value);
+            anim.SetBool(ConstantsString.IsDeath,value);
         }
+
+        if (value)
+            StartCoroutine(StateDelay(false, true));
     }
 
     public void PickUpAnim(Vector3Int target, Vector2 pos, Sprite pickUpSprite)
