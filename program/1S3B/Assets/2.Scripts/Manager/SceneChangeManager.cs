@@ -42,6 +42,9 @@ public class SceneChangeManager : Manager
 
     public void DeathCamera()
     {
+        if (endCam == null)
+            return;
+
         homeCamera.SetActive(true);
         endCam.SetActive(false);
     }

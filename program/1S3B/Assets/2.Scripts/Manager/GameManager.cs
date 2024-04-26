@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     public GameObject talkPanel;
     public TMP_Text talkText;
     public TMP_Text npcNameText;
+    public Image Portrait;
 
     //============================================
     public T GetManager<T>() where T : Manager
