@@ -118,6 +118,7 @@ public class Npc : MonoBehaviour, ITalk
             Debug.Log(talkInfo.npcDialogue[i]);
             gameManager.npcNameText.text = npcInfo.npcName;
             gameManager.talkText.text = talkInfo.npcDialogue[i];
+            gameManager.Portrait.sprite = Resources.Load<Sprite>(npcInfo.npcSprite_path);
             yield return new WaitForSeconds(3f);
         }
     }
