@@ -513,6 +513,7 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   shopUI: {fileID: 0}
   keepOutInfo: {fileID: 0}
+  preferencesUI: {fileID: 0}
   tired: {fileID: 0}
   energyBar: {fileID: 0}
   miniMap: {fileID: 0}
@@ -1162,6 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f88655887b12141910b13cebe2337f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeCamera: {fileID: 0}
   fadeImage: {fileID: 0}
 --- !u!1 &4383154274374805212
 GameObject:
@@ -1379,6 +1381,7 @@ MonoBehaviour:
   talkPanel: {fileID: 0}
   talkText: {fileID: 0}
   npcNameText: {fileID: 0}
+  Portrait: {fileID: 0}
 --- !u!1 &6013432419750199556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1575,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c63eaf630501ad46b9f1e57fcdc81a1, type: 3}
   - {fileID: 8300000, guid: 2eaffe9361e75ac49a7a7bc5fdab079c, type: 3}
   - {fileID: 8300000, guid: 2eaffe9361e75ac49a7a7bc5fdab079c, type: 3}
-  - {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  - {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   - {fileID: 8300000, guid: 6b4fd67ae46f3f74191f1063b6f606bd, type: 3}
 --- !u!1 &6864798033168457009
 GameObject:
