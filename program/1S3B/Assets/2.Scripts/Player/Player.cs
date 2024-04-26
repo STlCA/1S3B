@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     public string playerName { get; private set; }
 
     public Vector3 playerPosition { get; set; }
-    public PlayerState playerState {  get; private set; }
+    public PlayerState playerState { get; private set; }
 
     public int PlayerGold
     {
@@ -64,11 +64,21 @@ public class Player : MonoBehaviour
     }
     private int playerGold;
 
-    public float playerSpeed { get; private set; }    
+    public float playerSpeed { get; private set; }
     public int playerMaxEnergy { get; private set; } = 150;
-    [SerializeField]private int playerEnergy;//나중에지우기
+    public int PlayerEnergy
+    {
+        get => playerEnergy;
+        set
+        {
+            playerEnergy = value;
+            uiManager.EnergyBarUpdate(PlayerEnergy);
+        }
+    }
+    private int playerEnergy;
+
     private int useEnergyAmount = 2;
-    
+
 
     public PlayerSkill[] playerSkills = new PlayerSkill[5];
     private string[] skillName;
@@ -102,10 +112,7 @@ public class Player : MonoBehaviour
 
         quickSlot.Init(gameManager);
         inventory.Init(gameManager);
-    }
 
-    private void Start()
-    {
         StateInit();
 
         characterEventController.OnClickEvent += PlusExp;
@@ -149,7 +156,7 @@ public class Player : MonoBehaviour
         if (isRain == true)
             useEnergyAmount = 4;
         else
-            useEnergyAmount = 2;        
+            useEnergyAmount = 2;
     }
 
     public void UseEnergy()
@@ -160,16 +167,18 @@ public class Player : MonoBehaviour
         if (playerEnergy <= 0 && playerEnergy > -20)
         {
             playerSpeed = 2f;
-            playerState = PlayerState.TIRED;            
-            uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
+            playerState = PlayerState.TIRED;
+            uiManager.TiredIconOnOff(playerState == PlayerState.TIRED);
             animationController.AnimationSpeedChange(0.5f);
             GameManager.Instance.SoundManager.WalkSoundChange(false);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
-        {                        
-            IsDeathAction?.Invoke(true);
+        {
+            PlayerGold -= GoldRange(10, 20);//골드세팅되고 sleep불러야함
 
-            PlayerGold -= GoldRange(10, 20);
+            GameManager.Instance.PopUpController.SwitchPlayerInputAction(true);
+
+            IsDeathAction?.Invoke(true);
         }
     }
 
@@ -310,11 +319,11 @@ public class Player : MonoBehaviour
     //}
     public bool Withdraw(int gold)
     {
-        if(PlayerGold < gold)
+        if (PlayerGold < gold)
         {
             return false;
         }
-        
+
         PlayerGold -= gold;
         return true;
     }
@@ -336,7 +345,7 @@ public class Player : MonoBehaviour
     public void Load(SavePlayerData data)
     {
         PlayerGold = data.Gold;
-        playerEnergy = data.Energy;
+        PlayerEnergy = data.Energy;
         playerName = data.Name;
     }
 }

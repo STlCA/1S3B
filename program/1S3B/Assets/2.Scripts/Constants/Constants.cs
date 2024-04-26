@@ -134,6 +134,7 @@ namespace Constants
     {
         None,
         Need,
+        NPC,
     }
 
     public enum TreeInteractable

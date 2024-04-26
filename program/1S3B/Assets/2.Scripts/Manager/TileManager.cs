@@ -17,8 +17,8 @@ public struct SaveTileData
 public struct SaveCropData
 {
     public int cropID;
-    public decimal currentStage;
-    public decimal growRatio;
+    public double currentStage;
+    public double growRatio;
     public int harvest;
     public int deathTimer;
 }
@@ -35,8 +35,8 @@ public class CropData
     public SpriteRenderer cropRenderer;
     public int cropID;
     public Crop plantCrop;
-    public decimal currentStage;
-    public decimal growRatio;
+    public double currentStage;
+    public double growRatio;
     public int harvest;
     public int deathTimer;
 
@@ -45,7 +45,7 @@ public class CropData
     {
         plantCrop = cropDatabase.GetItemByKey(id);
         currentStage = 0;
-        growRatio = plantCrop.AllGrowthStage / (decimal)plantCrop.GrowthTime;
+        growRatio = plantCrop.AllGrowthStage / (double)plantCrop.GrowthTime;
         cropObj = go;
         cropRenderer = cropObj.GetComponentInChildren<SpriteRenderer>();
         cropRenderer.sprite = plantCrop.SpriteList[0];
@@ -81,11 +81,11 @@ public class CropData
         cropRenderer.sprite = plantCrop.SpriteList[(int)currentStage];
         cropRenderer.sortingOrder = (int)(cropObj.transform.position.y * 1000 * -1);
 
-        if (currentStage < 1)
+        if ((int)currentStage < 1)
             cropRenderer.sortingLayerName = "Seed";
-        else if (currentStage == -1)
+        else if ((int)currentStage == -1)
             cropRenderer.sprite = deathCrop;
-        else if (currentStage >= plantCrop.AllGrowthStage)
+        else if ((int)currentStage >= plantCrop.AllGrowthStage)
             cropObj.tag = "Harvest";
         else
             cropObj.tag = "Crop";
@@ -286,7 +286,7 @@ public class TileManager : Manager
             else if (groundData[cell].isWater == true)
             {
                 if (tempPlantData.harvest > 0)
-                    tempPlantData.growRatio = (tempPlantData.plantCrop.AllGrowthStage - tempPlantData.plantCrop.StageAfterHarvest) / (decimal)tempPlantData.plantCrop.ReGrowthTime;
+                    tempPlantData.growRatio = (tempPlantData.plantCrop.AllGrowthStage - tempPlantData.plantCrop.StageAfterHarvest) / (float)tempPlantData.plantCrop.ReGrowthTime;
 
                 tempPlantData.currentStage += tempPlantData.growRatio;
 

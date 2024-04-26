@@ -57,14 +57,14 @@ public class NatureData
     }
     public void Load(SaveNatureData data, GameObject go)
     {
-        if(go!=null)
-
         natureObj = go;
         natureRenderer = go.GetComponentInChildren<SpriteRenderer>();
         natureResolver = go.GetComponentInChildren<SpriteResolver>();
 
         id = data.ID;
         isSpawn = data.IsSpawn;
+        category = data.CategoryName;
+        labelName = data.LabelName;
 
         natureResolver.SetCategoryAndLabel(data.CategoryName, data.LabelName);
     }
@@ -110,10 +110,11 @@ public class TreeData
         isSpawn = data.IsSpawn;
         itemDrop = data.ItemDrop;
         isPoint = data.IsPoint;
+        currentLabel = data.CurrentLabel;
 
         treeObj = go;
-        treeResolver = go.GetComponentInChildren<SpriteResolver>();
-        animator = go.GetComponentInChildren<Animator>();
+        treeResolver = treeObj.GetComponentInChildren<SpriteResolver>();
+        animator = treeObj.GetComponentInChildren<Animator>();
 
         if (data.ItemDrop == true)
         {
@@ -764,7 +765,7 @@ public class NatureObjectController : Manager
 
             GameObject go = Instantiate(dropItemPrefab);
             go.GetComponentInChildren<SpriteRenderer>().sprite = item.SpriteList[0];
-            go.GetComponent<DropItem>().id = (int)type;
+            go.GetComponent<DropItem>().id = item.ID;
             go.transform.position = new Vector3(target.x, target.y + 0.5f);
         }
     }
@@ -833,7 +834,7 @@ public class NatureObjectController : Manager
 
     public void Save(ref SaveSpawnData data, bool isNew = false)
     {
-        if(isNew)
+        if (isNew)
         {
             StartSetting();
             StartSpawn();
@@ -886,13 +887,13 @@ public class NatureObjectController : Manager
         {
             NatureData newData = new();
 
-            if (data.NatureSaveData[i].IsSpawn==true)
+            if (data.NatureSaveData[i].IsSpawn == true)
             {
                 GameObject go = Instantiate(naturePrefab);
                 go.transform.position = gameManager.TileManager.baseGrid.GetCellCenterWorld(data.NatureCellPos[i]);
 
                 newData.Load(data.NatureSaveData[i], go);
-            }            
+            }
 
             natureData.Add(data.NatureCellPos[i], newData);
         }
@@ -913,7 +914,7 @@ public class NatureObjectController : Manager
                 newData.Load(data.TreeSaveData[i], go, posAnimator);
             }
             else
-                newData.isPoint = true;            
+                newData.isPoint = true;
 
             treeData.Add(data.TreeCellPos[i], newData);
         }

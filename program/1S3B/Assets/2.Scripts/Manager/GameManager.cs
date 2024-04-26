@@ -115,8 +115,6 @@ public class GameManager : MonoBehaviour
     {
         DayText1.text = DayCycleHandler.GetDayAsString()[0];
         DayText2.text = DayCycleHandler.GetDayAsString()[1];
-
-        player.IsDeathAction += DayOverTime;
     }
 
     private void Update()
@@ -188,10 +186,11 @@ public class GameManager : MonoBehaviour
 
         animationController.AnimationSpeedChange(1);
 
-        SaveSystem.Save(player.playerName);
-
         soundManager.BGMSource.Play();
         soundManager.WalkSoundChange(true);
+
+        SaveSystem.Save(player.playerName);
+
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
 
         popUpController.SwitchPlayerInputAction(false);

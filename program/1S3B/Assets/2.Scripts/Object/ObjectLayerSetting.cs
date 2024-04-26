@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class ObjectLayerSetting : MonoBehaviour
 {
     private SpriteRenderer objectSR = null;
+    private SortingGroup sortingGroup = null;
 
     private float time;
     private float fadeTime = 1f;
@@ -18,19 +20,29 @@ public class ObjectLayerSetting : MonoBehaviour
 
     private void Start()
     {
-        objectSR = GetComponent<SpriteRenderer>();
-        objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
+        if (type == NeedUpdateObject.NPC)
+        {
+            sortingGroup = GetComponent<SortingGroup>();
+            sortingGroup.sortingOrder = (int)(transform.position.y * 1000 * -1);
+        }
+        else
+        {
+            objectSR = GetComponent<SpriteRenderer>();
+            objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
+        }
     }
 
     private void Update()
     {
         if (type == NeedUpdateObject.Need)
             objectSR.sortingOrder = (int)(transform.position.y * 1000 * -1);
+        else if (type == NeedUpdateObject.NPC)
+            sortingGroup.sortingOrder = (int)(transform.position.y * 1000 * -1);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (type != NeedUpdateObject.NPC && other.CompareTag("Player"))
         {
             StopCoroutine("PlusAlpha");
             MinusAlphaStart();
@@ -39,7 +51,7 @@ public class ObjectLayerSetting : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (type != NeedUpdateObject.NPC && other.CompareTag("Player"))
         {
             StopCoroutine("MinusAlpha");
             PlusAlphaStart();
