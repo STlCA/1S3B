@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SlotUI : MonoBehaviour, IPointerClickHandler
+public class SlotUI : MonoBehaviour//, IPointerClickHandler
 {
     public QuickSlot quickSlot;
     public QuickSlotUI quickSlotUI;
@@ -40,16 +40,16 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler
     }
 
     // 아이템 클릭 했을 때
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (item == null)
-        {
-            return;
-        }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (item == null)
+    //    {
+    //        return;
+    //    }
 
-        OutlineEnable();
-        //inventory.UseItem(this, item);
-    }
+    //    OutlineEnable();
+    //    //inventory.UseItem(this, item);
+    //}
 
     // 아이템 선택
     public void OutlineEnable()
