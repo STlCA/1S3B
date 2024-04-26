@@ -8,7 +8,13 @@ using UnityEngine;
 // 아이템이 스택 가능한지 확인
 
 [Serializable]
-public class SaveInventory
+public struct SaveInvenList
+{
+    public List<SaveInventory> InvenList;
+}
+
+[Serializable]
+public struct SaveInventory
 {
     public int Amount;
     public int ItemID;
@@ -38,7 +44,7 @@ public class Inventory : MonoBehaviour
 
     ItemDatabase database;
 
-    public Action<int,bool> DeleteItemAction;
+    public Action<int, bool> DeleteItemAction;
 
     public void Init(GameManager gameManager)
     {
@@ -48,11 +54,6 @@ public class Inventory : MonoBehaviour
         inventoryUI = uiManager.inventoryUI;
         quickSlot = player.QuickSlot;
         database = gameManager.DataManager.itemDatabase;
-    }
-    private void Start()
-    {
-
-        UseItemInit();
     }
 
     private void UseItemInit()
@@ -204,7 +205,7 @@ public class Inventory : MonoBehaviour
         if (item.quantity <= 0)
         {
             quickSlot.DeleteItem(item);
-            DeleteItemAction?.Invoke(0,true);
+            DeleteItemAction?.Invoke(0, true);
             items.Remove(item);
         }
         inventoryUI.Refresh();
@@ -243,7 +244,7 @@ public class Inventory : MonoBehaviour
 
     public void SelectSlot(InventorySlotUI slot)
     {
-        if(selectedSlotUI == slot)
+        if (selectedSlotUI == slot)
         {
             return;
         }
@@ -371,14 +372,40 @@ public class Inventory : MonoBehaviour
     #endregion // 아이템 판매 관련
 
     //================================================Save
-    //internal void Save(ref SaveInventoryData inventoryData)
-    //{
-    //}
-    //
-    //internal void Load(SaveInventoryData inventoryData)
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public void Save(ref SaveInvenList data, bool isNewData = false)
+    {
+        if (isNewData)
+            UseItemInit();
+
+        data.InvenList = new();
+
+        foreach (var item in items)
+        {
+            SaveInventory saveInventory = new();
+            saveInventory.Amount = item.quantity;
+            saveInventory.ItemID = item.ItemInfo.ID;
+            print("저장");
+
+            data.InvenList.Add(saveInventory);
+        }
+    }
+
+    public void Load(SaveInvenList data)
+    {
+        items = new();
+        items.Clear();
+
+        foreach (var inven in data.InvenList)
+        {
+            Item item = new();
+            item.quantity = inven.Amount;
+            item.ItemInfo = database.GetItemByKey(inven.ItemID);
+
+            items.Add(item);
+        }
+
+        inventoryUI.Refresh();
+    }
 
 
 }
