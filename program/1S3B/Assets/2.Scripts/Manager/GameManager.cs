@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public T GetManager<T>() where T : Manager
     {
         T t = GetComponentInChildren<T>();
-        //t.Init(this);
+        //t.StateInit(this);
         return t;
     }
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         targetSetting = GetFind<TargetSetting>();
         animationController = player.GetComponent<AnimationController>();//물어보기
 
-        //Init
+        //StateInit
         dataManager.Init(this);
         dayCycleHandler.Init(this);
         weatherSystem.Init(this);
@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
     {
         DayText1.text = DayCycleHandler.GetDayAsString()[0];
         DayText2.text = DayCycleHandler.GetDayAsString()[1];
+
+        player.IsDeathAction += DayOverTime;
     }
 
     private void Update()
@@ -130,21 +132,25 @@ public class GameManager : MonoBehaviour
         //시간텍스트 바꾸기
     }
 
-    public void DayOverTime()
+    public void DayOverTime(bool isDeath)
     {
         //EndTime넘어섯을때
         //체력다써서 기절했을때
-        player.playerPosition = new Vector3(351f, 4.3f);
-        StartCoroutine(SleepOfDay(true));
+
+        if (isDeath)
+        {
+            player.playerPosition = new Vector3(351f, 4.3f);
+            StartCoroutine(SleepOfDay());
+        }
     }
 
     public void SleepDayOver()
     {
         player.playerPosition = new Vector3(351f, 4.3f);
-        StartCoroutine(SleepOfDay(false));
+        StartCoroutine(SleepOfDay());
     }
 
-    public IEnumerator SleepOfDay(bool isDeath)
+    public IEnumerator SleepOfDay()
     {
         popUpController.SwitchPlayerInputAction(true);
 
@@ -154,6 +160,8 @@ public class GameManager : MonoBehaviour
         player.PlayerStateChange(PlayerState.SLEEP);
 
         yield return StartCoroutine(SceneChangeManager.SleepFadeIn());
+
+        sceneChangeManager.DeathCamera();
 
         player.EnergyReset(isTired);
 
@@ -181,6 +189,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.Save(player.playerName);
 
         soundManager.BGMSource.Play();
+        soundManager.WalkSoundChange(true);
         yield return StartCoroutine(SceneChangeManager.SleepFadeOut());
 
         popUpController.SwitchPlayerInputAction(false);

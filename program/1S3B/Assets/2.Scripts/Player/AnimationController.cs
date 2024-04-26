@@ -31,15 +31,17 @@ public class AnimationController : AnimationBase
         player = gameManager.Player;
         sceneChangeManager = gameManager.SceneChangeManager;
 
-        controller.OnMoveEvent += MoveAnimation;
-        controller.OnClickEvent += UseAnimation;
-        sceneChangeManager.mapChangeAction += StopAnimation;
 
         pickupItem = Instantiate(pickupItemPrefab);
         pickupItemSR = pickupItem.GetComponentInChildren<SpriteRenderer>();
         pickItemAnim = pickupItem.GetComponentInChildren<Animator>();
 
         itemSR = itemGO.GetComponent<SpriteRenderer>();
+
+        controller.OnMoveEvent += MoveAnimation;
+        controller.OnClickEvent += UseAnimation;
+        sceneChangeManager.mapChangeAction += StopAnimation;
+        player.IsDeathAction += DeathAnimation;
     }
 
     /*    //private void Update()

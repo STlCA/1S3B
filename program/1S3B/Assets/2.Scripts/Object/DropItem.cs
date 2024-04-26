@@ -55,7 +55,7 @@ public class DropItem : MonoBehaviour
         currentHeight = Random.Range(yForce - 1, yForce);
         maxHeight = currentHeight;
         Init(new Vector2(Random.Range(-xForce, xForce), Random.Range(-xForce, xForce)));
-        //Init(new Vector2(Random.Range(-xForce, xForce), 0));//가로로만 퍼지게
+        //StateInit(new Vector2(Random.Range(-xForce, xForce), 0));//가로로만 퍼지게
     }
 
     public void RadiusSetting(float val)

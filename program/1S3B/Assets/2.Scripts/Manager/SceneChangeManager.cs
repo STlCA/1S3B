@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class SceneChangeManager : Manager
 {
+    public GameObject homeCamera;
+
     private Player player;
 
     public Image fadeImage;
@@ -36,6 +38,12 @@ public class SceneChangeManager : Manager
     private void Start()
     {
         player = gameManager.Player;
+    }
+
+    public void DeathCamera()
+    {
+        homeCamera.SetActive(true);
+        endCam.SetActive(false);
     }
 
     public void MapChangeSetting(GameObject startCam, GameObject endCam, float fadeTime, float waitTime)
@@ -164,8 +172,6 @@ public class SceneChangeManager : Manager
     {
         fadeImage.gameObject.SetActive(true);
 
-        Time.timeScale = 0;
-
         float fadeCount = 0;
         while (fadeCount < 1.0f)
         {
@@ -191,17 +197,19 @@ public class SceneChangeManager : Manager
         CallMapChangeEvent(false);
     }
 
-    public IEnumerator MapChange()
+    public IEnumerator MapChange()//input멈추기
     {
+        gameManager.PopUpController.SwitchPlayerInputAction(true);
+
         yield return StartCoroutine("MapChangeFadeIn");
 
         player.ChangePosition();
         endCam.SetActive(true);
-        startCam.SetActive(false);
-
-        Time.timeScale = 1;
+        startCam.SetActive(false);   
 
         yield return StartCoroutine("MapChangeFadeOut");
+
+        gameManager.PopUpController.SwitchPlayerInputAction(false);
     }
 
     public void CallMapChangeEvent(bool isChange)
@@ -240,7 +248,7 @@ public class SceneChangeManager : Manager
 
         time = 0f;
 
-        player.animationController.DeathAnimation(false);
+        player.IsDeathAction?.Invoke(false);
 
         //yield return new WaitForSeconds(waitTime);
     }

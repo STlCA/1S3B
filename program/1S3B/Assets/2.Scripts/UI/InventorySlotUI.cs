@@ -1,3 +1,4 @@
+using Constants;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -143,7 +144,9 @@ public class InventorySlotUI : ScrollSlotUI, IPointerEnterHandler, IPointerExitH
     // 아이템 클릭했을 때
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(_item == null)
+        GameManager.Instance.SoundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
+
+        if (_item == null)
         {
             return;
         }

@@ -25,6 +25,8 @@ public class PopUpController : Manager
         if (ui == null)
             return;
         ui.SetActive(true);
+
+        SwitchPlayerInputAction(true);
     }
     public void UIOff(GameObject ui)
     {

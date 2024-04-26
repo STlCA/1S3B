@@ -7,6 +7,7 @@ using Constants;
 using UnityEngine.Playables;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System;
 
 [System.Serializable]
 public struct SavePlayerData
@@ -79,34 +80,43 @@ public class Player : MonoBehaviour
     public QuickSlot QuickSlot { get { return quickSlot; } }
     private QuickSlot quickSlot;
 
+    public Action<bool> IsDeathAction;
 
     [HideInInspector] public PlayerMap playerMap = PlayerMap.Farm;
 
-    public void Init(GameManager gameManager)
+    private void Awake()
     {
         animationController = GetComponent<AnimationController>();
         characterEventController = GetComponent<CharacterEventController>();
         playerMovement = GetComponent<PlayerMovement>();
+    }
 
+    public void Init(GameManager gameManager)
+    {
         this.gameManager = gameManager;
         uiManager = gameManager.UIManager;
         weatherSystem = gameManager.WeatherSystem;
-        Init();
-
-        playerState = PlayerState.IDLE;
 
         quickSlot = GetComponent<QuickSlot>();
-        quickSlot.Init(gameManager);
         inventory = GetComponent<Inventory>();
+
+        quickSlot.Init(gameManager);
         inventory.Init(gameManager);
+    }
+
+    private void Start()
+    {
+        StateInit();
 
         characterEventController.OnClickEvent += PlusExp;
         characterEventController.OnClickEvent += PlusEquipmentExp;
         weatherSystem.IsRainAction += UseEnergyAmount;
     }
 
-    private void Init()
+    private void StateInit()
     {
+        playerState = PlayerState.IDLE;
+
         playerEnergy = playerMaxEnergy;
         PlayerGold = 1000;
         playerSpeed = 7f;
@@ -153,13 +163,12 @@ public class Player : MonoBehaviour
             playerState = PlayerState.TIRED;            
             uiManager.TiredIconOnOff(playerState== PlayerState.TIRED);
             animationController.AnimationSpeedChange(0.5f);
+            GameManager.Instance.SoundManager.WalkSoundChange(false);
         }
         else if (playerEnergy <= -20 && playerState == PlayerState.TIRED)
-        {
-            animationController.DeathAnimation(true);
+        {                        
+            IsDeathAction?.Invoke(true);
 
-            gameManager.DayOverTime();
-                        
             PlayerGold -= GoldRange(10, 20);
         }
     }
@@ -189,7 +198,7 @@ public class Player : MonoBehaviour
         int temp1 = PlayerGold / 100 * range1;
         int temp2 = PlayerGold / 100 * range2;
 
-        value = Random.Range(temp1, temp2 + 1);
+        value = UnityEngine.Random.Range(temp1, temp2 + 1);
 
         return value;
     }

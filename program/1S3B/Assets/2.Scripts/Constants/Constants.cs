@@ -212,5 +212,6 @@ namespace Constants
         Seed,
         Use,
         Get,
+        FarmWalk,
     }
 }

@@ -8,10 +8,10 @@ using UnityEngine;
 // 아이템이 스택 가능한지 확인
 
 [Serializable]
-public class InventorySaveData
+public class SaveInventory
 {
     public int Amount;
-    public string ItemID;
+    public int ItemID;
 }
 
 public class Inventory : MonoBehaviour
@@ -369,5 +369,16 @@ public class Inventory : MonoBehaviour
         //    UpdateUI();
     }
     #endregion // 아이템 판매 관련
+
+    //================================================Save
+    //internal void Save(ref SaveInventoryData inventoryData)
+    //{
+    //}
+    //
+    //internal void Load(SaveInventoryData inventoryData)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
 
 }

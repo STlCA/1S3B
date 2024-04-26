@@ -86,7 +86,7 @@ public class DayCycleHandler : Manager
         //이전시간과 현재시간의 중간에 끝나는시간이있어야함
         if (priviousTime < endTime && endTime <= currentTime)
         {
-            gameManager.DayOverTime();
+            gameManager.DayOverTime(true);
         }
     }
 

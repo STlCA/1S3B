@@ -27,7 +27,7 @@ public class QuickSlotUI : MonoBehaviour
 
         //itemDatabase = dataManager.itemDatabase;
 
-        //slotUI.Init();
+        //slotUI.StateInit();
 
         QuickSlotEnable();
     }
