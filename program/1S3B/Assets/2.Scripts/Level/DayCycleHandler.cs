@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public struct SaveDayData
 {
     public int Day;
+    public int Season;
 }
 
 public class DayCycleHandler : Manager
@@ -262,10 +263,13 @@ public class DayCycleHandler : Manager
     public void Save(ref SaveDayData data)
     {
         data.Day = currentDay;
+        data.Season = (int)currentSeason;
     }
 
     public void Load(SaveDayData data)
     {
         currentDay = data.Day;
+        currentSeason = (Season)data.Season;
+        GameManager.Instance.UIManager.ChangeSeasonImage(currentSeason);
     }
 }
