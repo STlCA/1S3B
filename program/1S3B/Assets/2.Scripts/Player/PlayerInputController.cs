@@ -214,6 +214,12 @@ public class PlayerInputController : CharacterEventController
         else
             soundManager.GameAudioClipPlay((int)MainAudioClip.ItemSelect);
 
+        // 선택한 슬롯이 이전에 선택했던 슬롯과 다를 경우 이전에 선택되었던 퀵슬롯 ouline 비활성화
+        if (selectQuickSlotIndex != index)
+        {
+            player.QuickSlot.slots[selectQuickSlotIndex].OutlineDisable();
+        }
+
         selectQuickSlotIndex = index;
 
         if (player.QuickSlot.slots[index].item == null)
@@ -225,6 +231,9 @@ public class PlayerInputController : CharacterEventController
 
         Item item = player.QuickSlot.slots[index].item;
         player.selectItem = item;
+        
+        // 해당 아이템이 들어있는 퀵슬롯 outline 활성화
+        player.QuickSlot.slots[index].OutlineEnable();
 
         animController.CarrySpriteChange(item.ItemInfo.Type != "Equip");
     }
