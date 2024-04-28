@@ -34,6 +34,10 @@ public class SlotUI : MonoBehaviour//, IPointerClickHandler
 
     public void Clear()
     {
+        if(item != null)
+        {
+            OutlineDisable();
+        }
         item = null;
         icon.gameObject.SetActive(false);
         quantityTxt.text = string.Empty;
