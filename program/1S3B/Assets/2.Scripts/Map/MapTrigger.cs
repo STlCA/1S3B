@@ -100,6 +100,10 @@ public class MapTrigger : MonoBehaviour
                     player.playerPosition = new Vector3(-88.67f, -109.25f, 0f);
                     uiManager.MiniMapPosition(PlayerMap.Island);
                     break;
+                case MapTriggerType.Island_Beach:
+                    player.playerPosition = new Vector3(-58.19f, -87.36f, 0f);
+                    uiManager.MiniMapPosition(PlayerMap.Beach);
+                    break;
                 case MapTriggerType.Beach_BeachR:
                     player.playerPosition = new Vector3(-36.73f, -65.85f, 0f);
                     uiManager.MiniMapPosition(PlayerMap.BeachR);
