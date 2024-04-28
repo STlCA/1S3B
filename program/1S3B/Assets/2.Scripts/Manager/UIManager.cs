@@ -70,7 +70,7 @@ public class UIManager : Manager
     //    equipIcon.sprite = libraryAsset.GetSprite("Equip", type);
     //}
 
-    private void ChangeSeasonImage(Season season)
+    public void ChangeSeasonImage(Season season)
     {
         seasonImage.sprite = spriteLibraryAsset.GetSprite("Season", season.ToString());
     }
