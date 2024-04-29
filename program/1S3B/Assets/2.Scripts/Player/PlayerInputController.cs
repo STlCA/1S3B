@@ -631,6 +631,8 @@ public class PlayerInputController : CharacterEventController
 
     public void OnCommunication()
     {
+        //GameManager.Instance.PopUpController.SwitchPlayerInputAction(true);
+
         soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
 
         playerTalkController.NearTalk();

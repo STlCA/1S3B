@@ -101,11 +101,13 @@ public class Npc : MonoBehaviour, ITalk
 
         if(talkInfo.npcDialogue == null)
         {
-            gameManager.talkPanel.SetActive(false);
+            GameManager.Instance.PopUpController.UIOff(gameManager.talkPanel);
+            //gameManager.talkPanel.SetActive(false);
         }
         else
         {
-            gameManager.talkPanel.SetActive(true);
+            GameManager.Instance.PopUpController.UIOn(gameManager.talkPanel);
+            //gameManager.talkPanel.SetActive(true);
             StartCoroutine("PrintDialogue");
             npcStateMachine.movementSpeedModifier = 0f;
         }
