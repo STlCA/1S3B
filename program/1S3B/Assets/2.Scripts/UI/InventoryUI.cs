@@ -35,6 +35,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] public TextMeshProUGUI _selectedItemDescription;
     public float itemInfoWidthHalf;
     public float itemInfoHeightHalf;
+    RectTransform itemInfoRect;
 
     // public ItemSlotUI itemSlotPrefab;
     //public List<ItemSlotUI> uiSlots;
@@ -77,6 +78,7 @@ public class InventoryUI : MonoBehaviour
 
         itemDatabase = dataManager.itemDatabase;
         scrollViewUI = GetComponentInChildren<ScrollViewUI>();
+        itemInfoRect = _itemInfoUI.GetComponent<RectTransform>();
 
         //inventorySlotUIPrefab.inventory = inventory;
         scrollViewUI.Init(inventorySlotUIPrefab); // TODO
@@ -119,8 +121,9 @@ public class InventoryUI : MonoBehaviour
     // 설명창 활성화
     public void InfoShow(InventorySlotUI slot)
     {
-        //_itemInfoUI.transform.position = slot.transform.position + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
-        _itemInfoUI.transform.position = Input.mousePosition + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
+        _itemInfoUI.transform.position = slot.transform.position;
+        itemInfoRect.anchoredPosition += new Vector2(itemInfoWidthHalf, itemInfoHeightHalf);
+
         _itemInfoUI.SetActive(true);
     }
 
