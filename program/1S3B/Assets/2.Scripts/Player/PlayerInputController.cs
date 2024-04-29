@@ -626,4 +626,9 @@ public class PlayerInputController : CharacterEventController
         soundManager.GameAudioClipPlay((int)MainAudioClip.Inventory);
         player.Inventory.OnClickApplyBtn();
     }
+
+    public void OnMiniMap(InputValue value)
+    {
+        uiManager.MiniMapUIOnOff();
+    }
 }

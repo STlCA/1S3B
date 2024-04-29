@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
-public class UIMouseOver : MonoBehaviour, IPointerEnterHandler
+public class UIMouseOver : MonoBehaviour, IPointerEnterHandler//, IPointerExitHandler
 {
     public SoundSystemManager startSoundManager;
 
@@ -12,4 +13,16 @@ public class UIMouseOver : MonoBehaviour, IPointerEnterHandler
     {
         startSoundManager.GameAudioClipPlay((int)StartSceneAudioClip.MouseOver1);
     }
+
+    /*    public void OnPointerEnter(PointerEventData eventData)
+        {
+            GameManager.Instance.PopUpController.SwitchPlayerInputAction(true);
+
+            startSoundManager.GameAudioClipPlay((int)StartSceneAudioClip.MouseOver1);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            GameManager.Instance.PopUpController.SwitchPlayerInputAction(false);
+        }*/
 }

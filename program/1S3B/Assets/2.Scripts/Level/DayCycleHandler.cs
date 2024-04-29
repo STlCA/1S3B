@@ -59,7 +59,7 @@ public class DayCycleHandler : Manager
         base.Init(gm);
 
         if (dayDurationInSeconds <= 0.0f)
-            dayDurationInSeconds = 10.0f;
+            dayDurationInSeconds = 5.0f;
 
         ResetDayTime();
     }

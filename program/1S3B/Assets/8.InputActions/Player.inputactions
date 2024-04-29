@@ -175,6 +175,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MiniMap",
+                    "type": "Button",
+                    "id": "80f0b629-ec56-4892-8708-f36e2ae9f7ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -441,6 +450,17 @@
                     "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a9bcaf5-b8c9-4a62-82de-9cfa7ea31af2",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -560,6 +580,15 @@
                     "name": "QuickSlot",
                     "type": "Button",
                     "id": "d181d936-3f76-4b5d-a256-e46added30ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MiniMap",
+                    "type": "Button",
+                    "id": "f3ce779c-6a7e-4434-bcf4-a57480621f02",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -707,6 +736,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86571b3f-1535-4058-a46e-d63a0cc38876",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

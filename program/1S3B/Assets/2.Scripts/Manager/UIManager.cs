@@ -30,6 +30,7 @@ public class UIManager : Manager
     private TMP_Text energyText;
 
     [Header("MiniMap")]
+    public GameObject miniMapAllUI;
     public Image miniMap;
     public GameObject playerObj;//������ RectTransform���� �����Ҵ��ϸ� �ȵ�
     private RectTransform playerImage;
@@ -151,7 +152,7 @@ public class UIManager : Manager
         goldUIText.text = playerGold.ToString();
         shopGoldText.text = playerGold.ToString();
     }
-    
+
     public void PreferencesUIOnOff()
     {
         if (!preferencesUI.activeSelf)
@@ -165,4 +166,19 @@ public class UIManager : Manager
             popUpController.UIOff(preferencesUI);
         }
     }
+
+    public void MiniMapUIOnOff()
+    {
+        if (!miniMapAllUI.activeSelf)
+        {
+            soundManager.GameAudioClipPlay((int)MainAudioClip.Click);
+            popUpController.UIOn(miniMapAllUI);
+        }
+        else
+        {
+            soundManager.GameAudioClipPlay((int)MainAudioClip.Close);
+            popUpController.UIOff(miniMapAllUI);
+        }
+    }
+    
 }

@@ -44,6 +44,8 @@ public class SceneChangeManager : Manager
     {
         if (endCam == null)
             return;
+        if (endCam == homeCamera)
+            return;
 
         homeCamera.SetActive(true);
         endCam.SetActive(false);
@@ -208,7 +210,7 @@ public class SceneChangeManager : Manager
 
         player.ChangePosition();
         endCam.SetActive(true);
-        startCam.SetActive(false);   
+        startCam.SetActive(false);
 
         yield return StartCoroutine("MapChangeFadeOut");
 
@@ -217,23 +219,23 @@ public class SceneChangeManager : Manager
 
     public void CallMapChangeEvent(bool isChange)
     {
-/*        PlayerState previousState = new();
+        /*        PlayerState previousState = new();
 
-        if (isChange == true)
-        {
-            if (player.playerState != PlayerState.MAPCHANGE)
-                previousState = player.playerState;                
+                if (isChange == true)
+                {
+                    if (player.playerState != PlayerState.MAPCHANGE)
+                        previousState = player.playerState;                
 
-            player.PlayerStateChange(PlayerState.MAPCHANGE);
-        }
-        else
-            player.PlayerStateChange(previousState);*/
+                    player.PlayerStateChange(PlayerState.MAPCHANGE);
+                }
+                else
+                    player.PlayerStateChange(previousState);*/
 
         mapChangeAction?.Invoke(isChange);
     }
 
     public IEnumerator SleepFadeIn()
-    {  
+    {
         fadeTime = 2f;
 
         fadeImage.gameObject.SetActive(true);
@@ -275,12 +277,12 @@ public class SceneChangeManager : Manager
         fadeTime = 1f;
     }
 
-    public void SceneChangeSetting(string sceneName,Vector3 playerPos)
+    public void SceneChangeSetting(string sceneName, Vector3 playerPos)
     {
         changeSceneName = sceneName;
         this.playerPos = playerPos;
 
-        StartCoroutine("LoadingScene");        
+        StartCoroutine("LoadingScene");
     }
 
     private IEnumerator LoadingScene()
@@ -292,7 +294,7 @@ public class SceneChangeManager : Manager
         while (!loading.isDone) //씬 로딩 완료시 로딩완료시 완료된다.
         {
             yield return null;
-        } 
+        }
 
         player.playerPosition = playerPos;
         player.ChangePosition();

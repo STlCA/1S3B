@@ -65,6 +65,9 @@ public class Player : MonoBehaviour
     private int playerGold;
 
     public float playerSpeed { get; private set; }
+    private float normalSpeed = 7f;
+    private float tiredSpeed = 2f;
+
     public int playerMaxEnergy { get; private set; } = 150;
     public int PlayerEnergy
     {
@@ -294,12 +297,22 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Crop"))
-            playerSpeed = 5f;
+        {
+            if (playerState == PlayerState.TIRED)
+                playerSpeed = tiredSpeed * 0.7f;
+            else
+                playerSpeed = normalSpeed * 0.7f;
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Crop"))
-            playerSpeed = 7f;
+        {
+            if (playerState == PlayerState.TIRED)
+                playerSpeed = tiredSpeed;
+            else
+                playerSpeed = normalSpeed;
+        }
     }
 
     // 입금 
