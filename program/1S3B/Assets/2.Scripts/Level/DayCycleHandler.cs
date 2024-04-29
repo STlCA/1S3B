@@ -41,7 +41,7 @@ public class DayCycleHandler : Manager
     //시작시간
     public float endTime = 0.0f;
     //끝나는시간
-    private float timeSpeed = 3f;
+    private float timeSpeed = 5f;
 
     [Header("Day Light")]
     public Light2D dayLight;
@@ -97,6 +97,8 @@ public class DayCycleHandler : Manager
         currentTime = startingTime;
         //하루시작시간 초기화
         priviousTime = currentTime;
+
+        timeSpeed = 5f;
     }
 
     public void UpdateLight(float ratio)
