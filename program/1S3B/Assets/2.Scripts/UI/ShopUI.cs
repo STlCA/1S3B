@@ -24,8 +24,10 @@ public class ShopUI : MonoBehaviour
     [SerializeField] public TextMeshProUGUI _selectedItemDescription;
     [HideInInspector] public float itemInfoWidthHalf;
     [HideInInspector] public float itemInfoHeightHalf;
+    RectTransform itemInfoRect;
 
     public ShopSlotUI shopSlotUIPrefab;
+    RectTransform slotRect;
 
     // 초기화
     public void Init()
@@ -39,6 +41,8 @@ public class ShopUI : MonoBehaviour
         quickSlotUI = uiManager.quickSlotUI;
 
         scrollViewUI = GetComponentInChildren<ScrollViewUI>();
+        itemInfoRect = _itemInfoUI.GetComponent<RectTransform>();
+        slotRect = shopSlotUIPrefab.GetComponent<RectTransform>();
 
         scrollViewUI.Init(shopSlotUIPrefab);
 
@@ -77,7 +81,14 @@ public class ShopUI : MonoBehaviour
     // 설명창 활성화
     public void InfoShow(ShopSlotUI slot)
     {
-        _itemInfoUI.transform.position = Input.mousePosition + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
+        //_itemInfoUI.transform.position = Input.mousePosition + new Vector3(itemInfoWidthHalf, itemInfoHeightHalf);
+        _itemInfoUI.transform.position = slot.transform.position;
+        itemInfoRect.anchoredPosition += new Vector2(itemInfoWidthHalf + slotRect.sizeDelta.x/2, itemInfoHeightHalf * 1.5f);
+        if(itemInfoRect.anchoredPosition.y >= 390)
+        {
+            itemInfoRect.anchoredPosition = new Vector2(itemInfoRect.anchoredPosition.x, 540 - itemInfoHeightHalf);
+        }
+
         _itemInfoUI.SetActive(true);
     }
 
