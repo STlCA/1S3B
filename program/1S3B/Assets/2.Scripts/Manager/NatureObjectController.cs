@@ -221,9 +221,9 @@ public class NatureObjectController : Manager
     [Header("Item")]
     public GameObject dropItemPrefab;
 
-    private Dictionary<Vector3Int, NatureData> natureData = new();
-    private Dictionary<Vector3Int, TreeData> treeData = new();
-    private Dictionary<Vector3Int, StoneData> stoneData = new();
+    public Dictionary<Vector3Int, NatureData> natureData = new();
+    public Dictionary<Vector3Int, TreeData> treeData = new();
+    public Dictionary<Vector3Int, StoneData> stoneData = new();
 
     private Vector3Int saveTarget = new();
     private ItemDatabase itemDatabase;

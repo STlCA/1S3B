@@ -101,6 +101,7 @@ public class TileManager : Manager
     private DayCycleHandler dayCycleHandler;
     private WeatherSystem weatherSystem;
     private SoundSystemManager soundManager;
+    private NatureObjectController natureObjectController;
 
     [Header("TileMap")]
     public Grid baseGrid;
@@ -140,6 +141,7 @@ public class TileManager : Manager
         soundManager = gameManager.SoundManager;
         player = gameManager.Player;
         inventory = player.Inventory;
+        natureObjectController = gameManager.NatureObjectController;
 
         cropDatabase = gameManager.DataManager.cropDatabase;
         itemDatabase = gameManager.DataManager.itemDatabase;
@@ -181,6 +183,8 @@ public class TileManager : Manager
 
         //밭이 갈려있다면 체크 - 장비쪽 메서드에서 갈수있는땅인지 체크 거기서 tillat부르기
         if (targetSetting.TargetUI() == false)
+            return;
+        if (natureObjectController.treeData.ContainsKey(target) || natureObjectController.stoneData.ContainsKey(target))
             return;
 
         tilledTilemap.SetTile(target, tilledTile);
