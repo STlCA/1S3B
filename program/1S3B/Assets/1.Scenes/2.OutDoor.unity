@@ -140,10 +140,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Npc
       objectReference: {fileID: 0}
-    - target: {fileID: 539372037336559591, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8503991496740604170, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -193,6 +189,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aaf704b628953345bf93fb7df944e02, type: 3}
+--- !u!1 &1066764828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8418928884193847140, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
+  m_PrefabInstance: {fileID: 1006875498124032632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1114364284 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7494654209581109280, guid: d2b1d7fb5f73062478ba2a10737ba8a0, type: 3}
@@ -624,10 +625,6 @@ PrefabInstance:
     - target: {fileID: 2487327859310921807, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
       propertyPath: m_Name
       value: UICanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2744615720548550430, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853011161414017084, guid: cbd6f59e50a29584aa86c3f5c4bd8d60, type: 3}
       propertyPath: startSoundManager
@@ -1354,6 +1351,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 3272796905729887371}
+    - target: {fileID: 8104229681707662432, guid: 7a2ec0174107a324da2a808451e5b315, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -48.06
+      objectReference: {fileID: 0}
     - target: {fileID: 8406358742916816112, guid: 7a2ec0174107a324da2a808451e5b315, type: 3}
       propertyPath: m_Follow
       value: 
@@ -1470,10 +1471,6 @@ PrefabInstance:
     - target: {fileID: 3687823151666166120, guid: f8994bfec17743e4f9dbb4136a8e060d, type: 3}
       propertyPath: m_Name
       value: Npc3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3687823151666166120, guid: f8994bfec17743e4f9dbb4136a8e060d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8913347337833591803, guid: f8994bfec17743e4f9dbb4136a8e060d, type: 3}
       propertyPath: m_RootOrder
@@ -1738,6 +1735,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1880143039}
     - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
+      propertyPath: miniMapAllUI
+      value: 
+      objectReference: {fileID: 1066764828}
+    - target: {fileID: 2132153918992289080, guid: 35313d24b055ba84f8c678dadc1bd160, type: 3}
       propertyPath: shopGoldText
       value: 
       objectReference: {fileID: 1006875498124032647}
@@ -1984,10 +1985,6 @@ PrefabInstance:
     - target: {fileID: 4645257462346113289, guid: 074fbce9d1d40db4086def74d7bdf13f, type: 3}
       propertyPath: m_Name
       value: Npc2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645257462346113289, guid: 074fbce9d1d40db4086def74d7bdf13f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

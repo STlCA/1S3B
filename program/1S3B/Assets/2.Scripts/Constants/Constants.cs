@@ -70,6 +70,7 @@ namespace Constants
 
         KeepOut,
         Island_Beach,
+        Beach_Town,
     }
 
     public enum PlayerMap

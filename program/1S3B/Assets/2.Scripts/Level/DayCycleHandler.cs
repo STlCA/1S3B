@@ -41,6 +41,7 @@ public class DayCycleHandler : Manager
     //시작시간
     public float endTime = 0.0f;
     //끝나는시간
+    private float timeSpeed = 3f;
 
     [Header("Day Light")]
     public Light2D dayLight;
@@ -59,7 +60,7 @@ public class DayCycleHandler : Manager
         base.Init(gm);
 
         if (dayDurationInSeconds <= 0.0f)
-            dayDurationInSeconds = 5.0f;
+            dayDurationInSeconds = 10.0f;
 
         ResetDayTime();
     }
@@ -75,7 +76,7 @@ public class DayCycleHandler : Manager
     private void UpdateTime()
     {
         priviousTime = currentTime;
-        currentTime += Time.deltaTime;
+        currentTime += Time.deltaTime * timeSpeed;
 
         while (currentTime > dayDurationInSeconds)
             currentTime -= dayDurationInSeconds;
@@ -149,7 +150,7 @@ public class DayCycleHandler : Manager
         int adjustedMinute = (int)(minute / 10) * 10;
         //텍스트에서는 분이 10분 단위로 보이게
 
-        string AmPm;            
+        string AmPm;
 
         if (hour < 13)
             AmPm = "오전";
@@ -160,7 +161,7 @@ public class DayCycleHandler : Manager
             AmPm = "오후";
         }
 
-        string[] returnArray = new string[] {AmPm,$"{hour:00} : {adjustedMinute:00}" };
+        string[] returnArray = new string[] { AmPm, $"{hour:00} : {adjustedMinute:00}" };
 
         //return $"{hour:00} : {adjustedMinute:00}{AmPm}";
         return returnArray;
@@ -213,7 +214,7 @@ public class DayCycleHandler : Manager
     public void DateTest()
     {
         currentDay += 26;
-        foreach(var (cell, data) in GameManager.Instance.TileManager.cropData)
+        foreach (var (cell, data) in GameManager.Instance.TileManager.cropData)
         {
             data.deathTimer = data.plantCrop.DeathTimer - currentDay % 28;
         }

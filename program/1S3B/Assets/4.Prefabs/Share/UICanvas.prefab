@@ -2735,7 +2735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5077065437083706580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4467,7 +4467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundSystemManager, Assembly-CSharp
-        m_MethodName: AudioClipPlay
+        m_MethodName: GameAudioClipPlay
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

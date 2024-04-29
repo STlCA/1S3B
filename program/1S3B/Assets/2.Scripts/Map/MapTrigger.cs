@@ -167,6 +167,10 @@ public class MapTrigger : MonoBehaviour
                 case MapTriggerType.KeepOut:
                     popUpController.UIOn(uiManager.keepOutInfo);
                     return;
+                case MapTriggerType.Beach_Town:
+                    player.playerPosition = new Vector3(-73.76f, -42.12f, 0);
+                    uiManager.MiniMapPosition(PlayerMap.Town);
+                    break;
             }
 
             sceneChangeManager.CallMapChangeEvent(true);
