@@ -1,7 +1,10 @@
 using Constants;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInputController : CharacterEventController
 {
@@ -27,6 +30,10 @@ public class PlayerInputController : CharacterEventController
 
     public int selectQuickSlotIndex { get; private set; }
 
+    GraphicRaycaster raycaster;
+    PointerEventData pointerEventData;
+    EventSystem eventSystem;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -38,6 +45,9 @@ public class PlayerInputController : CharacterEventController
         natureObjectController = gameManager.NatureObjectController;
         soundManager = gameManager.SoundManager;
         sceneChangeManager = gameManager.SceneChangeManager;
+
+        raycaster = FindObjectOfType<GraphicRaycaster>();
+        eventSystem = FindObjectOfType<EventSystem>();
 
         playerTalkController = GetComponent<PlayerTalkController>();
         animController = GetComponent<AnimationController>();
@@ -331,6 +341,16 @@ public class PlayerInputController : CharacterEventController
 
     public void OnUse(InputValue value)
     {
+        // 장비를 사용하기 전에 선행되는 동작이 있는지 확인
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerEventData, results);
+        if(results.Count > 0)
+        {
+            return;
+        }
+
         //여기서 들고있는 장비를 부르고 장비에서 갈수있는땅인지 체크하고 장비에서 tillat가고
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
