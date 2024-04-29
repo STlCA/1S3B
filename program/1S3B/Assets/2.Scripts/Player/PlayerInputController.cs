@@ -341,16 +341,6 @@ public class PlayerInputController : CharacterEventController
 
     public void OnUse(InputValue value)
     {
-        // 장비를 사용하기 전에 선행되는 동작이 있는지 확인
-        pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = Input.mousePosition;
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerEventData, results);
-        if(results.Count > 0)
-        {
-            return;
-        }
-
         //여기서 들고있는 장비를 부르고 장비에서 갈수있는땅인지 체크하고 장비에서 tillat가고
         //지금은 임시
         //임시 - 여기선 갈땅인지 물줄땅인지만체크
@@ -365,6 +355,21 @@ public class PlayerInputController : CharacterEventController
             isUse = false;
     }
 
+    // 장비를 사용하기 전에 선행되는 동작이 있는지 확인
+    private bool IsUIExisted()
+    {
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerEventData, results);
+        if (results.Count > 0)
+        {
+            isUse = false;
+            return true;
+        }
+        return false;
+    }
+
     public void UseCancle(bool isDeath)
     {
         if (isDeath)
@@ -373,6 +378,11 @@ public class PlayerInputController : CharacterEventController
 
     private void Use()
     {
+        if (IsUIExisted())
+        {
+            return;
+        }
+
         if (UseException() == false)
             return;
 
