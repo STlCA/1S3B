@@ -122,7 +122,11 @@ public class InventoryUI : MonoBehaviour
     public void InfoShow(InventorySlotUI slot)
     {
         _itemInfoUI.transform.position = slot.transform.position;
-        itemInfoRect.anchoredPosition += new Vector2(itemInfoWidthHalf, itemInfoHeightHalf);
+        itemInfoRect.anchoredPosition += new Vector2(itemInfoWidthHalf, itemInfoHeightHalf*1.2f);
+        if (itemInfoRect.anchoredPosition.x >= 960)
+        {
+            itemInfoRect.anchoredPosition = new Vector2(960-itemInfoWidthHalf, 0);
+        }
 
         _itemInfoUI.SetActive(true);
     }
